@@ -1,0 +1,23 @@
+{
+  "name": "k-codepoet-plugins",
+  "owner": {
+    "name": "choigawoon"
+  },
+  "metadata": {
+    "description": "Personal collection of Claude Code plugins by k-codepoet",
+    "version": "1.0.0"
+  },
+  "plugins": [
+    {
+      "name": "init-homeserver-with-k3s",
+      "source": "./plugins/init-homeserver-with-k3s",
+      "description": "Linux Ubuntu homeserver K3s initialization, multi-node cluster setup, and IaC management plugin",
+      "version": "1.1.0",
+      "category": "infrastructure",
+      "tags": ["k3s", "kubernetes", "homeserver", "iac", "linux", "ubuntu"],
+      "author": {
+        "name": "choigawoon"
+      }
+    }
+  ]
+}

@@ -10,20 +10,25 @@ Personal collection of Claude Code plugins by k-codepoet.
 
 ## Installation
 
-### From Marketplace URL
+### Add Marketplace (Recommended)
 
 ```bash
-claude plugins add https://raw.githubusercontent.com/k-codepoet/my-claude-plugins/main/marketplace.json
+# Add marketplace from GitHub
+/plugin marketplace add k-codepoet/my-claude-plugins
+
+# Install plugin
+/plugin install init-homeserver-with-k3s@k-codepoet-plugins
 ```
 
-### Manual Installation
+### Local Installation
 
 ```bash
-# Clone the repository
+# Clone and add as local marketplace
 git clone https://github.com/k-codepoet/my-claude-plugins.git
+/plugin marketplace add ./my-claude-plugins
 
-# Use plugin directly
-claude --plugin-dir ./my-claude-plugins/plugins/init-homeserver-with-k3s
+# Install plugin
+/plugin install init-homeserver-with-k3s@k-codepoet-plugins
 ```
 
 ## Plugin Details
