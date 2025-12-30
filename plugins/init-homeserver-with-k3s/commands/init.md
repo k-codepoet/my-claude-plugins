@@ -25,7 +25,20 @@ Check for existing Kubernetes installations:
 
 If any found, warn user and ask whether to proceed.
 
-### Step 2: K3s Installation
+### Step 2: IaC Repository Setup
+
+First, initialize the IaC repository at `~/my-iac`:
+
+```bash
+bash "${CLAUDE_PLUGIN_ROOT}/scripts/init-iac.sh"
+```
+
+This creates the extensible IaC structure with:
+- K3s manifests and Helm configurations
+- Docker Compose stacks (hostname-based, Portainer GitOps ready)
+- Placeholders for Terraform, ArgoCD, Ansible
+
+### Step 3: K3s Installation
 
 Execute the installation script:
 ```bash
@@ -36,22 +49,6 @@ Wait for installation to complete and verify with:
 - `kubectl get nodes`
 - `kubectl cluster-info`
 
-### Step 3: IaC Repository Setup
-
-Create the IaC repository at `~/k3s`:
-
-```bash
-mkdir -p ~/k3s/{k3s/{manifest,helm},scripts}
-cd ~/k3s && git init
-```
-
-Copy management scripts from plugin:
-```bash
-cp "${CLAUDE_PLUGIN_ROOT}/scripts/snapshot-k3s.sh" ~/k3s/scripts/
-cp "${CLAUDE_PLUGIN_ROOT}/scripts/restore-k3s.sh" ~/k3s/scripts/
-chmod +x ~/k3s/scripts/*.sh
-```
-
 ### Step 4: Initial Snapshot
 
 Run snapshot to save initial cluster state:
@@ -59,22 +56,26 @@ Run snapshot to save initial cluster state:
 bash "${CLAUDE_PLUGIN_ROOT}/scripts/snapshot-k3s.sh"
 ```
 
-### Step 5: Initial Git Commit
+### Step 5: Git Commit
 
 ```bash
-cd ~/k3s
+cd ~/my-iac
 git add .
-git commit -m "Initial K3s IaC setup
+git commit -m "K3s cluster initialized
 
-- K3s cluster initialized
-- Snapshot and restore scripts configured
-- Initial cluster state captured"
+- Initial cluster state captured
+- Ready for GitOps deployments"
 ```
 
 ## Completion
 
 Report to user:
 - K3s installation status
-- IaC repository location (`~/k3s`)
-- Available scripts
-- Next steps (deploy applications, create snapshots)
+- IaC repository location (`~/my-iac`)
+- Detected hostname (for docker-compose structure)
+- Directory structure overview
+- Next steps:
+  - Add git remote: `cd ~/my-iac && git remote add origin <url>`
+  - Deploy applications
+  - Create snapshots regularly
+  - Add docker-compose stacks for Portainer

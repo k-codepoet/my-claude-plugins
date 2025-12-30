@@ -13,14 +13,11 @@ YELLOW='\033[1;33m'
 BLUE='\033[0;34m'
 NC='\033[0m' # No Color
 
-# Configuration
+# Default configuration
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 PLUGIN_ROOT="$(dirname "$SCRIPT_DIR")"
-K3S_PROJECT_DIR="$HOME/k3s"
-K3S_DIR="${K3S_PROJECT_DIR}/k3s"
-MANIFEST_DIR="${K3S_DIR}/manifest"
-HELM_DIR="${K3S_DIR}/helm"
-SNAPSHOT_DIR="${PLUGIN_ROOT}/snapshots"
+DEFAULT_IAC_ROOT="$HOME/my-iac"
+IAC_ROOT=""
 
 # Timestamp for backup
 TIMESTAMP=$(date +"%Y%m%d_%H%M%S")
@@ -46,6 +43,68 @@ log_warn() {
 
 log_error() {
     echo -e "${RED}[ERROR]${NC} $1"
+}
+
+usage() {
+    cat << EOF
+Usage: $(basename "$0") [OPTIONS]
+
+Create a snapshot of the current K3s cluster state.
+
+Options:
+    -d, --directory DIR    IaC repository directory
+                           (default: ~/my-iac)
+    -h, --help             Show this help message
+
+Examples:
+    $(basename "$0")                           # Use default ~/my-iac
+    $(basename "$0") -d ~/projects/my-iac      # Custom directory
+EOF
+    exit 0
+}
+
+# Parse arguments
+parse_args() {
+    while [[ $# -gt 0 ]]; do
+        case $1 in
+            -d|--directory)
+                IAC_ROOT="$2"
+                shift 2
+                ;;
+            -h|--help)
+                usage
+                ;;
+            *)
+                log_error "Unknown option: $1"
+                usage
+                ;;
+        esac
+    done
+
+    # Use default if not specified
+    if [ -z "$IAC_ROOT" ]; then
+        IAC_ROOT="$DEFAULT_IAC_ROOT"
+    fi
+
+    # Expand ~ to home directory
+    IAC_ROOT="${IAC_ROOT/#\~/$HOME}"
+
+    # Set dependent paths
+    K3S_DIR="${IAC_ROOT}/k3s"
+    MANIFEST_DIR="${K3S_DIR}/manifest"
+    HELM_DIR="${K3S_DIR}/helm"
+    SNAPSHOT_DIR="${K3S_DIR}/snapshots"
+}
+
+# Check if IaC directory exists
+check_iac_dir() {
+    if [ ! -d "${IAC_ROOT}" ]; then
+        log_error "IaC directory not found: ${IAC_ROOT}"
+        log_error "Please run 'init-iac' first to initialize the IaC repository."
+        log_error "Or specify a different directory with: -d <directory>"
+        exit 1
+    fi
+    log_success "IaC directory found: ${IAC_ROOT}"
 }
 
 # Check if kubectl is available
@@ -230,6 +289,7 @@ generate_summary() {
 **Timestamp:** ${TIMESTAMP}
 **Generated:** $(date)
 **Cluster:** $(kubectl config current-context 2>/dev/null || echo "default")
+**IaC Root:** ${IAC_ROOT}
 
 ## Exported Resources
 
@@ -250,8 +310,8 @@ ${helm_values}
 - Helm files: ${helm_count}
 
 ## Storage Locations
-- Manifests: \`~/k3s/k3s/manifest/\`
-- Helm: \`~/k3s/k3s/helm/\`
+- Manifests: \`${MANIFEST_DIR}/\`
+- Helm: \`${HELM_DIR}/\`
 - This file: \`${summary_file}\`
 
 ---
@@ -269,6 +329,8 @@ main() {
     echo "============================================="
     echo ""
 
+    parse_args "$@"
+    check_iac_dir
     check_kubectl
     init_dirs
 
@@ -303,7 +365,7 @@ main() {
     log_success "============================================="
     log_success "  Snapshot completed!"
     log_success "  "
-    log_success "  Manifests: ~/k3s/k3s/"
+    log_success "  Manifests: ${K3S_DIR}/"
     log_success "  Snapshot info: ${SNAPSHOT_DIR}/snapshot_${TIMESTAMP}.md"
     log_success "============================================="
     echo ""

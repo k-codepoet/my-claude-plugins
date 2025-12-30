@@ -13,11 +13,9 @@ YELLOW='\033[1;33m'
 BLUE='\033[0;34m'
 NC='\033[0m' # No Color
 
-# Configuration
-K3S_PROJECT_DIR="$HOME/k3s"
-K3S_DIR="${K3S_PROJECT_DIR}/k3s"
-MANIFEST_DIR="${K3S_DIR}/manifest"
-HELM_DIR="${K3S_DIR}/helm"
+# Default configuration
+DEFAULT_IAC_ROOT="$HOME/my-iac"
+IAC_ROOT=""
 
 DRY_RUN=false
 NAMESPACE=""
@@ -42,39 +40,74 @@ usage() {
     cat << EOF
 Usage: $(basename "$0") [OPTIONS]
 
+Restore K3s cluster from saved manifests.
+
 Options:
-    -n, --namespace NAMESPACE   Restore only specific namespace
-    -d, --dry-run              Show what would be applied without making changes
-    -h, --help                 Show this help message
+    --dir DIR              IaC repository directory
+                           (default: ~/my-iac)
+    -n, --namespace NS     Restore only specific namespace
+    -d, --dry-run          Show what would be applied without making changes
+    -h, --help             Show this help message
 
 Examples:
-    $(basename "$0")                      # Restore all
-    $(basename "$0") -n default           # Restore only default namespace
-    $(basename "$0") --dry-run            # Preview changes
+    $(basename "$0")                           # Restore all from ~/my-iac
+    $(basename "$0") --dir ~/projects/my-iac   # Custom directory
+    $(basename "$0") -n default                # Restore only default namespace
+    $(basename "$0") --dry-run                 # Preview changes
 EOF
     exit 0
 }
 
 # Parse arguments
-while [[ $# -gt 0 ]]; do
-    case $1 in
-        -n|--namespace)
-            NAMESPACE="$2"
-            shift 2
-            ;;
-        -d|--dry-run)
-            DRY_RUN=true
-            shift
-            ;;
-        -h|--help)
-            usage
-            ;;
-        *)
-            log_error "Unknown option: $1"
-            usage
-            ;;
-    esac
-done
+parse_args() {
+    while [[ $# -gt 0 ]]; do
+        case $1 in
+            --dir)
+                IAC_ROOT="$2"
+                shift 2
+                ;;
+            -n|--namespace)
+                NAMESPACE="$2"
+                shift 2
+                ;;
+            -d|--dry-run)
+                DRY_RUN=true
+                shift
+                ;;
+            -h|--help)
+                usage
+                ;;
+            *)
+                log_error "Unknown option: $1"
+                usage
+                ;;
+        esac
+    done
+
+    # Use default if not specified
+    if [ -z "$IAC_ROOT" ]; then
+        IAC_ROOT="$DEFAULT_IAC_ROOT"
+    fi
+
+    # Expand ~ to home directory
+    IAC_ROOT="${IAC_ROOT/#\~/$HOME}"
+
+    # Set dependent paths
+    K3S_DIR="${IAC_ROOT}/k3s"
+    MANIFEST_DIR="${K3S_DIR}/manifest"
+    HELM_DIR="${K3S_DIR}/helm"
+}
+
+# Check if IaC directory exists
+check_iac_dir() {
+    if [ ! -d "${IAC_ROOT}" ]; then
+        log_error "IaC directory not found: ${IAC_ROOT}"
+        log_error "Please run 'init-iac' first to initialize the IaC repository."
+        log_error "Or specify a different directory with: --dir <directory>"
+        exit 1
+    fi
+    log_success "IaC directory found: ${IAC_ROOT}"
+}
 
 # Check if kubectl is available
 check_kubectl() {
@@ -95,7 +128,7 @@ check_kubectl() {
 check_manifests() {
     if [ ! -d "$MANIFEST_DIR" ]; then
         log_error "Manifest directory not found: $MANIFEST_DIR"
-        log_error "Run snapshot first to export cluster resources."
+        log_error "Run '/init-homeserver-with-k3s:snapshot' first to export cluster resources."
         exit 1
     fi
 
@@ -222,10 +255,15 @@ main() {
     echo "============================================="
     echo ""
 
+    parse_args "$@"
+
+    log_info "Using IaC directory: ${IAC_ROOT}"
+
     if [ "$DRY_RUN" = true ]; then
         log_warn "DRY RUN MODE - No changes will be made"
     fi
 
+    check_iac_dir
     check_kubectl
     check_manifests
 

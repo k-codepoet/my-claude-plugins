@@ -1,10 +1,16 @@
 ---
 description: Restore K3s cluster from saved snapshot
-argument-hint: [--dry-run] [-n namespace]
+argument-hint: [--dir directory] [--dry-run] [-n namespace]
 allowed-tools: Read, Bash, Write
 ---
 
 Use the k3s-homeserver skill to restore the K3s cluster from saved manifests.
+
+## Arguments
+
+- `--dir <directory>`: IaC directory path (default: `~/my-iac`)
+- `--dry-run` or `-d`: Preview changes without applying
+- `-n <namespace>`: Restore only specific namespace
 
 ## Prerequisites Check
 
@@ -15,15 +21,10 @@ Use the k3s-homeserver skill to restore the K3s cluster from saved manifests.
 
 2. Verify manifests exist:
    ```bash
-   ls ~/k3s/k3s/manifest/
+   ls <iac-directory>/k3s/manifest/
    ```
 
 3. If prerequisites not met, inform user and stop.
-
-## Arguments
-
-- `--dry-run` or `-d`: Preview changes without applying
-- `-n <namespace>`: Restore only specific namespace
 
 ## Workflow
 
@@ -31,17 +32,22 @@ Use the k3s-homeserver skill to restore the K3s cluster from saved manifests.
 
 Build command with arguments:
 
-If dry-run requested:
+Default path with dry-run:
 ```bash
-bash "${CLAUDE_PLUGIN_ROOT}/scripts/restore-k3s.sh" --dry-run $ARGUMENTS
+bash "${CLAUDE_PLUGIN_ROOT}/scripts/restore-k3s.sh" --dry-run
 ```
 
-If specific namespace:
+Custom path:
+```bash
+bash "${CLAUDE_PLUGIN_ROOT}/scripts/restore-k3s.sh" --dir /path/to/iac
+```
+
+Specific namespace:
 ```bash
 bash "${CLAUDE_PLUGIN_ROOT}/scripts/restore-k3s.sh" -n <namespace>
 ```
 
-Otherwise full restore:
+Full restore:
 ```bash
 bash "${CLAUDE_PLUGIN_ROOT}/scripts/restore-k3s.sh"
 ```
@@ -61,8 +67,24 @@ Report to user:
 - Any failures or warnings
 - Cluster status after restore
 
+## Examples
+
+```bash
+# Preview changes (recommended first)
+/init-homeserver-with-k3s:restore --dry-run
+
+# Restore all from default directory
+/init-homeserver-with-k3s:restore
+
+# Restore from custom directory
+/init-homeserver-with-k3s:restore --dir ~/projects/my-infrastructure
+
+# Restore specific namespace only
+/init-homeserver-with-k3s:restore -n default
+```
+
 ## Recommendations
 
 - Always run with `--dry-run` first to preview changes
-- Check snapshot info files in `${CLAUDE_PLUGIN_ROOT}/snapshots/` for available snapshots
+- Check snapshot info files in `<iac-directory>/k3s/snapshots/` for available snapshots
 - Use `-n <namespace>` to restore specific namespace only

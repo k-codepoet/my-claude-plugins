@@ -1,14 +1,14 @@
 ---
 name: K3s Homeserver Setup
-description: This skill should be used when the user asks to "set up a homeserver", "install k3s", "configure kubernetes on my server", "build a homelab", "create a home kubernetes cluster", "initialize server environment", or mentions "homeserver setup", "k3s installation", "homelab kubernetes". Provides comprehensive guidance for K3s installation, cluster snapshots, and IaC-based cluster management on Linux Ubuntu.
-version: 1.0.0
+description: This skill should be used when the user asks to "set up a homeserver", "install k3s", "configure kubernetes on my server", "build a homelab", "create a home kubernetes cluster", "initialize server environment", "initialize iac", "setup gitops", or mentions "homeserver setup", "k3s installation", "homelab kubernetes", "portainer gitops", "docker-compose stacks". Provides comprehensive guidance for K3s installation, extensible IaC management, Docker Compose GitOps, cluster snapshots, and IaC-based cluster management on Linux Ubuntu.
+version: 2.0.0
 ---
 
 # K3s Homeserver Setup Skill
 
 ## Overview
 
-This skill enables automated setup of K3s Kubernetes clusters on Linux Ubuntu homeservers with Infrastructure as Code (IaC) management. It handles environment detection, K3s installation, Git repository configuration, and cluster state management through snapshots.
+This skill enables automated setup of K3s Kubernetes clusters on Linux Ubuntu homeservers with extensible Infrastructure as Code (IaC) management. It handles environment detection, K3s installation, Git repository configuration, Docker Compose GitOps for Portainer, and cluster state management through snapshots.
 
 ## Platform Requirement
 
@@ -36,7 +36,36 @@ If any existing environment is detected:
 - Ask if they want to proceed (may cause conflicts)
 - Stop if user declines
 
-### 2. K3s Installation (Master Node)
+### 2. IaC Repository Setup
+
+Initialize the IaC repository at `~/my-iac` using `$CLAUDE_PLUGIN_ROOT/scripts/init-iac.sh`:
+
+```bash
+bash "$CLAUDE_PLUGIN_ROOT/scripts/init-iac.sh"
+```
+
+The script:
+1. Detects the current machine's hostname
+2. Creates extensible directory structure
+3. Sets up hostname-based Docker Compose structure for Portainer GitOps
+4. Initializes git repository with initial commit
+
+This creates the following structure:
+
+```
+~/my-iac/
+├── k3s/                          # Kubernetes configurations
+│   ├── manifest/                 # K8s manifests (declarative)
+│   └── helm/                     # Helm charts & values
+│
+├── {hostname}/                   # Docker Compose services (Portainer GitOps)
+│
+├── terraform/                    # Terraform infrastructure (placeholder)
+│
+└── argocd/                       # ArgoCD GitOps (placeholder)
+```
+
+### 3. K3s Installation (Master Node)
 
 Execute the installation script at `$CLAUDE_PLUGIN_ROOT/scripts/install-k3s.sh`:
 
@@ -55,27 +84,6 @@ Post-installation verification:
 ```bash
 kubectl get nodes
 kubectl cluster-info
-```
-
-### 3. IaC Repository Setup
-
-After K3s installation, set up the IaC repository at `~/k3s`:
-
-```bash
-# Create directory structure
-mkdir -p ~/k3s/{k3s/{manifest,helm},scripts}
-
-# Initialize git repository
-cd ~/k3s && git init
-
-# Copy management scripts from plugin
-cp "$CLAUDE_PLUGIN_ROOT/scripts/snapshot-k3s.sh" ~/k3s/scripts/
-cp "$CLAUDE_PLUGIN_ROOT/scripts/restore-k3s.sh" ~/k3s/scripts/
-chmod +x ~/k3s/scripts/*.sh
-
-# Create initial commit
-git add .
-git commit -m "Initial K3s IaC setup"
 ```
 
 ### 4. Join Worker Node (Multi-Node Cluster)
@@ -123,7 +131,28 @@ On master node:
 kubectl get nodes
 ```
 
-### 5. Cluster Snapshot (Master Node Only)
+### 5. Docker Compose for Portainer GitOps
+
+The `{hostname}/` directory enables Portainer GitOps:
+
+1. Each service has its own directory:
+   ```
+   {hostname}/
+   ├── traefik/
+   │   └── docker-compose.yml
+   ├── portainer/
+   │   └── docker-compose.yml
+   └── monitoring/
+       └── docker-compose.yml
+   ```
+
+2. In Portainer, configure GitOps:
+   - Go to **Stacks** → **Add Stack** → **Git Repository**
+   - Repository URL: your Git repo URL
+   - Compose path: `{hostname}/{service-name}/docker-compose.yml`
+   - Enable auto-update for GitOps
+
+### 6. Cluster Snapshot (Master Node Only)
 
 Create a snapshot of the current cluster state using `$CLAUDE_PLUGIN_ROOT/scripts/snapshot-k3s.sh`:
 
@@ -138,11 +167,11 @@ The script exports:
 - **CRDs**: Custom Resource Definitions (excluding K3s internal)
 
 Output locations:
-- Manifests: `~/k3s/k3s/manifest/`
-- Helm resources: `~/k3s/k3s/helm/`
-- Snapshot info: `$CLAUDE_PLUGIN_ROOT/snapshots/snapshot_{timestamp}.md`
+- Manifests: `~/my-iac/k3s/manifest/`
+- Helm resources: `~/my-iac/k3s/helm/`
+- Snapshot info: `~/my-iac/k3s/snapshots/snapshot_{timestamp}.md`
 
-### 5. Cluster Restore
+### 7. Cluster Restore
 
 Restore cluster from saved manifests using `$CLAUDE_PLUGIN_ROOT/scripts/restore-k3s.sh`:
 
@@ -168,6 +197,7 @@ All scripts located at `$CLAUDE_PLUGIN_ROOT/scripts/`:
 
 | Script | Purpose |
 |--------|---------|
+| `init-iac.sh` | Initialize extensible IaC repository at ~/my-iac |
 | `install-k3s.sh` | K3s master node installation with environment detection |
 | `join-node.sh` | Join worker node to existing K3s cluster (requires master confirmation) |
 | `snapshot-k3s.sh` | Export cluster state to YAML manifests |
@@ -179,28 +209,6 @@ The following are excluded from snapshots:
 - **System namespaces**: kube-system, kube-public, kube-node-lease
 - **Runtime fields**: creationTimestamp, resourceVersion, uid, generation, managedFields
 - **K3s internal CRDs**: helmcharts, helmchartconfigs, addons
-
-## Directory Structure
-
-```
-~/k3s/                              # User's IaC repository
-├── k3s/
-│   ├── manifest/
-│   │   ├── namespaces/             # Per-namespace resources
-│   │   │   ├── default/
-│   │   │   └── <namespace>/
-│   │   └── cluster/                # Cluster-scoped resources
-│   │       └── crds/               # Custom Resource Definitions
-│   └── helm/
-│       ├── charts/                 # HelmChart resources
-│       └── values/                 # HelmChartConfig resources
-└── scripts/
-    ├── snapshot-k3s.sh
-    └── restore-k3s.sh
-
-$CLAUDE_PLUGIN_ROOT/snapshots/      # Snapshot info files
-└── snapshot_{timestamp}.md
-```
 
 ## Prerequisites
 
@@ -223,6 +231,7 @@ Common issues and solutions:
 | Permission denied | Ensure user has sudo privileges for installation |
 | Cluster unreachable | Check if K3s service is running: `sudo systemctl status k3s` |
 | Manifests empty | Verify resources exist in cluster before snapshot |
+| IaC directory not found | Run `/init-homeserver-with-k3s:init-iac` first |
 
 ## Additional Resources
 
@@ -234,6 +243,8 @@ For detailed information, consult:
 ### Scripts
 
 Working scripts in `scripts/`:
+- **`init-iac.sh`** - IaC repository initialization
 - **`install-k3s.sh`** - Complete K3s installation script
+- **`join-node.sh`** - Worker node join script
 - **`snapshot-k3s.sh`** - Cluster state export script
 - **`restore-k3s.sh`** - Cluster state restore script

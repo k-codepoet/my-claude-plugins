@@ -1,0 +1,328 @@
+#!/bin/bash
+#
+# IaC (Infrastructure as Code) Repository Initialization Script
+# Creates IaC directory with extensible structure for K3s, Docker Compose, Terraform, ArgoCD
+#
+
+set -e
+
+# Colors for output
+RED='\033[0;31m'
+GREEN='\033[0;32m'
+YELLOW='\033[1;33m'
+BLUE='\033[0;34m'
+CYAN='\033[0;36m'
+NC='\033[0m' # No Color
+
+# Default configuration
+DEFAULT_IAC_ROOT="$HOME/my-iac"
+IAC_ROOT=""
+HOSTNAME=$(hostname)
+
+log_info() {
+    echo -e "${BLUE}[INFO]${NC} $1"
+}
+
+log_success() {
+    echo -e "${GREEN}[SUCCESS]${NC} $1"
+}
+
+log_warn() {
+    echo -e "${YELLOW}[WARN]${NC} $1"
+}
+
+log_error() {
+    echo -e "${RED}[ERROR]${NC} $1"
+}
+
+log_section() {
+    echo -e "\n${CYAN}=== $1 ===${NC}\n"
+}
+
+usage() {
+    cat << EOF
+Usage: $(basename "$0") [OPTIONS]
+
+Initialize IaC repository with extensible structure.
+
+Options:
+    -d, --directory DIR    Target directory for IaC repository
+                           (default: ~/my-iac)
+    -h, --help             Show this help message
+
+Examples:
+    $(basename "$0")                           # Use default ~/my-iac
+    $(basename "$0") -d ~/projects/my-iac      # Custom directory
+    $(basename "$0") --directory /opt/iac      # Custom directory
+EOF
+    exit 0
+}
+
+# Parse arguments
+parse_args() {
+    while [[ $# -gt 0 ]]; do
+        case $1 in
+            -d|--directory)
+                IAC_ROOT="$2"
+                shift 2
+                ;;
+            -h|--help)
+                usage
+                ;;
+            *)
+                log_error "Unknown option: $1"
+                usage
+                ;;
+        esac
+    done
+
+    # Use default if not specified
+    if [ -z "$IAC_ROOT" ]; then
+        IAC_ROOT="$DEFAULT_IAC_ROOT"
+    fi
+
+    # Expand ~ to home directory
+    IAC_ROOT="${IAC_ROOT/#\~/$HOME}"
+}
+
+# Check if git is available
+check_git() {
+    if ! command -v git &> /dev/null; then
+        log_error "git not found. Please install git first."
+        exit 1
+    fi
+    log_success "git is available"
+}
+
+# Create directory structure
+create_structure() {
+    log_section "Creating IaC Directory Structure"
+
+    log_info "IaC Root: ${IAC_ROOT}"
+    log_info "Detected Hostname: ${HOSTNAME}"
+
+    # Main directory
+    mkdir -p "${IAC_ROOT}"
+
+    # K3s structure - Kubernetes declarative, helm charts & manifests
+    log_info "Creating K3s structure..."
+    mkdir -p "${IAC_ROOT}/k3s/manifest"
+    mkdir -p "${IAC_ROOT}/k3s/helm"
+
+    # Docker Compose - hostname-based (for Portainer GitOps)
+    log_info "Creating Docker Compose structure for host: ${HOSTNAME}..."
+    mkdir -p "${IAC_ROOT}/${HOSTNAME}"
+    touch "${IAC_ROOT}/${HOSTNAME}/.gitkeep"
+
+    # Terraform placeholder
+    log_info "Creating Terraform placeholder..."
+    mkdir -p "${IAC_ROOT}/terraform"
+    touch "${IAC_ROOT}/terraform/.gitkeep"
+
+    # ArgoCD placeholder
+    log_info "Creating ArgoCD placeholder..."
+    mkdir -p "${IAC_ROOT}/argocd"
+    touch "${IAC_ROOT}/argocd/.gitkeep"
+
+    log_success "Directory structure created"
+}
+
+# Create .gitignore
+create_gitignore() {
+    log_info "Creating .gitignore..."
+
+    cat > "${IAC_ROOT}/.gitignore" << 'EOF'
+# Secrets and sensitive files
+.secrets/
+*.key
+*.pem
+*.crt
+*.p12
+*secret*.yaml
+*secret*.yml
+
+# Environment files with secrets
+.env
+.env.*
+!.env.example
+
+# Terraform
+*.tfstate
+*.tfstate.*
+*.tfvars
+.terraform/
+.terraform.lock.hcl
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Backup files
+*.bak
+*.backup
+*.orig
+
+# Logs
+*.log
+logs/
+
+# Temporary files
+tmp/
+temp/
+*.tmp
+EOF
+
+    log_success ".gitignore created"
+}
+
+# Create README
+create_readme() {
+    log_info "Creating README.md..."
+
+    cat > "${IAC_ROOT}/README.md" << EOF
+# My Infrastructure as Code (IaC)
+
+Personal IaC repository for managing infrastructure configurations.
+
+## Structure
+
+\`\`\`
+$(basename "${IAC_ROOT}")/
+├── k3s/                          # Kubernetes (K3s) configurations
+│   ├── manifest/                 # Kubernetes manifests (declarative)
+│   └── helm/                     # Helm charts & values
+│
+├── ${HOSTNAME}/                  # Docker Compose services (this host)
+│                                 # For Portainer GitOps
+│
+├── terraform/                    # Terraform infrastructure provisioning
+│
+└── argocd/                       # ArgoCD GitOps configurations
+\`\`\`
+
+## Hosts
+
+Docker Compose configurations are organized by hostname:
+
+- **${HOSTNAME}** - Current host ($(date +%Y-%m-%d))
+
+## Usage
+
+### K3s Snapshot/Restore
+
+\`\`\`bash
+# Create snapshot of current K3s cluster
+/init-homeserver-with-k3s:snapshot
+
+# With custom directory
+/init-homeserver-with-k3s:snapshot -d ${IAC_ROOT}
+
+# Restore from snapshot
+/init-homeserver-with-k3s:restore --dry-run
+/init-homeserver-with-k3s:restore
+\`\`\`
+
+### Docker Compose (Portainer GitOps)
+
+Place your docker-compose files in: \`${HOSTNAME}/\`
+
+Example:
+\`\`\`
+${HOSTNAME}/
+├── traefik/
+│   └── docker-compose.yml
+├── portainer/
+│   └── docker-compose.yml
+└── monitoring/
+    └── docker-compose.yml
+\`\`\`
+
+---
+*Generated by init-homeserver-with-k3s plugin on $(date)*
+*IaC Root: ${IAC_ROOT}*
+EOF
+
+    log_success "README.md created"
+}
+
+# Initialize git repository
+init_git() {
+    log_section "Initializing Git Repository"
+
+    cd "${IAC_ROOT}"
+
+    if [ -d ".git" ]; then
+        log_warn "Git repository already exists"
+        return
+    fi
+
+    git init
+    git add .
+    git commit -m "Initial IaC repository setup
+
+- K3s manifest/helm structure
+- Docker Compose for host: ${HOSTNAME}
+- Terraform placeholder
+- ArgoCD placeholder
+- Generated by init-homeserver-with-k3s plugin"
+
+    log_success "Git repository initialized with initial commit"
+}
+
+# Print summary
+print_summary() {
+    log_section "Summary"
+
+    echo -e "${GREEN}IaC Repository Created Successfully!${NC}"
+    echo ""
+    echo "Location: ${IAC_ROOT}"
+    echo "Hostname: ${HOSTNAME}"
+    echo ""
+    echo "Directory Structure:"
+    echo "  ${IAC_ROOT}/"
+    echo "  ├── k3s/"
+    echo "  │   ├── manifest/           # K8s manifests"
+    echo "  │   └── helm/               # Helm charts"
+    echo "  ├── ${HOSTNAME}/            # Docker Compose (this host)"
+    echo "  ├── terraform/              # Terraform (placeholder)"
+    echo "  └── argocd/                 # ArgoCD (placeholder)"
+    echo ""
+    echo "Next Steps:"
+    echo "  1. Add a remote: cd ${IAC_ROOT} && git remote add origin <url>"
+    echo "  2. Create K3s snapshot: /init-homeserver-with-k3s:snapshot -d ${IAC_ROOT}"
+    echo "  3. Add docker-compose services in: ${HOSTNAME}/"
+    echo ""
+}
+
+# Main execution
+main() {
+    echo ""
+    echo "============================================="
+    echo "     IaC Repository Initialization"
+    echo "============================================="
+    echo ""
+
+    parse_args "$@"
+    check_git
+    create_structure
+    create_gitignore
+    create_readme
+    init_git
+    print_summary
+
+    echo ""
+    log_success "============================================="
+    log_success "  IaC Repository Ready!"
+    log_success "============================================="
+    echo ""
+}
+
+# Run
+main "$@"
