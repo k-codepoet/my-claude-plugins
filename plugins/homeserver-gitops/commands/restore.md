@@ -71,16 +71,16 @@ Report to user:
 
 ```bash
 # Preview changes (recommended first)
-/init-homeserver-with-k3s:restore --dry-run
+/homeserver-gitops:restore --dry-run
 
 # Restore all from default directory
-/init-homeserver-with-k3s:restore
+/homeserver-gitops:restore
 
 # Restore from custom directory
-/init-homeserver-with-k3s:restore --dir ~/projects/my-infrastructure
+/homeserver-gitops:restore --dir ~/projects/my-infrastructure
 
 # Restore specific namespace only
-/init-homeserver-with-k3s:restore -n default
+/homeserver-gitops:restore -n default
 ```
 
 ## Recommendations

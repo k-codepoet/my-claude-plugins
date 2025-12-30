@@ -128,7 +128,7 @@ check_kubectl() {
 check_manifests() {
     if [ ! -d "$MANIFEST_DIR" ]; then
         log_error "Manifest directory not found: $MANIFEST_DIR"
-        log_error "Run '/init-homeserver-with-k3s:snapshot' first to export cluster resources."
+        log_error "Run '/homeserver-gitops:snapshot' first to export cluster resources."
         exit 1
     fi
 

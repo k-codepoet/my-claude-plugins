@@ -1,7 +1,7 @@
 ---
 name: K3s Homeserver Setup
 description: This skill should be used when the user asks to "set up a homeserver", "install k3s", "configure kubernetes on my server", "build a homelab", "create a home kubernetes cluster", "initialize server environment", "initialize iac", "setup gitops", or mentions "homeserver setup", "k3s installation", "homelab kubernetes", "portainer gitops", "docker-compose stacks". Provides comprehensive guidance for K3s installation, extensible IaC management, Docker Compose GitOps, cluster snapshots, and IaC-based cluster management on Linux Ubuntu.
-version: 2.0.0
+version: 1.0.0
 ---
 
 # K3s Homeserver Setup Skill
@@ -231,7 +231,7 @@ Common issues and solutions:
 | Permission denied | Ensure user has sudo privileges for installation |
 | Cluster unreachable | Check if K3s service is running: `sudo systemctl status k3s` |
 | Manifests empty | Verify resources exist in cluster before snapshot |
-| IaC directory not found | Run `/init-homeserver-with-k3s:init-iac` first |
+| IaC directory not found | Run `/homeserver-gitops:init-iac` first |
 
 ## Additional Resources
 

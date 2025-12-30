@@ -6,7 +6,7 @@ Personal collection of Claude Code plugins by k-codepoet.
 
 | Plugin | Description | Platform |
 |--------|-------------|----------|
-| [init-homeserver-with-k3s](./plugins/init-homeserver-with-k3s/) | K3s homeserver setup, multi-node cluster, extensible IaC with GitOps | Linux |
+| [homeserver-gitops](./plugins/homeserver-gitops/) | K3s homeserver & GitOps setup with extensible IaC | Linux |
 
 ## Installation
 
@@ -17,7 +17,7 @@ Personal collection of Claude Code plugins by k-codepoet.
 /plugin marketplace add k-codepoet/my-claude-plugins
 
 # Install plugin
-/plugin install init-homeserver-with-k3s@k-codepoet-plugins
+/plugin install homeserver-gitops@k-codepoet-plugins
 ```
 
 ### Local Installation
@@ -28,23 +28,24 @@ git clone https://github.com/k-codepoet/my-claude-plugins.git
 /plugin marketplace add ./my-claude-plugins
 
 # Install plugin
-/plugin install init-homeserver-with-k3s@k-codepoet-plugins
+/plugin install homeserver-gitops@k-codepoet-plugins
 ```
 
 ## Plugin Details
 
-### init-homeserver-with-k3s (v2.0.0)
+### homeserver-gitops (v1.0.0)
 
-Linux Ubuntu homeserver K3s initialization plugin with extensible IaC management:
+Linux Ubuntu homeserver K3s & GitOps initialization plugin:
 
 - **Commands**:
-  - `/init-homeserver-with-k3s:init` - Install K3s and initialize IaC environment
-  - `/init-homeserver-with-k3s:init-iac` - Initialize IaC repository only (no K3s)
-  - `/init-homeserver-with-k3s:join-node` - Join as worker node to existing cluster
-  - `/init-homeserver-with-k3s:snapshot` - Export cluster state to YAML manifests
-  - `/init-homeserver-with-k3s:restore` - Restore cluster from saved snapshot
+  - `/homeserver-gitops:init` - Install K3s and initialize IaC environment
+  - `/homeserver-gitops:init-iac` - Initialize IaC repository only (no K3s)
+  - `/homeserver-gitops:join-node` - Join as worker node to existing cluster
+  - `/homeserver-gitops:snapshot` - Export cluster state to YAML manifests
+  - `/homeserver-gitops:restore` - Restore cluster from saved snapshot
+  - `/homeserver-gitops:help` - Show help and usage
 
-- **New in v2.0.0**:
+- **Features**:
   - Extensible IaC structure at `~/my-iac`
   - Hostname-based Docker Compose for Portainer GitOps
   - Terraform and ArgoCD placeholders

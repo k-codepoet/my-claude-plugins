@@ -1,9 +1,9 @@
 ---
-description: Show available commands and usage for init-homeserver-with-k3s plugin
+description: Show available commands and usage for homeserver-gitops plugin
 allowed-tools: Read
 ---
 
-# init-homeserver-with-k3s Plugin Help
+# homeserver-gitops Plugin Help
 
 Display this help information to the user.
 
@@ -11,12 +11,12 @@ Display this help information to the user.
 
 | Command | Description |
 |---------|-------------|
-| `/init-homeserver-with-k3s:init` | K3s 설치 + IaC 환경 전체 초기화 (마스터 노드) |
-| `/init-homeserver-with-k3s:init-iac` | IaC 저장소만 초기화 (K3s 없이) |
-| `/init-homeserver-with-k3s:join-node` | 기존 K3s 클러스터에 워커 노드로 조인 |
-| `/init-homeserver-with-k3s:snapshot` | 현재 클러스터 상태 스냅샷 생성 |
-| `/init-homeserver-with-k3s:restore` | 저장된 스냅샷에서 복원 |
-| `/init-homeserver-with-k3s:help` | 이 도움말 표시 |
+| `/homeserver-gitops:init` | K3s 설치 + IaC 환경 전체 초기화 (마스터 노드) |
+| `/homeserver-gitops:init-iac` | IaC 저장소만 초기화 (K3s 없이) |
+| `/homeserver-gitops:join-node` | 기존 K3s 클러스터에 워커 노드로 조인 |
+| `/homeserver-gitops:snapshot` | 현재 클러스터 상태 스냅샷 생성 |
+| `/homeserver-gitops:restore` | 저장된 스냅샷에서 복원 |
+| `/homeserver-gitops:help` | 이 도움말 표시 |
 
 ## Common Options
 
@@ -30,42 +30,42 @@ Display this help information to the user.
 
 ### 1. 홈서버 전체 설정 (K3s + IaC)
 ```bash
-/init-homeserver-with-k3s:init
+/homeserver-gitops:init
 ```
 
 ### 2. IaC 저장소만 초기화
 ```bash
 # 기본 경로 ~/my-iac
-/init-homeserver-with-k3s:init-iac
+/homeserver-gitops:init-iac
 
 # 사용자 지정 경로
-/init-homeserver-with-k3s:init-iac -d ~/projects/my-infrastructure
+/homeserver-gitops:init-iac -d ~/projects/my-infrastructure
 ```
 
 ### 3. 워커 노드 추가
 ```bash
-/init-homeserver-with-k3s:join-node --master-ip 192.168.1.100
+/homeserver-gitops:join-node --master-ip 192.168.1.100
 ```
 
 ### 4. 클러스터 스냅샷
 ```bash
 # 기본 경로
-/init-homeserver-with-k3s:snapshot
+/homeserver-gitops:snapshot
 
 # 사용자 지정 경로
-/init-homeserver-with-k3s:snapshot -d ~/projects/my-infrastructure
+/homeserver-gitops:snapshot -d ~/projects/my-infrastructure
 ```
 
 ### 5. 클러스터 복원
 ```bash
 # 미리보기 (dry-run)
-/init-homeserver-with-k3s:restore --dry-run
+/homeserver-gitops:restore --dry-run
 
 # 실제 복원
-/init-homeserver-with-k3s:restore
+/homeserver-gitops:restore
 
 # 특정 네임스페이스만 복원
-/init-homeserver-with-k3s:restore -n default
+/homeserver-gitops:restore -n default
 ```
 
 ## IaC Directory Structure
@@ -103,5 +103,5 @@ Display this help information to the user.
 
 ## More Information
 
-- Plugin Version: 2.0.0
+- Plugin Version: 1.0.0
 - GitHub: https://github.com/k-codepoet/my-claude-plugins

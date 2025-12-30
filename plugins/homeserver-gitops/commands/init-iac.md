@@ -81,17 +81,17 @@ Report to user:
 
 ```bash
 # Default directory ~/my-iac
-/init-homeserver-with-k3s:init-iac
+/homeserver-gitops:init-iac
 
 # Custom directory
-/init-homeserver-with-k3s:init-iac -d ~/projects/my-infrastructure
+/homeserver-gitops:init-iac -d ~/projects/my-infrastructure
 
 # Absolute path
-/init-homeserver-with-k3s:init-iac -d /opt/iac
+/homeserver-gitops:init-iac -d /opt/iac
 ```
 
 ## Next Steps After Init
 
 1. Add git remote: `cd <iac-directory> && git remote add origin <url>`
-2. If K3s is installed, run snapshot: `/init-homeserver-with-k3s:snapshot -d <iac-directory>`
+2. If K3s is installed, run snapshot: `/homeserver-gitops:snapshot -d <iac-directory>`
 3. Add docker-compose stacks for Portainer GitOps

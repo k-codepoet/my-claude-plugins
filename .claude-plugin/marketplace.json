@@ -9,10 +9,10 @@
   },
   "plugins": [
     {
-      "name": "init-homeserver-with-k3s",
-      "source": "./plugins/init-homeserver-with-k3s",
-      "description": "Linux Ubuntu homeserver K3s initialization, multi-node cluster setup, extensible IaC management with GitOps support",
-      "version": "2.0.0",
+      "name": "homeserver-gitops",
+      "source": "./plugins/homeserver-gitops",
+      "description": "Linux Ubuntu homeserver K3s & GitOps setup with extensible IaC management",
+      "version": "1.0.0",
       "category": "infrastructure",
       "tags": ["k3s", "kubernetes", "homeserver", "iac", "linux", "ubuntu", "gitops", "portainer", "docker-compose"],
       "author": {

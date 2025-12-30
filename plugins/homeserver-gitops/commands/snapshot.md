@@ -54,10 +54,10 @@ Report to user:
 
 ```bash
 # Default directory ~/my-iac
-/init-homeserver-with-k3s:snapshot
+/homeserver-gitops:snapshot
 
 # Custom directory
-/init-homeserver-with-k3s:snapshot -d ~/projects/my-infrastructure
+/homeserver-gitops:snapshot -d ~/projects/my-infrastructure
 ```
 
 ## Optional: Git Commit
