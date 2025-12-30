@@ -1,0 +1,18 @@
+{
+  "name": "ubuntu-dev-setup",
+  "version": "1.0.0",
+  "description": "Ubuntu Linux development environment setup with Zsh, Oh My Zsh, Powerlevel10k, NVM, and essential packages",
+  "author": {
+    "name": "choigawoon"
+  },
+  "keywords": ["ubuntu", "linux", "development", "zsh", "oh-my-zsh", "powerlevel10k", "nvm", "nodejs", "devbox", "environment"],
+  "commands": [
+    "./commands/"
+  ],
+  "agents": [
+    "./agents/ubuntu-dev-setup.md"
+  ],
+  "skills": [
+    "./skills/ubuntu-dev-environment/"
+  ]
+}

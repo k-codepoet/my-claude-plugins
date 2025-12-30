@@ -18,6 +18,17 @@
       "author": {
         "name": "choigawoon"
       }
+    },
+    {
+      "name": "ubuntu-dev-setup",
+      "source": "./plugins/ubuntu-dev-setup",
+      "description": "Ubuntu Linux development environment setup with Zsh, Oh My Zsh, Powerlevel10k, NVM, and essential packages",
+      "version": "1.0.0",
+      "category": "development",
+      "tags": ["ubuntu", "linux", "development", "zsh", "oh-my-zsh", "powerlevel10k", "nvm", "nodejs", "devbox"],
+      "author": {
+        "name": "choigawoon"
+      }
     }
   ]
 }
