@@ -1,0 +1,9 @@
+{
+  "name": "init-homeserver-with-k3s",
+  "version": "1.1.0",
+  "description": "Linux Ubuntu homeserver K3s initialization, multi-node cluster setup, and IaC management plugin",
+  "author": {
+    "name": "choigawoon"
+  },
+  "keywords": ["k3s", "kubernetes", "homeserver", "iac", "snapshot", "restore", "cluster", "worker-node", "agent", "join-node", "multi-node"]
+}
