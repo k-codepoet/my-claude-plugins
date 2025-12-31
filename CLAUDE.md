@@ -48,32 +48,40 @@ cat .claude-plugin/marketplace.json | jq .
 ## Component Schemas
 
 ### marketplace.json
+
+Required fields: `name`, `owner.name`, `plugins[].name`, `plugins[].source`, `plugins[].description`
+
 ```json
 {
-  "name": "marketplace-name",           // Required
-  "owner": { "name": "author-name" },   // Required
+  "name": "k-codepoet-plugins",
+  "owner": { "name": "choigawoon" },
   "plugins": [{
-    "name": "plugin-name",              // Required
-    "source": "./plugins/plugin-name",  // Required
-    "description": "..."                // Required
+    "name": "plugin-name",
+    "source": "./plugins/plugin-dir",
+    "description": "Plugin description"
   }]
 }
 ```
+Note: `name` field becomes the install suffix (e.g., `plugin@k-codepoet-plugins`).
 
 ### plugin.json
+
+Required: `name`, `version`, `description`, `author.name`
+Optional: `keywords`, `commands`, `agents`, `skills` (paths or array of paths)
+
 ```json
 {
-  "name": "plugin-name",                // Required (can differ from directory name)
-  "version": "1.0.0",                   // Required
-  "description": "Plugin description",  // Required
-  "author": { "name": "author-name" },  // Required
-  "keywords": ["tag1", "tag2"],         // Optional
-  "commands": ["./commands/"],          // Optional - path or array of paths
-  "agents": ["./agents/"],              // Optional - path or array of paths
-  "skills": ["./skills/"]               // Optional - path or array of paths
+  "name": "ced",
+  "version": "1.0.0",
+  "description": "Plugin description",
+  "author": { "name": "author-name" },
+  "keywords": ["tag1", "tag2"],
+  "commands": ["./commands/"],
+  "agents": ["./agents/"],
+  "skills": ["./skills/"]
 }
 ```
-Note: `name` in plugin.json determines the command prefix (e.g., `ced` → `/ced:help`), while directory name is just for organization.
+Note: `name` determines command prefix (e.g., `ced` → `/ced:help`), while directory name is just for organization.
 
 ### Commands (`commands/*.md`)
 ```yaml
@@ -118,12 +126,15 @@ Note: File must be named `SKILL.md` (uppercase) inside a directory matching the 
 Skills auto-activate based on context. Same content can exist as both command (explicit `/ced:skill-guide`) and skill (auto-triggered).
 
 ### Hooks (`hooks/hooks.json`)
+
+Fields: `event` (PreToolUse | PostToolUse), `matcher` (tool name), `command` (shell command)
+
 ```json
 {
   "hooks": [{
-    "event": "PreToolUse",              # PreToolUse | PostToolUse
-    "matcher": "Bash",                  # Tool name to match
-    "command": "bash script.sh"         # Shell command to execute
+    "event": "PreToolUse",
+    "matcher": "Bash",
+    "command": "bash script.sh"
   }]
 }
 ```
