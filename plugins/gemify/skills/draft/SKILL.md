@@ -1,9 +1,9 @@
 ---
-name: develop
-description: inbox의 원석을 대화로 다듬어 drafts/에 기록. facet(넓게)/polish(연마) 모드로 동작. 완성되면 /gemify:file 전환 제안.
+name: draft
+description: inbox의 원석을 대화로 다듬어 drafts/에 기록. facet(넓게)/polish(연마) 모드로 동작. 완성되면 /gemify:library 전환 제안.
 ---
 
-# Develop Skill
+# Draft Skill
 
 inbox의 원석을 **대화를 통해 다듬습니다**.
 
@@ -19,9 +19,9 @@ drafts/           ← 해체 → 재조립 → 연마
 ## 두 가지 모드
 
 ```
-/gemify:develop
+/gemify:draft
 ├── facet  - 여러 면 탐색, 넓게 (BFS)
-└── polish - 깊이 연마, 광택 (DFS) → file 준비
+└── polish - 깊이 연마, 광택 (DFS) → library 준비
 ```
 
 ### facet (기본)
@@ -73,7 +73,7 @@ inbox 파일 사용 시:
 
 ### 5. 완성도 감지
 
-다음 조건 시 file 전환 제안:
+다음 조건 시 library 전환 제안:
 - turns >= 5
 - Open Questions 대부분 해결
 - 같은 포인트 반복
@@ -139,12 +139,12 @@ summary: "요약"
 | 시작 | drafts/ 확인, 진행 중 목록 표시 |
 | 대화 | 매 턴 업데이트, turns 증가, 모드 체크 |
 | pivot | revision++, 스냅샷 생성 |
-| 종료 | 상태 요약, "/gemify:develop {파일명}" 안내 |
+| 종료 | 상태 요약, "/gemify:draft {파일명}" 안내 |
 
 ## 규칙
 
 - 질문은 **하나씩 순차적으로**
-- **강요 안 함** - file은 사용자 수락 시만
+- **강요 안 함** - library는 사용자 수락 시만
 - 이전 세션 맥락 이어감
 - `_template.md` 제외
 

@@ -1,22 +1,22 @@
 ---
-name: develop
+name: draft
 description: inbox의 원석을 대화로 다듬기 (facet/polish 모드)
 allowed-tools: Read, Write, Edit
 argument-hint: [파일/아이디어]
 ---
 
-# /gemify:develop - 원석 다듬기 커맨드
+# /gemify:draft - 원석 다듬기 커맨드
 
-develop 스킬로 원석을 대화로 다듬는다.
+draft 스킬로 원석을 대화로 다듬는다.
 
 ## 사용법
 
 ```
-/gemify:develop                            # drafts/ 목록 또는 새 시작
-/gemify:develop "이런 생각이 있어..."        # 새 원석으로 시작
-/gemify:develop drafts/my-idea.md          # 기존 이어가기
-/gemify:develop inbox/thoughts/my-idea.md  # inbox에서 시작
-/gemify:develop inbox/materials/article.md # material과 함께 시작
+/gemify:draft                            # drafts/ 목록 또는 새 시작
+/gemify:draft "이런 생각이 있어..."        # 새 원석으로 시작
+/gemify:draft drafts/my-idea.md          # 기존 이어가기
+/gemify:draft inbox/thoughts/my-idea.md  # inbox에서 시작
+/gemify:draft inbox/materials/article.md # material과 함께 시작
 ```
 
 ## 입력 소스
@@ -37,9 +37,9 @@ drafts/           ← 둘이 만나서 해체 → 재조립 → 연마
 ## 두 가지 모드
 
 ```
-/gemify:develop
+/gemify:draft
 ├── facet  - 여러 면 탐색, 넓게 (기본)
-└── polish - 깊이 연마 → file 준비
+└── polish - 깊이 연마 → library 준비
 ```
 
 - **facet**: 넓게 탐색 ("다른 면에서 보면?", "연결되는 건?")
@@ -55,13 +55,13 @@ drafts/           ← 둘이 만나서 해체 → 재조립 → 연마
 
 ## 종료 조건
 
-1. 사용자 선언: "file 해줘", "정리하자", "이 정도면 됐어"
-2. Claude 제안 수락: 완성도 감지 후 "file 해볼까?" → 사용자 OK
-3. 세션 종료: 자동 저장, 다음에 `/gemify:develop 파일명`으로 이어가기
+1. 사용자 선언: "library 해줘", "정리하자", "이 정도면 됐어"
+2. Claude 제안 수락: 완성도 감지 후 "library 해볼까?" → 사용자 OK
+3. 세션 종료: 자동 저장, 다음에 `/gemify:draft 파일명`으로 이어가기
 
-## file 전환
+## library 전환
 
 ```
-사용자: "file 해줘" 또는 "정리하자"
-→ Claude: /gemify:file 워크플로우 호출 (drafts → library 직접 처리)
+사용자: "library 해줘" 또는 "정리하자"
+→ Claude: /gemify:library 워크플로우 호출 (drafts → library 직접 처리)
 ```

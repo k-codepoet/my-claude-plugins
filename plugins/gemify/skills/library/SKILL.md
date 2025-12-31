@@ -1,9 +1,9 @@
 ---
-name: file
-description: drafts의 다듬어진 보석을 library로 저장. "정리해", "분류해", "file" 요청 또는 develop 세션에서 완성도 충분 시 활성화.
+name: library
+description: drafts의 다듬어진 보석을 library로 저장. "정리해", "분류해", "library" 요청 또는 draft 세션에서 완성도 충분 시 활성화.
 ---
 
-# File Skill
+# Library Skill
 
 drafts의 다듬어진 보석을 **소크라테스식 질문**으로 정리하여 library에 저장합니다.
 

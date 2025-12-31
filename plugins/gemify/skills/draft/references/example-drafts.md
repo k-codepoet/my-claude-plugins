@@ -6,7 +6,7 @@
 
 ```markdown
 ---
-title: "develop 스킬 모드 확장"
+title: "draft 스킬 모드 확장"
 created: "2024-12-31"
 updated: "2024-12-31 09:45"
 turns: 3
@@ -38,9 +38,9 @@ history:
 ### 모드 (확정)
 
 \`\`\`
-/gemify:develop
+/gemify:draft
 ├── facet  - 여러 면 탐색, 넓게 (BFS)
-└── polish - 깊이 연마, 광택 (DFS) → file 준비
+└── polish - 깊이 연마, 광택 (DFS) → library 준비
 
 기본: facet
 트리거: "연마해봐", "좀 더 다듬자" → polish
@@ -75,7 +75,7 @@ Stop 훅 + prompt → pivot 감지 → revision++
 1. **frontmatter**: 메타데이터와 히스토리 요약
 2. **Current State**: 현재까지의 결론 (압축된 형태)
 3. **Open Questions**: 아직 해결 안 된 질문들
-4. **status 변화**: developing → filed (file 완료 후)
+4. **status 변화**: developing → filed (library 완료 후)
 
 ## 히스토리 스냅샷 예시
 
@@ -91,7 +91,7 @@ summary: "모드 구조 정리: BFS + DFS"
 
 ## 결정사항
 
-- develop 모드를 facet/polish 두 가지로 구분
+- draft 모드를 facet/polish 두 가지로 구분
 - facet: BFS 방식으로 여러 면 탐색
 - polish: DFS 방식으로 깊이 연마
 
