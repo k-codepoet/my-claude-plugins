@@ -13,13 +13,28 @@ This is a **Claude Code Plugin Marketplace** containing Linux automation plugins
 └── plugins/
     └── {plugin-name}/
         ├── .claude-plugin/plugin.json  # Plugin manifest
-        ├── agents/                      # Natural language trigger definitions
-        ├── commands/                    # Slash command definitions
-        ├── scripts/                     # Bash implementation scripts
-        └── skills/                      # Contextual knowledge for AI
+        ├── agents/                      # Natural language trigger definitions (.md)
+        ├── commands/                    # Slash command definitions (.md)
+        ├── scripts/                     # Bash implementation scripts (.sh)
+        └── skills/                      # Contextual knowledge for AI (SKILL.md)
 ```
 
 **Flow**: User triggers command/agent -> Command definition references script -> Script executes with `${CLAUDE_PLUGIN_ROOT}` variable
+
+## Development Commands
+
+```bash
+# Test locally - add this marketplace to Claude Code
+/plugin marketplace add ./
+
+# Install a specific plugin for testing
+/plugin install homeserver-gitops@k-codepoet-plugins
+/plugin install ubuntu-dev-setup@k-codepoet-plugins
+/plugin install claude-extension-dev@k-codepoet-plugins
+
+# Validate script syntax (run from plugin directory)
+bash -n scripts/*.sh
+```
 
 ## Component Frontmatter Reference
 
@@ -135,18 +150,6 @@ Claude Code 확장 개발 한국어 가이드. Skills로 제공되어 Claude가 
 
 **Commands**:
 - `/claude-extension-dev:help` - 도움말
-
-## Plugin Installation (for testing)
-
-```bash
-# Add marketplace
-/plugin marketplace add ./
-
-# Install specific plugin
-/plugin install homeserver-gitops@k-codepoet-plugins
-/plugin install ubuntu-dev-setup@k-codepoet-plugins
-/plugin install claude-extension-dev@k-codepoet-plugins
-```
 
 ## Script Conventions
 
