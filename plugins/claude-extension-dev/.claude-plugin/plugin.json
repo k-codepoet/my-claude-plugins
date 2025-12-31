@@ -1,0 +1,9 @@
+{
+  "name": "claude-extension-dev",
+  "version": "1.0.0",
+  "description": "Claude Code 확장 개발 가이드 (한국어). Skills, Commands, Agents, Hooks, Plugins, Marketplace 작성법을 제공합니다.",
+  "author": {
+    "name": "k-codepoet"
+  },
+  "keywords": ["documentation", "korean", "plugin-development", "skills", "agents", "hooks", "claude-code"]
+}

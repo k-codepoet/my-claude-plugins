@@ -29,6 +29,17 @@
       "author": {
         "name": "choigawoon"
       }
+    },
+    {
+      "name": "claude-extension-dev",
+      "source": "./plugins/claude-extension-dev",
+      "description": "Claude Code 확장 개발 가이드 (한국어). Skills, Commands, Agents, Hooks, Plugins, Marketplace 작성법 제공",
+      "version": "1.0.0",
+      "category": "documentation",
+      "tags": ["korean", "documentation", "plugin-development", "skills", "agents", "hooks", "marketplace", "claude-code"],
+      "author": {
+        "name": "choigawoon"
+      }
     }
   ]
 }
