@@ -29,12 +29,14 @@ This is a **Claude Code Plugin Marketplace** (`k-codepoet/my-claude-plugins`) co
 ## Development Commands
 
 ```bash
-# Test locally - add this marketplace to Claude Code
+# Add marketplace from GitHub (users)
+/plugin marketplace add k-codepoet/my-claude-plugins
+
+# Add marketplace locally (development)
 /plugin marketplace add ./
 
-# Install a specific plugin for testing
+# Install a specific plugin
 /plugin install homeserver-gitops@k-codepoet-plugins
-/plugin install ubuntu-dev-setup@k-codepoet-plugins
 /plugin install ced@k-codepoet-plugins
 
 # Validate script syntax (from plugin directory)
