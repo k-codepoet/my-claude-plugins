@@ -1,5 +1,4 @@
 ---
-name: join-node
 description: Join this machine to an existing K3s cluster as a worker node
 argument-hint: [--master-ip IP] [--token TOKEN] [--node-name NAME]
 allowed-tools: Read, Bash, Write

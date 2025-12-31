@@ -1,5 +1,4 @@
 ---
-name: import
 description: 외부 재료(기사, 문서, 대화 등)를 inbox/materials/에 저장
 allowed-tools: Read, Write, Edit, WebFetch
 argument-hint: [URL/내용]

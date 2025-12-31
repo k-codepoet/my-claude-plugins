@@ -1,5 +1,4 @@
 ---
-name: draft
 description: inbox의 원석을 대화로 다듬기 (facet/polish 모드)
 allowed-tools: Read, Write, Edit
 argument-hint: [파일/아이디어]

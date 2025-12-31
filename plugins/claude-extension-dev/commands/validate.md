@@ -1,5 +1,4 @@
 ---
-name: validate
 description: 플러그인이 가이드라인을 준수하는지 검증하고 규격에 맞게 리팩토링합니다. 플러그인 검증, 규격 확인, 리팩토링이 필요할 때 사용합니다.
 allowed-tools: Read, Glob, Grep, Write, Edit, Bash
 argument-hint: [plugin-path]

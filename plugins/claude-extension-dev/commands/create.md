@@ -1,5 +1,4 @@
 ---
-name: create
 description: 지정된 경로의 내용을 기반으로 Claude Code 플러그인을 생성합니다. 가이드라인에 맞춰 plugin.json, commands, skills, agents 구조를 자동 생성합니다.
 argument-hint: "<path> <topic>"
 allowed-tools: Read, Write, Bash, Glob, Grep

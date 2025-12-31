@@ -1,5 +1,4 @@
 ---
-name: inbox
 description: 내 생각을 inbox/thoughts/에 빠르게 저장
 allowed-tools: Read, Write, Edit
 argument-hint: [내용]

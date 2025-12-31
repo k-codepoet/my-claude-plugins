@@ -1,5 +1,4 @@
 ---
-name: snapshot
 description: Create snapshot of current K3s cluster state
 argument-hint: [-d directory]
 allowed-tools: Read, Bash, Write

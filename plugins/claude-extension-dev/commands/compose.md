@@ -1,5 +1,4 @@
 ---
-name: compose
 description: 여러 플러그인을 분석하여 필요한 부분만 추출하고 새로운 플러그인으로 조립합니다.
 argument-hint: "<topic> <plugin1> [plugin2] [plugin3] ..."
 allowed-tools: Read, Write, Bash, Glob, Grep

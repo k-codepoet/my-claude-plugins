@@ -14,16 +14,17 @@ description: Claude Code 슬래시 커맨드 작성법 가이드. 커맨드 만�
 ```
 plugin-root/
 └── commands/
-    ├── deploy.md      # /deploy 커맨드
-    └── analyze.md     # /analyze 커맨드
+    ├── deploy.md      # /{pluginname}:deploy 커맨드
+    └── analyze.md     # /{pluginname}:analyze 커맨드
 ```
 
 ## 작성법
 
 ```markdown
 ---
-name: deploy
 description: Deploy the application to production
+allowed-tools: Bash, Read, Write
+argument-hint: [--env <environment>]
 ---
 
 # Deploy Command
@@ -34,8 +35,34 @@ description: Deploy the application to production
 3. Deploy to production
 
 ## Usage
-/deploy --env production
+/{pluginname}:deploy --env production
 ```
+
+## Frontmatter 필드
+
+| 필드 | 필수 | 설명 |
+|------|------|------|
+| `description` | ✅ | 커맨드 설명 |
+| `allowed-tools` | ❌ | 사용 가능한 도구 제한 |
+| `argument-hint` | ❌ | 인자 힌트 표시 |
+| `name` | ❌ | **파일명 override** (아래 참고) |
+
+## 명령어 이름 규칙
+
+**기본**: 파일명이 명령어 이름이 됩니다.
+- `commands/deploy.md` → `/{pluginname}:deploy`
+- `commands/setup-env.md` → `/{pluginname}:setup-env`
+
+**Override**: `name` 필드로 파일명과 다른 이름 지정 가능
+```yaml
+---
+name: my-custom-name
+description: ...
+---
+```
+- `commands/deploy.md` + `name: d` → `/{pluginname}:d`
+
+⚠️ **주의**: `name` 필드 없이 파일명만 사용하는 것이 기본 권장 패턴입니다. prefix가 자동으로 붙어 `/{pluginname}:{filename}` 형식이 됩니다.
 
 ## Skills vs Commands 비교
 

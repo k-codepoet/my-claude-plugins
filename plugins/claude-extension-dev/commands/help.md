@@ -1,5 +1,4 @@
 ---
-name: help
 description: ced (Claude Extension Dev) 플러그인 도움말을 표시합니다
 ---
 

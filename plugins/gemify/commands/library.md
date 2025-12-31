@@ -1,5 +1,4 @@
 ---
-name: library
 description: drafts 파일을 정리하여 library로 분류/저장
 allowed-tools: Read, Write, Edit
 argument-hint: [drafts 파일]

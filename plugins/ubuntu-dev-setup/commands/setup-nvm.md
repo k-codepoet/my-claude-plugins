@@ -1,5 +1,4 @@
 ---
-name: setup-nvm
 description: Install NVM (Node Version Manager) for Node.js management
 allowed-tools: Read, Bash
 ---

@@ -1,5 +1,4 @@
 ---
-name: init
 description: Initialize K3s homeserver with IaC setup
 allowed-tools: Read, Bash, Write, Glob, Grep
 ---

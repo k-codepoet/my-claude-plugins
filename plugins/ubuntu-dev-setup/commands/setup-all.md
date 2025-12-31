@@ -1,5 +1,4 @@
 ---
-name: setup-all
 description: Complete Ubuntu development environment setup (common + zsh + nvm)
 allowed-tools: Read, Bash, Write
 ---

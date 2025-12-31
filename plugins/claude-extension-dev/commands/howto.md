@@ -1,5 +1,4 @@
 ---
-name: howto
 description: Claude Code 확장 개발 가이드. 인자 없이 실행하면 가능한 주제 목록을, 주제를 지정하면 해당 가이드를 표시합니다.
 argument-hint: "[topic]"
 ---
