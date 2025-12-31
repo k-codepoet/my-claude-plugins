@@ -11,7 +11,7 @@ created: "2024-12-31"
 updated: "2024-12-31 09:45"
 turns: 3
 revision: 3
-status: filed
+status: set
 sources:
   - inbox/thoughts/2024-12-31-develop-mode-expansion.md
   - inbox/materials/2024-12-31-claude-md-review.md
@@ -75,7 +75,7 @@ Stop 훅 + prompt → pivot 감지 → revision++
 1. **frontmatter**: 메타데이터와 히스토리 요약
 2. **Current State**: 현재까지의 결론 (압축된 형태)
 3. **Open Questions**: 아직 해결 안 된 질문들
-4. **status 변화**: developing → filed (library 완료 후)
+4. **status 변화**: cutting → set (library 완료 후)
 
 ## 히스토리 스냅샷 예시
 

@@ -53,4 +53,4 @@ capture → develop → file 파이프라인을 완성하면:
 **포인트**:
 - 저장 직후라 status=raw
 - used_in은 아직 비어있음
-- 나중에 `/gemify:develop`로 확장 가능
+- 나중에 `/gemify:draft`로 확장 가능

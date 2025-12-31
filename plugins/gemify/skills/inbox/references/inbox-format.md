@@ -40,4 +40,4 @@ raw → used
 ```
 
 - **raw**: 저장 직후 상태
-- **used**: /gemify:develop에서 사용된 후
+- **used**: /gemify:draft에서 사용된 후
