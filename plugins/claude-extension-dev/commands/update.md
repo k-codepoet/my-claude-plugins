@@ -1,5 +1,4 @@
 ---
-name: update
 description: 플러그인 내용을 최신 가이드라인으로 갱신합니다. 기존 기능 개선, 최신 규격 반영, 문서 업데이트가 필요할 때 사용합니다.
 allowed-tools: Read, Glob, Grep, Write, Edit, Bash, WebFetch
 argument-hint: [plugin-path] [--check-only]
