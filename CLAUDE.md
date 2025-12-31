@@ -106,7 +106,7 @@ assistant: "..."
 ```
 Note: `<example>` blocks belong in body, not frontmatter.
 
-### Skills (`skills/*/SKILL.md`)
+### Skills (`skills/{skill-name}/SKILL.md`)
 ```yaml
 ---
 name: skill-name                        # Required
@@ -114,7 +114,19 @@ description: What + when to use         # Required
 ---
 Skill content...
 ```
+Note: File must be named `SKILL.md` (uppercase) inside a directory matching the skill name.
 Skills auto-activate based on context. Same content can exist as both command (explicit `/ced:skill-guide`) and skill (auto-triggered).
+
+### Hooks (`hooks/hooks.json`)
+```json
+{
+  "hooks": [{
+    "event": "PreToolUse",              # PreToolUse | PostToolUse
+    "matcher": "Bash",                  # Tool name to match
+    "command": "bash script.sh"         # Shell command to execute
+  }]
+}
+```
 
 ## Script Conventions
 
@@ -123,6 +135,14 @@ Skills auto-activate based on context. Same content can exist as both command (e
 - Scripts use `set -e` for fail-fast behavior
 - Output uses color-coded messages: green (success), yellow (warning), red (error)
 - `${CLAUDE_PLUGIN_ROOT}` environment variable points to plugin root directory
+
+## Available Commands Quick Reference
+
+| Plugin | Commands |
+|--------|----------|
+| homeserver-gitops | `/homeserver-gitops:init`, `:init-iac`, `:join-node`, `:snapshot`, `:restore`, `:help` |
+| ubuntu-dev-setup | `/ubuntu-dev-setup:setup-all`, `:setup-common`, `:setup-zsh`, `:setup-nvm`, `:help` |
+| ced | `/ced:create`, `:compose`, `:update`, `:validate`, `:howto`, `:help` |
 
 ## Adding New Plugins
 
