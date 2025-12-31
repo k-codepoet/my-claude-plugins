@@ -22,7 +22,7 @@ description: 외부 재료를 inbox/materials/에 저장. "가져와", "import",
 title: "{제목}"
 date: YYYY-MM-DD
 source: "{출처 URL 또는 설명}"
-type: article | document | conversation | snippet
+type: article | document | conversation | snippet | other
 status: raw
 used_in:
 ---
@@ -37,7 +37,7 @@ used_in:
 | title | Y | 콘텐츠 제목 또는 핵심 키워드 |
 | date | Y | 가져온 날짜 (YYYY-MM-DD) |
 | source | Y | 출처 URL 또는 "직접 입력", "대화에서 추출" 등 |
-| type | Y | article, document, conversation, snippet 중 하나 |
+| type | Y | article, document, conversation, snippet, other 중 하나 |
 | status | Y | raw → used (draft에서 사용 후) |
 | used_in | N | drafts 파일 경로 (사용 후 기록) |
 
@@ -46,9 +46,10 @@ used_in:
 | Type | 설명 | 예시 |
 |------|------|------|
 | article | 웹 기사, 블로그 포스트 | 뉴스 기사, 기술 블로그 |
-| document | 공식 문서, 보고서 | API 문서, 연구 논문 |
+| document | 공식 문서, 보고서, 서비스/제품 문서 | API 문서, 연구 논문, 제품 소개 |
 | conversation | 대화, 토론 내용 | 슬랙 대화, 미팅 노트 |
 | snippet | 짧은 코드나 텍스트 조각 | 코드 스니펫, 인용문 |
+| other | 기타 분류 어려운 재료 | 이미지 설명, 혼합 콘텐츠 |
 
 ## inbox 구조
 

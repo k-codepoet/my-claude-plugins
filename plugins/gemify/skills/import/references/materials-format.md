@@ -7,7 +7,7 @@
 title: "{제목}"
 date: YYYY-MM-DD
 source: "{출처}"
-type: article | document | conversation | snippet
+type: article | document | conversation | snippet | other
 status: raw
 used_in:
 ---
@@ -22,7 +22,7 @@ used_in:
 | title | Y | 콘텐츠 제목 또는 핵심 키워드 |
 | date | Y | 가져온 날짜 (YYYY-MM-DD) |
 | source | Y | 출처 URL 또는 "직접 입력", "대화에서 추출" 등 |
-| type | Y | article, document, conversation, snippet |
+| type | Y | article, document, conversation, snippet, other |
 | status | Y | raw → used (draft에서 사용 후) |
 | used_in | N | drafts 파일 경로 (사용 후 기록) |
 
@@ -40,9 +40,10 @@ inbox/materials/{date}-{slug}.md
 | Type | 특징 | source 예시 |
 |------|------|-------------|
 | article | 웹 기사, 블로그 | https://blog.example.com/post |
-| document | 공식 문서, PDF | https://docs.example.com/api |
+| document | 공식 문서, PDF, 서비스/제품 문서 | https://docs.example.com/api |
 | conversation | 대화, 토론 | "Slack #channel", "Meeting notes" |
 | snippet | 짧은 조각 | "직접 입력", "코드 복사" |
+| other | 기타 분류 어려운 재료 | "이미지 설명", "혼합 콘텐츠" |
 
 ## 상태 흐름
 
