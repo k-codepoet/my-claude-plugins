@@ -26,7 +26,7 @@ inbox 스킬을 사용하여 내 생각을 inbox/thoughts/에 저장한다.
 ## inbox 구조
 
 - **inbox/thoughts/**: 내 생각 (원석) - 이 명령어
-- **inbox/materials/**: 외부 재료 (/import - 나중에)
+- **inbox/materials/**: 외부 재료 - /gemify:import
 
 ## 다음 단계
 

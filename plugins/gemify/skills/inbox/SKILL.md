@@ -43,7 +43,7 @@ used_in:
 | 폴더 | 용도 | 명령어 |
 |------|------|--------|
 | inbox/thoughts/ | 내 생각 (원석) | /gemify:inbox |
-| inbox/materials/ | 외부 재료 | /import (예정) |
+| inbox/materials/ | 외부 재료 | /gemify:import |
 
 ## 규칙
 

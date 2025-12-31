@@ -104,30 +104,33 @@ Claude Code 확장 개발 한국어 가이드 플러그인:
   - 대화 컨텍스트에 따른 스킬 자동 활성화
   - 플러그인 생성/검증/조립 도구
 
-### gemify (v1.0.0)
+### gemify (v1.1.0)
 
 원석을 다듬어 보석으로 만드는 개인 지식 파이프라인:
 
 - **Commands**:
   - `/gemify:inbox [내용]` - 내 생각을 inbox/thoughts/에 빠르게 저장
+  - `/gemify:import [URL/내용]` - 외부 재료를 inbox/materials/에 저장
   - `/gemify:draft [파일]` - inbox의 원석을 대화로 다듬기 (facet/polish 모드)
   - `/gemify:library [파일]` - drafts를 정리하여 library로 분류/저장
 
 - **Pipeline**:
   ```
-  /inbox → /draft → /library
-     ↓        ↓         ↓
-  inbox/   drafts/   library/
+  /inbox   → /draft → /library
+  /import ↗    ↓         ↓
+  inbox/    drafts/   library/
   ```
 
 - **Features**:
   - inbox: 생각의 원석을 빠르게 포착
+  - import: 외부 재료 가져오기 (article, document, conversation, snippet)
   - draft: facet(넓게 탐색) / polish(깊이 연마) 모드
   - library: 소크라테스식 질문으로 6대 domain 분류
   - 대화 히스토리 스냅샷 (.history/)
 
 - **Natural Language Triggers**:
   - "저장해", "메모해", "포착"
+  - "가져와", "이 기사", "이 문서"
   - "다듬어봐", "연마해봐"
   - "정리해", "분류해", "library 해줘"
 
