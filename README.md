@@ -10,6 +10,7 @@ Personal collection of Claude Code plugins by k-codepoet.
 | [ubuntu-dev-setup](./plugins/ubuntu-dev-setup/) | Zsh + Oh My Zsh + Powerlevel10k + NVM 개발환경 설정 | Linux |
 | [ced](./plugins/claude-extension-dev/) | Claude Code 확장 개발 가이드 (한국어) | All |
 | [distill](./plugins/distill/) | 개인 지식 증류 파이프라인 (seed → grow → digest) | All |
+| [gemify](./plugins/gemify/) | 원석을 보석으로 - 개인 지식 파이프라인 (capture → develop → file) | All |
 
 ## Installation
 
@@ -128,6 +129,32 @@ Claude Code 확장 개발 한국어 가이드 플러그인:
   - "이거 저장해줘", "메모해", "씨앗으로"
   - "이 생각 키워보자", "확장해봐"
   - "정리해줘", "digest 해줘"
+
+### gemify (v1.0.0)
+
+원석을 다듬어 보석으로 만드는 개인 지식 파이프라인:
+
+- **Commands**:
+  - `/gemify:capture [내용]` - 내 생각을 inbox/thoughts/에 빠르게 저장
+  - `/gemify:develop [파일]` - inbox의 원석을 대화로 다듬기 (facet/polish 모드)
+  - `/gemify:file [파일]` - drafts를 정리하여 library로 분류/저장
+
+- **Pipeline**:
+  ```
+  inbox/ → drafts/ → library/
+  (capture)  (develop)  (file)
+  ```
+
+- **Features**:
+  - capture: 생각의 원석을 빠르게 포착
+  - develop: facet(넓게 탐색) / polish(깊이 연마) 모드
+  - file: 소크라테스식 질문으로 6대 domain 분류
+  - 대화 히스토리 스냅샷 (.history/)
+
+- **Natural Language Triggers**:
+  - "저장해", "메모해", "포착"
+  - "다듬어봐", "연마해봐"
+  - "정리해", "분류해", "file 해줘"
 
 ## Contributing
 

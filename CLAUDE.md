@@ -6,7 +6,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 This is a **Claude Code Plugin Marketplace** (`k-codepoet/my-claude-plugins`) containing automation plugins. Plugin types include:
 - **Infrastructure plugins**: Linux automation with Bash scripts (homeserver-gitops, ubuntu-dev-setup)
-- **Knowledge plugins**: Skills-only plugins providing contextual guidance (ced - Claude Extension Dev guides in Korean)
+- **Knowledge plugins**: Skills-only plugins providing contextual guidance (ced, distill, gemify)
 
 ## Architecture
 
@@ -155,6 +155,7 @@ Fields: `event` (PreToolUse | PostToolUse), `matcher` (tool name), `command` (sh
 | ubuntu-dev-setup | `/ubuntu-dev-setup:setup-all`, `:setup-common`, `:setup-zsh`, `:setup-nvm`, `:help` |
 | ced | `/ced:create`, `:compose`, `:update`, `:validate`, `:howto`, `:help` |
 | distill | `/distill:seed`, `:grow`, `:digest` |
+| gemify | `/gemify:capture`, `:develop`, `:file` |
 
 ## Adding New Plugins
 
