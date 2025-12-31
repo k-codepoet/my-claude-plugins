@@ -1,4 +1,5 @@
 ---
+name: help
 description: Show available commands and usage for homeserver-gitops plugin
 allowed-tools: Read
 ---

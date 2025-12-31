@@ -1,4 +1,5 @@
 ---
+name: restore
 description: Restore K3s cluster from saved snapshot
 argument-hint: [--dir directory] [--dry-run] [-n namespace]
 allowed-tools: Read, Bash, Write
