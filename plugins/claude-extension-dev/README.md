@@ -23,6 +23,7 @@ Claude Code 확장 개발을 위한 **한국어 가이드** 플러그인입니�
 | `/ced:help` | 도움말 표시 |
 | `/ced:howto` | 가능한 가이드 주제 목록 |
 | `/ced:howto <topic>` | 특정 주제 가이드 표시 |
+| `/ced:create <path> <topic>` | 경로 내용 기반 플러그인 생성 |
 | `/ced:validate [path]` | 가이드라인 준수 검증 |
 | `/ced:update [path]` | 최신 가이드라인으로 갱신 |
 
