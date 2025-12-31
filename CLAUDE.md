@@ -154,6 +154,7 @@ Fields: `event` (PreToolUse | PostToolUse), `matcher` (tool name), `command` (sh
 | homeserver-gitops | `/homeserver-gitops:init`, `:init-iac`, `:join-node`, `:snapshot`, `:restore`, `:help` |
 | ubuntu-dev-setup | `/ubuntu-dev-setup:setup-all`, `:setup-common`, `:setup-zsh`, `:setup-nvm`, `:help` |
 | ced | `/ced:create`, `:compose`, `:update`, `:validate`, `:howto`, `:help` |
+| distill | `/distill:seed`, `:grow`, `:digest` |
 
 ## Adding New Plugins
 

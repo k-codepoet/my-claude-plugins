@@ -51,3 +51,9 @@ used_in:
 - 제목은 핵심 키워드 추출
 - slug는 영문 kebab-case
 - 저장 후 `/distill:grow` 안내
+
+## References
+
+상세 형식과 예시는 `references/` 폴더 참조:
+- `references/seed-format.md` - 파일 형식 상세, 필드 설명
+- `references/example-seed.md` - 실제 seed 파일 예시

@@ -63,3 +63,9 @@ domain: {product|engineering|operations|growth|business|ai-automation}
 - **컨펌 없이 저장 안 함**
 - 템플릿 파일 (`_template.md`) 제외
 - slug는 영문 kebab-case
+
+## References
+
+상세 형식과 예시는 `references/` 폴더 참조:
+- `references/corpus-format.md` - corpus 파일 형식, domain 설명
+- `references/example-corpus.md` - 실제 corpus 파일 예시, domain 선택 기준

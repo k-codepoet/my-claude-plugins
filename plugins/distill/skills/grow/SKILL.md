@@ -147,3 +147,9 @@ summary: "요약"
 - **강요 안 함** - digest는 사용자 수락 시만
 - 이전 세션 맥락 이어감
 - `_template.md` 제외
+
+## References
+
+상세 형식과 예시는 `references/` 폴더 참조:
+- `references/growing-format.md` - growing 파일 형식, 히스토리 구조
+- `references/example-growing.md` - 실제 growing 파일 + 스냅샷 예시
