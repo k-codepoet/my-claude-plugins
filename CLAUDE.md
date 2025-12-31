@@ -6,7 +6,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 This is a **Claude Code Plugin Marketplace** (`k-codepoet/my-claude-plugins`) containing automation plugins. Plugin types include:
 - **Infrastructure plugins**: Linux automation with Bash scripts (homeserver-gitops, ubuntu-dev-setup)
-- **Knowledge plugins**: Skills-only plugins providing contextual guidance (ced, distill, gemify)
+- **Knowledge plugins**: Skills-only plugins providing contextual guidance (ced, gemify)
 
 ## Architecture
 
@@ -151,10 +151,12 @@ Fields: `event` (PreToolUse | PostToolUse), `matcher` (tool name), `command` (sh
 
 | Plugin | Commands | Skills (auto-activate) |
 |--------|----------|------------------------|
-| homeserver-gitops | `/homeserver-gitops:init`, `:init-iac`, `:join-node`, `:snapshot`, `:restore`, `:help` | k3s-homeserver |
-| ubuntu-dev-setup | `/ubuntu-dev-setup:setup-all`, `:setup-common`, `:setup-zsh`, `:setup-nvm`, `:help` | ubuntu-dev-environment |
-| ced | `/ced:create`, `:compose`, `:update`, `:validate`, `:howto`, `:help` | plugin-guide, command-guide, skill-guide, agent-guide, hook-guide, marketplace-guide, workflow-guide |
-| gemify | `/gemify:inbox`, `:import`, `:draft`, `:library` | inbox, import, draft, library |
+| homeserver-gitops | `:init`, `:init-iac`, `:join-node`, `:snapshot`, `:restore`, `:help` | k3s-homeserver |
+| ubuntu-dev-setup | `:setup-all`, `:setup-common`, `:setup-zsh`, `:setup-nvm`, `:help` | ubuntu-dev-environment |
+| ced | `:create`, `:compose`, `:update`, `:validate`, `:howto`, `:help` | plugin-guide, command-guide, skill-guide, agent-guide, hook-guide, marketplace-guide, workflow-guide |
+| gemify | `:inbox`, `:import`, `:draft`, `:library` | inbox, import, draft, library |
+
+Note: Commands are prefixed with plugin name (e.g., `/ced:help`, `/gemify:inbox`).
 
 ## Adding New Plugins
 
