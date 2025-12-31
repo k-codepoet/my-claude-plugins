@@ -13,36 +13,35 @@ Claude Code 확장 개발을 위한 **한국어 가이드** 플러그인입니�
 /plugin marketplace add k-codepoet/my-claude-plugins
 
 # 플러그인 설치
-/plugin install claude-extension-dev@k-codepoet-plugins
+/plugin install ced@k-codepoet-plugins
 ```
-
-## 포함된 스킬
-
-| 스킬 | 설명 |
-|------|------|
-| `plugin-guide` | 플러그인 구조, plugin.json 작성법, CLI 명령어 |
-| `command-guide` | 슬래시 커맨드 작성법, Skills vs Commands 비교 |
-| `agent-guide` | 서브에이전트 정의, frontmatter 필드, 내장 Subagent |
-| `skill-guide` | SKILL.md 작성법, Agent Skills 표준, Progressive Disclosure |
-| `hook-guide` | 이벤트 기반 훅 작성법, 8가지 이벤트 타입 |
-| `marketplace-guide` | 마켓플레이스 구축, marketplace.json 스키마 |
-| `workflow-guide` | Skill → Agent → Plugin → Marketplace 실전 워크플로우 |
-
-## 사용 방법
-
-스킬은 Claude가 대화 컨텍스트에 따라 **자동으로 활성화**됩니다.
-
-**예시 질문:**
-- "플러그인 만드는 방법 알려줘"
-- "agent 파일 어떻게 작성해?"
-- "hook 이벤트 종류가 뭐야?"
-- "marketplace.json 스키마 알려줘"
-- "skill이랑 command 차이가 뭐야?"
 
 ## 커맨드
 
+| 커맨드 | 설명 |
+|--------|------|
+| `/ced:help` | 도움말 표시 |
+| `/ced:howto` | 가능한 가이드 주제 목록 |
+| `/ced:howto <topic>` | 특정 주제 가이드 표시 |
+| `/ced:validate [path]` | 가이드라인 준수 검증 |
+| `/ced:update [path]` | 최신 가이드라인으로 갱신 |
+
+**가능한 주제**: `plugin`, `command`, `agent`, `skill`, `hook`, `marketplace`, `workflow`
+
+## 사용 방법
+
+**명시적 호출**:
 ```bash
-/claude-extension-dev:help    # 도움말 표시
+/ced:howto plugin    # 플러그인 구조, plugin.json 작성법
+/ced:howto agent     # 서브에이전트 정의, frontmatter 필드
+/ced:howto skill     # SKILL.md 작성법, Agent Skills 표준
+```
+
+**자동 활성화**: 대화 컨텍스트에 따라 Claude가 관련 스킬 자동 로드
+```
+"플러그인 만드는 방법 알려줘"
+"agent 파일 어떻게 작성해?"
+"hook 이벤트 종류가 뭐야?"
 ```
 
 ## 참고 자료
