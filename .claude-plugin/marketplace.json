@@ -18,6 +18,11 @@
       "name": "ced",
       "source": "./plugins/claude-extension-dev",
       "description": "Claude Code 확장 개발 가이드 (한국어). Skills, Commands, Agents, Hooks, Plugins, Marketplace 작성법 제공"
+    },
+    {
+      "name": "distill",
+      "source": "./plugins/distill",
+      "description": "개인 지식 증류 파이프라인 - 생각의 씨앗을 대화로 확장하고 핵심만 추출하여 방향을 찾는다"
     }
   ]
 }
