@@ -4,9 +4,9 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-This is a **Claude Code Plugin Marketplace** containing automation plugins. Plugin types include:
+This is a **Claude Code Plugin Marketplace** (`k-codepoet/my-claude-plugins`) containing automation plugins. Plugin types include:
 - **Infrastructure plugins**: Linux automation with Bash scripts (homeserver-gitops, ubuntu-dev-setup)
-- **Knowledge plugins**: Skills-only plugins providing contextual guidance (ced)
+- **Knowledge plugins**: Skills-only plugins providing contextual guidance (ced - Claude Extension Dev guides in Korean)
 
 ## Architecture
 
@@ -39,6 +39,10 @@ This is a **Claude Code Plugin Marketplace** containing automation plugins. Plug
 
 # Validate script syntax (from plugin directory)
 bash -n scripts/*.sh
+
+# Validate plugin JSON schemas
+cat plugins/*/.claude-plugin/plugin.json | jq .
+cat .claude-plugin/marketplace.json | jq .
 ```
 
 ## Component Schemas
@@ -122,9 +126,15 @@ Skills auto-activate based on context. Same content can exist as both command (e
 
 ## Adding New Plugins
 
-1. Create `plugins/{plugin-name}/.claude-plugin/plugin.json`
-2. Register in `.claude-plugin/marketplace.json`
+1. Create `plugins/{directory-name}/.claude-plugin/plugin.json`
+2. Register in `.claude-plugin/marketplace.json` (source path uses directory name)
 3. Add commands in `commands/` with YAML frontmatter
-4. Add implementation scripts in `scripts/`
+4. Add implementation scripts in `scripts/` (for infrastructure plugins)
 5. Optionally add agents for natural language triggers
 6. Optionally add skills for contextual knowledge
+
+## Plugin Naming
+
+- **Directory name**: Used for filesystem organization and `source` path in marketplace.json
+- **Plugin name** (in plugin.json): Determines command prefix and install identifier
+- Example: Directory `claude-extension-dev` has plugin name `ced`, so commands are `/ced:*` and install is `ced@k-codepoet-plugins`
