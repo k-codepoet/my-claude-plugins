@@ -1,4 +1,5 @@
 ---
+name: help
 description: Show ubuntu-dev-setup plugin usage and available commands
 allowed-tools: []
 ---

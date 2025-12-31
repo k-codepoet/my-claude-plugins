@@ -1,4 +1,5 @@
 ---
+name: setup-common
 description: Install essential Ubuntu packages for development
 allowed-tools: Read, Bash
 ---

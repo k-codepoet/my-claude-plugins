@@ -1,4 +1,5 @@
 ---
+name: init-iac
 description: Initialize IaC repository with extensible structure for GitOps
 argument-hint: [-d directory]
 allowed-tools: Read, Bash, Write

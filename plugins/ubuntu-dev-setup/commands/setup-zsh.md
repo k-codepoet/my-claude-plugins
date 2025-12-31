@@ -1,4 +1,5 @@
 ---
+name: setup-zsh
 description: Setup Zsh with Oh My Zsh, Powerlevel10k theme, and useful plugins
 allowed-tools: Read, Bash
 ---
