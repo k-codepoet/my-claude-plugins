@@ -4,19 +4,24 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-This is a **Claude Code Plugin Marketplace** containing Linux automation plugins. Plugins automate infrastructure and development environment setup through slash commands and natural language agents.
+This is a **Claude Code Plugin Marketplace** containing automation plugins. Plugin types include:
+- **Infrastructure plugins**: Linux automation with Bash scripts (homeserver-gitops, ubuntu-dev-setup)
+- **Knowledge plugins**: Skills-only plugins providing contextual guidance (ced)
 
 ## Architecture
 
 ```
 .claude-plugin/marketplace.json  # Marketplace registry (name, owner, plugins[])
 └── plugins/
-    └── {plugin-name}/
-        ├── .claude-plugin/plugin.json  # Plugin manifest
+    └── {directory-name}/
+        ├── .claude-plugin/plugin.json  # Plugin manifest (name can differ from directory)
         ├── agents/                      # Natural language trigger definitions (.md)
         ├── commands/                    # Slash command definitions (.md)
+        ├── skills/                      # Contextual knowledge (*/SKILL.md)
         ├── scripts/                     # Bash implementation scripts (.sh)
-        └── skills/                      # Contextual knowledge for AI (SKILL.md)
+        ├── hooks/hooks.json             # Event-driven hooks
+        ├── .mcp.json                    # MCP server configuration
+        └── .lsp.json                    # LSP server configuration
 ```
 
 **Flow**: User triggers command/agent → Command definition references script → Script executes with `${CLAUDE_PLUGIN_ROOT}` variable
@@ -54,16 +59,17 @@ bash -n scripts/*.sh
 ### plugin.json
 ```json
 {
-  "name": "plugin-name",                // Required
+  "name": "plugin-name",                // Required (can differ from directory name)
   "version": "1.0.0",                   // Required
   "description": "Plugin description",  // Required
   "author": { "name": "author-name" },  // Required
   "keywords": ["tag1", "tag2"],         // Optional
-  "commands": ["./commands/"],          // Optional - path to commands
-  "agents": ["./agents/"],              // Optional - path to agents
-  "skills": ["./skills/"]               // Optional - path to skills
+  "commands": ["./commands/"],          // Optional - path or array of paths
+  "agents": ["./agents/"],              // Optional - path or array of paths
+  "skills": ["./skills/"]               // Optional - path or array of paths
 }
 ```
+Note: `name` in plugin.json determines the command prefix (e.g., `ced` → `/ced:help`), while directory name is just for organization.
 
 ### Commands (`commands/*.md`)
 ```yaml
