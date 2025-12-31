@@ -9,7 +9,6 @@ Personal collection of Claude Code plugins by k-codepoet.
 | [homeserver-gitops](./plugins/homeserver-gitops/) | K3s homeserver & GitOps setup with extensible IaC | Linux |
 | [ubuntu-dev-setup](./plugins/ubuntu-dev-setup/) | Zsh + Oh My Zsh + Powerlevel10k + NVM 개발환경 설정 | Linux |
 | [ced](./plugins/claude-extension-dev/) | Claude Code 확장 개발 가이드 (한국어) | All |
-| [distill](./plugins/distill/) | 개인 지식 증류 파이프라인 (seed → grow → digest) | All |
 | [gemify](./plugins/gemify/) | 원석을 보석으로 - 개인 지식 파이프라인 (capture → develop → file) | All |
 
 ## Installation
@@ -104,31 +103,6 @@ Claude Code 확장 개발 한국어 가이드 플러그인:
   - Skills, Commands, Agents, Hooks, Plugins, Marketplace 작성법
   - 대화 컨텍스트에 따른 스킬 자동 활성화
   - 플러그인 생성/검증/조립 도구
-
-### distill (v1.0.0)
-
-개인 지식 증류 파이프라인 플러그인:
-
-- **Commands**:
-  - `/distill:seed [내용]` - 내 생각의 씨앗을 seed/에 저장
-  - `/distill:grow [파일]` - seed와 materials를 대화로 확장 (branch/ripen 모드)
-  - `/distill:digest [파일]` - growing 파일을 소화시켜 corpus로 분류/저장
-
-- **Pipeline**:
-  ```
-  seed/ + materials/ → growing/ → corpus/
-  ```
-
-- **Features**:
-  - seed: 생각의 씨앗 빠르게 저장
-  - grow: branch(넓게 탐색) / ripen(깊이 응축) 모드
-  - digest: 익은 지식을 corpus로 정리
-  - 대화 히스토리 스냅샷 (.history/)
-
-- **Natural Language Triggers**:
-  - "이거 저장해줘", "메모해", "씨앗으로"
-  - "이 생각 키워보자", "확장해봐"
-  - "정리해줘", "digest 해줘"
 
 ### gemify (v1.0.0)
 

@@ -1,9 +1,0 @@
-{
-  "name": "distill",
-  "version": "1.0.0",
-  "description": "개인 지식 증류 파이프라인 - 생각의 씨앗을 대화로 확장하고 핵심만 추출하여 방향을 찾는다",
-  "author": { "name": "choigawoon" },
-  "keywords": ["knowledge", "pipeline", "pkm", "distill", "corpus"],
-  "commands": ["./commands/"],
-  "skills": ["./skills/"]
-}

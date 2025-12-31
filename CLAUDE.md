@@ -147,24 +147,23 @@ Fields: `event` (PreToolUse | PostToolUse), `matcher` (tool name), `command` (sh
 - Output uses color-coded messages: green (success), yellow (warning), red (error)
 - `${CLAUDE_PLUGIN_ROOT}` environment variable points to plugin root directory
 
-## Available Commands Quick Reference
+## Available Commands & Skills Quick Reference
 
-| Plugin | Commands |
-|--------|----------|
-| homeserver-gitops | `/homeserver-gitops:init`, `:init-iac`, `:join-node`, `:snapshot`, `:restore`, `:help` |
-| ubuntu-dev-setup | `/ubuntu-dev-setup:setup-all`, `:setup-common`, `:setup-zsh`, `:setup-nvm`, `:help` |
-| ced | `/ced:create`, `:compose`, `:update`, `:validate`, `:howto`, `:help` |
-| distill | `/distill:seed`, `:grow`, `:digest` |
-| gemify | `/gemify:capture`, `:develop`, `:file` |
+| Plugin | Commands | Skills (auto-activate) |
+|--------|----------|------------------------|
+| homeserver-gitops | `/homeserver-gitops:init`, `:init-iac`, `:join-node`, `:snapshot`, `:restore`, `:help` | k3s-homeserver |
+| ubuntu-dev-setup | `/ubuntu-dev-setup:setup-all`, `:setup-common`, `:setup-zsh`, `:setup-nvm`, `:help` | ubuntu-dev-environment |
+| ced | `/ced:create`, `:compose`, `:update`, `:validate`, `:howto`, `:help` | plugin-guide, command-guide, skill-guide, agent-guide, hook-guide, marketplace-guide, workflow-guide |
+| gemify | `/gemify:capture`, `:develop`, `:file` | capture, develop, file |
 
 ## Adding New Plugins
 
 1. Create `plugins/{directory-name}/.claude-plugin/plugin.json`
 2. Register in `.claude-plugin/marketplace.json` (source path uses directory name)
 3. Add commands in `commands/` with YAML frontmatter
-4. Add implementation scripts in `scripts/` (for infrastructure plugins)
-5. Optionally add agents for natural language triggers
-6. Optionally add skills for contextual knowledge
+4. For infrastructure plugins: add implementation scripts in `scripts/`
+5. For knowledge plugins: add skills in `skills/{skill-name}/SKILL.md`
+6. Optionally add agents in `agents/` for natural language triggers
 
 ## Plugin Naming
 
