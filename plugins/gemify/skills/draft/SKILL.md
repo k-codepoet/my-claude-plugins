@@ -87,7 +87,7 @@ created: "YYYY-MM-DD"
 updated: "YYYY-MM-DD HH:MM"
 turns: 0
 revision: 1
-status: developing
+status: cutting
 sources: []
 history:
   - rev: 1

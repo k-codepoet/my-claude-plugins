@@ -9,7 +9,7 @@ created: "YYYY-MM-DD"
 updated: "YYYY-MM-DD HH:MM"
 turns: 5
 revision: 2
-status: developing | filed
+status: cutting | set
 sources:
   - inbox/thoughts/2024-12-31-my-idea.md
   - inbox/materials/some-article.md

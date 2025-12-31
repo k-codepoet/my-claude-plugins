@@ -1,6 +1,6 @@
 {
   "name": "ubuntu-dev-setup",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Ubuntu Linux development environment setup with Zsh, Oh My Zsh, Powerlevel10k, NVM, and essential packages",
   "author": {
     "name": "choigawoon"

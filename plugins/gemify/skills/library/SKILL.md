@@ -26,7 +26,7 @@ drafts의 다듬어진 보석을 **소크라테스식 질문**으로 정리하�
 
 사용자 컨펌 후:
 1. `library/{domain}/{slug}.md`로 저장
-2. 원본 drafts 파일의 status → `filed`
+2. 원본 drafts 파일의 status → `set`
 3. 완료 보고
 
 ## library 파일 형식 (YAML frontmatter)
