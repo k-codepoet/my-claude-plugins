@@ -28,6 +28,10 @@ description: Claude Code 훅(Hooks) 작성법 가이드. Hook 만들기, 이벤�
 | `Notification` | 알림 발생 시 |
 | `SessionStart` | 세션 시작 시 |
 | `SessionEnd` | 세션 종료 시 |
+| `Stop` | Claude가 응답 완료 시 (차단하면 계속 진행) |
+| `SubagentStart` | 서브에이전트 시작 시 |
+| `SubagentStop` | 서브에이전트 종료 시 (차단하면 계속 진행) |
+| `PreCompact` | 컴팩트 전 (auto/manual 구분 가능) |
 
 ## 작성 예시
 
@@ -65,8 +69,9 @@ description: Claude Code 훅(Hooks) 작성법 가이드. Hook 만들기, 이벤�
 | 타입 | 설명 |
 |------|------|
 | `command` | 셸 명령어/스크립트 실행 |
-| `prompt` | LLM으로 프롬프트 평가 (`$ARGUMENTS` 플레이스홀더 사용) |
-| `agent` | 복잡한 검증을 위한 에이전틱 검증기 실행 |
+| `prompt` | LLM으로 프롬프트 평가 (Stop, SubagentStop 전용) |
+
+> **참고**: `prompt` 타입은 현재 `Stop`과 `SubagentStop` 훅에서만 지원되며, 컨텍스트를 고려한 지능적인 판단이 가능합니다.
 
 ## 중요 환경 변수
 

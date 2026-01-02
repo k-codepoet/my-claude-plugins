@@ -46,6 +46,8 @@ argument-hint: [--env <environment>]
 | `allowed-tools` | ❌ | 사용 가능한 도구 제한 |
 | `argument-hint` | ❌ | 인자 힌트 표시 |
 | `name` | ❌ | **파일명 override** (아래 참고) |
+| `model` | ❌ | 사용할 모델 지정 (예: `claude-3-5-haiku-20241022`) |
+| `disable-model-invocation` | ❌ | `true` 설정 시 Claude가 자동 호출 불가 (메타데이터도 컨텍스트에서 제외) |
 
 ## 명령어 이름 규칙
 
