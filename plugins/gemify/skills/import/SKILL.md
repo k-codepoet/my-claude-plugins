@@ -62,6 +62,7 @@ used_in:
 
 - 원본 내용 **최대한 보존** - 요약하지 않음
 - source 필드에 출처 명확히 기록
+- **파일명은 반드시 `YYYY-MM-DD-{slug}.md` 형식** (예: `2026-01-02-claude-guide.md`)
 - slug는 영문 kebab-case
 - 저장 후 `/gemify:draft` 안내
 

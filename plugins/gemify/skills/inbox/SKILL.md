@@ -49,6 +49,7 @@ used_in:
 
 - **과하게 다듬지 않음** - raw 상태 유지
 - 제목은 핵심 키워드 추출
+- **파일명은 반드시 `YYYY-MM-DD-{slug}.md` 형식** (예: `2026-01-02-my-idea.md`)
 - slug는 영문 kebab-case
 - 저장 후 `/gemify:draft` 안내
 
