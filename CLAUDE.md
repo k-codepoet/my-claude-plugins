@@ -156,7 +156,7 @@ Fields: `event` (PreToolUse | PostToolUse), `matcher` (tool name), `command` (sh
 | homeserver-gitops | `:init`, `:init-iac`, `:join-node`, `:snapshot`, `:restore`, `:help` | k3s-homeserver |
 | ubuntu-dev-setup | `:setup-all`, `:setup-common`, `:setup-zsh`, `:setup-nvm`, `:help` | ubuntu-dev-environment |
 | ced | `:create`, `:compose`, `:update`, `:validate`, `:howto`, `:help` | plugin-guide, command-guide, skill-guide, agent-guide, hook-guide, marketplace-guide, workflow-guide |
-| gemify | `:inbox`, `:import`, `:draft`, `:library` | inbox, import, draft, library |
+| gemify | `:inbox`, `:import`, `:draft`, `:library`, `:setup`, `:howto`, `:help` | inbox, import, draft, library |
 
 Note: Commands are prefixed with plugin name (e.g., `/ced:help`, `/gemify:inbox`).
 
