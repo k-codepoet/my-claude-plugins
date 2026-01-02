@@ -5,6 +5,15 @@ All notable changes to the Gemify plugin will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.6.0] - 2026-01-02
+
+### Added
+- `/gemify:view` - Views 레이어 기능
+  - library 지식을 주제(subject)별로 조합
+  - 도식 + 스토리 구조로 지식을 창문처럼 바라봄
+  - views/by-subject/{subject}.md에 저장
+  - library 문서에 `views: [subject]` 태그로 양방향 연결
+
 ## [1.5.0] - 2026-01-02
 
 ### Added
