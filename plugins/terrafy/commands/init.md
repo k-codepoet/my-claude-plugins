@@ -1,6 +1,7 @@
 ---
 name: init
 description: 인프라 환경 초기화 (IaC 저장소 생성)
+allowed-tools: ["Read", "Bash"]
 ---
 
 인프라 환경을 초기화합니다. IaC 저장소를 생성하고 기본 구조를 설정합니다.

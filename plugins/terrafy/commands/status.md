@@ -1,6 +1,7 @@
 ---
 name: status
 description: 현재 인프라 상태 확인
+allowed-tools: ["Read", "Bash"]
 ---
 
 현재 인프라 환경 상태를 확인합니다.

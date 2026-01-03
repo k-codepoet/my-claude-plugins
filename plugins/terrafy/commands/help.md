@@ -1,6 +1,7 @@
 ---
 name: help
 description: Terrafy 플러그인 도움말 표시
+allowed-tools: ["Read"]
 ---
 
 Terrafy 도움말을 표시합니다.
