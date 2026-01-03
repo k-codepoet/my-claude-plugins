@@ -164,6 +164,19 @@ Fields: `event` (PreToolUse | PostToolUse), `matcher` (tool name), `command` (sh
 
 Note: Commands are prefixed with plugin name (e.g., `/forgeify:help`, `/gemify:inbox`).
 
+## Version Bumping
+
+When updating a plugin, bump the version in `.claude-plugin/plugin.json`:
+```bash
+# Check current version
+cat plugins/<name>/.claude-plugin/plugin.json | jq -r '.version'
+
+# Update version (semantic versioning: major.minor.patch)
+# - patch: bug fixes
+# - minor: new features, backward compatible
+# - major: breaking changes
+```
+
 ## Validation Checklist
 
 Before committing plugin changes:
