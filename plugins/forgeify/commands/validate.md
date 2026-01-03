@@ -33,9 +33,9 @@ argument-hint: [plugin-path]
 
 `commands/*.md` 파일 각각에 대해:
 - [ ] YAML frontmatter 존재
-- [ ] `name` 필드: 필수
 - [ ] `description` 필드: 필수, 무엇을 하는지 명확히
-- [ ] `allowed-tools` 필드: 필요한 도구만 명시 (선택)
+- [ ] `name` 필드: 선택 (파일명 override 용도, 기본은 파일명 사용)
+- [ ] `allowed-tools` 필드: 선택, 필요한 도구만 명시
 
 ### 3. 에이전트 검증 (agent-guide)
 
