@@ -15,62 +15,24 @@ argument-hint: [plugin-path]
 /forgeify:validate ./plugins/my-plugin # 특정 플러그인 검증
 ```
 
-## 검증 체크리스트
+## 검증 기준
 
-### 1. 플러그인 구조 (plugin-guide)
+각 구성요소의 상세 검증 기준은 해당 스킬을 참조합니다:
 
-- [ ] `.claude-plugin/plugin.json` 존재 여부
-- [ ] `name` 필드: kebab-case, 고유 식별자
-- [ ] `version` 필드: semver 형식 (예: 1.0.0)
-- [ ] `description` 필드: 간결한 설명
-- [ ] 경로 참조가 올바른지 (commands, agents, skills)
-- [ ] **agents 필드 형식**: 반드시 `.md` 파일 경로로 끝나야 함 (디렉토리 형식 불가)
-  - ❌ 잘못됨: `"agents": ["./agents/"]`
-  - ✅ 올바름: `"agents": ["./agents/infra-setup.md"]`
-  - 주의: commands, skills는 디렉토리 지정 가능하지만, agents는 개별 파일만 허용
-
-### 2. 커맨드 검증 (command-guide)
-
-`commands/*.md` 파일 각각에 대해:
-- [ ] YAML frontmatter 존재
-- [ ] `description` 필드: 필수, 무엇을 하는지 명확히
-- [ ] `name` 필드: 선택 (파일명 override 용도, 기본은 파일명 사용)
-- [ ] `allowed-tools` 필드: 선택, 필요한 도구만 명시
-
-### 3. 에이전트 검증 (agent-guide)
-
-`agents/*.md` 파일 각각에 대해:
-- [ ] YAML frontmatter 존재
-- [ ] `name` 필드: 소문자+하이픈
-- [ ] `description` 필드: 언제 사용할지 자연언어로 설명
-- [ ] `tools` 필드: 필요한 도구 목록 (선택)
-- [ ] `model` 필드: sonnet, opus, haiku, inherit 중 하나 (선택)
-- [ ] 본문에 `<example>` 블록 포함 (권장)
-
-### 4. 스킬 검증 (skill-guide)
-
-`skills/*/SKILL.md` 파일 각각에 대해:
-- [ ] 디렉토리명과 `name` 필드 일치
-- [ ] `name` 필드: 1-64자, 소문자+숫자+하이픈
-- [ ] `description` 필드: 무엇을 하는지 + 언제 사용하는지 포함
-- [ ] 본문 5000 토큰 이하 권장 (Progressive Disclosure)
-
-### 5. 스크립트 검증
-
-`scripts/*.sh` 파일 각각에 대해:
-- [ ] `set -e` 사용 (fail-fast)
-- [ ] `${CLAUDE_PLUGIN_ROOT}` 사용 시 올바른 참조
-- [ ] 플랫폼 검증 로직 포함 (필요시)
-- [ ] 멱등성 보장 (이미 설치된 경우 스킵)
+| 구성요소 | 참조 스킬 | 핵심 필수 항목 |
+|----------|-----------|----------------|
+| plugin.json | plugin-guide | `name` (kebab-case) |
+| commands/*.md | command-guide | `description` |
+| agents/*.md | agent-guide | `name`, `description` |
+| skills/*/SKILL.md | skill-guide | `name` (디렉토리명 일치), `description` |
 
 ## 검증 프로세스
 
-1. **탐색**: 플러그인 루트에서 모든 구성요소 탐색
-2. **검증**: 각 파일을 읽고 체크리스트 대조
-3. **리포트**: 발견된 문제점 목록화
-4. **리팩토링 제안**: 수정이 필요한 항목 제시
-5. **사용자 확인**: 리팩토링 진행 여부 확인
-6. **수정 적용**: 승인된 항목 수정
+1. **탐색**: 플러그인 루트에서 구성요소 탐색
+2. **스킬 참조**: 각 구성요소별 가이드 스킬 로드하여 검증
+3. **리포트**: 문제점 목록화
+4. **리팩토링 제안**: 수정 필요 항목 제시
+5. **사용자 확인 후 수정**
 
 ## 출력 형식
 
@@ -85,15 +47,12 @@ argument-hint: [plugin-path]
 ### Errors
 1. [plugin.json] Missing required field: name
 2. [commands/deploy.md] Missing frontmatter
-3. [plugin.json] agents field uses directory format - must be individual .md files
 
 ### Warnings
 1. [skills/my-skill/SKILL.md] Description doesn't explain when to use
-2. [agents/helper.md] No example blocks found
 
 ### Refactoring Actions
 1. Add `name` field to plugin.json
-2. Add YAML frontmatter to commands/deploy.md
 ...
 
 Proceed with refactoring? (y/n)

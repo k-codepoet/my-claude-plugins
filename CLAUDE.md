@@ -79,7 +79,7 @@ Optional: `keywords`, `commands`, `agents`, `skills` (paths or array of paths)
   "author": { "name": "author-name" },
   "keywords": ["tag1", "tag2"],
   "commands": ["./commands/"],
-  "agents": ["./agents/"],
+  "agents": ["./agents/my-agent.md"],
   "skills": ["./skills/"]
 }
 ```
@@ -88,13 +88,14 @@ Note: `name` determines command prefix (e.g., `forgeify` → `/forgeify:help`), 
 ### Commands (`commands/*.md`)
 ```yaml
 ---
-name: command-name                      # Required
 description: What the command does      # Required
 allowed-tools: Read, Bash, Write        # Optional (defaults vary)
 argument-hint: [-d directory]           # Optional
+name: custom-name                       # Optional (override filename)
 ---
 Command body with instructions...
 ```
+Note: Command name defaults to filename. Use `name` field only to override.
 
 ### Agents (`agents/*.md`)
 ```yaml
@@ -180,7 +181,7 @@ bash -n plugins/<name>/scripts/*.sh
 Also verify:
 - SKILL.md files are uppercase and in `skills/{skill-name}/SKILL.md` structure
 - All paths referenced in plugin.json have corresponding files
-- Commands have required frontmatter (`name`, `description`)
+- Commands have required frontmatter (`description`)
 
 ## Adding New Plugins
 

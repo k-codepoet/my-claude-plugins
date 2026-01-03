@@ -45,9 +45,9 @@ my-plugin/
   "repository": "https://github.com/author/plugin",
   "license": "MIT",
   "keywords": ["keyword1", "keyword2"],
-  "commands": ["./custom/commands/special.md"],
-  "agents": "./custom/agents/",
-  "skills": "./custom/skills/",
+  "commands": ["./commands/"],
+  "agents": ["./agents/my-agent.md"],
+  "skills": ["./skills/"],
   "hooks": "./config/hooks.json",
   "mcpServers": "./mcp-config.json",
   "lspServers": "./.lsp.json"
@@ -59,6 +59,9 @@ my-plugin/
 | 필드 | 타입 | 설명 | 예시 |
 |------|------|------|------|
 | `name` | string | 고유 식별자 (kebab-case) | `"deployment-tools"` |
+| `version` | string | semver 형식 | `"1.0.0"` |
+| `description` | string | 간결한 설명 | `"Deploy tools"` |
+| `author.name` | string | 작성자 이름 | `"Author Name"` |
 
 ## 중요 환경 변수
 
