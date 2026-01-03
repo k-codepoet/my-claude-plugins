@@ -20,6 +20,7 @@ argument-hint: "[topic]"
 | `import` | 외부 재료 가져오기, inbox/materials/ 사용법 |
 | `draft` | 원석 다듬기, facet/polish 모드 |
 | `library` | 보석 정리, 6대 domain 분류 |
+| `wrapup` | 세션 마무리, HITL 체크 + 리포트 생성 |
 
 ## 동작
 
@@ -30,6 +31,7 @@ argument-hint: "[topic]"
    - `import` → import 스킬 사용
    - `draft` → draft 스킬 사용
    - `library` → library 스킬 사용
+   - `wrapup` → wrapup 스킬 사용
 
 3. **알 수 없는 주제**: 가능한 주제 목록을 보여주고 올바른 주제를 선택하도록 안내합니다.
 

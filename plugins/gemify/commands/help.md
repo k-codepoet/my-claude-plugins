@@ -24,7 +24,7 @@ description: gemify 플러그인 도움말을 표시합니다
 | `/gemify:howto` | 가능한 가이드 주제 목록 표시 |
 | `/gemify:howto <topic>` | 특정 주제 가이드 표시 |
 
-**가능한 주제**: `inbox`, `import`, `draft`, `library`
+**가능한 주제**: `inbox`, `import`, `draft`, `library`, `wrapup`
 
 ### 지식 파이프라인
 | 커맨드 | 설명 | 저장 위치 |
