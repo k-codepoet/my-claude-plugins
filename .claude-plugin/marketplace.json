@@ -28,6 +28,16 @@
       "name": "namify",
       "source": "./plugins/namify",
       "description": "Name it right - 제품/서비스 네이밍을 도와주는 플러그인"
+    },
+    {
+      "name": "craftify",
+      "source": "./plugins/craftify",
+      "description": "Craft your products with AI - turborepo + Cloudflare 기반 개발환경 자동화"
+    },
+    {
+      "name": "terrafy",
+      "source": "./plugins/terrafy",
+      "description": "Lay the groundwork for your digital city - 인프라 자동화 플러그인"
     }
   ]
 }
