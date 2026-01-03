@@ -31,8 +31,16 @@ description: gemify 플러그인 도움말을 표시합니다
 |--------|------|----------|
 | `/gemify:inbox [내용]` | 내 생각 포착 | inbox/thoughts/ |
 | `/gemify:import [URL/내용]` | 외부 재료 가져오기 | inbox/materials/ |
+| `/gemify:capture-pair` | material + thought 쌍으로 저장 | inbox/ |
 | `/gemify:draft [파일/아이디어]` | 원석 다듬기 (대화로 확장) | drafts/ |
 | `/gemify:library [파일]` | 보석 정리 (library로) | library/ |
+| `/gemify:view [subject]` | 주제별 지식 조합 | views/by-subject/ |
+| `/gemify:retro [내용]` | 완료 작업 역방향 기록 | library/ |
+
+### 플러그인 개선
+| 커맨드 | 설명 | 저장 위치 |
+|--------|------|----------|
+| `/gemify:improve-plugin [플러그인명]` | 개선 문서 생성 | library/engineering/plugin-improvements/ |
 
 ### 세션 관리
 | 커맨드 | 설명 | 저장 위치 |
@@ -48,12 +56,24 @@ description: gemify 플러그인 도움말을 표시합니다
 # 외부 재료 가져오기
 /gemify:import https://example.com/article
 
+# material + thought 쌍으로 저장
+/gemify:capture-pair
+
 # 원석 다듬기
 /gemify:draft "새로운 아이디어"
 /gemify:draft drafts/my-idea.md
 
 # 보석 정리
 /gemify:library drafts/my-idea.md
+
+# 주제별 조합
+/gemify:view claude-plugins
+
+# 사후 기록
+/gemify:retro 방금 만든 기능 기록해줘
+
+# 플러그인 개선 문서 생성
+/gemify:improve-plugin forgeify
 
 # 세션 마무리
 /gemify:wrapup

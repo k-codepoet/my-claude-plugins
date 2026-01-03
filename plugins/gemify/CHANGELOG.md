@@ -11,7 +11,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `/gemify:improve-plugin` - 역할 리팩토링
   - 기존: 플러그인 경로를 add-dir로 추가하고 직접 코드 수정
   - 변경: 개선 문서 생성 전용으로 역할 축소
-  - 실제 코드 수정은 `/forgeify:improve`로 위임
+  - 실제 코드 수정은 `/forgeify:improve-plugin`으로 위임
   - 단방향 흐름 구축: gemify(지식 생산) → forgeify(실행)
 - `improve-plugin` 스킬 - 문서 생성 전용으로 변경
   - 개선 문서 스키마(frontmatter + body) 적용

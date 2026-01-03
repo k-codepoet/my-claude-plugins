@@ -6,7 +6,7 @@ argument-hint: [대상 플러그인명]
 
 # /gemify:improve-plugin - 플러그인 개선 문서 생성
 
-플러그인 개선 **문서를 생성**합니다. 실제 코드 수정은 `/forgeify:improve`가 담당합니다.
+플러그인 개선 **문서를 생성**합니다. 실제 코드 수정은 `/forgeify:improve-plugin`이 담당합니다.
 
 ## 단방향 흐름
 
@@ -14,7 +14,7 @@ argument-hint: [대상 플러그인명]
 gemify (지식 생산)        forgeify (실행)
     │                         │
     └── 개선 문서 생성 ──────▶ 개선 문서 실행
-        (library/...)         (/forgeify:improve)
+        (library/...)         (/forgeify:improve-plugin)
 ```
 
 ## 사용법
@@ -92,7 +92,7 @@ views: []
 {생성된 파일 경로}
 
 플러그인에 적용하려면:
-/forgeify:improve {생성된 파일 경로}
+/forgeify:improve-plugin {생성된 파일 경로}
 ```
 
 ## 파일명 규칙
