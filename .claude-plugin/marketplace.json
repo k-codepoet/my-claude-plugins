@@ -23,6 +23,11 @@
       "name": "gemify",
       "source": "./plugins/gemify",
       "description": "Turn your thoughts into gems - 원석을 다듬어 보석으로 만드는 개인 지식 파이프라인"
+    },
+    {
+      "name": "namify",
+      "source": "./plugins/namify",
+      "description": "Name it right - 제품/서비스 네이밍을 도와주는 플러그인"
     }
   ]
 }
