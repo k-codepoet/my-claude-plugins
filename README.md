@@ -109,14 +109,14 @@ Claude Code 플러그인 개발 도구:
   - 대화 컨텍스트에 따른 스킬 자동 활성화
   - 플러그인 생성/검증/조립 도구
 
-### gemify (v1.6.0)
+### gemify (v1.9.0)
 
 원석을 다듬어 보석으로 만드는 개인 지식 파이프라인:
 
 - **Commands**:
   - `/gemify:inbox [내용]` - 내 생각을 inbox/thoughts/에 빠르게 저장
   - `/gemify:import [URL/내용]` - 외부 재료를 inbox/materials/에 저장
-  - `/gemify:capture-pair` - material + thought를 쌍으로 동시에 저장
+  - `/gemify:sidebar` - 본 작업 중 떠오른 것을 옆에 빼두기
   - `/gemify:draft [파일]` - inbox의 원석을 대화로 다듬기 (facet/polish 모드)
   - `/gemify:library [파일]` - drafts를 정리하여 library로 분류/저장
   - `/gemify:view [주제]` - library 지식을 주제별로 조합하여 views/에 저장

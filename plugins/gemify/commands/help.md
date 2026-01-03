@@ -31,7 +31,7 @@ description: gemify 플러그인 도움말을 표시합니다
 |--------|------|----------|
 | `/gemify:inbox [내용]` | 내 생각 포착 | inbox/thoughts/ |
 | `/gemify:import [URL/내용]` | 외부 재료 가져오기 | inbox/materials/ |
-| `/gemify:capture-pair` | material + thought 쌍으로 저장 | inbox/ |
+| `/gemify:sidebar` | 본 작업 중 떠오른 것을 옆에 빼두기 | inbox/ |
 | `/gemify:draft [파일/아이디어]` | 원석 다듬기 (대화로 확장) | drafts/ |
 | `/gemify:library [파일]` | 보석 정리 (library로) | library/ |
 | `/gemify:view [subject]` | 주제별 지식 조합 | views/by-subject/ |
@@ -56,8 +56,8 @@ description: gemify 플러그인 도움말을 표시합니다
 # 외부 재료 가져오기
 /gemify:import https://example.com/article
 
-# material + thought 쌍으로 저장
-/gemify:capture-pair
+# 본 작업 중 떠오른 것을 옆에 빼두기
+/gemify:sidebar
 
 # 원석 다듬기
 /gemify:draft "새로운 아이디어"

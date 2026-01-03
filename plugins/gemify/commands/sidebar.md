@@ -1,16 +1,16 @@
 ---
-description: 대화에서 material(외부 기록) + thought(내 생각)를 쌍으로 한번에 저장
+description: 본 작업 중 떠오른 것을 옆에 빼두기 (material + thought 쌍으로 저장)
 allowed-tools: Read, Write, Edit
 ---
 
-# /gemify:capture-pair - Material + Thought 쌍으로 캡처
+# /gemify:sidebar - 본론 아닌 걸 옆으로 빼두기
 
-capture-pair 스킬을 사용하여 대화 맥락에서 material과 thought를 동시에 생성한다.
+sidebar 스킬을 사용하여 대화 맥락에서 material과 thought를 동시에 생성한다.
 
 ## 사용법
 
 ```
-/gemify:capture-pair                  # 직전 대화에서 쌍으로 추출
+/gemify:sidebar                  # 직전 대화에서 쌍으로 추출
 ```
 
 ## 동작
@@ -25,6 +25,7 @@ capture-pair 스킬을 사용하여 대화 맥락에서 material과 thought를 �
 
 ## 언제 사용하나
 
+- 본 작업 중 "이건 나중에" 싶은 게 떠올랐을 때
 - `/gemify:import` + `/gemify:inbox`를 따로 쓰기 번거로울 때
 - 대화에서 맥락(material)과 인사이트(thought)를 분리 저장하고 싶을 때
 

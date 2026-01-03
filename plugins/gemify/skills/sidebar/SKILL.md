@@ -1,14 +1,15 @@
 ---
-name: capture-pair
-description: 대화에서 material(외부 기록)과 thought(내 생각)를 쌍으로 한번에 생성. 의사결정 과정과 핵심 인사이트를 동시에 포착.
+name: sidebar
+description: 본 작업 중 떠오른 것을 옆에 빼두기. material(외부 기록)과 thought(내 생각)를 쌍으로 한번에 생성.
 ---
 
-# Capture-Pair Skill
+# Sidebar Skill
 
-대화 맥락에서 **material + thought를 쌍으로 한번에 생성**합니다.
+본론 아닌 걸 옆으로 빼두기 - **material + thought를 쌍으로 한번에 생성**합니다.
 
 ## 언제 사용하나
 
+- 본 작업 중 "이건 나중에" 싶은 게 떠올랐을 때
 - 의사결정 과정(대화)과 핵심 인사이트(생각)를 함께 저장하고 싶을 때
 - `/gemify:import` + `/gemify:inbox`를 따로 쓰기 번거로울 때
 - 대화에서 외부 정보와 내 해석을 분리해서 저장하고 싶을 때
@@ -64,12 +65,12 @@ references:
 ## 예시
 
 ```
-/gemify:capture-pair
+/gemify:sidebar
 ```
 
 결과:
 - `inbox/materials/2026-01-02-plugin-improvement-discussion.md` - 논의 과정
-- `inbox/thoughts/2026-01-02-capture-pair-need.md` - 핵심 인사이트
+- `inbox/thoughts/2026-01-02-sidebar-need.md` - 핵심 인사이트
 
 ## 다음 단계
 

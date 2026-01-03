@@ -5,6 +5,13 @@ All notable changes to the Gemify plugin will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.9.0] - 2026-01-03
+
+### Changed
+- `/gemify:capture-pair` → `/gemify:sidebar` 리네임
+  - "let's sidebar this" - 본론 아닌 걸 옆으로 빼둠
+  - 기능 변경 없음 (이름만 변경)
+
 ## [1.7.0] - 2026-01-03
 
 ### Changed
@@ -32,7 +39,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `/gemify:retro` - 사후처리 기능. 이미 완료된 작업을 역방향으로 library에 기록
   - drafts를 건너뛰는 단축 경로
   - `created_via: retro` 필드로 사후 기록 표시
-- `/gemify:capture-pair` - material + thought 쌍으로 한번에 생성
+- `/gemify:sidebar` - material + thought 쌍으로 한번에 생성 (원명: capture-pair)
   - 대화에서 외부 기록과 내 생각을 동시에 추출
   - thought의 references에 material 자동 연결
 
