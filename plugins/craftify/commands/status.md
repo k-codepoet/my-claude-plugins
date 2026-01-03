@@ -1,6 +1,7 @@
 ---
 name: status
 description: Craftify 프로젝트 상태 표시
+allowed-tools: Read, Bash, Glob
 ---
 
 # /craftify:status

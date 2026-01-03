@@ -1,6 +1,7 @@
 ---
 name: setup-wizard
 description: Craftify 프로젝트 설정을 단계별로 안내하는 에이전트. 사용자와 대화하며 최적의 설정을 도출합니다.
+tools: ["Read", "Write", "Bash", "Glob", "Grep"]
 ---
 
 # Setup Wizard Agent
@@ -106,3 +107,17 @@ description: Craftify 프로젝트 설정을 단계별로 안내하는 에이전
 - `turbo.json` 존재 확인
 - `pnpm-workspace.yaml` 확인
 - `apps/` 디렉토리 확인
+
+<example>
+Context: 사용자가 새 프로젝트를 만들고 싶어함
+user: "새 웹앱 프로젝트 만들어줘"
+assistant: "🔨 Craftify Setup Wizard를 시작합니다. 어떤 프로젝트를 만드시겠어요?"
+<commentary>프로젝트 생성 요청 시 setup-wizard 에이전트가 대화형으로 설정을 안내합니다.</commentary>
+</example>
+
+<example>
+Context: 사용자가 craftify 설정에 대해 질문함
+user: "turborepo에 앱을 추가하려면 어떻게 해?"
+assistant: "기존 turborepo에 앱을 추가하는 방법을 안내드릴게요. 먼저 turborepo 경로를 알려주세요."
+<commentary>기존 프로젝트에 추가하는 복잡한 설정이 필요할 때 에이전트가 활성화됩니다.</commentary>
+</example>

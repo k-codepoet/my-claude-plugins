@@ -1,16 +1,20 @@
 # Webapp Templates
 
-## Boilerplate 소스 경로
+## Boilerplate 소스
 
-```
-/home/choigawoon/k-codepoet/my-materials/authored-repos/ai-devteam/boilerplates/web/
-├── react-router-cloudflare/  # SSR 템플릿
-└── react-router-spa/         # SPA 템플릿
+React Router 공식 템플릿을 사용합니다:
+
+```bash
+# SSR (Cloudflare Workers)
+npx degit reactrouter/templates/cloudflare apps/web
+
+# SPA (정적 배포)
+npx degit reactrouter/templates/spa apps/web
 ```
 
 ## 사용법
 
-`/craftify:create webapp` 실행 시 위 경로에서 복제합니다.
+`/craftify:create webapp` 실행 시 위 명령어로 템플릿을 복제합니다.
 
 ## 템플릿 정보
 
