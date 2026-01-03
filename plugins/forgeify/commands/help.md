@@ -24,6 +24,7 @@ Claude Code 확장(플러그인, 스킬, 에이전트 등) 개발을 위한 한�
 |--------|------|
 | `/forgeify:create <path> <topic>` | 경로의 내용을 기반으로 플러그인 생성 |
 | `/forgeify:compose <topic> <plugins...>` | 여러 플러그인에서 필요한 부분만 조립 |
+| `/forgeify:improve <doc-path>` | 개선 문서 기반으로 플러그인 수정 |
 | `/forgeify:validate [path]` | 가이드라인 준수 검증 및 리팩토링 |
 | `/forgeify:update [path]` | 최신 가이드라인으로 내용 갱신 |
 
