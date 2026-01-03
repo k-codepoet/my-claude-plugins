@@ -157,6 +157,9 @@ Fields: `event` (PreToolUse | PostToolUse), `matcher` (tool name), `command` (sh
 | ubuntu-dev-setup | `:setup-all`, `:setup-common`, `:setup-zsh`, `:setup-nvm`, `:help` | ubuntu-dev-environment |
 | forgeify | `:create`, `:compose`, `:update`, `:validate`, `:howto`, `:help` | plugin-guide, command-guide, skill-guide, agent-guide, hook-guide, marketplace-guide, workflow-guide |
 | gemify | `:inbox`, `:import`, `:draft`, `:library`, `:view`, `:capture-pair`, `:retro`, `:improve-plugin`, `:setup`, `:howto`, `:help` | inbox, import, draft, library, view, capture-pair, retro, improve-plugin |
+| namify | `:name` | naming-guide |
+| craftify | `:create`, `:dev`, `:deploy`, `:status`, `:help` | create, dev, deploy, help |
+| terrafy | `:init`, `:status`, `:help` | k3s, portainer, terraform, help |
 
 Note: Commands are prefixed with plugin name (e.g., `/forgeify:help`, `/gemify:inbox`).
 
