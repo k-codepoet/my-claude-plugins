@@ -5,6 +5,6 @@
   "author": {
     "name": "choigawoon"
   },
-  "commands": ["../commands/"],
-  "skills": ["../skills/"]
+  "commands": ["./commands/name.md"],
+  "skills": ["./skills/"]
 }
