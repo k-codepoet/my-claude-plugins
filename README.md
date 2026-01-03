@@ -8,7 +8,7 @@ Personal collection of Claude Code plugins by k-codepoet.
 |--------|-------------|----------|
 | [homeserver-gitops](./plugins/homeserver-gitops/) | K3s homeserver & GitOps setup with extensible IaC | Linux |
 | [ubuntu-dev-setup](./plugins/ubuntu-dev-setup/) | Zsh + Oh My Zsh + Powerlevel10k + NVM 개발환경 설정 | Linux |
-| [ced](./plugins/claude-extension-dev/) | Claude Code 확장 개발 가이드 (한국어) | All |
+| [forgeify](./plugins/claude-extension-dev/) | Forge your ideas into Claude extensions - 플러그인 개발 도구 | All |
 | [gemify](./plugins/gemify/) | 원석을 보석으로 - 개인 지식 파이프라인 (capture → develop → file) | All |
 
 ## Installation
@@ -84,18 +84,20 @@ Ubuntu Linux 개발 환경 자동 설정 플러그인:
 
 - **Prerequisites**: Linux Ubuntu/Debian, sudo access
 
-### ced (v1.2.0)
+### forgeify (v1.3.0)
 
-Claude Code 확장 개발 한국어 가이드 플러그인:
+*Forge your ideas into Claude extensions*
+
+Claude Code 플러그인 개발 도구:
 
 - **Commands**:
-  - `/ced:howto` - 가능한 가이드 주제 목록
-  - `/ced:howto <topic>` - 특정 주제 가이드 표시
-  - `/ced:create <path> <topic>` - 경로 내용 기반 플러그인 생성
-  - `/ced:compose <topic> <plugins...>` - 여러 플러그인 조립
-  - `/ced:validate [path]` - 가이드라인 준수 검증
-  - `/ced:update [path]` - 최신 가이드라인으로 갱신
-  - `/ced:help` - 도움말 표시
+  - `/forgeify:howto` - 가능한 가이드 주제 목록
+  - `/forgeify:howto <topic>` - 특정 주제 가이드 표시
+  - `/forgeify:create <path> <topic>` - 경로 내용 기반 플러그인 생성
+  - `/forgeify:compose <topic> <plugins...>` - 여러 플러그인 조립
+  - `/forgeify:validate [path]` - 가이드라인 준수 검증
+  - `/forgeify:update [path]` - 최신 가이드라인으로 갱신
+  - `/forgeify:help` - 도움말 표시
 
 - **Topics**: `plugin`, `command`, `agent`, `skill`, `hook`, `marketplace`, `workflow`
 

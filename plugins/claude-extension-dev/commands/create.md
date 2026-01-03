@@ -4,14 +4,14 @@ argument-hint: "<path> <topic>"
 allowed-tools: Read, Write, Bash, Glob, Grep
 ---
 
-# /ced:create - 플러그인 생성
+# /forgeify:create - 플러그인 생성
 
 사용자가 지정한 경로와 주제를 기반으로 Claude Code 플러그인을 생성합니다.
 
 ## 사용법
 
 ```
-/ced:create <path> <topic>
+/forgeify:create <path> <topic>
 ```
 
 - `<path>`: 플러그인 소스가 될 파일 또는 디렉토리 경로
@@ -104,7 +104,7 @@ plugins/{topic}/
 
 ### 6단계: 검증 실행
 
-생성 완료 후 `/ced:validate` 를 자동 호출하여 검증합니다:
+생성 완료 후 `/forgeify:validate` 를 자동 호출하여 검증합니다:
 - 검증 오류 발생 시 자동 수정 시도
 - 수정 후 재검증하여 성공 확인
 - 특히 **agents 필드 형식** 반드시 확인 (디렉토리 형식 → .md 파일 경로)
@@ -112,7 +112,7 @@ plugins/{topic}/
 ## 예시
 
 ```
-/ced:create ~/my-scripts/docker-utils docker-helper
+/forgeify:create ~/my-scripts/docker-utils docker-helper
 ```
 
 위 명령은:

@@ -11,9 +11,9 @@ argument-hint: [plugin-path] [--check-only]
 ## 사용법
 
 ```
-/ced:update                       # 현재 디렉토리 플러그인 업데이트
-/ced:update ./plugins/my-plugin   # 특정 플러그인 업데이트
-/ced:update --check-only          # 변경 필요 사항만 확인 (수정 없음)
+/forgeify:update                       # 현재 디렉토리 플러그인 업데이트
+/forgeify:update ./plugins/my-plugin   # 특정 플러그인 업데이트
+/forgeify:update --check-only          # 변경 필요 사항만 확인 (수정 없음)
 ```
 
 ## 업데이트 영역
@@ -59,7 +59,7 @@ assistant: "..."
 ### 3. 구조 현대화
 
 **네이밍 컨벤션**:
-- 플러그인명: 짧은 prefix 권장 (예: `ced`, `sc`)
+- 플러그인명: 의미있는 이름 권장 (예: `forgeify`, `gemify`)
 - 커맨드명: `{prefix}:{action}` 형식
 - 스킬명: 소문자+하이픈, 디렉토리명 일치
 
@@ -87,7 +87,7 @@ assistant: "..."
    - 사용 중인 패턴 파악
 
 2. **최신 가이드라인 대조**
-   - ced 스킬들의 최신 규격 참조
+   - forgeify 스킬들의 최신 규격 참조
    - 차이점 목록화
 
 3. **변경 계획 수립**

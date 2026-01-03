@@ -15,9 +15,9 @@
       "description": "Ubuntu Linux development environment setup with Zsh, Oh My Zsh, Powerlevel10k, NVM"
     },
     {
-      "name": "ced",
+      "name": "forgeify",
       "source": "./plugins/claude-extension-dev",
-      "description": "Claude Code 확장 개발 가이드 (한국어). Skills, Commands, Agents, Hooks, Plugins, Marketplace 작성법 제공"
+      "description": "Forge your ideas into Claude extensions - Claude Code 플러그인 개발 도구"
     },
     {
       "name": "gemify",

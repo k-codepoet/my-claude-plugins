@@ -6,7 +6,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 This is a **Claude Code Plugin Marketplace** (`k-codepoet/my-claude-plugins`) containing automation plugins. Plugin types include:
 - **Infrastructure plugins**: Linux automation with Bash scripts (homeserver-gitops, ubuntu-dev-setup)
-- **Knowledge plugins**: Skills-only plugins providing contextual guidance (ced, gemify)
+- **Knowledge plugins**: Skills-only plugins providing contextual guidance (forgeify, gemify)
 
 ## Architecture
 
@@ -37,7 +37,7 @@ This is a **Claude Code Plugin Marketplace** (`k-codepoet/my-claude-plugins`) co
 
 # Install a specific plugin
 /plugin install homeserver-gitops@k-codepoet-plugins
-/plugin install ced@k-codepoet-plugins
+/plugin install forgeify@k-codepoet-plugins
 
 # Validate script syntax (from plugin directory)
 bash -n scripts/*.sh
@@ -73,7 +73,7 @@ Optional: `keywords`, `commands`, `agents`, `skills` (paths or array of paths)
 
 ```json
 {
-  "name": "ced",
+  "name": "forgeify",
   "version": "1.0.0",
   "description": "Plugin description",
   "author": { "name": "author-name" },
@@ -83,7 +83,7 @@ Optional: `keywords`, `commands`, `agents`, `skills` (paths or array of paths)
   "skills": ["./skills/"]
 }
 ```
-Note: `name` determines command prefix (e.g., `ced` → `/ced:help`), while directory name is just for organization.
+Note: `name` determines command prefix (e.g., `forgeify` → `/forgeify:help`), while directory name is just for organization.
 
 ### Commands (`commands/*.md`)
 ```yaml
@@ -125,7 +125,7 @@ description: What + when to use         # Required
 Skill content...
 ```
 Note: File must be named `SKILL.md` (uppercase) inside a directory matching the skill name.
-Skills auto-activate based on context. Same content can exist as both command (explicit `/ced:skill-guide`) and skill (auto-triggered).
+Skills auto-activate based on context. Same content can exist as both command (explicit `/forgeify:skill-guide`) and skill (auto-triggered).
 
 ### Hooks (`hooks/hooks.json`)
 
@@ -155,10 +155,10 @@ Fields: `event` (PreToolUse | PostToolUse), `matcher` (tool name), `command` (sh
 |--------|----------|------------------------|
 | homeserver-gitops | `:init`, `:init-iac`, `:join-node`, `:snapshot`, `:restore`, `:help` | k3s-homeserver |
 | ubuntu-dev-setup | `:setup-all`, `:setup-common`, `:setup-zsh`, `:setup-nvm`, `:help` | ubuntu-dev-environment |
-| ced | `:create`, `:compose`, `:update`, `:validate`, `:howto`, `:help` | plugin-guide, command-guide, skill-guide, agent-guide, hook-guide, marketplace-guide, workflow-guide |
+| forgeify | `:create`, `:compose`, `:update`, `:validate`, `:howto`, `:help` | plugin-guide, command-guide, skill-guide, agent-guide, hook-guide, marketplace-guide, workflow-guide |
 | gemify | `:inbox`, `:import`, `:draft`, `:library`, `:view`, `:capture-pair`, `:retro`, `:improve-plugin`, `:setup`, `:howto`, `:help` | inbox, import, draft, library, view, capture-pair, retro, improve-plugin |
 
-Note: Commands are prefixed with plugin name (e.g., `/ced:help`, `/gemify:inbox`).
+Note: Commands are prefixed with plugin name (e.g., `/forgeify:help`, `/gemify:inbox`).
 
 ## Adding New Plugins
 
@@ -173,4 +173,4 @@ Note: Commands are prefixed with plugin name (e.g., `/ced:help`, `/gemify:inbox`
 
 - **Directory name**: Used for filesystem organization and `source` path in marketplace.json
 - **Plugin name** (in plugin.json): Determines command prefix and install identifier
-- Example: Directory `claude-extension-dev` has plugin name `ced`, so commands are `/ced:*` and install is `ced@k-codepoet-plugins`
+- Example: Directory `claude-extension-dev` has plugin name `forgeify`, so commands are `/forgeify:*` and install is `forgeify@k-codepoet-plugins`

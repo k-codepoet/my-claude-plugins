@@ -4,14 +4,14 @@ argument-hint: "<topic> <plugin1> [plugin2] [plugin3] ..."
 allowed-tools: Read, Write, Bash, Glob, Grep
 ---
 
-# /ced:compose - 플러그인 조립
+# /forgeify:compose - 플러그인 조립
 
 여러 플러그인에서 필요한 부분을 추출하여 새로운 플러그인으로 조립합니다.
 
 ## 사용법
 
 ```
-/ced:compose <topic> <plugin1> [plugin2] [plugin3] ...
+/forgeify:compose <topic> <plugin1> [plugin2] [plugin3] ...
 ```
 
 - `<topic>`: 새로 만들 플러그인 주제/이름
@@ -20,7 +20,7 @@ allowed-tools: Read, Write, Bash, Glob, Grep
 ## 예시
 
 ```
-/ced:compose my-devops ./plugins/homeserver-gitops ./plugins/ubuntu-dev-setup
+/forgeify:compose my-devops ./plugins/homeserver-gitops ./plugins/ubuntu-dev-setup
 ```
 
 ## 워크플로우
@@ -91,7 +91,7 @@ plugins/{topic}/
 - 구조 확인
 - 스크립트 문법 검사 (`bash -n`)
 - 누락된 의존성 확인
-- `/ced:validate` 실행 권장
+- `/forgeify:validate` 실행 권장
 
 ## 조립 규칙
 

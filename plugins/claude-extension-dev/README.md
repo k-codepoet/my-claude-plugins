@@ -1,6 +1,8 @@
-# Claude Extension Dev
+# Forgeify
 
-Claude Code 확장 개발을 위한 **한국어 가이드** 플러그인입니다.
+*Forge your ideas into Claude extensions*
+
+Claude Code 플러그인 개발을 위한 **한국어 가이드** 플러그인입니다.
 
 ## 개요
 
@@ -13,20 +15,20 @@ Claude Code 확장 개발을 위한 **한국어 가이드** 플러그인입니�
 /plugin marketplace add k-codepoet/my-claude-plugins
 
 # 플러그인 설치
-/plugin install ced@k-codepoet-plugins
+/plugin install forgeify@k-codepoet-plugins
 ```
 
 ## 커맨드
 
 | 커맨드 | 설명 |
 |--------|------|
-| `/ced:help` | 도움말 표시 |
-| `/ced:howto` | 가능한 가이드 주제 목록 |
-| `/ced:howto <topic>` | 특정 주제 가이드 표시 |
-| `/ced:create <path> <topic>` | 경로 내용 기반 플러그인 생성 |
-| `/ced:compose <topic> <plugins...>` | 여러 플러그인 조립 |
-| `/ced:validate [path]` | 가이드라인 준수 검증 |
-| `/ced:update [path]` | 최신 가이드라인으로 갱신 |
+| `/forgeify:help` | 도움말 표시 |
+| `/forgeify:howto` | 가능한 가이드 주제 목록 |
+| `/forgeify:howto <topic>` | 특정 주제 가이드 표시 |
+| `/forgeify:create <path> <topic>` | 경로 내용 기반 플러그인 생성 |
+| `/forgeify:compose <topic> <plugins...>` | 여러 플러그인 조립 |
+| `/forgeify:validate [path]` | 가이드라인 준수 검증 |
+| `/forgeify:update [path]` | 최신 가이드라인으로 갱신 |
 
 **가능한 주제**: `plugin`, `command`, `agent`, `skill`, `hook`, `marketplace`, `workflow`
 
@@ -34,9 +36,9 @@ Claude Code 확장 개발을 위한 **한국어 가이드** 플러그인입니�
 
 **명시적 호출**:
 ```bash
-/ced:howto plugin    # 플러그인 구조, plugin.json 작성법
-/ced:howto agent     # 서브에이전트 정의, frontmatter 필드
-/ced:howto skill     # SKILL.md 작성법, Agent Skills 표준
+/forgeify:howto plugin    # 플러그인 구조, plugin.json 작성법
+/forgeify:howto agent     # 서브에이전트 정의, frontmatter 필드
+/forgeify:howto skill     # SKILL.md 작성법, Agent Skills 표준
 ```
 
 **자동 활성화**: 대화 컨텍스트에 따라 Claude가 관련 스킬 자동 로드

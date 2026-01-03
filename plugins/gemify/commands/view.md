@@ -60,6 +60,6 @@ ground-truth/
 └── views/
     └── by-subject/
         ├── gemify.md
-        ├── ced.md
+        ├── forgeify.md
         └── gitops.md
 ```

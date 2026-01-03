@@ -3,14 +3,14 @@ description: Claude Code 확장 개발 가이드. 인자 없이 실행하면 가
 argument-hint: "[topic]"
 ---
 
-# /ced:howto 명령어
+# /forgeify:howto 명령어
 
 사용자가 요청한 주제에 대한 Claude Code 확장 개발 가이드를 제공합니다.
 
 ## 사용법
 
-- `/ced:howto` - 가능한 주제 목록 표시
-- `/ced:howto <topic>` - 특정 주제 가이드 표시
+- `/forgeify:howto` - 가능한 주제 목록 표시
+- `/forgeify:howto <topic>` - 특정 주제 가이드 표시
 
 ## 가능한 주제 (Topics)
 

@@ -11,8 +11,8 @@ argument-hint: [plugin-path]
 ## 사용법
 
 ```
-/ced:validate                     # 현재 디렉토리의 플러그인 검증
-/ced:validate ./plugins/my-plugin # 특정 플러그인 검증
+/forgeify:validate                     # 현재 디렉토리의 플러그인 검증
+/forgeify:validate ./plugins/my-plugin # 특정 플러그인 검증
 ```
 
 ## 검증 체크리스트

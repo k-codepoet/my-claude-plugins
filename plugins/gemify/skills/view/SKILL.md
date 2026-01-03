@@ -15,7 +15,7 @@ library/     ← 원천 데이터 (domain별 분류)
 views/       ← 조합 레이어 (주제별 창문)
 └── by-subject/
     ├── gemify.md
-    ├── ced.md
+    ├── forgeify.md
     └── gitops.md
 ```
 
@@ -30,7 +30,7 @@ views/       ← 조합 레이어 (주제별 창문)
 **자동 수집:**
 ```bash
 # library 문서 중 views 필드에 해당 subject가 있는 문서
-views: [gemify, ced]  # 이 문서는 gemify, ced view에 포함
+views: [gemify, forgeify]  # 이 문서는 gemify, forgeify view에 포함
 ```
 
 **대화로 수집 (신규 생성 시):**
@@ -58,7 +58,7 @@ views: [gemify, ced]  # 이 문서는 gemify, ced view에 포함
 
 ### 3. 양방향 연결
 
-- **library → views**: `views: [gemify, ced]` 필드
+- **library → views**: `views: [gemify, forgeify]` 필드
 - **views → library**: 스토리 안에 자연스러운 링크
 
 ## 파일 형식 (views/by-subject/)
@@ -101,5 +101,5 @@ updated: "YYYY-MM-DD"
 
 - 질문은 **하나씩 순차적으로**
 - **컨펌 없이 저장 안 함**
-- subject는 영문 kebab-case (gemify, ced, gitops)
+- subject는 영문 kebab-case (gemify, forgeify, gitops)
 - library 문서에 views 태그 추가 시 사용자 확인
