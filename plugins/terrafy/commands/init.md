@@ -1,5 +1,4 @@
 ---
-name: init
 description: 인프라 환경 초기화 (IaC 저장소 생성)
 allowed-tools: ["Read", "Bash"]
 ---

@@ -1,5 +1,4 @@
 ---
-name: deploy
 description: Cloudflare 배포 설정 및 실행. wrangler 설정 가이드, 배포 명령 안내.
 allowed-tools: Read, Bash, Glob
 argument-hint: [setup|run|status]

@@ -1,5 +1,4 @@
 ---
-name: create
 description: 새 프로젝트 생성. turborepo + boilerplate 복제. /craftify:create webapp my-app 형태로 호출.
 allowed-tools: Read, Write, Bash, Glob
 argument-hint: <type> <name> [--ssr|--spa] [--path <path>]

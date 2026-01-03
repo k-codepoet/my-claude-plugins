@@ -1,5 +1,4 @@
 ---
-name: dev
 description: 로컬 개발 환경 관리. 개발 서버 시작, 상태 확인 등.
 allowed-tools: Read, Bash, Glob
 argument-hint: [start|stop|status]

@@ -1,5 +1,4 @@
 ---
-name: status
 description: 현재 인프라 상태 확인
 allowed-tools: ["Read", "Bash"]
 ---
