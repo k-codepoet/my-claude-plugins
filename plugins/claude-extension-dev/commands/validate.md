@@ -24,6 +24,10 @@ argument-hint: [plugin-path]
 - [ ] `version` 필드: semver 형식 (예: 1.0.0)
 - [ ] `description` 필드: 간결한 설명
 - [ ] 경로 참조가 올바른지 (commands, agents, skills)
+- [ ] **agents 필드 형식**: 반드시 `.md` 파일 경로로 끝나야 함 (디렉토리 형식 불가)
+  - ❌ 잘못됨: `"agents": ["./agents/"]`
+  - ✅ 올바름: `"agents": ["./agents/infra-setup.md"]`
+  - 주의: commands, skills는 디렉토리 지정 가능하지만, agents는 개별 파일만 허용
 
 ### 2. 커맨드 검증 (command-guide)
 
@@ -81,6 +85,7 @@ argument-hint: [plugin-path]
 ### Errors
 1. [plugin.json] Missing required field: name
 2. [commands/deploy.md] Missing frontmatter
+3. [plugin.json] agents field uses directory format - must be individual .md files
 
 ### Warnings
 1. [skills/my-skill/SKILL.md] Description doesn't explain when to use

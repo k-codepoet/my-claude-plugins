@@ -62,9 +62,9 @@ plugins/{topic}/
   "version": "1.0.0",
   "description": "...",
   "author": { "name": "..." },
-  "commands": ["./commands/"],
-  "skills": ["./skills/"],
-  "agents": ["./agents/"]
+  "commands": ["./commands/"],    // 디렉토리 형식 가능
+  "skills": ["./skills/"],        // 디렉토리 형식 가능
+  "agents": ["./agents/my-agent.md"]  // ⚠️ 반드시 개별 .md 파일 경로! 디렉토리 불가
 }
 ```
 
@@ -83,17 +83,31 @@ plugins/{topic}/
 - `<example>` 블록으로 트리거 예시
 - tools 배열 지정
 
-### 5단계: 마켓플레이스 등록 안내
+### 5단계: 마켓플레이스 자동 등록
 
-생성 완료 후 마켓플레이스 등록 방법 안내:
+플러그인 생성 완료 후 **자동으로** 마켓플레이스에 등록합니다:
+
+1. 마켓플레이스 저장소 위치 확인:
+   - 현재 디렉토리가 마켓플레이스 저장소 내부인 경우: 해당 저장소의 `.claude-plugin/marketplace.json` 사용
+   - 아닌 경우: 사용자에게 마켓플레이스 저장소 경로 요청
+
+2. `marketplace.json`의 `plugins` 배열에 자동 추가:
 ```json
-// .claude-plugin/marketplace.json에 추가
 {
   "name": "{topic}",
   "source": "./plugins/{topic}",
-  "description": "..."
+  "description": "플러그인 설명"
 }
 ```
+
+3. 이미 등록되어 있으면 스킵
+
+### 6단계: 검증 실행
+
+생성 완료 후 `/ced:validate` 를 자동 호출하여 검증합니다:
+- 검증 오류 발생 시 자동 수정 시도
+- 수정 후 재검증하여 성공 확인
+- 특히 **agents 필드 형식** 반드시 확인 (디렉토리 형식 → .md 파일 경로)
 
 ## 예시
 
@@ -111,4 +125,5 @@ plugins/{topic}/
 
 - 기존 플러그인 디렉토리가 있으면 덮어쓰기 전 확인
 - 스크립트는 idempotent하게 수정 권장
-- 생성 후 `/ced:validate` 로 검증 권장
+- **agents 필드는 반드시 개별 .md 파일 경로로 지정** (디렉토리 형식 불가)
+- 마켓플레이스 등록과 검증은 자동 수행됨
