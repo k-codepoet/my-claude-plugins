@@ -10,6 +10,9 @@ Personal collection of Claude Code plugins by k-codepoet.
 | [ubuntu-dev-setup](./plugins/ubuntu-dev-setup/) | Zsh + Oh My Zsh + Powerlevel10k + NVM 개발환경 설정 | Linux |
 | [forgeify](./plugins/forgeify/) | Forge your ideas into Claude extensions - 플러그인 개발 도구 | All |
 | [gemify](./plugins/gemify/) | 원석을 보석으로 - 개인 지식 파이프라인 (capture → develop → file) | All |
+| [namify](./plugins/namify/) | Name it right - 제품/서비스 네이밍 도구 | All |
+| [craftify](./plugins/craftify/) | Craft your products - turborepo + Cloudflare 기반 개발환경 자동화 | All |
+| [terrafy](./plugins/terrafy/) | Lay the groundwork - 인프라 자동화 (K3s, Portainer, Terraform) | Linux |
 
 ## Installation
 
@@ -106,15 +109,20 @@ Claude Code 플러그인 개발 도구:
   - 대화 컨텍스트에 따른 스킬 자동 활성화
   - 플러그인 생성/검증/조립 도구
 
-### gemify (v1.1.0)
+### gemify (v1.6.0)
 
 원석을 다듬어 보석으로 만드는 개인 지식 파이프라인:
 
 - **Commands**:
   - `/gemify:inbox [내용]` - 내 생각을 inbox/thoughts/에 빠르게 저장
   - `/gemify:import [URL/내용]` - 외부 재료를 inbox/materials/에 저장
+  - `/gemify:capture-pair` - material + thought를 쌍으로 동시에 저장
   - `/gemify:draft [파일]` - inbox의 원석을 대화로 다듬기 (facet/polish 모드)
   - `/gemify:library [파일]` - drafts를 정리하여 library로 분류/저장
+  - `/gemify:view [주제]` - library 지식을 주제별로 조합하여 views/에 저장
+  - `/gemify:retro` - 이미 완료된 작업을 역방향으로 library에 기록
+  - `/gemify:setup [경로]` - Gemify 지식 파이프라인 구조 생성
+  - `/gemify:help` - 도움말 표시
 
 - **Pipeline**:
   ```
@@ -135,6 +143,62 @@ Claude Code 플러그인 개발 도구:
   - "가져와", "이 기사", "이 문서"
   - "다듬어봐", "연마해봐"
   - "정리해", "분류해", "library 해줘"
+
+### namify (v1.0.0)
+
+*Name it right*
+
+제품/서비스 네이밍을 도와주는 플러그인:
+
+- **Commands**:
+  - `/namify:name <설명>` - 제품/서비스 이름 생성
+
+- **Options**:
+  - `--pattern`: 적용할 이름 패턴 (-ify, Craft, Lab, Hub 등)
+  - `--series`: 기존 이름으로부터 패턴 추출하여 일관성 유지
+
+- **Workflow**:
+  1. 핵심 가치 추출
+  2. 메타포 탐색
+  3. 후보 생성
+  4. 문화적 검증
+  5. 최종 추천
+
+### craftify (v0.1.0)
+
+*Craft your products with AI*
+
+turborepo + Cloudflare 기반 개발환경 자동화:
+
+- **Commands**:
+  - `/craftify:create <type> <name>` - 새 프로젝트 생성 (turborepo 기반)
+  - `/craftify:dev [start|stop|status]` - 로컬 개발 환경 관리
+  - `/craftify:deploy [setup|run|status]` - Cloudflare 배포
+  - `/craftify:status` - 프로젝트 상태 표시
+  - `/craftify:help` - 도움말 표시
+
+- **Features**:
+  - Turborepo monorepo 구조
+  - Cloudflare Workers/Pages 배포
+  - SSR/SPA 옵션 지원
+
+### terrafy (v1.0.0)
+
+*Lay the groundwork for your digital city*
+
+인프라 자동화 플러그인:
+
+- **Commands**:
+  - `/terrafy:init` - 인프라 환경 초기화 (IaC 저장소 생성)
+  - `/terrafy:status` - 현재 인프라 상태 확인
+  - `/terrafy:help` - 도움말 표시
+
+- **Skills**:
+  - K3s 클러스터 구축
+  - Portainer 기반 컨테이너 관리
+  - Terraform 클라우드 인프라 (준비 중)
+
+- **Prerequisites**: Linux Ubuntu, sudo access
 
 ## Contributing
 

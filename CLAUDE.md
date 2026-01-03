@@ -156,12 +156,31 @@ Fields: `event` (PreToolUse | PostToolUse), `matcher` (tool name), `command` (sh
 | homeserver-gitops | `:init`, `:init-iac`, `:join-node`, `:snapshot`, `:restore`, `:help` | k3s-homeserver |
 | ubuntu-dev-setup | `:setup-all`, `:setup-common`, `:setup-zsh`, `:setup-nvm`, `:help` | ubuntu-dev-environment |
 | forgeify | `:create`, `:compose`, `:update`, `:validate`, `:howto`, `:help` | plugin-guide, command-guide, skill-guide, agent-guide, hook-guide, marketplace-guide, workflow-guide |
-| gemify | `:inbox`, `:import`, `:draft`, `:library`, `:view`, `:capture-pair`, `:retro`, `:improve-plugin`, `:setup`, `:howto`, `:help` | inbox, import, draft, library, view, capture-pair, retro, improve-plugin |
+| gemify | `:inbox`, `:import`, `:capture-pair`, `:draft`, `:library`, `:view`, `:retro`, `:improve-plugin`, `:setup`, `:howto`, `:help` | inbox, import, capture-pair, draft, library, view, retro, improve-plugin |
 | namify | `:name` | naming-guide |
 | craftify | `:create`, `:dev`, `:deploy`, `:status`, `:help` | create, dev, deploy, help |
 | terrafy | `:init`, `:status`, `:help` | k3s, portainer, terraform, help |
 
 Note: Commands are prefixed with plugin name (e.g., `/forgeify:help`, `/gemify:inbox`).
+
+## Validation Checklist
+
+Before committing plugin changes:
+```bash
+# Validate plugin manifest
+cat plugins/<name>/.claude-plugin/plugin.json | jq .
+
+# Validate marketplace registry
+cat .claude-plugin/marketplace.json | jq .
+
+# Validate bash scripts (if any)
+bash -n plugins/<name>/scripts/*.sh
+```
+
+Also verify:
+- SKILL.md files are uppercase and in `skills/{skill-name}/SKILL.md` structure
+- All paths referenced in plugin.json have corresponding files
+- Commands have required frontmatter (`name`, `description`)
 
 ## Adding New Plugins
 
