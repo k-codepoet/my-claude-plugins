@@ -13,7 +13,7 @@ ground-truth에서 생성된 개선 문서를 읽고, 해당 내용에 따라 �
 gemify (지식 생산)        forgeify (실행)
     │                         │
     └── 개선 문서 생성 ──────▶ 개선 문서 실행
-        (library/...)         (/forgeify:improve)
+        (library/...)         (/forgeify:improve-plugin)
 ```
 
 - **gemify**: 대화를 통해 개선 아이디어를 정제하고 library에 저장

@@ -4,14 +4,14 @@ argument-hint: "<improvement-doc-path>"
 allowed-tools: Read, Write, Edit, Bash, Glob, Grep
 ---
 
-# /forgeify:improve - 개선 문서 기반 플러그인 수정
+# /forgeify:improve-plugin - 개선 문서 기반 플러그인 수정
 
 ground-truth에서 생성된 개선 문서를 읽고, 해당 내용에 따라 플러그인을 수정합니다.
 
 ## 사용법
 
 ```
-/forgeify:improve <improvement-doc-path>
+/forgeify:improve-plugin <improvement-doc-path>
 ```
 
 - `<improvement-doc-path>`: ground-truth 개선 문서 경로 (예: `/path/to/library/engineering/plugin-improvements/my-feature.md`)
@@ -31,7 +31,7 @@ ground-truth에서 생성된 개선 문서를 읽고, 해당 내용에 따라 �
 ## 예시
 
 ```
-/forgeify:improve /path/to/ground-truth/library/engineering/plugin-improvements/forgeify-new-feature.md
+/forgeify:improve-plugin /path/to/ground-truth/library/engineering/plugin-improvements/forgeify-new-feature.md
 ```
 
 ## 주의사항
