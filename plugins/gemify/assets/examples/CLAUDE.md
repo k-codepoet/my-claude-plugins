@@ -7,8 +7,8 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 이 저장소는 Gemify 지식 파이프라인을 사용합니다.
 
 ```
-/gemify:inbox → /gemify:draft → /gemify:library
-    inbox/         drafts/         library/
+/gemify:inbox → /gemify:draft → /gemify:library → /gemify:view
+    inbox/         drafts/         library/          views/
 ```
 
 **핵심**: 원석을 다듬어 보석으로. 생각을 포착하고, 다듬고, 정리합니다.
@@ -21,6 +21,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 | `/gemify:import [내용]` | 외부 재료 가져오기 | inbox/materials/ |
 | `/gemify:draft [파일/아이디어]` | 원석 다듬기 (대화로 확장) | drafts/ |
 | `/gemify:library [파일]` | 보석 정리 (library로) | library/ |
+| `/gemify:view [subject]` | library를 주제별로 조합 | views/by-subject/ |
 
 ## /gemify:draft 대화 모드
 
@@ -52,6 +53,8 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 - `inbox/materials/` - 외부 재료 (기사, 문서, 대화 등)
 - `drafts/` - 다듬는 중인 아이디어
 - `library/` - 완성된 지식 (domain별 분류)
+- `views/by-subject/` - library를 주제별로 조합한 뷰
+- `views/.history/` - view 변경 히스토리
 
 ## Status 상태 흐름
 

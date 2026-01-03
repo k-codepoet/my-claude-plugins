@@ -13,10 +13,12 @@ library의 지식을 **주제(subject)별로 조합**하여 views에 저장합�
 library/     ← 원천 데이터 (domain별 분류)
     ↓
 views/       ← 조합 레이어 (주제별 창문)
-└── by-subject/
-    ├── gemify.md
-    ├── forgeify.md
-    └── gitops.md
+├── by-subject/
+│   ├── gemify.md
+│   ├── forgeify.md
+│   └── gitops.md
+└── .history/{subject}/   ← 변경 히스토리
+    └── 01-2026-01-01.md
 ```
 
 **Views = 창문 (Window into Knowledge)**
@@ -61,6 +63,16 @@ views: [gemify, forgeify]  # 이 문서는 gemify, forgeify view에 포함
 - **library → views**: `views: [gemify, forgeify]` 필드
 - **views → library**: 스토리 안에 자연스러운 링크
 
+### 4. 히스토리 스냅샷 (변경 시)
+
+**업데이트 전 반드시 스냅샷 생성:**
+1. 기존 view 파일이 존재하면 → `.history/{subject}/`에 스냅샷 저장
+2. 스냅샷 파일명: `{revision:02d}-{YYYY-MM-DD}.md`
+3. view 파일의 `revision` 증가 후 업데이트
+
+**스냅샷 생성 조건:**
+- view 파일이 이미 존재하고, 내용이 변경될 때
+
 ## 파일 형식 (views/by-subject/)
 
 ```markdown
@@ -69,6 +81,13 @@ title: "{Subject} View"
 subject: {subject}
 created: "YYYY-MM-DD"
 updated: "YYYY-MM-DD"
+revision: 1
+sources: []
+history:
+  - rev: 1
+    date: YYYY-MM-DD
+    summary: "초기 생성"
+    file: .history/{subject}/01-YYYY-MM-DD.md
 ---
 
 # {Subject} View
@@ -89,13 +108,42 @@ updated: "YYYY-MM-DD"
 - [문서2](../library/domain/slug.md)
 ```
 
+## 히스토리 구조
+
+```
+views/
+├── by-subject/
+│   ├── gemify.md              # 현재 상태
+│   └── forgeify.md
+└── .history/
+    ├── gemify/
+    │   ├── 01-2024-12-31.md   # 첫 번째 버전 스냅샷
+    │   └── 02-2025-01-15.md   # 두 번째 버전 스냅샷
+    └── forgeify/
+        └── 01-2024-12-31.md
+```
+
+**스냅샷 파일 형식:**
+```markdown
+---
+revision: 1
+date: YYYY-MM-DD
+summary: "변경 요약"
+sources_at_snapshot: []
+---
+
+# {Subject} View (Snapshot)
+
+{스냅샷 시점의 전체 내용}
+```
+
 ## 세션 동작
 
 | 시점 | 동작 |
 |------|------|
 | 목록 | views/by-subject/ 파일 목록 표시 |
 | 신규 | 대화로 관련 문서 수집 → view 생성 |
-| 업데이트 | views 태그 기반 자동 수집 → 갱신 |
+| 업데이트 | **스냅샷 생성** → views 태그 기반 자동 수집 → 갱신 |
 
 ## 규칙
 
@@ -103,3 +151,4 @@ updated: "YYYY-MM-DD"
 - **컨펌 없이 저장 안 함**
 - subject는 영문 kebab-case (gemify, forgeify, gitops)
 - library 문서에 views 태그 추가 시 사용자 확인
+- **업데이트 시 반드시 히스토리 스냅샷 생성**
