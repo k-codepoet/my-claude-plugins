@@ -8,7 +8,7 @@ Personal collection of Claude Code plugins by k-codepoet.
 |--------|-------------|----------|
 | [homeserver-gitops](./plugins/homeserver-gitops/) | K3s homeserver & GitOps setup with extensible IaC | Linux |
 | [ubuntu-dev-setup](./plugins/ubuntu-dev-setup/) | Zsh + Oh My Zsh + Powerlevel10k + NVM 개발환경 설정 | Linux |
-| [forgeify](./plugins/claude-extension-dev/) | Forge your ideas into Claude extensions - 플러그인 개발 도구 | All |
+| [forgeify](./plugins/forgeify/) | Forge your ideas into Claude extensions - 플러그인 개발 도구 | All |
 | [gemify](./plugins/gemify/) | 원석을 보석으로 - 개인 지식 파이프라인 (capture → develop → file) | All |
 
 ## Installation

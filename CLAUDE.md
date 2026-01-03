@@ -173,4 +173,4 @@ Note: Commands are prefixed with plugin name (e.g., `/forgeify:help`, `/gemify:i
 
 - **Directory name**: Used for filesystem organization and `source` path in marketplace.json
 - **Plugin name** (in plugin.json): Determines command prefix and install identifier
-- Example: Directory `claude-extension-dev` has plugin name `forgeify`, so commands are `/forgeify:*` and install is `forgeify@k-codepoet-plugins`
+- Example: Directory `forgeify` has plugin name `forgeify`, so commands are `/forgeify:*` and install is `forgeify@k-codepoet-plugins`
