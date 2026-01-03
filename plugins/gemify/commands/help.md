@@ -34,6 +34,11 @@ description: gemify 플러그인 도움말을 표시합니다
 | `/gemify:draft [파일/아이디어]` | 원석 다듬기 (대화로 확장) | drafts/ |
 | `/gemify:library [파일]` | 보석 정리 (library로) | library/ |
 
+### 세션 관리
+| 커맨드 | 설명 | 저장 위치 |
+|--------|------|----------|
+| `/gemify:wrapup` | 세션 마무리 (HITL 체크 + 리포트) | sessions/ |
+
 ## 사용 예시
 
 ```bash
@@ -49,6 +54,9 @@ description: gemify 플러그인 도움말을 표시합니다
 
 # 보석 정리
 /gemify:library drafts/my-idea.md
+
+# 세션 마무리
+/gemify:wrapup
 ```
 
 ## 6대 Domain (library 분류)
