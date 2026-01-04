@@ -38,14 +38,18 @@ allowed-tools: Read, Write, Bash, Glob
 ├── drafts/             # 다듬는 중
 │   ├── _template.md
 │   └── .history/       # 스냅샷 저장
-└── library/            # 완성된 지식
-    ├── _template.md
-    ├── product/
-    ├── engineering/
-    ├── operations/
-    ├── growth/
-    ├── business/
-    └── ai-automation/
+├── library/            # 완성된 지식
+│   ├── _template.md
+│   ├── principles/     # 근본 원칙, 철학
+│   ├── decisions/      # 의사결정 기록 (ADR)
+│   ├── insights/       # 발견, 깨달음
+│   ├── how-tos/        # 방법론, 절차
+│   ├── specs/          # 명세, 스펙
+│   └── workflows/      # input→output 파이프라인
+├── views/              # 주제별 조합
+│   └── by-subject/
+│       └── _template.md
+└── sessions/           # 세션 리포트
 ```
 
 ## 동작
