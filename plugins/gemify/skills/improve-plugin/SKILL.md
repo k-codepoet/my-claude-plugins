@@ -20,13 +20,30 @@ gemify (지식 생산)        forgeify (실행)
 - **forgeify**: 저장된 개선 문서를 읽고 플러그인에 적용
 - 역방향 없음: gemify는 코드를 직접 수정하지 않음
 
+## Go/No-Go 체크 (깊어질 것 같은 작업)
+
+작업이 5분 이상 걸릴 것 같으면 먼저 체크:
+
+```
+□ 실제 문제가 발생했는가? (미래 걱정 아닌지)
+□ 현재 사용자가 나만인가?
+□ 문제가 발생하면 그때 해도 늦지 않은가?
+```
+
+**판정**:
+- 3개 모두 "아니오" → **Go** (진행)
+- 하나라도 "예" → **No-Go** (즉시 중단, 우선순위 재점검)
+
+핵심 원칙: **기록은 자유롭게, 실행은 신중하게**
+
 ## 동작
 
-1. 대화를 통해 개선 아이디어 파악
-2. 관련 inbox/materials 탐색 (기존 아이디어 참조)
-3. 개선 문서 작성 (frontmatter + body 스키마)
-4. `library/engineering/plugin-improvements/`에 저장
-5. forgeify로 실행 안내
+1. (깊어질 것 같으면) Go/No-Go 체크 실행
+2. 대화를 통해 개선 아이디어 파악
+3. 관련 inbox/materials 탐색 (기존 아이디어 참조)
+4. 개선 문서 작성 (frontmatter + body 스키마)
+5. `library/engineering/plugin-improvements/`에 저장
+6. forgeify로 실행 안내
 
 ## 개선 문서 스키마
 
