@@ -27,6 +27,8 @@ library 분류 체계를 6대 domain 기반에서 Type 기반으로 변경. 개�
 | `assets/empty/library/_template.md` | frontmatter 업데이트 |
 | `assets/examples/library/_template.md` | frontmatter 업데이트 |
 | `assets/examples/library/principles/capture-first.md` | 신규 (operations → principles 이동) |
+| `assets/empty/library/` | 6대 domain 폴더 → Type 폴더로 교체 |
+| `assets/examples/library/` | 6대 domain 폴더 → Type 폴더로 교체 |
 | `.claude-plugin/plugin.json` | 버전 1.12.2 → 1.13.0 |
 
 ## 핵심 변경사항
