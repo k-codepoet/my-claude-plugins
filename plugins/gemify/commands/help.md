@@ -24,7 +24,7 @@ description: gemify 플러그인 도움말을 표시합니다
 | `/gemify:howto` | 가능한 가이드 주제 목록 표시 |
 | `/gemify:howto <topic>` | 특정 주제 가이드 표시 |
 
-**가능한 주제**: `inbox`, `import`, `draft`, `library`, `wrapup`
+**가능한 주제**: `inbox`, `import`, `sidebar`, `draft`, `library`, `view`, `retro`, `tidy`, `wrapup`, `human-decision`, `human-principle`, `human-policy`, `improve-plugin`
 
 ### 지식 파이프라인
 | 커맨드 | 설명 | 저장 위치 |
@@ -36,16 +36,25 @@ description: gemify 플러그인 도움말을 표시합니다
 | `/gemify:library [파일]` | 보석 정리 (library로) | library/ |
 | `/gemify:view [subject]` | 주제별 지식 조합 | views/by-subject/ |
 | `/gemify:retro [내용]` | 완료 작업 역방향 기록 | library/ |
+| `/gemify:tidy` | 문서 점진적 정리 (역방향 검증) | - |
+
+### Human Documents (의사결정/원칙/정책)
+| 커맨드 | 설명 | 저장 위치 |
+|--------|------|----------|
+| `/gemify:human-decision` | 의사결정 기록 생성 | docs/humans/decisions/ |
+| `/gemify:human-principle` | 작업 원칙 문서 생성 | docs/humans/principles/ |
+| `/gemify:human-policy` | 정책 문서 생성 | docs/humans/policies/ |
 
 ### 플러그인 개선
 | 커맨드 | 설명 | 저장 위치 |
 |--------|------|----------|
 | `/gemify:improve-plugin [플러그인명]` | 개선 문서 생성 | library/engineering/plugin-improvements/ |
 
-### 세션 관리
+### 세션/설정 관리
 | 커맨드 | 설명 | 저장 위치 |
 |--------|------|----------|
 | `/gemify:wrapup` | 세션 마무리 (HITL 체크 + 리포트) | sessions/ |
+| `/gemify:setup [경로]` | ground-truth 구조 생성 | 지정 경로 |
 
 ## 사용 예시
 
@@ -72,8 +81,19 @@ description: gemify 플러그인 도움말을 표시합니다
 # 사후 기록
 /gemify:retro 방금 만든 기능 기록해줘
 
+# 문서 정리 (역방향 검증)
+/gemify:tidy
+
+# 의사결정/원칙/정책 기록
+/gemify:human-decision
+/gemify:human-principle
+/gemify:human-policy
+
 # 플러그인 개선 문서 생성
 /gemify:improve-plugin forgeify
+
+# ground-truth 구조 생성
+/gemify:setup ./my-project
 
 # 세션 마무리
 /gemify:wrapup
