@@ -8,5 +8,5 @@
   "keywords": ["documentation", "korean", "plugin-development", "skills", "agents", "hooks", "claude-code"],
   "commands": ["./commands/"],
   "skills": ["./skills/"],
-  "hooks": "./hooks/"
+  "hooks": "./hooks/hooks.json"
 }

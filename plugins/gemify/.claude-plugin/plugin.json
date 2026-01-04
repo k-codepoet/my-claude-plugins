@@ -8,5 +8,5 @@
   "keywords": ["knowledge", "pipeline", "pkm", "gemify", "library"],
   "commands": ["./commands/"],
   "skills": ["./skills/"],
-  "hooks": "./hooks/"
+  "hooks": "./hooks/hooks.json"
 }
