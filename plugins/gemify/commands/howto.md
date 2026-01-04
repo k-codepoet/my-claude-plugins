@@ -27,13 +27,6 @@ argument-hint: "[topic]"
 | `tidy` | 문서 점진적 정리, 역방향 검증 |
 | `wrapup` | 세션 마무리, HITL 체크 + 리포트 생성 |
 
-### Human Documents
-| 주제 | 설명 |
-|------|------|
-| `human-decision` | 의사결정 기록 생성 |
-| `human-principle` | 작업 원칙 문서 생성 |
-| `human-policy` | 정책 문서 생성 |
-
 ### 플러그인/설정
 | 주제 | 설명 |
 |------|------|
@@ -53,9 +46,6 @@ argument-hint: "[topic]"
    - `retro` → retro 스킬 사용
    - `tidy` → tidy 스킬 사용
    - `wrapup` → wrapup 스킬 사용
-   - `human-decision` → human-decision 스킬 사용
-   - `human-principle` → human-principle 스킬 사용
-   - `human-policy` → human-policy 스킬 사용
    - `improve-plugin` → improve-plugin 스킬 사용
 
 3. **알 수 없는 주제**: 가능한 주제 목록을 보여주고 올바른 주제를 선택하도록 안내합니다.
