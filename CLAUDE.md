@@ -157,7 +157,7 @@ Fields: `event` (PreToolUse | PostToolUse), `matcher` (tool name), `command` (sh
 | homeserver-gitops | `:init`, `:init-iac`, `:join-node`, `:snapshot`, `:restore`, `:help` | k3s-homeserver |
 | ubuntu-dev-setup | `:setup-all`, `:setup-common`, `:setup-zsh`, `:setup-nvm`, `:help` | ubuntu-dev-environment |
 | forgeify | `:create`, `:compose`, `:improve-plugin`, `:update`, `:validate`, `:howto`, `:help` | plugin-guide, command-guide, skill-guide, agent-guide, hook-guide, marketplace-guide, workflow-guide, improve-plugin |
-| gemify | `:inbox`, `:import`, `:sidebar`, `:draft`, `:library`, `:view`, `:retro`, `:wrapup`, `:improve-plugin`, `:human-decision`, `:human-principle`, `:human-policy`, `:setup`, `:howto`, `:help` | inbox, import, sidebar, draft, library, view, retro, wrapup, improve-plugin, human-decision, human-principle, human-policy |
+| gemify | `:inbox`, `:import`, `:sidebar`, `:draft`, `:library`, `:view`, `:retro`, `:tidy`, `:wrapup`, `:improve-plugin`, `:human-decision`, `:human-principle`, `:human-policy`, `:setup`, `:howto`, `:help` | inbox, import, sidebar, draft, library, view, retro, tidy, wrapup, improve-plugin, human-decision, human-principle, human-policy |
 | namify | `:name` | naming-guide |
 | craftify | `:create`, `:dev`, `:deploy`, `:status`, `:help` | create, dev, deploy, help |
 | terrafy | `:init`, `:status`, `:help` | k3s, portainer, terraform, help |
