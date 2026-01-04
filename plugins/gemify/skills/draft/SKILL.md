@@ -44,6 +44,8 @@ drafts/           ← 해체 → 재조립 → 연마
 - "한 문장으로 줄이면?"
 - "진짜 핵심만 남기면?"
 
+**library 전환:** polish가 완료되면 `/gemify:library` 명령어로 library에 저장합니다.
+
 ## 핵심 행동
 
 ### 1. 대화 파트너
@@ -64,10 +66,15 @@ inbox 파일 사용 시:
 
 ### 4. revision (스냅샷)
 
-**pivot(방향 전환) 시 revision 증가:**
-- facet 중 → 다른 방향 facet
+**히스토리 저장 시점:**
+
+1. **최초 대화 시작** - `.history/{slug}/` 폴더가 없으면 원본 스냅샷 생성 (rev 0)
+2. **pivot(모드 전환) 시** - facet ↔ polish 전환 시 현재 상태 스냅샷
+3. **세션 종료 시** - 의미있는 변경이 있으면 스냅샷
+
+**pivot 발생 조건:**
 - facet → polish 전환
-- polish 중 → 다른 방향 polish
+- polish → facet 전환
 
 스냅샷은 `.history/{slug}/` 폴더에 저장.
 
@@ -136,10 +143,23 @@ summary: "요약"
 
 | 시점 | 동작 |
 |------|------|
-| 시작 | drafts/ 확인, 진행 중 목록 표시 |
+| 시작 | drafts/ 확인, `.history/` 없으면 원본 스냅샷 생성 |
 | 대화 | 매 턴 업데이트, turns 증가, 모드 체크 |
-| pivot | revision++, 스냅샷 생성 |
-| 종료 | 상태 요약, "/gemify:draft {파일명}" 안내 |
+| pivot | facet ↔ polish 전환 시 스냅샷 생성, revision++ |
+| 종료 | 히스토리 저장 기준 체크, 상태 요약 |
+
+### 히스토리 저장 기준
+
+**자동 저장 (즉시):**
+- **최초 대화** - `.history/{slug}/` 폴더가 없으면 원본 스냅샷 (00-origin)
+- **pivot 발생** - facet ↔ polish 모드 전환 시
+
+**세션 종료 시 저장 제안:**
+- turns >= 3 (의미있는 대화량)
+- Current State 변경 (마지막 스냅샷 대비)
+- 명시적 요청
+
+기준 충족 시 `.history/{slug}/`에 스냅샷 저장.
 
 ## 규칙
 
