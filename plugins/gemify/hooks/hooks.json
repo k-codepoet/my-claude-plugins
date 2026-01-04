@@ -2,11 +2,10 @@
   "hooks": {
     "Stop": [
       {
-        "matcher": "*",
         "hooks": [
           {
-            "type": "prompt",
-            "prompt": "이 세션에서 gemify:draft 작업을 진행했다면, 히스토리 저장이 필요한지 확인하세요.\n\n**자동 저장 (이미 처리됨):**\n- 최초 대화 시작 시 .history/{slug}/ 폴더가 없었다면 원본 스냅샷(00-origin) 생성됨\n- pivot(facet ↔ polish 전환) 발생 시 스냅샷 생성됨\n\n**세션 종료 시 저장 기준:**\n- turns >= 3 (의미있는 대화량)\n- Current State에 실질적 변경이 있음 (마지막 스냅샷 대비)\n- 명시적 저장 요청\n\n**기준 충족 시:**\n1. drafts/.history/{slug}/ 폴더에 스냅샷 저장\n2. drafts/{slug}.md의 history 배열에 기록 추가\n3. revision 증가\n\n**기준 미충족 시:** 아무 작업도 하지 않음\n\n**주의:** 이 체크는 gemify:draft 작업이 있었을 때만 적용됩니다. 다른 작업 중이었다면 무시하세요.\n\nReturn JSON: {\"decision\": \"approve\", \"reason\": \"your explanation\"}"
+            "type": "command",
+            "command": "bash ${CLAUDE_PLUGIN_ROOT}/scripts/stop-hook.sh"
           }
         ]
       }

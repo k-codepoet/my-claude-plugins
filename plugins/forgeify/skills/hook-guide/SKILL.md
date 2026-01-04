@@ -75,8 +75,51 @@ description: Claude Code 훅(Hooks) 작성법 가이드. Hook 만들기, 이벤�
 ## 디버깅
 
 ```bash
-claude --debug  # 훅 로딩/실행 로그 확인
-/hooks          # 현재 로드된 훅 목록 확인
+claude --debug hooks  # 훅 로딩/실행 로그 확인
+/hooks                # 현재 로드된 훅 목록 확인
+grep -i hook ~/.claude/debug/latest  # 디버그 로그에서 훅 관련 검색
+```
+
+## Known Issues
+
+### `type: "prompt"` 훅이 플러그인에서 작동하지 않음
+
+**증상**: 플러그인 `hooks/hooks.json`에 `"type": "prompt"` 훅을 정의해도 `Registered 0 hooks`로 표시되며 무시됨.
+
+**원인**: Claude Code가 플러그인 훅에서 `type: "prompt"`를 **silently ignore**함. `type: "command"`만 지원됨.
+
+**확인된 버전**: v2.0.75, v2.0.76
+
+**GitHub Issue**: [#13155](https://github.com/anthropics/claude-code/issues/13155)
+
+**Workaround**:
+1. `type: "command"`로 변경하고 셸 스크립트 사용
+2. 또는 `~/.claude/settings.json`에 직접 prompt 훅 정의 (플러그인 외부)
+
+```json
+// 플러그인에서 작동하지 않음 (silently ignored)
+{
+  "hooks": {
+    "Stop": [{
+      "hooks": [{
+        "type": "prompt",  // <- 플러그인에서 무시됨!
+        "prompt": "..."
+      }]
+    }]
+  }
+}
+
+// 플러그인에서 작동함
+{
+  "hooks": {
+    "Stop": [{
+      "hooks": [{
+        "type": "command",  // <- 정상 작동
+        "command": "${CLAUDE_PLUGIN_ROOT}/scripts/stop-hook.sh"
+      }]
+    }]
+  }
+}
 ```
 
 > 상세 예시는 `references/examples.md`, 트러블슈팅은 `references/troubleshooting.md` 참조
