@@ -17,6 +17,7 @@ description: 플러그인이 가이드라인을 준수하는지 검증. "플러�
 | commands/*.md | **command-guide** | `description` 필수 |
 | agents/*.md | **agent-guide** | `name`, `description`, `<example>` 블록 |
 | skills/*/SKILL.md | **skill-guide** | `name` (디렉토리명 일치), `description` |
+| hooks/hooks.json | **hook-guide** | 중첩 객체 구조, hooks 배열, type/command 필드 |
 
 ## 검증 프로세스
 
@@ -49,6 +50,32 @@ description: 플러그인이 가이드라인을 준수하는지 검증. "플러�
 - 디렉토리명 = 스킬명 일치
 - frontmatter `name`: 필수
 - frontmatter `description`: 필수, "무엇 + 언제" 포함
+- **Progressive Disclosure 준수**:
+  - SKILL.md 본문 <5000 토큰 (권장)
+  - 상세 내용은 `references/` 폴더로 분리
+  - 핵심 정보 먼저, 상세/예외 사항은 뒤로
+
+### hooks/hooks.json 검증
+- 파일 존재 여부 확인 (선택적 - 없어도 에러 아님)
+- JSON 파싱 가능 여부
+- `hooks` 필드가 **객체** 형태인지 (배열 아님)
+- 각 이벤트 키가 유효한 이벤트명인지
+- 각 이벤트 배열 내 객체에 `hooks` 배열이 있는지
+- 각 훅 항목에 필수 필드 존재:
+  - `type`: `"command"` 또는 `"prompt"`
+  - `command`: 문자열 형태
+- `matcher` 사용 시 Tool 이름 대소문자 정확히
+- command 스크립트 파일 존재 및 실행 권한 확인
+
+**유효한 이벤트 키:**
+- `PreToolUse`, `PostToolUse`, `PostToolUseFailure`
+- `PermissionRequest`, `UserPromptSubmit`, `Notification`
+- `SessionStart`, `SessionEnd`, `Stop`
+- `SubagentStart`, `SubagentStop`, `PreCompact`
+
+**유효한 matcher 값 (대소문자 정확히):**
+- `Bash`, `Read`, `Write`, `Edit`, `MultiEdit`, `Glob`, `Grep`, `Task`
+- 정규식 패턴 허용 (예: `Write|Edit|MultiEdit`)
 
 ## 출력 형식
 
