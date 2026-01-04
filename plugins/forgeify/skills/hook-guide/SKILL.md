@@ -80,6 +80,43 @@ claude --debug hooks  # 훅 로딩/실행 로그 확인
 grep -i hook ~/.claude/debug/latest  # 디버그 로그에서 훅 관련 검색
 ```
 
+## Stop 훅 JSON 출력
+
+Stop 훅에서 JSON을 stdout으로 출력하면 Claude 동작을 제어할 수 있습니다:
+
+```bash
+#!/usr/bin/env bash
+set -euo pipefail
+
+# 세션 종료 허용 + 메시지 표시
+cat << 'EOF'
+{
+  "continue": true,
+  "systemMessage": "📝 작업 완료 전 체크리스트를 확인하세요."
+}
+EOF
+
+exit 0
+```
+
+### JSON 필드
+
+| 필드 | 설명 |
+|------|------|
+| `continue` | `true`: 종료 허용, `false`: 종료 차단 |
+| `decision` | `"block"`: 종료 막고 계속 진행, `"approve"` 또는 생략: 종료 허용 |
+| `reason` | `decision: "block"` 시 Claude에게 전달할 이유 |
+| `systemMessage` | 사용자에게 표시할 메시지 |
+| `stopReason` | `continue: false` 시 표시할 종료 이유 |
+
+### 종료 코드
+
+| 코드 | 의미 |
+|------|------|
+| `exit 0` | 성공 (stdout의 JSON 처리) |
+| `exit 2` | 차단 오류 (stderr가 Claude에 피드백) |
+| 그 외 | 비차단 오류 (로그만 남고 계속 진행) |
+
 ## Known Issues
 
 ### `type: "prompt"` 훅이 플러그인에서 작동하지 않음
@@ -92,34 +129,35 @@ grep -i hook ~/.claude/debug/latest  # 디버그 로그에서 훅 관련 검색
 
 **GitHub Issue**: [#13155](https://github.com/anthropics/claude-code/issues/13155)
 
-**Workaround**:
-1. `type: "command"`로 변경하고 셸 스크립트 사용
-2. 또는 `~/.claude/settings.json`에 직접 prompt 훅 정의 (플러그인 외부)
+**Workaround**: `type: "command"`로 변경하고 셸 스크립트에서 JSON 출력
 
 ```json
-// 플러그인에서 작동하지 않음 (silently ignored)
+// hooks/hooks.json
 {
   "hooks": {
     "Stop": [{
       "hooks": [{
-        "type": "prompt",  // <- 플러그인에서 무시됨!
-        "prompt": "..."
+        "type": "command",
+        "command": "bash ${CLAUDE_PLUGIN_ROOT}/scripts/stop-hook.sh"
       }]
     }]
   }
 }
+```
 
-// 플러그인에서 작동함
+```bash
+# scripts/stop-hook.sh
+#!/usr/bin/env bash
+set -euo pipefail
+
+cat << 'EOF'
 {
-  "hooks": {
-    "Stop": [{
-      "hooks": [{
-        "type": "command",  // <- 정상 작동
-        "command": "${CLAUDE_PLUGIN_ROOT}/scripts/stop-hook.sh"
-      }]
-    }]
-  }
+  "continue": true,
+  "systemMessage": "📝 안내 메시지"
 }
+EOF
+
+exit 0
 ```
 
 > 상세 예시는 `references/examples.md`, 트러블슈팅은 `references/troubleshooting.md` 참조
