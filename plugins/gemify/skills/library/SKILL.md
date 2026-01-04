@@ -15,7 +15,8 @@ drafts의 다듬어진 보석을 **소크라테스식 질문**으로 정리하�
 |-------|------|
 | 목적 | "이거 왜 남기려고 해?", "이게 없으면 나중에 뭐가 안 돼?" |
 | 압축 | "한 문장으로 요약하면?", "진짜 핵심만 남기면?" |
-| 분류 | "6개 domain 중 어디야?" |
+| 분류 | "어떤 타입이야? (principle/decision/insight/how-to/spec/workflow)" |
+| 출처 | "원본이야, 소화한 거야, 추출한 거야? (original/digested/derived)" |
 | 연결 | "기존 library에 연결되는 거 있어?" |
 
 ### 2. 재조립 제안
@@ -25,7 +26,7 @@ drafts의 다듬어진 보석을 **소크라테스식 질문**으로 정리하�
 ### 3. 저장
 
 사용자 컨펌 후:
-1. `library/{domain}/{slug}.md`로 저장
+1. `library/{type}s/{slug}.md`로 저장
 2. 원본 drafts 파일의 status → `set`
 3. 완료 보고
 
@@ -34,7 +35,8 @@ drafts의 다듬어진 보석을 **소크라테스식 질문**으로 정리하�
 ```markdown
 ---
 title: {제목}
-domain: {product|engineering|operations|growth|business|ai-automation}
+type: principle | decision | insight | how-to | spec | workflow
+origin: original | digested | derived
 ---
 
 ## Context
@@ -46,16 +48,28 @@ domain: {product|engineering|operations|growth|business|ai-automation}
 {핵심 내용}
 ```
 
-## 6대 Domain
+## Type 분류
 
-| Domain | 핵심 질문 |
-|--------|----------|
-| product | 무엇을 만들 것인가? |
-| engineering | 어떻게 만들 것인가? |
-| operations | 어떻게 돌릴 것인가? |
-| growth | 어떻게 알릴 것인가? |
-| business | 어떻게 유지할 것인가? |
-| ai-automation | 어떻게 위임할 것인가? |
+| Type | 설명 | 예시 |
+|------|------|------|
+| principle | 근본 원칙, 철학 | "Capture First", "한 번에 하나씩" |
+| decision | 의사결정 기록 (ADR) | "React 대신 Svelte 선택한 이유" |
+| insight | 발견, 깨달음 | "domain은 views의 lens다" |
+| how-to | 방법론, 절차 | "PR 리뷰 프로세스" |
+| spec | 명세, 스펙 | "API 응답 포맷" |
+| workflow | input→output 파이프라인 | "gemify→forgeify 연계 흐름" |
+
+**workflows vs how-tos:**
+- **how-to**: 단일 작업의 방법론/절차
+- **workflow**: 여러 단계/도구를 연결한 파이프라인
+
+## Origin 분류
+
+| Origin | 설명 |
+|--------|------|
+| original | 내 생각에서 나온 것 |
+| digested | 외부 콘텐츠를 소화해서 내 방식으로 재구성 |
+| derived | 산출물(artifact)에서 역추출한 것 |
 
 ## 규칙
 
@@ -67,5 +81,5 @@ domain: {product|engineering|operations|growth|business|ai-automation}
 ## References
 
 상세 형식과 예시는 `references/` 폴더 참조:
-- `references/library-format.md` - library 파일 형식, domain 설명
-- `references/example-library.md` - 실제 library 파일 예시, domain 선택 기준
+- `references/library-format.md` - library 파일 형식, type/origin 설명
+- `references/example-library.md` - 실제 library 파일 예시, type 선택 기준

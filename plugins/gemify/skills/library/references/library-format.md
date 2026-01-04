@@ -5,20 +5,33 @@
 ```yaml
 ---
 title: {제목}
-domain: product | engineering | operations | growth | business | ai-automation
+type: principle | decision | insight | how-to | spec | workflow
+origin: original | digested | derived
 ---
 ```
 
-## 6대 Domain
+## Type 분류
 
-| Domain | 핵심 질문 |
-|--------|----------|
-| product | 무엇을 만들 것인가? |
-| engineering | 어떻게 만들 것인가? |
-| operations | 어떻게 돌릴 것인가? |
-| growth | 어떻게 알릴 것인가? |
-| business | 어떻게 유지할 것인가? |
-| ai-automation | 어떻게 위임할 것인가? |
+| Type | 설명 | 예시 |
+|------|------|------|
+| principle | 근본 원칙, 철학 | "Capture First", "한 번에 하나씩" |
+| decision | 의사결정 기록 (ADR) | "React 대신 Svelte 선택" |
+| insight | 발견, 깨달음 | "domain은 views의 lens다" |
+| how-to | 방법론, 절차 | "PR 리뷰 프로세스" |
+| spec | 명세, 스펙 | "API 응답 포맷" |
+| workflow | input→output 파이프라인 | "gemify→forgeify 연계 흐름" |
+
+**workflows vs how-tos:**
+- **how-to**: 단일 작업의 방법론/절차
+- **workflow**: 여러 단계/도구를 연결한 파이프라인
+
+## Origin 분류
+
+| Origin | 설명 |
+|--------|------|
+| original | 내 생각에서 나온 것 |
+| digested | 외부 콘텐츠를 소화해서 내 방식으로 재구성 |
+| derived | 산출물(artifact)에서 역추출한 것 |
 
 ## 본문 구조
 

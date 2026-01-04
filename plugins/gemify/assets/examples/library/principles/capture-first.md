@@ -1,6 +1,7 @@
 ---
 title: "캡처 우선 원칙"
-domain: operations
+type: principle
+origin: digested
 ---
 
 ## Context

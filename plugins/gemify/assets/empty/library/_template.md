@@ -1,6 +1,7 @@
 ---
 title: "{제목}"
-domain: product|engineering|operations|growth|business|ai-automation
+type: principle|decision|insight|how-to|spec|workflow
+origin: original|digested|derived
 ---
 
 ## Context

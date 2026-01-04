@@ -2,95 +2,71 @@
 
 ## 예시: 완성된 library 파일
 
-**파일명**: `library/operations/develop-facet-polish-mode.md`
+**파일명**: `library/insights/domain-is-views-lens.md`
 
 ```markdown
 ---
-title: "develop 스킬의 facet/polish 모드"
-domain: operations
+title: "Domain은 Views의 Lens다"
+type: insight
+origin: original
 ---
 
 ## Context
 
-/gemify:develop 대화 시 탐색 방식을 명시적으로 구분하여 효율적인 지식 다듬기가 가능하도록 함. capture → develop → file 흐름과 일관된 광물 메타포 유지.
+library 분류 시 6대 domain을 사용했으나 경계가 모호하고 복수 domain 해당 시 하나만 선택해야 하는 문제가 있었음.
 
 ## Content
 
-### 두 가지 모드
+### 핵심 인사이트
 
-\`\`\`
-/gemify:develop
-├── facet  - 여러 면 탐색, 넓게 (BFS)
-└── polish - 깊이 연마, 광택 (DFS) → file 준비
-\`\`\`
+- library는 "재료" → 재료를 domain으로 분류하는 건 맞지 않음
+- domain은 "이 재료를 어떤 관점에서 보느냐"의 문제
+- **domain은 views의 관점(lens)이지, library의 분류 기준이 아니다**
 
-| 모드 | 성격 | 질문 스타일 |
-|------|------|------------|
-| facet | 넓게 탐색 | "다른 면에서 보면?", "연결되는 건?" |
-| polish | 깊이 연마 | "왜 중요해?", "핵심만 남기면?" |
+### 결론
 
-### 전환 규칙
-
-- **기본**: facet
-- **polish 트리거**: "연마해봐", "좀 더 다듬자", "핵심이 뭐야"
-
-### revision (스냅샷)
-
-방향 전환(pivot) 시 자동 스냅샷:
-
-\`\`\`
-revision 증가 조건:
-├── facet → 다른 방향 facet
-├── facet → polish 전환
-└── polish → 다른 방향 polish
-\`\`\`
-
-### 히스토리 구조
-
-\`\`\`
-drafts/
-├── {slug}.md              # 현재 상태 (압축)
-└── .history/{slug}/
-    └── {rev}-{mode}-{date}.md  # 스냅샷
-\`\`\`
-
-- 메인 파일: frontmatter \`history\` 배열로 요약
-- 스냅샷: 그 시점의 결정사항 + 다음 작업 (바로 작업 가능한 형태)
+- library: Type 기반 분류 (principle, decision, insight, how-to, spec, workflow)
+- views: Domain을 lens로 활용하여 재료 조합
 
 ## Connections
 
-- \`skills/develop/SKILL.md\` - 스킬 구현
-- \`skills/develop/references/drafts-format.md\` - 파일 형식 상세
+- `library/decisions/library-type-classification.md` - 이 인사이트 기반 결정
 ```
 
-## 포인트
+## Type 선택 기준
 
-1. **Context**: 왜 이 지식이 필요한지 (배경)
-2. **Content**: 핵심 내용 (실제 지식)
-3. **Connections**: 관련 문서 링크 (선택)
+| Type | 핵심 질문 | 예시 |
+|------|----------|------|
+| principle | 왜 이렇게 해야 하는가? (근본) | "Capture First", "한 번에 하나씩" |
+| decision | 무엇을 선택했고 왜? (ADR) | "React 대신 Svelte 선택한 이유" |
+| insight | 무엇을 발견했는가? | "domain은 views의 lens다" |
+| how-to | 어떻게 하는가? (단일 절차) | "PR 리뷰 프로세스" |
+| spec | 무엇이 규격인가? | "API 응답 포맷" |
+| workflow | 전체 흐름은? (파이프라인) | "gemify→forgeify 연계" |
 
-## Domain 선택 기준
+## Origin 선택 기준
 
-| Domain | 핵심 질문 | 예시 |
-|--------|----------|------|
-| product | 무엇을 만들 것인가? | 제품 기획, 기능 정의 |
-| engineering | 어떻게 만들 것인가? | 아키텍처, 기술 결정 |
-| operations | 어떻게 돌릴 것인가? | 프로세스, 워크플로우 |
-| growth | 어떻게 알릴 것인가? | 마케팅, 사용자 획득 |
-| business | 어떻게 유지할 것인가? | 수익, 전략 |
-| ai-automation | 어떻게 위임할 것인가? | AI 활용, 자동화 |
+| Origin | 핵심 질문 |
+|--------|----------|
+| original | 내 머리에서 나온 거야? |
+| digested | 외부 콘텐츠를 내 방식으로 재해석? |
+| derived | 이미 만든 결과물에서 역추출? |
 
 ## 디렉토리 구조
 
 ```
 library/
-├── product/
-├── engineering/
-├── operations/
-│   └── develop-facet-polish-mode.md
-├── growth/
-├── business/
-├── ai-automation/
-│   └── execution-first-principle.md
+├── principles/
+│   └── capture-first.md
+├── decisions/
+│   └── library-type-classification.md
+├── insights/
+│   └── domain-is-views-lens.md
+├── how-tos/
+│   └── pr-review-process.md
+├── specs/
+│   └── api-response-format.md
+├── workflows/
+│   └── gemify-forgeify-pipeline.md
 └── _template.md
 ```
