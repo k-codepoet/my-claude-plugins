@@ -1,6 +1,6 @@
 ---
 name: view
-description: library 지식을 목적별로 조합하여 views/에 저장. 5가지 타입(subject, talk, curriculum, portfolio, essay)별 렌즈로 지식을 렌더링.
+description: library 지식을 목적별로 조합하여 views/에 저장. 6가지 타입(subject, talk, curriculum, portfolio, essay, poc)별 렌즈로 지식을 렌더링.
 ---
 
 # View Skill
@@ -18,6 +18,7 @@ views/       ← 렌더링 레이어 (서사가 있는 스토리텔링)
 ├── by-curriculum/   # 가르침
 ├── by-portfolio/    # 셀프 브랜딩
 ├── by-essay/        # 자기 성찰
+├── by-poc/          # PoC 프로젝트 (gemify:poc 전용)
 └── .history/        # 변경 히스토리
 ```
 
@@ -34,6 +35,7 @@ views/       ← 렌더링 레이어 (서사가 있는 스토리텔링)
 | curriculum | 가르침 | 학습자가 무엇을 할 수 있게 되는가? |
 | portfolio | 셀프 브랜딩 | 나는 어떤 사람인가? (증명과 함께) |
 | essay | 자기 성찰 | 나는 무엇을 믿고/느끼는가? |
+| poc | PoC 프로젝트 | 무엇을 왜 만들고 어디까지 왔는가? |
 
 ## 타입별 대화 흐름 (렌즈 질문)
 
@@ -71,6 +73,14 @@ views/       ← 렌더링 레이어 (서사가 있는 스토리텔링)
 2. 어떤 질문에 대한 답인가요?
 3. 어떤 톤/감정인가요?
 4. 참조할 library 문서들은?
+
+### by-poc (gemify:poc 전용)
+
+**참고**: by-poc는 `/gemify:poc` 커맨드가 직접 생성합니다. view 스킬에서 직접 생성하지 않음.
+
+1. 제품명은? (namify:name 결과)
+2. 프로젝트 경로는? (artifact)
+3. 참조한 inbox/drafts 문서들은? (sources)
 
 ## 타입별 Frontmatter 템플릿
 
@@ -174,6 +184,27 @@ history:
 ---
 ```
 
+### by-poc (gemify:poc 전용)
+```yaml
+---
+title: "{Product Name} PoC"
+product: {product-name}
+artifact: {프로젝트 경로 | null}
+created: "YYYY-MM-DD"
+updated: "YYYY-MM-DD"
+revision: 1
+sources: []
+history:
+  - rev: 1
+    date: YYYY-MM-DD
+    summary: "초기 생성"
+---
+```
+
+**상태 파악 (artifact 기반):**
+- `artifact: null` → 아이디어 단계 (문서만 존재)
+- `artifact: {path}` → 프로젝트 생성됨 (craftify 진행 가능)
+
 ## 핵심 행동
 
 ### 1. 관련 문서 수집
@@ -267,6 +298,23 @@ views: [gemify, forgeify]  # 이 문서는 gemify, forgeify view에 포함
 (sources 목록)
 ```
 
+**by-poc (gemify:poc 전용):**
+```markdown
+# {Product Name} PoC
+
+## Why - 왜 만드는가
+(배경/맥락, 해결하려는 문제)
+
+## What - 무엇을 만드는가
+(핵심 기능, 사용자 기대 결과)
+
+## Acceptance Criteria
+- [ ] 완료 조건
+
+## Context - 참조
+(관련 draft, inbox 링크)
+```
+
 ### 3. 양방향 연결
 
 - **library → views**: `views: [gemify, forgeify]` 필드
@@ -290,6 +338,8 @@ views/
 ├── by-curriculum/    # 교육
 ├── by-portfolio/     # 포트폴리오
 ├── by-essay/         # 에세이
+├── by-poc/           # PoC 프로젝트 (gemify:poc 전용)
+│   └── {product}.md
 └── .history/         # 변경 히스토리
     ├── subject/
     │   └── gemify/
@@ -297,7 +347,8 @@ views/
     ├── talk/
     ├── curriculum/
     ├── portfolio/
-    └── essay/
+    ├── essay/
+    └── poc/
 ```
 
 ## 파일명 규칙
@@ -307,6 +358,7 @@ views/
 - **by-curriculum**: `{slug}.md`
 - **by-portfolio**: `{slug}.md`
 - **by-essay**: `{slug}.md`
+- **by-poc**: `{product}.md` (namify:name 결과)
 
 ## 세션 동작
 
