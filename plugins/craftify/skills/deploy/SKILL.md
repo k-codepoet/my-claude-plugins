@@ -22,49 +22,60 @@ description: Cloudflare 배포 설정 및 실행. wrangler 설정 가이드, 배
 | `run` | 배포 실행 |
 | `status` | 배포 상태 확인 |
 
+## 배포 방식 (통일)
+
+SSR/SPA 모두 **Dashboard에서 Git 연결** 방식으로 통일:
+- 최초 1회 Dashboard 설정
+- 이후 push마다 자동 배포
+- PR에 Preview URL 자동 코멘트
+
+| 구분 | SSR (Workers) | SPA (Pages) |
+|------|--------------|-------------|
+| boilerplate | `react-router-cloudflare` | `react-router-spa` |
+| 배포 대상 | Workers & Pages | Pages |
+| Dashboard 경로 | Workers & Pages → Create | Workers & Pages → Create |
+| Preview URL | 자동 생성 | 자동 생성 |
+
 ## 동작
 
 ### 1. 프로젝트 확인
 
 - Craftify 프로젝트인지 확인
-- SSR/SPA 타입 감지
-- `wrangler.toml` 설정 상태 확인
+- SSR/SPA 타입 감지 (wrangler.toml 유무)
+- Git 저장소 상태 확인
 
-### 2. Cloudflare 설정 가이드
-
-wrangler.toml이 기본값이면 설정 안내:
+### 2. 배포 설정 (Dashboard - 최초 1회)
 
 ```
 📋 Cloudflare 배포 설정
 
-1. wrangler.toml 수정:
-   - name: "your-app-name"  ← 프로젝트 이름 입력
+⚠️ 최초 1회 Dashboard에서 Git 연결이 필요합니다.
 
-2. Cloudflare 로그인:
-   npx wrangler login
-
-3. 배포:
-   pnpm deploy
+1. GitHub에 push (main 브랜치)
+2. Cloudflare Dashboard → Workers & Pages → "Create"
+3. "Import a repository" 선택
+4. GitHub 저장소 선택
+5. Build settings:
+   - Build command: pnpm build
+   - Build output directory: build/client (SPA) / 자동 감지 (SSR)
+6. "Save and Deploy"
 ```
 
-### 3. 배포 실행
+### 3. 자동 배포 (Git 연결 후)
 
-설정이 완료되었으면:
+연결 완료 후 자동 동작:
+- **main 브랜치 push** → Production 배포
+- **다른 브랜치 push** → Preview URL 생성
+- **PR 생성** → PR 코멘트에 Preview URL 자동 추가
 
-```bash
-cd apps/web && pnpm deploy
-```
+### 4. Preview URL
 
-### 4. 자동 배포 안내 (선택)
+| 타입 | Production URL | Preview URL |
+|------|---------------|-------------|
+| SSR | `{name}.{account}.workers.dev` | PR/브랜치별 자동 생성 |
+| SPA | `{project}.pages.dev` | `{hash}.{project}.pages.dev` |
 
-GitHub 연동 시:
-```
-🔄 자동 배포 설정
-
-1. GitHub에 push
-2. Cloudflare Dashboard → Pages → 프로젝트 연결
-3. 이후 push마다 자동 배포
-```
+**목표 달성**: main = Production, 브랜치 = Preview (자동)
 
 ## wrangler.toml 설정
 
@@ -80,18 +91,16 @@ assets = { directory = "./build/client" }
 enabled = true
 ```
 
-## 배포 흐름
+## 배포 흐름 (SSR/SPA 공통)
 
 ```
 [로컬 개발]
-    ↓ /craftify:deploy setup
-[wrangler.toml 설정]
-    ↓ npx wrangler login
-[Cloudflare 인증]
-    ↓ pnpm deploy
-[배포 완료]
-    ↓ (선택) GitHub 연동
-[자동 배포]
+    ↓ pnpm build (빌드 확인)
+    ↓ GitHub push (main 브랜치)
+    ↓ Dashboard에서 Git 연결 (최초 1회)
+[Production 배포 완료]
+    ↓ 이후 main push → 자동 배포
+    ↓ 브랜치/PR push → Preview URL 자동 생성
 ```
 
 ## Progressive Disclosure

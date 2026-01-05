@@ -63,16 +63,31 @@ description: 새 프로젝트 생성. turborepo + boilerplate 복제. /craftify:
 
 ## Boilerplate 소스
 
-플러그인 내 템플릿 참조:
+로컬 boilerplate 경로:
+```
+~/k-codepoet/my-materials/authored-repos/ai-devteam/boilerplates/web/
+├── react-router-cloudflare/  # SSR (Cloudflare Workers)
+└── react-router-spa/         # SPA (정적 배포)
+```
+
+복제 명령:
+```bash
+# SSR
+cp -r ~/k-codepoet/my-materials/authored-repos/ai-devteam/boilerplates/web/react-router-cloudflare apps/web
+
+# SPA
+cp -r ~/k-codepoet/my-materials/authored-repos/ai-devteam/boilerplates/web/react-router-spa apps/web
+
+# package.json name 수정
+# @boilerplates/web-react-router-{type} → @apps/{project-name}
+```
+
+플러그인 내 가이드 템플릿:
 ```
 ${CLAUDE_PLUGIN_ROOT}/templates/webapp/
 ├── guides/                   # 생성될 가이드 문서
 └── README.md                 # 템플릿 정보
 ```
-
-실제 boilerplate는 외부 저장소에서 복제:
-- SSR: `npx degit reactrouter/templates/cloudflare apps/web`
-- SPA: `npx degit reactrouter/templates/spa apps/web`
 
 ## 생성 파일 상세
 

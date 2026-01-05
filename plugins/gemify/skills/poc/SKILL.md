@@ -81,6 +81,7 @@ POC.md가 생성되었습니다: {project-path}/POC.md
 
 craftify로 구현을 시작하려면:
 cd {project-path} && claude
+/craftify:poc
 ```
 
 ## 규칙
