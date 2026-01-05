@@ -14,14 +14,14 @@ ground-truth에서 생성된 개선 문서를 읽고, 해당 내용에 따라 �
 /forgeify:improve-plugin <improvement-doc-path>
 ```
 
-- `<improvement-doc-path>`: ground-truth 개선 문서 경로 (예: `/path/to/library/engineering/plugin-improvements/my-feature.md`)
+- `<improvement-doc-path>`: ground-truth 개선 문서 경로 (예: `/path/to/views/by-improvement/forgeify-new-feature.md`)
 
 ## 워크플로우
 
 상세 가이드는 **improve-plugin** 스킬을 참조합니다.
 
-1. **개선 문서 파싱**: frontmatter에서 target_plugin, requirements 추출
-2. **대상 플러그인 확인**: plugins/{target_plugin}/ 탐색
+1. **개선 문서 파싱**: frontmatter에서 plugin, problem, solution, requirements 추출
+2. **대상 플러그인 확인**: plugins/{plugin}/ 탐색
 3. **참조 문서 로드**: references/ 폴더가 있으면 추가 참조
 4. **개선 계획 수립**: 변경 계획 목록 작성
 5. **사용자 확인**: 변경 계획 승인 요청
@@ -31,7 +31,20 @@ ground-truth에서 생성된 개선 문서를 읽고, 해당 내용에 따라 �
 ## 예시
 
 ```
-/forgeify:improve-plugin /path/to/ground-truth/library/engineering/plugin-improvements/forgeify-new-feature.md
+/forgeify:improve-plugin /path/to/ground-truth/views/by-improvement/forgeify-add-validation.md
+```
+
+## 개선 문서 위치
+
+gemify:improve-plugin이 생성하는 개선 문서의 위치:
+
+```
+{ground-truth}/views/by-improvement/{plugin}-{slug}.md
+```
+
+이전 위치 (deprecated):
+```
+{ground-truth}/library/engineering/plugin-improvements/
 ```
 
 ## 주의사항

@@ -13,12 +13,23 @@ description: 플러그인 개선 문서 생성. "플러그인 개선 아이디�
 gemify (지식 생산)        forgeify (실행)
     │                         │
     └── 개선 문서 생성 ──────▶ 개선 문서 실행
-        (library/...)         (/forgeify:improve-plugin)
+        (views/by-improvement/) (/forgeify:improve-plugin)
 ```
 
 - **gemify**: 대화를 통해 개선 아이디어를 정제하고 문서로 저장
 - **forgeify**: 저장된 개선 문서를 읽고 플러그인에 적용
 - 역방향 없음: gemify는 코드를 직접 수정하지 않음
+
+## 워크플로우 (6단계)
+
+| 단계 | 설명 |
+|------|------|
+| 1. triage | 관련 inbox 자료 수집 (클러스터 기반) |
+| 2. draft | facet 모드로 Why/What/Scope/AC 구체화 |
+| 3. plugin | 대상 플러그인 확인 |
+| 4. view | views/by-improvement/{plugin}-{slug}.md 저장 + 스냅샷 |
+| 5. artifact | 플러그인 경로 확인, artifact 필드 업데이트 |
+| 6. handoff | forgeify로 실행 안내 |
 
 ## Go/No-Go 체크 (깊어질 것 같은 작업)
 
@@ -38,80 +49,72 @@ gemify (지식 생산)        forgeify (실행)
 
 ## 동작
 
-1. (깊어질 것 같으면) Go/No-Go 체크 실행
-2. 대화를 통해 개선 아이디어 파악
-3. 관련 inbox/materials 탐색 (기존 아이디어 참조)
-4. 개선 문서 작성 (frontmatter + body 스키마)
-5. `library/engineering/plugin-improvements/`에 저장
-6. forgeify로 실행 안내
+### 1. 입력 분석 (triage 연동)
 
-## 개선 문서 스키마
+- 플러그인명 + 문제 설명 → 해당 플러그인 기반으로 triage 검색
+- inbox 파일 경로 → 해당 파일 기반으로 triage 확장
+- 없음 → "어떤 플러그인을 개선할까요?" 후 triage 모드
 
-```yaml
----
-target_plugin: plugin-name          # 대상 플러그인 이름
-improvement_type: feature|bugfix|refactor
-priority: high|medium|low
-problem: "해결할 문제 설명"
-solution: "해결 방법 요약"
-requirements:                        # 구체적 요구사항 목록
-  - 요구사항 1
-  - 요구사항 2
-references: []                       # 추가 참조 문서
-domain: engineering
-views: []
----
+### 2. 요구사항 구체화 (draft facet 모드)
 
-## Why
-개선 이유와 맥락
+대화를 통해 파악:
+- **Why**: 배경, 해결할 문제
+- **What**: 변경할 내용 상세
+- **Scope**: 포함/제외 범위
+- **Acceptance Criteria**: 완료 기준
 
-## What
-구현할 내용 상세
+### 3. 플러그인 확인
 
-## Scope
-포함:
-- 포함 항목
+대상 플러그인 존재 여부 확인 → artifact 경로 설정
 
-제외:
-- 제외 항목
-```
+### 4. view 생성
 
-## 저장 위치
+- views/by-improvement/{plugin}-{slug}.md 파일 생성
+- .history/improvement/{plugin}-{slug}/01-YYYY-MM-DD.md 스냅샷
+- 템플릿: `references/view-template.md` 참조
 
-개선 문서는 ground-truth의 library에 저장합니다:
+### 5. artifact 설정
+
+플러그인 경로가 확인되면 `artifact` 필드 업데이트
+
+### 6. forgeify 안내
 
 ```
-{ground-truth-path}/
-└── library/
-    └── engineering/
-        └── plugin-improvements/
-            └── {plugin-name}-{feature-slug}.md
-```
-
-## 파일명 규칙
-
-```
-{target_plugin}-{feature-slug}.md
-```
-
-예시:
-- `forgeify-add-validation.md`
-- `gemify-improve-plugin-refactor.md`
-
-## 실행 연계
-
-문서 생성 완료 후 안내:
-
-```
-개선 문서가 생성되었습니다:
-{생성된 파일 경로}
+개선 문서가 생성되었습니다: {views/by-improvement/...}
 
 플러그인에 적용하려면:
 /forgeify:improve-plugin {생성된 파일 경로}
 ```
 
+## 저장 위치
+
+개선 문서는 ground-truth의 views에 저장합니다:
+
+```
+{ground-truth-path}/
+└── views/
+    ├── by-improvement/
+    │   └── {plugin}-{slug}.md
+    └── .history/
+        └── improvement/
+            └── {plugin}-{slug}/
+                └── 01-YYYY-MM-DD.md
+```
+
+## 파일명 규칙
+
+```
+{plugin}-{feature-slug}.md
+```
+
+예시:
+- `forgeify-add-validation.md`
+- `gemify-improve-plugin-views-pattern.md`
+
 ## 규칙
 
 - **코드 수정 금지**: gemify는 문서 생성만 담당
+- **views/by-improvement/에 원본 저장**
+- **업데이트 시 .history/ 스냅샷 생성**
 - ground-truth 경로 필요 시 사용자에게 요청
 - 기존 개선 문서가 있으면 업데이트 또는 새로 생성 선택 제안

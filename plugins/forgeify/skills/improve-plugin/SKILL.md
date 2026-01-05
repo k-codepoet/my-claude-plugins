@@ -13,37 +13,62 @@ ground-truth에서 생성된 개선 문서를 읽고, 해당 내용에 따라 �
 gemify (지식 생산)        forgeify (실행)
     │                         │
     └── 개선 문서 생성 ──────▶ 개선 문서 실행
-        (library/...)         (/forgeify:improve-plugin)
+        (views/by-improvement/) (/forgeify:improve-plugin)
 ```
 
-- **gemify**: 대화를 통해 개선 아이디어를 정제하고 library에 저장
-- **forgeify**: library의 개선 문서를 읽고 플러그인에 적용
+- **gemify**: 대화를 통해 개선 아이디어를 정제하고 views/by-improvement/에 저장
+- **forgeify**: views의 개선 문서를 읽고 플러그인에 적용
 - 역방향 없음: forgeify는 개선 문서를 생성하지 않음
 
 ## 개선 문서 스키마
 
 ```yaml
 ---
-target_plugin: plugin-name          # 대상 플러그인 이름
+title: "{Plugin Name} Improvement"
+plugin: {plugin-name}
 improvement_type: feature|bugfix|refactor
 priority: high|medium|low
-problem: "해결할 문제 설명"
-solution: "해결 방법 요약"
-requirements:                        # 구체적 요구사항 목록
-  - 요구사항 1
-  - 요구사항 2
-references: []                       # 추가 참조 문서 (Progressive Disclosure)
-domain: engineering|...
+problem: "{해결할 문제}"
+solution: "{해결 방법}"
+artifact: {플러그인 경로 | null}
+created: "YYYY-MM-DD"
+updated: "YYYY-MM-DD"
+revision: 1
+sources: []
+history:
+  - rev: 1
+    date: YYYY-MM-DD
+    summary: "초기 생성"
 ---
 
-## Why
-개선 이유와 맥락
+## Why - 왜 개선하는가
 
-## What
-구현할 내용 상세
+[배경, 해결할 문제]
 
-## Scope
+## What - 무엇을 바꾸는가
+
+[변경할 내용 상세]
+
+## Scope - 범위
+
 포함/제외 범위 명시
+
+## Acceptance Criteria - 완료 기준
+
+[검증 완료 조건]
+```
+
+## 개선 문서 위치
+
+gemify:improve-plugin이 생성하는 개선 문서의 위치:
+
+```
+{ground-truth}/views/by-improvement/{plugin}-{slug}.md
+```
+
+이전 위치 (deprecated):
+```
+{ground-truth}/library/engineering/plugin-improvements/
 ```
 
 ## 워크플로우
@@ -51,19 +76,20 @@ domain: engineering|...
 ### 1단계: 개선 문서 파싱
 
 개선 문서를 읽고 다음 정보를 추출합니다:
-- **frontmatter**: target_plugin, requirements, references
-- **body**: Why (맥락), What (구현 상세), Scope (범위)
+- **frontmatter**: plugin, problem, solution, artifact
+- **body**: Why (맥락), What (구현 상세), Scope (범위), AC (완료 기준)
 
 ### 2단계: 대상 플러그인 확인
 
-`target_plugin` 필드를 기준으로 플러그인 위치를 찾습니다:
-1. 현재 디렉토리가 마켓플레이스인 경우: `plugins/{target_plugin}/` 탐색
-2. 현재 디렉토리가 플러그인인 경우: 해당 플러그인이 대상인지 확인
-3. 찾지 못한 경우: 사용자에게 플러그인 경로 요청
+`plugin` 필드를 기준으로 플러그인 위치를 찾습니다:
+1. `artifact` 필드가 있으면: 해당 경로 사용
+2. 현재 디렉토리가 마켓플레이스인 경우: `plugins/{plugin}/` 탐색
+3. 현재 디렉토리가 플러그인인 경우: 해당 플러그인이 대상인지 확인
+4. 찾지 못한 경우: 사용자에게 플러그인 경로 요청
 
 ### 3단계: 참조 문서 로드 (Progressive Disclosure)
 
-`references` 배열이 있으면 추가 상세 정보를 로드합니다:
+`sources` 배열이 있으면 추가 상세 정보를 로드합니다:
 - 상대 경로: 개선 문서 기준 상대 경로로 해석
 - 절대 경로: 직접 참조
 
@@ -71,7 +97,7 @@ domain: engineering|...
 
 ### 4단계: 개선 계획 수립
 
-requirements와 What 섹션을 기반으로 구체적인 변경 계획을 수립합니다:
+What 섹션과 AC를 기반으로 구체적인 변경 계획을 수립합니다:
 - 생성할 파일 목록
 - 수정할 파일 목록
 - 각 변경의 상세 내용
@@ -81,7 +107,7 @@ requirements와 What 섹션을 기반으로 구체적인 변경 계획을 수립
 변경 계획을 사용자에게 제시하고 승인을 받습니다:
 
 ```
-## 개선 계획: {target_plugin}
+## 개선 계획: {plugin}
 
 ### 문제
 {problem}
@@ -118,6 +144,6 @@ requirements와 What 섹션을 기반으로 구체적인 변경 계획을 수립
 ## 주의사항
 
 - 개선 문서가 없거나 형식이 잘못된 경우 에러 메시지 표시
-- target_plugin이 현재 환경에 없으면 사용자에게 경로 확인
+- plugin이 현재 환경에 없으면 사용자에게 경로 확인
 - 대규모 변경 시 git status 확인 권장
 - 자동 실행 없음: 모든 변경은 사용자 확인 후 진행
