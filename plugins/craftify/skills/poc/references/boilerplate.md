@@ -1,21 +1,37 @@
 # Boilerplate 사용법
 
-## 소스 경로
+## 소스 저장소
 
 ```
-~/k-codepoet/my-materials/authored-repos/ai-devteam/boilerplates/web/
-├── react-router-cloudflare/  # SSR (Cloudflare Workers)
-└── react-router-spa/         # SPA (정적 배포)
+https://github.com/k-codepoet/craftify-boilerplates
+├── web/
+│   ├── react-router-cloudflare/  # SSR (Cloudflare Workers)
+│   ├── react-router-spa/         # SPA (정적 배포)
+│   ├── react-router-vercel/      # (예정)
+│   ├── tanstack-start-cloudflare/ # (예정)
+│   └── nextjs-vercel/            # (예정)
+├── api/
+│   └── hono-cloudflare/          # (예정)
+└── lib/
+    └── typescript-package/       # (예정)
 ```
 
-## 복제 명령
+## 복제 명령 (degit 사용)
 
 ```bash
-# SSR
-cp -r ~/k-codepoet/my-materials/authored-repos/ai-devteam/boilerplates/web/react-router-cloudflare apps/web
+# SSR (Cloudflare Workers)
+npx degit k-codepoet/craftify-boilerplates/web/react-router-cloudflare apps/web
 
-# SPA
-cp -r ~/k-codepoet/my-materials/authored-repos/ai-devteam/boilerplates/web/react-router-spa apps/web
+# SPA (정적 배포)
+npx degit k-codepoet/craftify-boilerplates/web/react-router-spa apps/web
+```
+
+## 로컬 개발용 (cp 사용)
+
+```bash
+# 로컬에 클론해둔 경우
+cp -r ~/k-codepoet/my-boilerplates/web/react-router-cloudflare apps/web
+cp -r ~/k-codepoet/my-boilerplates/web/react-router-spa apps/web
 ```
 
 ## 복제 후 작업
@@ -47,4 +63,5 @@ pnpm dev
 
 ## 외부 참조
 
-- `~/k-codepoet/my-materials/authored-repos/ai-devteam/boilerplates/README.md` - 공식 사용법
+- https://github.com/k-codepoet/craftify-boilerplates - Boilerplate 저장소
+- `~/k-codepoet/my-boilerplates/README.md` - 로컬 클론 (개발용)
