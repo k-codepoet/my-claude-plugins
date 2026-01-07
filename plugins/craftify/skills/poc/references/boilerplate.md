@@ -4,34 +4,31 @@
 
 ```
 https://github.com/k-codepoet/craftify-boilerplates
-├── web/
-│   ├── react-router-cloudflare/  # SSR (Cloudflare Workers)
-│   ├── react-router-spa/         # SPA (정적 배포)
-│   ├── react-router-vercel/      # (예정)
-│   ├── tanstack-start-cloudflare/ # (예정)
-│   └── nextjs-vercel/            # (예정)
-├── api/
-│   └── hono-cloudflare/          # (예정)
-└── lib/
-    └── typescript-package/       # (예정)
 ```
+
+## Boilerplate 매핑 테이블
+
+| 플랫폼 | 렌더링 | boilerplate | 설명 |
+|--------|--------|-------------|------|
+| Cloudflare | SSR | `react-router-ssr-cloudflare` | Cloudflare Workers에서 SSR |
+| Cloudflare | SPA | `react-router-spa-cloudflare` | Cloudflare Pages 정적 배포 |
+| Docker | SSR | `react-router-ssr` | Node.js SSR (Docker, k8s 호환) |
+| Docker | SPA | `react-router-spa` | nginx SPA (Docker, 정적 호스팅) |
 
 ## 복제 명령 (degit 사용)
 
 ```bash
-# SSR (Cloudflare Workers)
-npx degit k-codepoet/craftify-boilerplates/web/react-router-cloudflare apps/web
+# Cloudflare SSR
+npx degit k-codepoet/craftify-boilerplates/web/react-router-ssr-cloudflare apps/web
 
-# SPA (정적 배포)
+# Cloudflare SPA
+npx degit k-codepoet/craftify-boilerplates/web/react-router-spa-cloudflare apps/web
+
+# Docker SSR
+npx degit k-codepoet/craftify-boilerplates/web/react-router-ssr apps/web
+
+# Docker SPA
 npx degit k-codepoet/craftify-boilerplates/web/react-router-spa apps/web
-```
-
-## 로컬 개발용 (cp 사용)
-
-```bash
-# 로컬에 클론해둔 경우
-cp -r ~/k-codepoet/my-boilerplates/web/react-router-cloudflare apps/web
-cp -r ~/k-codepoet/my-boilerplates/web/react-router-spa apps/web
 ```
 
 ## 복제 후 작업
@@ -61,7 +58,22 @@ pnpm dev
 
 상세 구조는 `/craftify:create` 스킬 참조.
 
+## 플랫폼별 특징
+
+### Cloudflare
+
+- **SSR**: Cloudflare Workers에서 서버 렌더링
+- **SPA**: Cloudflare Pages 정적 호스팅
+- `wrangler.toml` 설정 포함
+- `pnpm deploy`로 배포
+
+### Docker/Self-hosted
+
+- **SSR**: Node.js 서버 (Dockerfile 포함)
+- **SPA**: nginx 정적 서버 (Dockerfile 포함)
+- `docker-compose.yml` 포함
+- k8s, 클라우드 VM 등 자유롭게 배포
+
 ## 외부 참조
 
 - https://github.com/k-codepoet/craftify-boilerplates - Boilerplate 저장소
-- `~/k-codepoet/my-boilerplates/README.md` - 로컬 클론 (개발용)
