@@ -116,15 +116,27 @@ history:
 
 `.history/improvement/{plugin}-{slug}/01-YYYY-MM-DD.md` 생성
 
-### 6. 실행 안내
+### 6. forgeify 핸드오프
+
+문서 생성 완료 후 자동 적용 제안:
 
 ```
 개선 문서가 생성되었습니다:
 {views/by-improvement/...}
 
-플러그인에 적용하려면:
-/forgeify:improve-plugin {생성된 파일 경로}
+바로 적용할까요? (y/n)
 ```
+
+**y 입력 시:**
+- forgeify:improve-plugin 자동 호출
+- 현재 맥락(생성된 파일 경로)을 전달
+
+**n 입력 시:**
+- 기존처럼 명령어 안내만 표시:
+  ```
+  플러그인에 적용하려면:
+  /forgeify:improve-plugin {생성된 파일 경로}
+  ```
 
 ## 파일명 규칙
 
