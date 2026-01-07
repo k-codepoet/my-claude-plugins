@@ -30,11 +30,48 @@ POC.md를 읽고 **프로젝트를 구현**합니다.
 
 ### 3. How 판단 (대화)
 
-SSR/SPA 추천:
-- 서버 로직 필요 → SSR
-- 정적/목업 → SPA
+#### 사용 가능한 boilerplates 표시
 
-사용자 확인 후 결정.
+```
+사용 가능한 boilerplates:
+
+Web - Cloudflare:
+  • react-router-ssr-cloudflare - SSR on Cloudflare Workers (엣지 SSR)
+  • react-router-spa-cloudflare - SPA on Cloudflare Pages (정적 배포)
+
+Web - Docker/Self-hosted:
+  • react-router-ssr - SSR with Node.js (Docker, k8s 호환)
+  • react-router-spa - SPA with nginx (Docker, 정적 호스팅)
+```
+
+#### 1단계: 배포 플랫폼 선택
+
+```
+어디에 배포할까요?
+
+1. Cloudflare (Workers/Pages) - 엣지 배포, 글로벌 CDN
+2. Docker (Self-hosted) - 컨테이너 배포, k8s/클라우드 호환
+```
+
+#### 2단계: 렌더링 방식 선택
+
+```
+렌더링 방식을 선택하세요:
+
+1. SSR - 서버 사이드 렌더링 (SEO, 동적 데이터)
+2. SPA - 클라이언트 렌더링 (정적, 빠른 배포)
+```
+
+#### 선택 조합 → boilerplate 결정
+
+| 플랫폼 | 렌더링 | boilerplate |
+|--------|--------|-------------|
+| Cloudflare | SSR | `react-router-ssr-cloudflare` |
+| Cloudflare | SPA | `react-router-spa-cloudflare` |
+| Docker | SSR | `react-router-ssr` |
+| Docker | SPA | `react-router-spa` |
+
+사용자 확인 후 결정. 상세 복제 방법은 `references/boilerplate.md` 참조.
 
 ### 4. 프로젝트 셋업
 

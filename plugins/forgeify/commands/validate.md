@@ -5,7 +5,7 @@ argument-hint: [plugin-path]
 
 # /forgeify:validate
 
-validate 스킬을 사용하여 플러그인을 검증합니다.
+플러그인이 Claude Code 가이드라인을 준수하는지 검증합니다.
 
 ## 사용법
 
@@ -13,3 +13,51 @@ validate 스킬을 사용하여 플러그인을 검증합니다.
 /forgeify:validate                     # 현재 디렉토리의 플러그인 검증
 /forgeify:validate ./plugins/my-plugin # 특정 플러그인 검증
 ```
+
+## 검증 항목
+
+| 구성요소 | 필수 항목 |
+|----------|-----------|
+| plugin.json | `name` (kebab-case), `version`, `description`, `author.name` |
+| commands/*.md | frontmatter `description` 필수 |
+| agents/*.md | `name`, `description`, `<example>` 블록 |
+| skills/*/SKILL.md | `name` (디렉토리명 일치), `description` |
+| hooks/hooks.json | hooks 객체 구조, `type`/`command` 필드 |
+
+## 검증 프로세스
+
+1. **탐색**: 플러그인 루트에서 구성요소 탐색
+2. **검증**: 각 구성요소별 필수 항목 확인
+3. **리포트**: Errors/Warnings 목록화
+4. **리팩토링 제안**: 수정 필요 항목 제시
+5. **사용자 확인 후 수정**
+
+## 출력 형식
+
+```
+## Validation Report: {plugin-name}
+
+### Summary
+- Total issues: N
+- Errors: N (must fix)
+- Warnings: N (recommended)
+
+### Errors
+1. [plugin.json] Missing required field: name
+
+### Warnings
+1. [skills/my-skill/SKILL.md] Description doesn't explain when to use
+
+### Refactoring Actions
+1. Add `name` field to plugin.json
+
+Proceed with refactoring? (y/n)
+```
+
+## 규칙
+
+- Errors는 반드시 수정 필요
+- Warnings는 권장 사항
+- 사용자 확인 없이 자동 수정하지 않음
+
+상세 검증 기준은 `skills/validate/SKILL.md` 참조.
