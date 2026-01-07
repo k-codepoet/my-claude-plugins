@@ -7,6 +7,25 @@ description: PoC 앱 개발 문서 생성. Craftify에게 위임할 POC.md를 �
 
 PoC 앱 개발 **문서를 생성**합니다. 실제 구현은 craftify가 담당합니다.
 
+## 사전 확인 (필수)
+
+**스킬 실행 전 반드시 확인:**
+
+```
+~/.gemify/ 존재?
+├── 예 → 스킬 실행 계속
+└── 아니오 → setup 안내 후 중단
+```
+
+Setup 안내:
+```
+~/.gemify/가 설정되지 않았습니다.
+
+설정하기:
+  /gemify:setup              # 새로 시작
+  /gemify:setup --clone URL  # 기존 repo 가져오기
+```
+
 ## 단방향 흐름 원칙
 
 ```

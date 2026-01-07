@@ -7,13 +7,33 @@ description: 외부 재료를 inbox/materials/에 저장. "가져와", "import",
 
 외부 재료(기사, 문서, 대화 등)를 **inbox/materials/에 저장**합니다.
 
+## 사전 확인 (필수)
+
+**스킬 실행 전 반드시 확인:**
+
+```
+~/.gemify/ 존재?
+├── 예 → 스킬 실행 계속
+└── 아니오 → setup 안내 후 중단
+```
+
+Setup 안내:
+```
+~/.gemify/가 설정되지 않았습니다.
+
+설정하기:
+  /gemify:setup              # 새로 시작
+  /gemify:setup --clone URL  # 기존 repo 가져오기
+```
+
 ## 동작
 
-1. 콘텐츠 소스 파악 (URL, 텍스트, 대화)
-2. type 자동 감지
-3. 최소한의 정돈 (마크다운)
-4. `inbox/materials/{date}-{slug}.md`로 저장
-5. "/gemify:draft에서 내 생각과 함께 다듬을 수 있어요" 안내
+1. ~/.gemify/ 존재 확인 (없으면 setup 안내)
+2. 콘텐츠 소스 파악 (URL, 텍스트, 대화)
+3. type 자동 감지
+4. 최소한의 정돈 (마크다운)
+5. `~/.gemify/inbox/materials/{date}-{slug}.md`로 저장
+6. "/gemify:draft에서 내 생각과 함께 다듬을 수 있어요" 안내
 
 ## 파일 형식 (YAML frontmatter)
 
