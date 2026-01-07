@@ -1,11 +1,11 @@
 ---
 name: poc
-description: PoC 앱 개발 문서 생성. Craftify에게 위임할 POC.md를 만듭니다. "PoC 만들자", "앱 시작", "프로젝트 시작" 등 요청 시 활성화.
+description: PoC 개발 문서 생성. Craftify 또는 Forgeify에게 위임할 POC.md를 만듭니다. "PoC 만들자", "앱 시작", "프로젝트 시작", "플러그인 만들자" 등 요청 시 활성화.
 ---
 
 # PoC Skill
 
-PoC 앱 개발 **문서를 생성**합니다. 실제 구현은 craftify가 담당합니다.
+PoC 개발 **문서를 생성**합니다. 실제 구현은 타입에 따라 craftify 또는 forgeify가 담당합니다.
 
 ## 사전 확인 (필수)
 
@@ -26,17 +26,38 @@ Setup 안내:
   /gemify:setup --clone URL  # 기존 repo 가져오기
 ```
 
+## 프로젝트 타입 판단
+
+사용자 입력을 분석하여 타입 결정:
+
+```
+입력 분석
+├── "앱", "웹", "서비스", "사이트" 등 → webapp
+├── "플러그인", "커맨드", "스킬", "에이전트" 등 → plugin
+└── 판단 불가 → 사용자에게 질문
+```
+
+판단 불가 시 질문:
+```
+어떤 타입의 프로젝트인가요?
+
+1. webapp - 웹 앱/서비스 (craftify로 구현)
+2. plugin - Claude Code 플러그인 (forgeify로 구현)
+```
+
 ## 단방향 흐름 원칙
 
 ```
-gemify (지식 생산)        craftify (실행)
-    │                         │
-    └── POC.md 생성 ─────────▶ 프로젝트 구현
-        (Why/What)            (How 판단)
+gemify (지식 생산)
+    │
+    └── POC.md 생성 ─────────┬──▶ craftify (webapp 구현)
+        (Why/What)           │
+                             └──▶ forgeify (plugin 구현)
 ```
 
 - **gemify:poc**: 대화를 통해 요구사항을 정제하고 POC.md 생성
-- **craftify**: POC.md를 읽고 기술 스택/구현 방법을 스스로 판단
+- **craftify**: webapp POC.md를 읽고 기술 스택/구현 방법을 스스로 판단
+- **forgeify**: plugin POC.md를 읽고 플러그인 구조/구현 방법을 스스로 판단
 - 역방향 없음: gemify는 How를 지정하지 않음
 
 ## 워크플로우 (6단계)
@@ -95,12 +116,24 @@ specs, workflows 등 필요한 재료를 library/{type}/에 저장
 
 ## 완료 안내
 
+타입에 따라 분기:
+
+**webapp인 경우:**
 ```
 POC.md가 생성되었습니다: {project-path}/POC.md
 
 craftify로 구현을 시작하려면:
 cd {project-path} && claude
 /craftify:poc
+```
+
+**plugin인 경우:**
+```
+POC.md가 생성되었습니다: {project-path}/POC.md
+
+forgeify로 구현을 시작하려면:
+cd {project-path} && claude
+/forgeify:poc
 ```
 
 ## 규칙
