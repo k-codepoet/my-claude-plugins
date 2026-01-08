@@ -156,13 +156,21 @@ Fields: `event` (PreToolUse | PostToolUse), `matcher` (tool name), `command` (sh
 |--------|----------|------------------------|
 | homeserver-gitops | `:init`, `:init-iac`, `:join-node`, `:snapshot`, `:restore`, `:help` | k3s-homeserver |
 | ubuntu-dev-setup | `:setup-all`, `:setup-common`, `:setup-zsh`, `:setup-nvm`, `:help` | ubuntu-dev-environment |
-| forgeify | `:create`, `:compose`, `:improve-plugin`, `:update`, `:validate`, `:howto`, `:help` | plugin-guide, command-guide, skill-guide, agent-guide, hook-guide, marketplace-guide, workflow-guide, improve-plugin |
-| gemify | `:inbox`, `:import`, `:sidebar`, `:draft`, `:library`, `:view`, `:retro`, `:tidy`, `:wrapup`, `:improve-plugin`, `:human-decision`, `:human-principle`, `:human-policy`, `:setup`, `:howto`, `:help` | inbox, import, sidebar, draft, library, view, retro, tidy, wrapup, improve-plugin, human-decision, human-principle, human-policy |
+| forgeify | `:howto`, `:compose`, `:improve-plugin`, `:update`, `:validate`, `:poc`, `:help` | plugin-guide, command-guide, skill-guide, agent-guide, hook-guide, marketplace-guide, workflow-guide, improve-plugin, compose, update, validate, poc |
+| gemify | `:inbox`, `:import`, `:sidebar`, `:draft`, `:library`, `:view`, `:retro`, `:tidy`, `:triage`, `:map`, `:wrapup`, `:poc`, `:setup`, `:sync`, `:improve-plugin`, `:howto`, `:help` | inbox, import, sidebar, draft, library, view, retro, tidy, triage, map, wrapup, poc, scope, improve-plugin |
 | namify | `:name` | naming-guide |
-| craftify | `:create`, `:dev`, `:deploy`, `:status`, `:help` | create, dev, deploy, help |
+| craftify | `:poc`, `:deploy`, `:howto` | poc, deploy |
 | terrafy | `:init`, `:status`, `:help` | k3s, portainer, terraform, help |
 
 Note: Commands are prefixed with plugin name (e.g., `/forgeify:help`, `/gemify:inbox`).
+
+### Agents
+
+| Plugin | Agents |
+|--------|--------|
+| craftify | setup-wizard |
+
+Agents are triggered by natural language patterns defined in their description.
 
 ## Version Bumping
 
