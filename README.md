@@ -44,8 +44,8 @@ git clone https://github.com/k-codepoet/my-claude-plugins.git
 Linux Ubuntu homeserver K3s & GitOps initialization plugin:
 
 - **Commands**:
-  - `/homeserver-gitops:init` - Install K3s and initialize IaC environment
-  - `/homeserver-gitops:init-iac` - Initialize IaC repository only (no K3s)
+  - `/homeserver-gitops:bootstrap` - Install K3s and initialize IaC environment
+  - `/homeserver-gitops:bootstrap-iac` - Initialize IaC repository only (no K3s)
   - `/homeserver-gitops:join-node` - Join as worker node to existing cluster
   - `/homeserver-gitops:snapshot` - Export cluster state to YAML manifests
   - `/homeserver-gitops:restore` - Restore cluster from saved snapshot
@@ -189,7 +189,7 @@ turborepo + Cloudflare 기반 개발환경 자동화:
 인프라 자동화 플러그인:
 
 - **Commands**:
-  - `/terrafy:init` - 인프라 환경 초기화 (IaC 저장소 생성)
+  - `/terrafy:bootstrap` - 인프라 환경 초기화 (IaC 저장소 생성)
   - `/terrafy:status` - 현재 인프라 상태 확인
   - `/terrafy:help` - 도움말 표시
 

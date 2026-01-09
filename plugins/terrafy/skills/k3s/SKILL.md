@@ -166,7 +166,7 @@ bash "$CLAUDE_PLUGIN_ROOT/skills/k3s/scripts/restore-k3s.sh" -n <namespace>
 | kubectl not found | PATH에 `/usr/local/bin` 포함 확인 |
 | Permission denied | sudo 권한 확인 |
 | Cluster unreachable | `sudo systemctl status k3s` |
-| IaC not found | `/terrafy:init` 먼저 실행 |
+| IaC not found | `/terrafy:bootstrap` 먼저 실행 |
 
 ## Additional Resources
 

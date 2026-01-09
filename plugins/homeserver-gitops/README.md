@@ -15,8 +15,8 @@ Linux Ubuntu 홈서버에 K3s를 설치하고 IaC(Infrastructure as Code) 환경
 ## Commands
 
 - `/homeserver-gitops:help` - 도움말 및 사용법 표시
-- `/homeserver-gitops:init` - K3s 설치 및 IaC 환경 초기화 (마스터 노드)
-- `/homeserver-gitops:init-iac` - IaC 저장소만 초기화 (K3s 없이)
+- `/homeserver-gitops:bootstrap` - K3s 설치 및 IaC 환경 초기화 (마스터 노드)
+- `/homeserver-gitops:bootstrap-iac` - IaC 저장소만 초기화 (K3s 없이)
 - `/homeserver-gitops:join-node` - 기존 K3s 클러스터에 워커 노드로 조인
 - `/homeserver-gitops:snapshot` - 현재 클러스터 상태 스냅샷 생성
 - `/homeserver-gitops:restore` - 저장된 스냅샷에서 복원

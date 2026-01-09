@@ -50,7 +50,7 @@ Docker 컨테이너 관리 환경이 필요할 때 사용합니다.
 | Command | Description |
 |---------|-------------|
 | `/terrafy:help` | 이 도움말 표시 |
-| `/terrafy:init` | 인프라 환경 초기화 |
+| `/terrafy:bootstrap` | 인프라 환경 초기화 |
 | `/terrafy:status` | 현재 인프라 상태 확인 |
 
 ## Input → Output

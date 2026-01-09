@@ -26,7 +26,7 @@ Portainer 기반 컨테이너 관리. Docker 스택 배포, GitOps 연동.
 ## Commands
 
 - `/terrafy:help` - 도움말
-- `/terrafy:init` - 인프라 환경 초기화
+- `/terrafy:bootstrap` - 인프라 환경 초기화
 - `/terrafy:status` - 현재 인프라 상태 확인
 
 ## Input → Output
