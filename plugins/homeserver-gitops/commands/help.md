@@ -11,8 +11,8 @@ Display this help information to the user.
 
 | Command | Description |
 |---------|-------------|
-| `/homeserver-gitops:init` | K3s 설치 + IaC 환경 전체 초기화 (마스터 노드) |
-| `/homeserver-gitops:init-iac` | IaC 저장소만 초기화 (K3s 없이) |
+| `/homeserver-gitops:bootstrap` | K3s 설치 + IaC 환경 전체 초기화 (마스터 노드) |
+| `/homeserver-gitops:bootstrap-iac` | IaC 저장소만 초기화 (K3s 없이) |
 | `/homeserver-gitops:join-node` | 기존 K3s 클러스터에 워커 노드로 조인 |
 | `/homeserver-gitops:snapshot` | 현재 클러스터 상태 스냅샷 생성 |
 | `/homeserver-gitops:restore` | 저장된 스냅샷에서 복원 |
@@ -30,16 +30,16 @@ Display this help information to the user.
 
 ### 1. 홈서버 전체 설정 (K3s + IaC)
 ```bash
-/homeserver-gitops:init
+/homeserver-gitops:bootstrap
 ```
 
 ### 2. IaC 저장소만 초기화
 ```bash
 # 기본 경로 ~/my-iac
-/homeserver-gitops:init-iac
+/homeserver-gitops:bootstrap-iac
 
 # 사용자 지정 경로
-/homeserver-gitops:init-iac -d ~/projects/my-infrastructure
+/homeserver-gitops:bootstrap-iac -d ~/projects/my-infrastructure
 ```
 
 ### 3. 워커 노드 추가

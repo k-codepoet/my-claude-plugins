@@ -230,7 +230,7 @@ Common issues and solutions:
 | Permission denied | Ensure user has sudo privileges for installation |
 | Cluster unreachable | Check if K3s service is running: `sudo systemctl status k3s` |
 | Manifests empty | Verify resources exist in cluster before snapshot |
-| IaC directory not found | Run `/homeserver-gitops:init-iac` first |
+| IaC directory not found | Run `/homeserver-gitops:bootstrap-iac` first |
 
 ## Additional Resources
 

@@ -81,16 +81,16 @@ Report to user:
 
 ```bash
 # Default directory ~/my-iac
-/homeserver-gitops:init-iac
+/homeserver-gitops:bootstrap-iac
 
 # Custom directory
-/homeserver-gitops:init-iac -d ~/projects/my-infrastructure
+/homeserver-gitops:bootstrap-iac -d ~/projects/my-infrastructure
 
 # Absolute path
-/homeserver-gitops:init-iac -d /opt/iac
+/homeserver-gitops:bootstrap-iac -d /opt/iac
 ```
 
-## Next Steps After Init
+## Next Steps After Bootstrap
 
 1. Add git remote: `cd <iac-directory> && git remote add origin <url>`
 2. If K3s is installed, run snapshot: `/homeserver-gitops:snapshot -d <iac-directory>`
