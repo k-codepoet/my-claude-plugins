@@ -1,25 +1,28 @@
 ---
 title: "{Subject} View"
-subject: "{subject}"
+subject: {subject}
+artifact: {연결된 결과물 경로}
+domains: []
 created: "YYYY-MM-DD"
 updated: "YYYY-MM-DD"
 revision: 1
 sources: []
-history: []
+history:
+  - rev: 1
+    date: YYYY-MM-DD
+    summary: "초기 생성"
 ---
 
 # {Subject} View
 
 ## 구조
 
-{ASCII 도식 또는 Mermaid}
+(단순 ASCII 도식, 필요시 Mermaid)
 
 ## 스토리
 
-{왜 시작했는지}
-{어떤 결정을 내렸는지}
-{현재 어디까지 왔는지}
+(왜 시작 → 뭘 결정 → 어디까지)
 
 ## 관련 문서
 
-- [문서1](../../library/domain/slug.md)
+(views: [subject] 태그 기반 자동 수집 목록)

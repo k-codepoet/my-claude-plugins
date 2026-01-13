@@ -45,8 +45,15 @@ description: Gemify User Scope 경로 관리. 모든 gemify 스킬 실행 전 ~/
 | inbox/materials/ | 외부 재료 | ~/.gemify/inbox/materials/2026-01-06-article.md |
 | drafts/ | 다듬는 중 | ~/.gemify/drafts/project-plan.md |
 | library/ | 완성된 지식 | ~/.gemify/library/insights/key-learning.md |
-| views/ | 주제별 조합 | ~/.gemify/views/by-subject/ai-tools.md |
+| views/by-subject/ | 문제 → 해결책 | ~/.gemify/views/by-subject/ai-tools.md |
+| views/by-talk/ | 발표/강연 | ~/.gemify/views/by-talk/ai-presentation.md |
+| views/by-curriculum/ | 교육/커리큘럼 | ~/.gemify/views/by-curriculum/ai-course.md |
+| views/by-portfolio/ | 포트폴리오 | ~/.gemify/views/by-portfolio/my-work.md |
+| views/by-essay/ | 에세이/수필 | ~/.gemify/views/by-essay/my-thoughts.md |
+| views/by-poc/ | PoC 프로젝트 | ~/.gemify/views/by-poc/new-product.md |
+| views/by-improvement/ | 플러그인 개선 | ~/.gemify/views/by-improvement/gemify-feature.md |
 | sessions/ | 세션 리포트 | ~/.gemify/sessions/2026-01-06-wrapup.md |
+| meta/cluster/ | 지식 클러스터 맵 | ~/.gemify/meta/cluster/current.md |
 
 ## 안전 장치
 
@@ -100,5 +107,6 @@ gemify는 이 명령을 대신 실행하지 않습니다.
 2. **import**: `~/.gemify/inbox/materials/`
 3. **draft**: `~/.gemify/drafts/`
 4. **library**: `~/.gemify/library/`
-5. **view**: `~/.gemify/views/`
+5. **view**: `~/.gemify/views/` (7가지 타입)
 6. **wrapup**: `~/.gemify/sessions/`
+7. **triage/map**: `~/.gemify/meta/cluster/`
