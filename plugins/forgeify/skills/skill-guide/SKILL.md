@@ -51,16 +51,24 @@ allowed-tools: Bash(python3:*) Read Write
 ...
 ```
 
-## 필수 필드 (Frontmatter)
+## Frontmatter 필드
 
-| 필드 | 필수 | 제약사항 |
-|------|------|----------|
-| `name` | Y | 1-64자, 소문자+숫자+하이픈만, 디렉토리명과 일치 |
-| `description` | Y | 1-1024자, 무엇을 하는지 + 언제 사용하는지 포함 |
-| `license` | - | 라이선스 정보 |
-| `compatibility` | - | 환경 요구사항 (1-500자) |
-| `metadata` | - | 추가 메타데이터 (key-value) |
-| `allowed-tools` | - | 사전 승인된 도구 목록 (실험적) |
+### 필수 필드
+
+| 필드 | 제약사항 |
+|------|----------|
+| `name` | 1-64자, 소문자+숫자+하이픈만, 디렉토리명과 일치 |
+| `description` | 1-1024자, 무엇을 하는지 + 언제 사용하는지 포함 |
+
+### 선택 필드
+
+| 필드 | 설명 |
+|------|------|
+| `license` | 라이선스 정보 |
+| `compatibility` | 환경 요구사항 (1-500자) |
+| `metadata` | 추가 메타데이터 (key-value) |
+| `allowed-tools` | 사전 승인된 도구 목록 (쉼표 구분 또는 YAML 배열) |
+| `disable-model-invocation` | `true` 설정 시 Claude가 Skill 도구로 자동 호출 불가 |
 
 ## Progressive Disclosure 원칙
 

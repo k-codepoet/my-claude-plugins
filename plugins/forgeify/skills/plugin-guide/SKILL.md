@@ -54,14 +54,38 @@ my-plugin/
 }
 ```
 
-## 필수 필드
+## 필드 설명
+
+### 필수 필드
 
 | 필드 | 타입 | 설명 | 예시 |
 |------|------|------|------|
 | `name` | string | 고유 식별자 (kebab-case) | `"deployment-tools"` |
+
+### 권장 필드
+
+| 필드 | 타입 | 설명 | 예시 |
+|------|------|------|------|
 | `version` | string | semver 형식 | `"1.0.0"` |
 | `description` | string | 간결한 설명 | `"Deploy tools"` |
 | `author.name` | string | 작성자 이름 | `"Author Name"` |
+
+### 선택 필드
+
+| 필드 | 타입 | 설명 |
+|------|------|------|
+| `author.email` | string | 작성자 이메일 |
+| `author.url` | string | 작성자 URL |
+| `homepage` | string | 플러그인 문서 URL |
+| `repository` | string | 소스 저장소 URL |
+| `license` | string | 라이선스 (예: MIT) |
+| `keywords` | string[] | 검색용 키워드 |
+| `commands` | string[] | 커맨드 경로 |
+| `agents` | string[] | 에이전트 파일 경로 (개별 .md 파일) |
+| `skills` | string[] | 스킬 경로 |
+| `hooks` | string | hooks.json 경로 |
+| `mcpServers` | string | MCP 설정 경로 |
+| `lspServers` | string | LSP 설정 경로 |
 
 ## 중요 환경 변수
 

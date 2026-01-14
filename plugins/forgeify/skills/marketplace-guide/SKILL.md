@@ -57,6 +57,17 @@ my-marketplace/
 | `plugins[].source` | string | 플러그인 경로 (상대 경로) |
 | `plugins[].description` | string | 플러그인 설명 |
 
+## 마켓플레이스 전용 필드
+
+plugin manifest 필드 외에 마켓플레이스에서만 사용하는 필드:
+
+| 필드 | 타입 | 설명 |
+|------|------|------|
+| `source` | string | 플러그인 소스 경로 (필수) |
+| `category` | string | 플러그인 카테고리 |
+| `tags` | string[] | 검색용 태그 |
+| `strict` | boolean | `false`면 자체 plugin.json 불필요 (marketplace가 정의) |
+
 ## 고급 옵션
 
 ```json
@@ -95,6 +106,21 @@ my-marketplace/
 # 특정 마켓플레이스에서 플러그인 설치
 /plugin install plugin-name@marketplace-name
 
+# 마켓플레이스 업데이트
+/plugin marketplace update my-marketplace
+
 # 플러그인 탐색
 # Claude Code UI에서 "Browse and install plugins" 선택
+```
+
+## 팀 설정 (extraKnownMarketplaces)
+
+프로젝트의 `.claude/settings.json`에 추가하면 팀원이 폴더 신뢰 시 자동으로 마켓플레이스 설치 프롬프트:
+
+```json
+{
+  "extraKnownMarketplaces": [
+    "owner/repo"
+  ]
+}
 ```

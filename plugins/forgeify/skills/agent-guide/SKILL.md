@@ -50,14 +50,22 @@ model: sonnet
 
 ## Frontmatter 필드
 
-| 필드 | 필수 | 설명 |
-|------|------|------|
-| `name` | Y | 소문자+하이픈 (예: `code-reviewer`) |
-| `description` | Y | 언제 사용할지 자연언어로 설명 |
-| `tools` | - | 쉼표 구분 도구 목록 (생략시 모든 도구 상속) |
-| `model` | - | `sonnet`, `opus`, `haiku`, `'inherit'` |
-| `permissionMode` | - | `default`, `acceptEdits`, `bypassPermissions`, `plan` |
-| `skills` | - | 자동 로드할 skill 이름 목록 |
+### 필수 필드
+
+| 필드 | 설명 |
+|------|------|
+| `name` | 소문자+하이픈 (예: `code-reviewer`) |
+| `description` | 언제 사용할지 자연언어로 설명 |
+
+### 선택 필드
+
+| 필드 | 설명 |
+|------|------|
+| `tools` | 쉼표 구분 도구 목록 (생략시 모든 도구 상속) |
+| `model` | `sonnet`, `opus`, `haiku`, `inherit` |
+| `color` | 터미널 출력 색상 (예: `green`, `blue`) |
+| `permissionMode` | `default`, `acceptEdits`, `bypassPermissions`, `plan` |
+| `skills` | 자동 로드할 skill 이름 목록 |
 
 ## 내장 Subagent
 
