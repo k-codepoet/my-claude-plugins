@@ -5,6 +5,26 @@ All notable changes to the Gemify plugin will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.20.0] - 2026-01-14
+
+### Fixed
+- **retro/triage Legacy Schema 버그 수정**
+  - `library/{domain}/` → `library/{type}s/` 경로 체계 마이그레이션
+  - retro가 과거 domain 기반 경로(library/ai-automation/ 등) 제안하던 문제 해결
+  - 영향 파일: retro SKILL.md, retro.md, help.md, howto.md, CLAUDE.md (examples/empty)
+
+### Changed
+- **retro 사상 재정의**: "무조건 library 직행" → "밀도 평가 후 적절한 단계 제안"
+  - inbox/draft/library 수준별 역방향 추적
+  - 밀도 낮은 대화는 inbox부터 채우기 제안
+- **triage 밀도 평가 추가**: 승격 제안 시 밀도 근거 제시 규칙
+
+### Added
+- `principles/` 디렉토리 - 공통 사상 문서
+  - `pipeline-density.md`: 밀도 기반 파이프라인 사상
+  - `classification-system.md`: type vs domain 분류 체계 설명
+- 각 스킬(inbox, draft, library, retro, triage)에서 principles 참조 (Progressive Disclosure)
+
 ## [1.19.0] - 2025-01-13
 
 ### Added

@@ -36,16 +36,20 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 **polish 트리거**: "연마해봐", "좀 더 다듬자", "핵심이 뭐야"
 
-## 6대 Domain (library 분류)
+## Library Type 분류
 
-| Domain | 핵심 질문 |
-|--------|----------|
-| product | 무엇을 만들 것인가? |
-| engineering | 어떻게 만들 것인가? |
-| operations | 어떻게 돌릴 것인가? |
-| growth | 어떻게 알릴 것인가? |
-| business | 어떻게 유지할 것인가? |
-| ai-automation | 어떻게 위임할 것인가? |
+| Type | 핵심 질문 |
+|------|----------|
+| principle | 왜 이렇게 해야 하는가? |
+| decision | 무엇을 선택했고 왜? |
+| insight | 무엇을 알게 됐는가? |
+| how-to | 어떻게 하는가? |
+| spec | 정확히 무엇인가? |
+| workflow | 어떤 순서로 진행하는가? |
+
+## Views Domain (by-subject에서 사용)
+
+product, engineering, operations, growth, business, ai-automation
 
 ## 데이터 디렉토리
 

@@ -225,3 +225,7 @@ summary: "요약"
 상세 형식과 예시는 `references/` 폴더 참조:
 - `references/drafts-format.md` - drafts 파일 형식, 히스토리 구조
 - `references/example-drafts.md` - 실제 drafts 파일 + 스냅샷 예시
+
+## Core Principles
+
+상세: `principles/pipeline-density.md` 참조

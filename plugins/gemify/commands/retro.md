@@ -29,15 +29,15 @@ retro 스킬을 사용하여 이미 완료된 작업을 library에 기록한다.
 ## 동작
 
 1. 대화 맥락에서 완료된 작업 파악
-2. 소크라테스식 질문 (하나씩)
-   - 뭘/왜 만들었는지
-   - 핵심 결정 사항
-   - 교훈
-   - domain 분류
-3. library 문서 초안 제시
-4. 컨펌 후 `library/{domain}/{slug}.md` 저장
+2. **밀도 평가**: 대화 내용이 어느 수준인지 판단
+3. 수준에 맞는 소크라테스식 질문 (하나씩)
+   - inbox 수준 → inbox에 저장 후 나중에 다듬기
+   - draft 수준 → 핵심 추출, 다듬기
+   - library 수준 → type 분류 (principle/decision/insight/how-to/spec/workflow)
+4. **역방향 추적**: 빠진 단계가 있다면 채우기 제안
+5. 컨펌 후 해당 단계에 저장 (`library/{type}s/{slug}.md`)
 
 ## 특징
 
 - `created_via: retro`로 사후 기록임을 표시
-- drafts를 건너뛰는 단축 경로
+- 밀도에 따라 적절한 단계 제안 (무조건 library 직행 아님)

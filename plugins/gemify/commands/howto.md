@@ -21,7 +21,7 @@ argument-hint: "[topic]"
 | `import` | 외부 재료 가져오기, inbox/materials/ 사용법 |
 | `sidebar` | 본 작업 중 떠오른 것을 옆에 빼두기 |
 | `draft` | 원석 다듬기, facet/polish 모드 |
-| `library` | 보석 정리, 6대 domain 분류 |
+| `library` | 보석 정리, type 분류 (principle/decision/insight/how-to/spec/workflow) |
 | `view` | 주제별 지식 조합 |
 | `retro` | 완료 작업 역방향 기록 |
 | `tidy` | 문서 점진적 정리, 역방향 검증 |

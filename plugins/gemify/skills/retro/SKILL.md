@@ -1,6 +1,6 @@
 ---
 name: retro
-description: 이미 완료된 작업을 역방향으로 library에 기록. "사후 기록", "역방향", "retro", "이미 만들었는데" 등 요청 시 활성화. inbox/drafts를 건너뛰고 바로 library로.
+description: 이미 완료된 작업을 역방향으로 기록. "사후 기록", "역방향", "retro", "이미 만들었는데" 등 요청 시 활성화. 밀도 평가 후 적절한 단계(inbox/draft/library) 제안.
 ---
 
 # Retro Skill (사후처리)
@@ -30,7 +30,7 @@ Setup 안내:
 
 - 아이디어 논의 → 바로 구현해버린 경우
 - inbox → drafts → library 흐름을 건너뛰고 작업한 경우
-- 사후에 의사결정/지식을 library에 남기고 싶을 때
+- 사후에 의사결정/지식을 기록하고 싶을 때
 
 ## 일반 흐름 vs Retro 흐름
 
@@ -39,26 +39,41 @@ Setup 안내:
 inbox → drafts → library → 구현
 
 [Retro 흐름]
-아이디어 → 구현(완료) → /gemify:retro → library
+아이디어 → 구현(완료) → /gemify:retro → [밀도 평가] → 적절한 단계
+                                            │
+                        ┌───────────────────┼───────────────────┐
+                        ▼                   ▼                   ▼
+                  inbox 수준           draft 수준          library 수준
+                  (정리 필요)          (다듬기 필요)       (바로 저장 가능)
 ```
 
 ## 동작
 
 1. 대화 맥락에서 **완료된 작업** 파악
-2. 소크라테스식 질문 (순차, 하나씩)
-   - "뭘 만들었어?" / "왜 만들었어?"
-   - "핵심 결정 사항이 뭐였어?"
-   - "나중에 참고할 만한 교훈이 있어?"
-   - "6개 domain 중 어디야?"
-3. library 문서 초안 제시
-4. 사용자 컨펌 후 `library/{domain}/{slug}.md` 저장
+2. **밀도 평가**: 대화 내용이 어느 수준인지 판단
+3. 수준에 맞는 소크라테스식 질문 (순차, 하나씩):
+   - inbox 수준 → "먼저 생각을 정리해볼까? inbox에 저장하고 나중에 다듬자"
+   - draft 수준 → "핵심이 뭐야? 좀 더 다듬어볼까?"
+   - library 수준 → "어떤 type이야? (principle/decision/insight/how-to/spec/workflow)"
+4. **역방향 추적**: 빠진 단계가 있다면 채우기 제안
+5. 사용자 컨펌 후 해당 단계에 저장 (`library/{type}s/{slug}.md`)
+
+## 밀도 평가 기준
+
+| 수준 | 특징 | 제안 |
+|------|------|------|
+| **inbox 수준** | 생각/재료 상태, 구조화 필요 | inbox → draft → library |
+| **draft 수준** | 아이디어 있지만 정제 필요 | draft 먼저 → library |
+| **library 수준** | 핵심 지식 정제됨, 단일 주제 | library로 |
+| **view 수준** | 서사 완성, 연결 명확, 재사용 가능 | view 또는 library로 |
 
 ## library 파일 형식
 
 ```markdown
 ---
 title: {제목}
-domain: {product|engineering|operations|growth|business|ai-automation}
+type: principle | decision | insight | how-to | spec | workflow
+origin: original | digested | derived
 created_via: retro
 ---
 
@@ -66,29 +81,25 @@ created_via: retro
 
 {왜 이 작업을 했는지, 배경}
 
-## Decision
+## Content
 
-{핵심 결정 사항}
-
-## Outcome
-
-{결과물, 만든 것}
+{핵심 내용}
 
 ## Lessons
 
 {나중에 참고할 교훈 - 선택적}
 ```
 
-## 6대 Domain
+## Library Type
 
-| Domain | 핵심 질문 |
-|--------|----------|
-| product | 무엇을 만들 것인가? |
-| engineering | 어떻게 만들 것인가? |
-| operations | 어떻게 돌릴 것인가? |
-| growth | 어떻게 알릴 것인가? |
-| business | 어떻게 유지할 것인가? |
-| ai-automation | 어떻게 위임할 것인가? |
+| Type | 핵심 질문 |
+|------|----------|
+| principle | 왜 이렇게 해야 하는가? |
+| decision | 무엇을 선택했고 왜? |
+| insight | 무엇을 알게 됐는가? |
+| how-to | 어떻게 하는가? |
+| spec | 정확히 무엇인가? |
+| workflow | 어떤 순서로 진행하는가? |
 
 ## 규칙
 
@@ -100,8 +111,13 @@ created_via: retro
 ## 예시 시나리오
 
 ```
-사용자: 방금 improve-plugin 스킬을 만들었는데, library에 기록해줘
+사용자: 방금 improve-plugin 스킬을 만들었는데, 기록해줘
 → /gemify:retro 활성화
-→ 질문을 통해 핵심 결정 추출
-→ library/ai-automation/improve-plugin-workflow.md 저장
+→ 밀도 평가: library 수준 (핵심 결정 명확)
+→ type 질문 → workflow 선택
+→ library/workflows/improve-plugin-workflow.md 저장
 ```
+
+## Core Principles
+
+상세: `principles/pipeline-density.md`, `principles/classification-system.md` 참조

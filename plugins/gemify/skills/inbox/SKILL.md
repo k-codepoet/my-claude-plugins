@@ -111,3 +111,7 @@ used_in:
 상세 형식과 예시는 `references/` 폴더 참조:
 - `references/inbox-format.md` - 파일 형식 상세, 필드 설명
 - `references/example-inbox.md` - 실제 inbox 파일 예시
+
+## Core Principles
+
+상세: `principles/pipeline-density.md` 참조

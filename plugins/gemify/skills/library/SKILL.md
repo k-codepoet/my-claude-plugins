@@ -102,3 +102,7 @@ origin: original | digested | derived
 상세 형식과 예시는 `references/` 폴더 참조:
 - `references/library-format.md` - library 파일 형식, type/origin 설명
 - `references/example-library.md` - 실제 library 파일 예시, type 선택 기준
+
+## Core Principles
+
+상세: `principles/classification-system.md` 참조
