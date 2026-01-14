@@ -68,7 +68,8 @@ Note: `name` field becomes the install suffix (e.g., `plugin@k-codepoet-plugins`
 
 ### plugin.json
 
-Required: `name`, `version`, `description`, `author.name`
+Required: `name`
+Recommended: `version`, `description`, `author.name`
 Optional: `keywords`, `commands`, `agents`, `skills` (paths or array of paths)
 
 ```json
@@ -88,10 +89,11 @@ Note: `name` determines command prefix (e.g., `forgeify` → `/forgeify:help`), 
 ### Commands (`commands/*.md`)
 ```yaml
 ---
-description: What the command does      # Required
+description: What the command does      # Recommended
 allowed-tools: Read, Bash, Write        # Optional (defaults vary)
 argument-hint: [-d directory]           # Optional
 name: custom-name                       # Optional (override filename)
+hooks:                                  # Optional (PreToolUse, PostToolUse, Stop)
 ---
 Command body with instructions...
 ```
@@ -130,17 +132,29 @@ Skills auto-activate based on context. Same content can exist as both command (e
 
 ### Hooks (`hooks/hooks.json`)
 
-Fields: `event` (PreToolUse | PostToolUse), `matcher` (tool name), `command` (shell command)
+Uses nested object structure with event types as keys:
 
 ```json
 {
-  "hooks": [{
-    "event": "PreToolUse",
-    "matcher": "Bash",
-    "command": "bash script.sh"
-  }]
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "${CLAUDE_PLUGIN_ROOT}/scripts/pre-bash.sh"
+          }
+        ]
+      }
+    ]
+  }
 }
 ```
+
+Event types: `PreToolUse`, `PostToolUse`, `Stop`, `SessionStart`, `UserPromptSubmit`
+
+Note: Only `type: "command"` is supported in plugin hooks. `type: "prompt"` is silently ignored.
 
 ## Script Conventions
 
@@ -156,8 +170,8 @@ Fields: `event` (PreToolUse | PostToolUse), `matcher` (tool name), `command` (sh
 |--------|----------|------------------------|
 | homeserver-gitops | `:bootstrap`, `:bootstrap-iac`, `:join-node`, `:snapshot`, `:restore`, `:help` | k3s-homeserver |
 | ubuntu-dev-setup | `:setup-all`, `:setup-common`, `:setup-zsh`, `:setup-nvm`, `:help` | ubuntu-dev-environment |
-| forgeify | `:howto`, `:compose`, `:improve-plugin`, `:update`, `:validate`, `:poc`, `:help` | plugin-guide, command-guide, skill-guide, agent-guide, hook-guide, marketplace-guide, workflow-guide, improve-plugin, compose, update, validate, poc |
-| gemify | `:inbox`, `:import`, `:sidebar`, `:draft`, `:library`, `:view`, `:retro`, `:tidy`, `:triage`, `:map`, `:wrapup`, `:poc`, `:setup`, `:sync`, `:improve-plugin`, `:howto`, `:help` | inbox, import, sidebar, draft, library, view, retro, tidy, triage, map, wrapup, poc, scope, improve-plugin |
+| forgeify | `:howto`, `:compose`, `:improve-plugin`, `:update`, `:validate`, `:poc`, `:help` | plugin-guide, command-guide, skill-guide, agent-guide, hook-guide, marketplace-guide, workflow-guide, improve-plugin, compose, update, validate, poc, bugfix |
+| gemify | `:inbox`, `:import`, `:sidebar`, `:draft`, `:library`, `:view`, `:retro`, `:tidy`, `:triage`, `:map`, `:wrapup`, `:poc`, `:setup`, `:sync`, `:improve-plugin`, `:howto`, `:help` | inbox, import, sidebar, draft, library, view, retro, tidy, triage, map, wrapup, poc, scope, improve-plugin, troubleshoot, bugfix |
 | namify | `:name` | naming-guide |
 | craftify | `:poc`, `:deploy`, `:howto` | poc, deploy |
 | terrafy | `:bootstrap`, `:status`, `:help` | k3s, portainer, terraform, help |
@@ -202,7 +216,7 @@ bash -n plugins/<name>/scripts/*.sh
 Also verify:
 - SKILL.md files are uppercase and in `skills/{skill-name}/SKILL.md` structure
 - All paths referenced in plugin.json have corresponding files
-- Commands have required frontmatter (`description`)
+- Commands have frontmatter (at minimum `description` recommended)
 
 ## Adding New Plugins
 
