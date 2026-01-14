@@ -5,6 +5,20 @@ All notable changes to the Gemify plugin will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.19.0] - 2025-01-13
+
+### Added
+- `/gemify:troubleshoot` - 버그/문제 분석 스킬
+  - 증상 수집, 관련 코드 탐색, 가설 도출
+  - inbox/materials/에 분석 기록 저장
+  - bugfix 스킬과 연계 가능
+- `/gemify:bugfix` - 버그 수정 문서 생성 스킬
+  - 2-track 병렬 전략: Workaround(빠른 해결) + Root Cause(근본 해결)
+  - 가설 우선순위 나열하여 순차 검증
+  - views/by-bugfix/에 저장
+  - forgeify/craftify로 핸드오프 시 병렬 실행 옵션
+- `views/by-bugfix/` 카테고리 및 템플릿 추가
+
 ## [1.9.0] - 2026-01-03
 
 ### Changed
