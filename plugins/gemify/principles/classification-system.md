@@ -1,3 +1,10 @@
+---
+title: 분류 체계 (Type vs Domain)
+type: principle
+origin: original
+views: [gemify]
+---
+
 # 분류 체계 (Classification System)
 
 ## 두 가지 분류 체계

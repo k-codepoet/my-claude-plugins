@@ -1,3 +1,10 @@
+---
+title: 밀도 기반 파이프라인
+type: principle
+origin: original
+views: [gemify]
+---
+
 # 밀도 기반 파이프라인 (Density-Based Pipeline)
 
 ## 핵심 사상
