@@ -175,10 +175,10 @@ if [ -d "$AGENTS_DIR" ]; then
         ((AGENT_COUNT++)) || true
         agent_name=$(basename "$agent_file")
 
-        # name, description frontmatter 확인
-        has_name=$(head -20 "$agent_file" | grep -c "^name:" || echo 0)
-        has_desc=$(head -20 "$agent_file" | grep -c "^description:" || echo 0)
-        has_example=$(grep -c "<example>" "$agent_file" || echo 0)
+        # name, description, example 확인
+        has_name=$(head -20 "$agent_file" | grep -c "^name:" 2>/dev/null) || has_name=0
+        has_desc=$(head -20 "$agent_file" | grep -c "^description:" 2>/dev/null) || has_desc=0
+        has_example=$(grep -c "<example>" "$agent_file" 2>/dev/null) || has_example=0
 
         if [ "$has_name" -eq 0 ]; then
             error "agents/$agent_name: Missing 'name' in frontmatter"
