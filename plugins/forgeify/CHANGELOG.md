@@ -5,6 +5,20 @@ All notable changes to the Forgeify plugin will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.14.0] - 2026-01-17
+
+### Added
+- **command-guide Command-Skill 1:1 쌍 원칙** - 모든 기능 커맨드는 대응하는 스킬과 1:1 쌍 필수
+  - Single Source of Truth, AI Agent 위임, Progressive Disclosure 원칙 설명
+- **command-guide 스킬 명시적 로드 규칙** - 커맨드에서 스킬 Read를 명시적으로 지시
+  - 잘못된 예 vs 올바른 예 비교
+  - 커맨드는 진입점, 스킬이 로직 담당하는 구조 명확화
+
+### Removed
+- **Stop hook 제거** - 제대로 동작하지 않아 삭제
+  - `hooks/hooks.json`에서 Stop 이벤트 제거
+  - `scripts/stop-hook.sh` 삭제
+
 ## [1.13.0] - 2026-01-17
 
 ### Added

@@ -1,15 +1,69 @@
 ---
-description: Terrafy 플러그인 도움말 표시
+description: Terrafy 도움말
 allowed-tools: ["Read"]
 ---
 
-Terrafy 도움말을 표시합니다.
+# /terrafy:help
 
-## 실행 방법
+```
+╔═══════════════════════════════════════════════════════════╗
+║  Terrafy - 물리 자원을 배포 가능한 API로 변환              ║
+╚═══════════════════════════════════════════════════════════╝
 
-`skills/help/SKILL.md` 내용을 기반으로 사용자에게 안내합니다:
+홈서버나 소규모 인프라를 구축할 때,
+물리적인 서버들을 GitOps로 배포 가능한 환경으로 만들어줍니다.
 
-1. Terrafy 개요 설명
-2. 사용 가능한 skills (k3s, portainer, terraform)
-3. 사용 가능한 commands
-4. 플랫폼 지원 현황
+┌─────────────────────────────────────────────────────────┐
+│  [물리 자원]              →        [API 레벨]           │
+│                                                         │
+│  공유기 뒤 NAS                   https://nas.my         │
+│  Mac Mini             Terrafy    Portainer API          │
+│  USB 외장하드           →         /volumes/data         │
+│  192.168.0.x                     GitOps endpoint        │
+└─────────────────────────────────────────────────────────┘
+
+=== 명령어 ===
+
+/terrafy:status
+  현재 환경을 스캔하고 인프라 상태를 보여줍니다.
+  - 이 머신의 OS, Docker 상태
+  - 같은 네트워크의 다른 머신 탐지
+  - 각 역할(관문/관제탑/일꾼)의 구성 상태
+
+/terrafy:setup
+  대화형으로 인프라를 구성합니다.
+  - 환경 스캔 → 구성 제안 → 단계별 설정 → 검증
+  - 기본값을 제안하고, 사용자가 선택
+
+/terrafy:help
+  이 도움말을 표시합니다.
+
+=== 역할 설명 ===
+
+관문 (Gateway)
+  외부 트래픽을 받아 내부로 라우팅합니다.
+  기술적으로: Traefik + Ingress (Tunnel 또는 포트포워딩)
+
+관제탑 (Orchestrator)
+  서비스 배포와 관리를 담당합니다.
+  기술적으로: Portainer Server
+
+일꾼 (Worker)
+  실제 서비스를 실행합니다.
+  기술적으로: Docker + Portainer Agent
+
+=== 구성 예시 ===
+
+[멀티노드]
+외부 → [NAS] 관문 → [Mac] 관제탑 → [Linux] 일꾼
+
+[싱글노드]
+외부 → [Linux] 관문 + 관제탑 + 일꾼 (올인원)
+
+=== 시작하기 ===
+
+1. /terrafy:status 로 현재 상태 확인
+2. /terrafy:setup 으로 구성 시작
+3. 대화를 따라가며 선택
+4. 완료 후 Portainer로 서비스 배포
+```

@@ -27,10 +27,12 @@ fi
 # git pull --rebase --autostash 실행
 # --autostash: 로컬 uncommitted 변경사항이 있어도 자동으로 stash → pull → pop
 if git pull --rebase --autostash &>/dev/null; then
-  # 성공 시 간단한 메시지
-  cat << 'EOF'
+  # 성공 시 short sha + commit date 포함 메시지
+  SHORT_SHA=$(git log -1 --format='%h')
+  COMMIT_DATE=$(git log -1 --format='%ci')
+  cat << EOF
 {
-  "systemMessage": "✅ [gemify] ~/.gemify/ 동기화 완료"
+  "systemMessage": "✅ [gemify] ~/.gemify/ 동기화 완료 (${SHORT_SHA} @ ${COMMIT_DATE})"
 }
 EOF
 else

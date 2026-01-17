@@ -12,10 +12,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - git remote 설정 여부에 따른 조건부 실행
   - 성공/스킵/실패 상태 메시지 표시
 
+### Changed
+- **SessionStart hook 메시지 개선** - 동기화 성공 시 git short sha와 commit date 표시
+  - 예: `✅ [gemify] ~/.gemify/ 동기화 완료 (abc1234 @ 2026-01-17 12:00:00 +0900)`
+
 ### Fixed
 - **improve-plugin 핸드오프 버그 수정** - y 입력 시 직접 코드 수정하던 문제
   - Skill 도구로 `forgeify:improve-plugin` 호출 명시
   - 경고 문구 추가로 단방향 원칙 강조
+
+### Removed
+- **Stop hook 제거** - 제대로 동작하지 않아 삭제
+  - `hooks/hooks.json`에서 Stop 이벤트 제거
+  - `scripts/stop-hook.sh` 삭제
 
 ## [1.21.0] - 2026-01-17
 

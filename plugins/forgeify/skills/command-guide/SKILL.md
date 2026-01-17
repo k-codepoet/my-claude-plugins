@@ -76,9 +76,42 @@ description: ...
 | 표준 | Agent Skills 오픈 스탠다드 | Claude Code 전용 |
 | 사용 목적 | 재사용 가능한 전문 워크플로우 | 특정 프로젝트 작업 자동화 |
 
-## 스킬 참조 패턴 (권장)
+## Command-Skill 1:1 쌍 원칙 (필수)
 
-커맨드에 로직을 직접 구현하지 않고, **스킬을 참조**하는 패턴입니다.
+**모든 기능 커맨드는 대응하는 스킬과 1:1 쌍을 이루어야 합니다.**
+
+```
+commands/setup.md      ↔  skills/setup/SKILL.md
+commands/status.md     ↔  skills/status/SKILL.md
+commands/deploy.md     ↔  skills/deploy/SKILL.md
+```
+
+### 왜 1:1 쌍인가?
+
+1. **Single Source of Truth**: 로직은 스킬에만 존재 → 중복 방지, 유지보수 용이
+2. **AI Agent 위임**: 스킬은 Claude가 자동으로 활성화 가능 → 커맨드 없이도 AI가 적절히 사용
+3. **Progressive Disclosure**: 커맨드는 진입점, 상세 로직은 스킬이 담당
+
+### 예외
+
+- `help.md` - 단순 도움말 출력, 스킬 불필요
+- `howto.md` - 가이드 안내, 스킬 불필요
+
+## 스킬 명시적 로드 (필수)
+
+**중요**: 커맨드에서 스킬을 암묵적으로 참조하면 Claude가 로드하지 않습니다.
+
+### 잘못된 예 (동작 안 함)
+
+```markdown
+# /gemify:draft
+
+draft 스킬을 사용하여 원석을 다듬는다.
+```
+
+Claude는 "draft 스킬을 사용하여"라는 문구만으로 스킬을 자동 로드하지 **않습니다**.
+
+### 올바른 예 (권장)
 
 ```markdown
 ---
@@ -86,25 +119,31 @@ description: inbox의 원석을 대화로 다듬기
 allowed-tools: Read, Write, Edit
 ---
 
-# /gemify:draft - 원석 다듬기 커맨드
+# /gemify:draft - 원석 다듬기
 
-draft 스킬로 원석을 대화로 다듬는다.
+## 실행 전 필수
+
+**반드시 스킬을 먼저 읽으세요:**
+
+```
+Read: $CLAUDE_PLUGIN_ROOT/skills/draft/SKILL.md
+```
+
+스킬의 워크플로우를 따라 진행하세요.
 
 ## 사용법
 ...
 ```
 
-### 왜 이 패턴을 쓰나?
+### 핵심 규칙
 
-1. **AI Agent 위임**: 스킬은 Claude가 자동으로 활성화 가능 → 사용자가 커맨드를 몰라도 AI가 적절히 사용
-2. **Single Source of Truth**: 로직은 스킬에만 존재 → 중복 방지, 유지보수 용이
-3. **Progressive Disclosure**: 커맨드는 진입점, 상세 로직은 스킬이 담당
+1. **커맨드에 로직을 직접 구현하지 않음** - 스킬이 로직 담당
+2. **커맨드에서 스킬 Read를 명시적으로 지시** - Claude가 확실히 로드
+3. **커맨드는 사용법과 다음 단계만 안내** - 진입점 역할
 
 ### 구조
 
 ```
-commands/draft.md     ← 진입점 (스킬 참조)
+commands/draft.md     ← 진입점 (스킬 Read 지시)
 skills/draft/SKILL.md ← 실제 로직
 ```
-
-커맨드 본문에서 "draft 스킬을 사용하여..." 형태로 참조하면 Claude가 해당 스킬을 로드합니다.

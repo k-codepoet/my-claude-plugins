@@ -1,52 +1,38 @@
 ---
-description: 현재 인프라 상태 확인
-allowed-tools: ["Read", "Bash"]
+description: 현재 환경을 스캔하고 인프라 상태를 보여줍니다
+allowed-tools: ["Bash", "Read"]
 ---
 
-현재 인프라 환경 상태를 확인합니다.
+# /terrafy:status
 
-## 확인 항목
+현재 환경을 파악하고 인프라 상태를 보여줍니다.
 
-### 1. IaC 저장소
-```bash
-ls -la ~/my-iac/
-```
+## 실행 전 필수
 
-### 2. Docker 상태
-```bash
-docker --version
-docker ps --format "table {{.Names}}\t{{.Status}}\t{{.Ports}}"
-```
-
-### 3. Kubernetes (K3s) 상태
-```bash
-kubectl get nodes 2>/dev/null || echo "K3s not installed"
-kubectl get pods -A 2>/dev/null | head -20
-```
-
-### 4. Portainer 상태
-```bash
-docker ps --filter "name=portainer" --format "{{.Names}}: {{.Status}}"
-```
-
-## 출력 형식
+**반드시 스킬을 먼저 읽으세요:**
 
 ```
-=== Terrafy Status ===
-
-IaC Repository: ~/my-iac/
-├── k3s/           [OK]
-├── {hostname}/    [OK]
-├── terraform/     [placeholder]
-└── argocd/        [placeholder]
-
-Docker: v24.0.7
-└── Running containers: 3
-
-Kubernetes (K3s): v1.28.5+k3s1
-├── Nodes: 1 Ready
-└── Pods: 15 Running
-
-Portainer: Running
-└── URL: https://localhost:9443
+Read: $CLAUDE_PLUGIN_ROOT/skills/status/SKILL.md
 ```
+
+스킬의 상황별 출력 형식을 따라 결과를 보여주세요.
+
+## 사용법
+
+```
+/terrafy:status    # 현재 인프라 상태 확인
+```
+
+## 상태 표시
+
+| 표시 | 의미 |
+|------|------|
+| `[x]` | 완전 구성, 정상 |
+| `[~]` | 준비됨 |
+| `[ ]` | 미구성 |
+| `[?]` | 확인 필요 |
+| `[!]` | 문제 있음 |
+
+## 다음 단계
+
+- `/terrafy:setup` - 인프라 구성 시작/재개
