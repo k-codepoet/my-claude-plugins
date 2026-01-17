@@ -1,6 +1,6 @@
 ---
 name: view
-description: library 지식을 목적별로 조합하여 views/에 저장. 6가지 타입(subject, talk, curriculum, portfolio, essay, poc)별 렌즈로 지식을 렌더링.
+description: library 지식을 목적별로 조합하여 views/에 저장. 8가지 타입(plugin, product, talk, curriculum, portfolio, essay, poc, improvement)별 렌즈로 지식을 렌더링.
 ---
 
 # View Skill
@@ -32,12 +32,15 @@ Setup 안내:
 library/     ← 모델 (재사용 가능한 원자 단위)
     ↓
 views/       ← 렌더링 레이어 (서사가 있는 스토리텔링)
-├── by-subject/      # 문제 → 해결책
+├── by-plugin/       # Claude Code 플러그인
+├── by-product/      # 사용자용 제품/서비스
 ├── by-talk/         # 메시지 전달
 ├── by-curriculum/   # 가르침
 ├── by-portfolio/    # 셀프 브랜딩
-├── by-essay/        # 자기 성찰
+├── by-essay/        # 철학/에세이
 ├── by-poc/          # PoC 프로젝트 (gemify:poc 전용)
+├── by-improvement/  # 플러그인/제품 개선 (gemify:improve-plugin 전용)
+├── by-bugfix/       # 버그 수정 (gemify:bugfix 전용)
 └── .history/        # 변경 히스토리
 ```
 
@@ -49,20 +52,28 @@ views/       ← 렌더링 레이어 (서사가 있는 스토리텔링)
 
 | 타입 | 목적 | 서사의 핵심 질문 |
 |------|------|-----------------|
-| subject | 문제 → 해결책 | 어떤 문제를 어떻게 풀었는가? |
+| plugin | Claude Code 플러그인 | 어떤 플러그인을 왜/어떻게 만들었는가? |
+| product | 사용자용 제품/서비스 | 어떤 제품을 왜/어떻게 만들었는가? |
 | talk | 메시지 전달 | 청중이 무엇을 깨닫고 가는가? |
 | curriculum | 가르침 | 학습자가 무엇을 할 수 있게 되는가? |
 | portfolio | 셀프 브랜딩 | 나는 어떤 사람인가? (증명과 함께) |
-| essay | 자기 성찰 | 나는 무엇을 믿고/느끼는가? |
+| essay | 철학/에세이 | 나는 무엇을 믿고/느끼는가? |
 | poc | PoC 프로젝트 | 무엇을 왜 만들고 어디까지 왔는가? |
+| improvement | 플러그인/제품 개선 | 어떤 문제를 어떻게 개선하는가? |
+| bugfix | 버그 수정 | 어떤 버그를 어떻게 고쳤는가? |
 
 ## 타입별 대화 흐름 (렌즈 질문)
 
-### by-subject (기본)
-1. 어떤 subject인가요?
-2. artifact 경로는?
-3. 어떤 domain들과 관련있나요? (복수 선택 가능)
-   - product, engineering, operations, growth, business, ai-automation
+### by-plugin (신규)
+1. 어떤 플러그인인가요? (이름)
+2. 플러그인 경로는? (artifact)
+3. 태그라인은? (한 문장으로 설명)
+4. 참조할 library 문서들은?
+
+### by-product (신규)
+1. 어떤 제품/서비스인가요? (이름)
+2. 프로젝트 경로는? (artifact)
+3. 태그라인은? (한 문장으로 설명)
 4. 참조할 library 문서들은?
 
 ### by-talk
@@ -101,17 +112,41 @@ views/       ← 렌더링 레이어 (서사가 있는 스토리텔링)
 2. 프로젝트 경로는? (artifact)
 3. 참조한 inbox/drafts 문서들은? (sources)
 
+### by-improvement (gemify:improve-plugin 전용)
+
+**참고**: by-improvement는 `/gemify:improve-plugin` 커맨드가 직접 생성합니다.
+
+### by-bugfix (gemify:bugfix 전용)
+
+**참고**: by-bugfix는 `/gemify:bugfix` 커맨드가 직접 생성합니다.
+
 ## 타입별 Frontmatter 템플릿
 
-### by-subject
+### by-plugin (신규)
 ```yaml
 ---
-title: "{Subject} View"
-subject: {subject}
-artifact: {연결된 결과물 경로}
-domains:
-  - {domain1}
-  - {domain2}
+title: "{Plugin Name}"
+plugin: {plugin-name}
+artifact: {플러그인 경로}
+tagline: "{한 문장 설명}"
+created: "YYYY-MM-DD"
+updated: "YYYY-MM-DD"
+revision: 1
+sources: []
+history:
+  - rev: 1
+    date: YYYY-MM-DD
+    summary: "초기 생성"
+---
+```
+
+### by-product (신규)
+```yaml
+---
+title: "{Product Name}"
+product: {product-name}
+artifact: {프로젝트 경로}
+tagline: "{한 문장 설명}"
 created: "YYYY-MM-DD"
 updated: "YYYY-MM-DD"
 revision: 1
@@ -230,28 +265,46 @@ history:
 
 **자동 수집:**
 ```bash
-# library 문서 중 views 필드에 해당 subject가 있는 문서
+# library 문서 중 views 필드에 해당 view가 있는 문서
 views: [gemify, forgeify]  # 이 문서는 gemify, forgeify view에 포함
 ```
 
 **대화로 수집 (신규 생성 시):**
 1. 타입별 렌즈 질문으로 정보 수집
-2. 사용자가 알려주면 해당 문서에 `views: [subject]` 추가
+2. 사용자가 알려주면 해당 문서에 `views: [slug]` 추가
 
 ### 2. View 파일 생성/업데이트
 
-**by-subject (기본 형식):**
+**by-plugin (신규):**
 ```markdown
-# {Subject} View
+# {Plugin Name}
+
+> {tagline}
 
 ## 구조
-(단순 ASCII 도식, 필요시 Mermaid)
+(아키텍처, 주요 컴포넌트)
 
 ## 스토리
 (왜 시작 → 뭘 결정 → 어디까지)
 
 ## 관련 문서
-(views: [subject] 태그 기반 자동 수집 목록)
+(views: [slug] 태그 기반 자동 수집 목록)
+```
+
+**by-product (신규):**
+```markdown
+# {Product Name}
+
+> {tagline}
+
+## 구조
+(아키텍처, 주요 기능)
+
+## 스토리
+(왜 시작 → 뭘 결정 → 어디까지)
+
+## 관련 문서
+(views: [slug] 태그 기반 자동 수집 목록)
 ```
 
 **by-talk:**
@@ -350,34 +403,45 @@ views: [gemify, forgeify]  # 이 문서는 gemify, forgeify view에 포함
 
 ```
 views/
-├── by-subject/       # 문제 해결
+├── by-plugin/        # Claude Code 플러그인
 │   ├── gemify.md
 │   └── forgeify.md
+├── by-product/       # 사용자용 제품/서비스
+│   └── tetritime.md
 ├── by-talk/          # 발표
 ├── by-curriculum/    # 교육
 ├── by-portfolio/     # 포트폴리오
-├── by-essay/         # 에세이
+├── by-essay/         # 철학/에세이
+│   └── design-philosophy.md
 ├── by-poc/           # PoC 프로젝트 (gemify:poc 전용)
 │   └── {product}.md
+├── by-improvement/   # 플러그인/제품 개선 (gemify:improve-plugin 전용)
+├── by-bugfix/        # 버그 수정 (gemify:bugfix 전용)
 └── .history/         # 변경 히스토리
-    ├── subject/
+    ├── plugin/
     │   └── gemify/
     │       └── 01-2024-12-31.md
+    ├── product/
     ├── talk/
     ├── curriculum/
     ├── portfolio/
     ├── essay/
-    └── poc/
+    ├── poc/
+    ├── improvement/
+    └── bugfix/
 ```
 
 ## 파일명 규칙
 
-- **by-subject**: `{subject}.md` (영문 kebab-case)
+- **by-plugin**: `{plugin-name}.md` (영문 kebab-case)
+- **by-product**: `{product-name}.md` (영문 kebab-case)
 - **by-talk**: `{slug}.md`
 - **by-curriculum**: `{slug}.md`
 - **by-portfolio**: `{slug}.md`
 - **by-essay**: `{slug}.md`
 - **by-poc**: `{product}.md` (namify:name 결과)
+- **by-improvement**: `{target}-{slug}.md`
+- **by-bugfix**: `{target}-{slug}.md`
 
 ## 세션 동작
 
@@ -391,6 +455,29 @@ views/
 
 - 질문은 **하나씩 순차적으로**
 - **컨펌 없이 저장 안 함**
-- 타입 생략 시 `subject`로 동작 (하위 호환)
+- 타입 생략 시 "무엇을 만들었나요?" 질문으로 분기
 - library 문서에 views 태그 추가 시 사용자 확인
 - **업데이트 시 반드시 히스토리 스냅샷 생성**
+
+## 타입 선택 가이드
+
+타입을 명시하지 않았을 때:
+```
+"무엇에 대한 view인가요?"
+├── Claude Code 플러그인 → by-plugin/
+├── 사용자용 제품/서비스 → by-product/
+├── 아직 검증 중 (PoC) → by-poc/ (→ gemify:poc 안내)
+├── 발표/강연 → by-talk/
+├── 교육/커리큘럼 → by-curriculum/
+├── 포트폴리오/셀프 브랜딩 → by-portfolio/
+└── 철학/생각/에세이 → by-essay/
+```
+
+## 마이그레이션 노트 (v1.21.0)
+
+`by-subject`는 deprecated되었습니다.
+- 플러그인 → `by-plugin/`으로 이동
+- 제품/서비스 → `by-product/`으로 이동
+- 철학/에세이 → `by-essay/`로 이동
+
+기존 `by-subject/` 파일들은 ground-truth repo에서 직접 마이그레이션 필요.

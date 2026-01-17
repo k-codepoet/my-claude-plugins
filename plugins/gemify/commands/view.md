@@ -1,5 +1,5 @@
 ---
-description: library 지식을 목적별로 조합하여 views/에 저장 (subject, talk, curriculum, portfolio, essay)
+description: library 지식을 목적별로 조합하여 views/에 저장 (plugin, product, talk, curriculum, portfolio, essay)
 allowed-tools: Read, Write, Edit, Glob, Grep
 argument-hint: [type] [title]
 ---
@@ -12,25 +12,24 @@ view 스킬을 사용하여 library 지식을 목적별로 조합합니다.
 
 ```
 /gemify:view                      # 타입 선택 → 목록 또는 새로 만들기
-/gemify:view subject gemify       # gemify subject view 생성/업데이트
+/gemify:view plugin gemify        # gemify plugin view 생성/업데이트
+/gemify:view product tetritime    # tetritime product view 생성/업데이트
 /gemify:view talk ai-for-devs     # talk view 생성
 /gemify:view curriculum plugin-101 # curriculum view 생성
 /gemify:view portfolio developer   # portfolio view 생성
 /gemify:view essay why-i-write    # essay view 생성
-
-# 하위 호환 (type 생략 시 subject)
-/gemify:view gemify               # = /gemify:view subject gemify
 ```
 
 ## View 타입
 
 | 타입 | 목적 | 서사의 핵심 질문 |
 |------|------|-----------------|
-| subject | 문제 → 해결책 | 어떤 문제를 어떻게 풀었는가? |
+| plugin | Claude Code 플러그인 | 어떤 플러그인을 왜/어떻게 만들었는가? |
+| product | 사용자용 제품/서비스 | 어떤 제품을 왜/어떻게 만들었는가? |
 | talk | 메시지 전달 | 청중이 무엇을 깨닫고 가는가? |
 | curriculum | 가르침 | 학습자가 무엇을 할 수 있게 되는가? |
 | portfolio | 셀프 브랜딩 | 나는 어떤 사람인가? (증명과 함께) |
-| essay | 자기 성찰 | 나는 무엇을 믿고/느끼는가? |
+| essay | 철학/에세이 | 나는 무엇을 믿고/느끼는가? |
 
 ## 파이프라인 위치
 
@@ -46,7 +45,7 @@ view 스킬(`skills/view/SKILL.md`)의 지시사항을 따라 처리한다.
 ### $ARGUMENTS 없이 실행
 
 1. "어떤 타입의 view를 만들까요?" 질문
-   - subject, talk, curriculum, portfolio, essay 선택
+   - plugin, product, talk, curriculum, portfolio, essay 선택
 2. 선택한 타입의 views/by-{type}/ 폴더 확인
 3. 기존 view 목록 표시
 4. "새로 만들까요, 아니면 기존 것을 업데이트할까요?" 질문
@@ -71,21 +70,27 @@ view 스킬(`skills/view/SKILL.md`)의 지시사항을 따라 처리한다.
 2. **존재하면**: 스냅샷 생성 → views 태그 기반 자동 수집 → 업데이트
 3. **없으면**: 타입별 렌즈 질문으로 정보 수집 → 신규 생성
 
-### 하위 호환 (단일 인자)
+### 단일 인자 (타입 선택 질문)
 
 ```
 /gemify:view gemify
 ```
 
-첫 번째 인자가 타입(subject, talk, curriculum, portfolio, essay)이 아니면:
-- `subject`로 간주: `/gemify:view subject gemify`와 동일
+첫 번째 인자가 타입(plugin, product, talk, curriculum, portfolio, essay)이 아니면:
+- "무엇에 대한 view인가요?" 질문으로 분기
 
 ## 타입별 생성 흐름
 
-### subject (기본)
-1. 어떤 subject인가요?
-2. artifact 경로는?
-3. 어떤 domain들과 관련있나요?
+### plugin (신규)
+1. 어떤 플러그인인가요? (이름)
+2. 플러그인 경로는? (artifact)
+3. 태그라인은?
+4. 참조할 library 문서들은?
+
+### product (신규)
+1. 어떤 제품/서비스인가요? (이름)
+2. 프로젝트 경로는? (artifact)
+3. 태그라인은?
 4. 참조할 library 문서들은?
 
 ### talk
@@ -129,21 +134,29 @@ view 스킬(`skills/view/SKILL.md`)의 지시사항을 따라 처리한다.
 
 ```
 views/
-├── by-subject/       # 문제 해결
+├── by-plugin/        # Claude Code 플러그인
 │   ├── gemify.md
 │   └── forgeify.md
+├── by-product/       # 사용자용 제품/서비스
+│   └── tetritime.md
 ├── by-talk/          # 발표
 ├── by-curriculum/    # 교육
 ├── by-portfolio/     # 포트폴리오
-├── by-essay/         # 에세이
+├── by-essay/         # 철학/에세이
+│   └── design-philosophy.md
+├── by-poc/           # PoC (gemify:poc 전용)
+├── by-improvement/   # 개선 (gemify:improve-plugin 전용)
+├── by-bugfix/        # 버그 수정 (gemify:bugfix 전용)
 └── .history/
-    ├── subject/
-    │   └── gemify/
-    │       └── 01-2024-12-31.md
+    ├── plugin/
+    ├── product/
     ├── talk/
     ├── curriculum/
     ├── portfolio/
-    └── essay/
+    ├── essay/
+    ├── poc/
+    ├── improvement/
+    └── bugfix/
 ```
 
 ## 파일 위치
@@ -152,10 +165,14 @@ views/
 ground-truth/
 ├── library/        # 원천 (모델)
 └── views/
-    ├── by-subject/
+    ├── by-plugin/
+    ├── by-product/
     ├── by-talk/
     ├── by-curriculum/
     ├── by-portfolio/
     ├── by-essay/
+    ├── by-poc/
+    ├── by-improvement/
+    ├── by-bugfix/
     └── .history/
 ```

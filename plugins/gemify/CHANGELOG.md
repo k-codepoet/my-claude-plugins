@@ -5,6 +5,26 @@ All notable changes to the Gemify plugin will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.21.0] - 2026-01-17
+
+### Changed
+- **Views 폴더 구조 개편** - `by-subject` deprecated, 목적별로 명확한 분리
+  - `by-plugin/` 신규: Claude Code 플러그인 전용 (gemify, forgeify, craftify 등)
+  - `by-product/` 신규: 사용자용 제품/서비스 (tetritime, ai-company 등)
+  - `by-essay/` 확장: 철학/에세이 (design-philosophy 등)
+  - `by-subject/` deprecated: 플러그인/제품/에세이 혼재 문제 해결
+
+### Added
+- `by-plugin/_template.md` - 플러그인 view 템플릿
+- `by-product/_template.md` - 제품 view 템플릿
+- View 타입 선택 가이드 - 타입 미지정 시 분기 질문 추가
+
+### Migration
+- 기존 `by-subject/` 파일들은 ground-truth repo에서 수동 마이그레이션 필요
+  - 플러그인 → `by-plugin/`
+  - 제품/서비스 → `by-product/`
+  - 철학/에세이 → `by-essay/`
+
 ## [1.20.0] - 2026-01-14
 
 ### Fixed
