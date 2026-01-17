@@ -164,27 +164,22 @@ Note: Only `type: "command"` is supported in plugin hooks. `type: "prompt"` is s
 - Output uses color-coded messages: green (success), yellow (warning), red (error)
 - `${CLAUDE_PLUGIN_ROOT}` environment variable points to plugin root directory
 
-## Available Commands & Skills Quick Reference
+## Plugin Discovery
 
-| Plugin | Commands | Skills (auto-activate) |
-|--------|----------|------------------------|
-| homeserver-gitops | `:bootstrap`, `:bootstrap-iac`, `:join-node`, `:snapshot`, `:restore`, `:help` | k3s-homeserver |
-| ubuntu-dev-setup | `:setup-all`, `:setup-common`, `:setup-zsh`, `:setup-nvm`, `:help` | ubuntu-dev-environment |
-| forgeify | `:howto`, `:compose`, `:improve-plugin`, `:update`, `:validate`, `:poc`, `:help` | plugin-guide, command-guide, skill-guide, agent-guide, hook-guide, marketplace-guide, workflow-guide, improve-plugin, compose, update, validate, poc, bugfix |
-| gemify | `:inbox`, `:import`, `:sidebar`, `:draft`, `:library`, `:view`, `:retro`, `:tidy`, `:triage`, `:map`, `:wrapup`, `:poc`, `:setup`, `:sync`, `:improve-plugin`, `:howto`, `:help` | inbox, import, sidebar, draft, library, view, retro, tidy, triage, map, wrapup, poc, scope, improve-plugin, troubleshoot, bugfix |
-| namify | `:name` | naming-guide |
-| craftify | `:poc`, `:deploy`, `:howto` | poc, deploy |
-| terrafy | `:bootstrap`, `:status`, `:help` | k3s, portainer, terraform, help |
+Commands are prefixed with plugin name (e.g., `/forgeify:help`, `/gemify:inbox`).
 
-Note: Commands are prefixed with plugin name (e.g., `/forgeify:help`, `/gemify:inbox`).
+```bash
+# List all installed plugins
+/plugin list
 
-### Agents
+# Check plugin version
+cat plugins/<name>/.claude-plugin/plugin.json | jq -r '.name, .version'
+```
 
-| Plugin | Agents |
-|--------|--------|
-| craftify | setup-wizard |
-
-Agents are triggered by natural language patterns defined in their description.
+To find available commands/skills for a plugin, check:
+- `plugins/<name>/commands/*.md` for slash commands
+- `plugins/<name>/skills/*/SKILL.md` for auto-activating skills
+- `plugins/<name>/agents/*.md` for natural language triggers
 
 ## Version Bumping
 
@@ -199,24 +194,24 @@ cat plugins/<name>/.claude-plugin/plugin.json | jq -r '.version'
 # - major: breaking changes
 ```
 
-## Validation Checklist
+## Validation
 
-Before committing plugin changes:
+Use the validation script for comprehensive checks:
 ```bash
-# Validate plugin manifest
+# Validate a specific plugin (recommended)
+./plugins/forgeify/scripts/validate-plugin.sh plugins/<name>
+
+# Quick manual checks
 cat plugins/<name>/.claude-plugin/plugin.json | jq .
-
-# Validate marketplace registry
 cat .claude-plugin/marketplace.json | jq .
-
-# Validate bash scripts (if any)
-bash -n plugins/<name>/scripts/*.sh
+bash -n plugins/<name>/scripts/*.sh  # if scripts exist
 ```
 
-Also verify:
-- SKILL.md files are uppercase and in `skills/{skill-name}/SKILL.md` structure
-- All paths referenced in plugin.json have corresponding files
-- Commands have frontmatter (at minimum `description` recommended)
+The validation script checks:
+- plugin.json schema and required fields
+- SKILL.md naming (uppercase, in `skills/{skill-name}/SKILL.md`)
+- Path references in plugin.json
+- Command frontmatter presence
 
 ## Adding New Plugins
 
