@@ -5,6 +5,18 @@ All notable changes to the Gemify plugin will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.22.0] - 2026-01-17
+
+### Added
+- **wrapup 자동 sync push** - 세션 리포트 저장 후 자동으로 remote에 push
+  - git remote 설정 여부에 따른 조건부 실행
+  - 성공/스킵/실패 상태 메시지 표시
+
+### Fixed
+- **improve-plugin 핸드오프 버그 수정** - y 입력 시 직접 코드 수정하던 문제
+  - Skill 도구로 `forgeify:improve-plugin` 호출 명시
+  - 경고 문구 추가로 단방향 원칙 강조
+
 ## [1.21.0] - 2026-01-17
 
 ### Changed
