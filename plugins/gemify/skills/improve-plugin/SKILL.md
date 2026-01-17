@@ -107,13 +107,23 @@ gemify (지식 생산)        forgeify (실행)
 바로 적용할까요? (y/n)
 ```
 
-**y 입력 시:**
-- forgeify:improve-plugin 자동 호출
-- 현재 맥락(생성된 파일 경로)을 전달
-- forgeify 실행 결과를 사용자에게 전달
+**y 입력 시 (중요!):**
+
+> ⚠️ **gemify가 직접 코드를 수정하면 안 됨!**
+> 반드시 Skill 도구로 `forgeify:improve-plugin` 스킬을 호출해야 함.
+
+```
+Skill 도구 사용:
+  skill: "forgeify:improve-plugin"
+  args: "{생성된 파일 경로}"
+```
+
+- Skill 도구로 forgeify:improve-plugin 호출
+- 생성된 파일 경로를 args로 전달
+- forgeify가 문서를 읽고 코드 수정 실행
 
 **n 입력 시:**
-- 기존처럼 명령어 안내만 표시:
+- 명령어 안내만 표시:
   ```
   플러그인에 적용하려면:
   /forgeify:improve-plugin {생성된 파일 경로}
@@ -121,9 +131,9 @@ gemify (지식 생산)        forgeify (실행)
 
 ### 단방향 원칙과 위임
 
-- gemify가 직접 코드를 수정하는 것이 **아님**
-- forgeify에게 **위임**하는 것이므로 원칙 위반 아님
-- 사용자 확인 후 실행하므로 안전
+- **gemify는 절대 직접 코드를 수정하지 않음**
+- forgeify에게 **Skill 도구로 위임**하는 것이므로 원칙 위반 아님
+- 사용자 확인(y) 후 Skill 도구로 forgeify 실행
 
 ## 저장 위치
 

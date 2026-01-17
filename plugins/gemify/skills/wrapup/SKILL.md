@@ -45,6 +45,11 @@ Setup 안내:
    ├─ Outputs (생성/수정된 파일)
    ├─ Stashed for Next (inbox에 챙겨둔 것)
    └─ Next Actions (파생 TODO, 우선순위)
+        ↓
+3. 자동 동기화 (sync push)
+   ├─ git remote 설정 확인
+   ├─ remote 있음 → git add, commit, push 실행
+   └─ remote 없음 → 스킵 (로컬 저장만 완료)
 ```
 
 ## HITL 체크 질문
@@ -101,11 +106,45 @@ slug: "{slug}"
 inbox 항목 = "미완료"가 아니라 **"의도적으로 챙겨둔 것"**
 - Stashed for Next 섹션에서 이 의도를 명확히 표현
 
+## 자동 동기화 (3단계)
+
+리포트 저장 후 자동으로 remote에 push합니다.
+
+### 동작 조건
+
+```bash
+cd ~/.gemify
+git remote -v  # remote 설정 확인
+```
+
+| 상태 | 동작 |
+|------|------|
+| remote 있음 | git add → commit → push 실행 |
+| remote 없음 | 스킵 (로컬 저장만 완료) |
+
+### 실행 명령
+
+```bash
+cd ~/.gemify
+git add .
+git commit -m "session: {slug}"
+git push origin main
+```
+
+### 결과 메시지
+
+| 상태 | 메시지 |
+|------|--------|
+| 성공 | ✅ 세션 리포트 저장 및 동기화 완료 |
+| 스킵 | 📝 세션 리포트 저장 완료 (remote 미설정) |
+| 실패 | ⚠️ 세션 리포트 저장 완료, 동기화 실패: {에러} |
+
 ## 규칙
 
 - **HITL 체크 필수**: 놓친 것 확인 없이 리포트 생성 안 함
 - **컨펌 없이 저장 안 함**
 - slug는 세션 주제를 요약한 kebab-case
+- **리포트 저장 후 자동 sync**: remote 설정 시 자동 push
 
 ## 예시 시나리오
 
@@ -115,4 +154,6 @@ inbox 항목 = "미완료"가 아니라 **"의도적으로 챙겨둔 것"**
 → HITL 체크 (놓친 것 확인)
 → 사용자 승인
 → sessions/2026-01-03-gemify-wrapup-impl.md 저장
+→ git add, commit, push (자동)
+→ "✅ 세션 리포트 저장 및 동기화 완료"
 ```
