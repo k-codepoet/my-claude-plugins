@@ -5,6 +5,15 @@ All notable changes to the Forgeify plugin will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.13.0] - 2026-01-17
+
+### Added
+- **principles/ 디렉토리** - forgeify 설계 원칙 문서
+  - `script-repetitive-tasks.md`: 정형화된 작업은 스크립트로 원칙
+- **plugin-guide scripts/ 섹션** - 스크립트 작성 가이드라인 추가
+  - 스크립트화 판단 기준
+  - 작성 원칙 (exit code, 출력 형식, 권한)
+
 ## [1.12.0] - 2026-01-17
 
 ### Added

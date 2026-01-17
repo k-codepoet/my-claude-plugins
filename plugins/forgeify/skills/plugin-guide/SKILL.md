@@ -113,6 +113,34 @@ my-plugin/
 | `local` | `.claude/settings.local.json` | 프로젝트별, gitignore |
 | `managed` | `managed-settings.json` | 기업 관리용 (읽기 전용) |
 
+## scripts/ 디렉토리
+
+> **원칙**: 정형화된 작업은 shell script로 만들어야 한다.
+> → `principles/script-repetitive-tasks.md` 참조
+
+플러그인에서 반복되는 정형화된 작업은 `scripts/`에 스크립트로 작성합니다:
+
+```
+scripts/
+├── validate-plugin.sh   # 플러그인 검증
+├── build.sh             # 빌드 스크립트
+└── test.sh              # 테스트 실행
+```
+
+### 스크립트 작성 원칙
+
+1. **Exit code로 결과 반환** (0: 성공, 1: 실패, 2: 입력 오류)
+2. **명확한 출력 형식** (파싱 가능하거나 사람이 읽기 쉽게)
+3. **실행 권한 부여** (`chmod +x`)
+
+### 스크립트화 판단 기준
+
+| 조건 | 스크립트화 |
+|------|-----------|
+| 동일한 로직이 반복됨 | ✅ 필수 |
+| 입력/출력이 정형화됨 | ✅ 필수 |
+| 매번 다른 판단이 필요 | ❌ 불필요 |
+
 ## CLI 명령어
 
 ```bash
