@@ -26,11 +26,30 @@ argument-hint: [plugin-path]
 
 ## 검증 프로세스
 
-1. **탐색**: 플러그인 루트에서 구성요소 탐색
-2. **검증**: 각 구성요소별 필수 항목 확인
-3. **리포트**: Errors/Warnings 목록화
-4. **리팩토링 제안**: 수정 필요 항목 제시
-5. **사용자 확인 후 수정**
+### 1단계: 기본 검증 스크립트 실행
+
+```bash
+bash {forgeify-plugin-path}/scripts/validate-plugin.sh {target-plugin-path}
+```
+
+스크립트가 자동 검증하는 항목:
+- plugin.json 필수 필드
+- commands/*.md의 description frontmatter
+- skills/*/SKILL.md의 name, description
+- agents/*.md의 name, description, `<example>` 블록
+- hooks/hooks.json 구조
+
+### 2단계: 상세 검증 (필요시)
+
+스크립트로 해결 안 되는 문제는 수동으로 상세 검증:
+- 가이드 스킬 기준 준수 여부
+- 의미적 품질 (description이 when to use를 설명하는지 등)
+
+### 3단계: 리팩토링 제안
+
+- Errors/Warnings 목록화
+- 수정 필요 항목 제시
+- 사용자 확인 후 수정
 
 ## 출력 형식
 

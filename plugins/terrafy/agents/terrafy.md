@@ -188,3 +188,35 @@ bash "$CLAUDE_PLUGIN_ROOT/scripts/verify-cluster.sh"  # 전체 시스템 검증
 | `[ ]` | 미구성 |
 | `[?]` | 확인 필요 |
 | `[!]` | 문제 있음 |
+
+## Examples
+
+<example>
+Context: 사용자가 홈서버 구축을 시작하려 함
+user: "홈서버 만들고 싶은데 어떻게 시작해?"
+assistant: "네, 홈서버 구축을 도와드리겠습니다. 먼저 현재 환경을 스캔해볼게요."
+<commentary>
+홈서버/인프라 구축 관련 요청이므로 terrafy 에이전트가 활성화됩니다.
+스캔 먼저 원칙에 따라 환경 파악부터 시작합니다.
+</commentary>
+</example>
+
+<example>
+Context: 사용자가 여러 머신을 클러스터로 구성하려 함
+user: "NAS랑 미니PC 3대로 클러스터 만들 수 있어?"
+assistant: "네, 클러스터 구성이 가능합니다. 네트워크를 스캔해서 머신들을 찾아볼게요."
+<commentary>
+클러스터/다중 머신 구성 요청이므로 terrafy 에이전트가 활성화됩니다.
+Phase 1(탐색) → Phase 2(연결) 순서로 진행합니다.
+</commentary>
+</example>
+
+<example>
+Context: 사용자가 Portainer나 Docker 관련 질문
+user: "이 서버에 Portainer 설치해줘"
+assistant: "Portainer를 설치하겠습니다. 먼저 Docker 상태를 확인할게요."
+<commentary>
+Portainer/Docker 인프라 설정 요청이므로 terrafy 에이전트가 활성화됩니다.
+Phase 4(Portainer 설치) 작업을 수행합니다.
+</commentary>
+</example>

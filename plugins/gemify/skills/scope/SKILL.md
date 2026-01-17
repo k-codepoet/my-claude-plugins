@@ -41,6 +41,7 @@ description: Gemify User Scope 경로 관리. 모든 gemify 스킬 실행 전 ~/
 
 | 폴더 | 용도 | 예시 경로 |
 |------|------|-----------|
+| visions/{vision-name}/ | 비전/평가 | ~/.gemify/visions/ai-company/definition.md |
 | inbox/thoughts/ | 내 생각 | ~/.gemify/inbox/thoughts/2026-01-06-idea.md |
 | inbox/materials/ | 외부 재료 | ~/.gemify/inbox/materials/2026-01-06-article.md |
 | drafts/ | 다듬는 중 | ~/.gemify/drafts/project-plan.md |
@@ -103,10 +104,12 @@ gemify는 이 명령을 대신 실행하지 않습니다.
 
 모든 gemify 스킬은 이 scope 규칙을 따릅니다:
 
-1. **inbox**: `~/.gemify/inbox/thoughts/`
-2. **import**: `~/.gemify/inbox/materials/`
-3. **draft**: `~/.gemify/drafts/`
-4. **library**: `~/.gemify/library/`
-5. **view**: `~/.gemify/views/` (7가지 타입)
-6. **wrapup**: `~/.gemify/sessions/`
-7. **triage/map**: `~/.gemify/meta/cluster/`
+1. **vision**: `~/.gemify/visions/{vision-name}/definition.md`
+2. **vision-review**: `~/.gemify/visions/{vision-name}/reviews/`
+3. **inbox**: `~/.gemify/inbox/thoughts/`
+4. **import**: `~/.gemify/inbox/materials/`
+5. **draft**: `~/.gemify/drafts/`
+6. **library**: `~/.gemify/library/`
+7. **view**: `~/.gemify/views/` (7가지 타입)
+8. **wrapup**: `~/.gemify/sessions/`
+9. **triage/map**: `~/.gemify/meta/cluster/`

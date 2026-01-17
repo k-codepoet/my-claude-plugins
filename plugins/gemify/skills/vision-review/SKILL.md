@@ -1,24 +1,16 @@
 ---
-name: goal-review
-description: 목표 대비 현재 상태 평가 + 리뷰 기록
-invocation: user
-triggers:
-  - "/gemify:goal-review"
-  - "목표 리뷰"
-  - "goal review"
-  - "진척도 평가"
-  - "방향 점검"
-args: "[goal-name]"
+name: vision-review
+description: 비전 대비 현재 상태 평가 + 리뷰 기록. "비전 리뷰", "vision review", "진척도 평가", "방향 점검" 등 요청 시 활성화.
 ---
 
-# Goal Review
+# Vision Review
 
-북극성(north-star) 대비 현재 상태를 평가하고 리뷰를 기록합니다.
+비전(definition) 대비 현재 상태를 평가하고 리뷰를 기록합니다.
 
 ## 사용법
 
 ```
-/gemify:goal-review ai-company
+/gemify:vision-review ai-company
 ```
 
 ## 절차
@@ -26,8 +18,8 @@ args: "[goal-name]"
 ### 1. 문서 읽기
 
 ```
-~/.gemify/goals/{goal-name}/
-  ├── north-star.md    ← 목표
+~/.gemify/visions/{vision-name}/
+  ├── definition.md    ← 비전 정의
   ├── current.md       ← 현재 상태
   └── reviews/         ← 이전 리뷰들
 ```
@@ -46,7 +38,7 @@ args: "[goal-name]"
 | 밀도 | 지식체계의 밀도/깊이 |
 | 실현율 | 지식 → 구현체 변환 비율 |
 | 자동화율 | 사람 개입 없이 처리되는 비율 |
-| 방향성 | 북극성을 향해 가고 있는가? |
+| 방향성 | 비전을 향해 가고 있는가? |
 
 ### 4. 리뷰 기록
 
@@ -64,7 +56,7 @@ stage_after: N
 ## 리뷰 문서 구조
 
 ```markdown
-# Goal Review: {goal-name}
+# Vision Review: {vision-name}
 
 ## 요약
 한두 문장으로 현재 상태 요약
@@ -92,7 +84,7 @@ stage_after: N
 올바른 방향인가? 피보팅 필요한가?
 
 ## Gap 분석
-목표와 현재의 주요 차이점
+비전과 현재의 주요 차이점
 
 ## 권장 다음 단계
 우선순위별 액션 아이템
@@ -111,6 +103,6 @@ stage_after: N
 
 방향 전환이 필요하면:
 
-1. 사용자 확인 후 north-star.md 수정
-2. 이전 버전을 `north-star.history/vN-YYYY-MM-DD.md`에 백업
+1. 사용자 확인 후 definition.md 수정
+2. 이전 버전을 `definition.history/vN-YYYY-MM-DD.md`에 백업
 3. 백업 파일에 `pivot_reason` 기록

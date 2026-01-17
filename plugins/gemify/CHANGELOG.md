@@ -5,6 +5,29 @@ All notable changes to the Gemify plugin will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.24.0] - 2026-01-17
+
+### Changed
+- **goals → visions 리네이밍** - 메타포 제거, 기능적 네이밍으로 통일
+  - `/gemify:goal` → `/gemify:vision`
+  - `/gemify:goal-review` → `/gemify:vision-review`
+  - `goals/` → `visions/`
+  - `north-star.md` → `definition.md`
+  - `north-star.history/` → `definition.history/`
+- gemify 파이프라인과 일관된 네이밍 (inbox, draft, library, view, vision)
+
+## [1.23.0] - 2026-01-17
+
+### Added
+- **visions/ 시스템** - 비전(지향점) 관리 기능
+  - `/gemify:vision [vision-name]` - 비전 생성/조회
+  - `/gemify:vision-review [vision-name]` - 비전 대비 현재 상태 평가 + 리뷰 기록
+  - `visions/{vision-name}/definition.md` - 비전 정의
+  - `visions/{vision-name}/definition.history/` - 피보팅 이력
+  - `visions/{vision-name}/current.md` - 현재 상태 스냅샷
+  - `visions/{vision-name}/reviews/` - 평가 이력
+- **scope 스킬 업데이트** - visions/ 경로 규칙 추가
+
 ## [1.22.0] - 2026-01-17
 
 ### Added
