@@ -22,12 +22,38 @@ description: 플러그인이 가이드라인을 준수하는지 검증. "플러�
 
 ## 검증 프로세스
 
-1. **탐색**: 플러그인 루트에서 구성요소 탐색
-2. **가이드 스킬 읽기**: 각 구성요소별 가이드 스킬을 **Read 도구로 먼저 로드**
-3. **검증**: 가이드 스킬의 기준으로 검증 (이 스킬의 요약이 아닌 가이드 스킬 원본 기준)
-4. **리포트**: 문제점 목록화 (Errors/Warnings)
-5. **리팩토링 제안**: 수정 필요 항목 제시
-6. **사용자 확인 후 수정**
+### 1단계: 기본 검증 스크립트 실행
+
+먼저 `scripts/validate-plugin.sh`를 실행하여 기본 검증을 수행합니다:
+
+```bash
+bash {forgeify-plugin-path}/scripts/validate-plugin.sh {target-plugin-path}
+```
+
+스크립트가 검증하는 항목:
+- plugin.json 필수 필드 (name, version, description, author.name)
+- commands/*.md의 description frontmatter
+- skills/*/SKILL.md의 name(디렉토리명 일치), description
+- agents/*.md의 name, description, `<example>` 블록
+- hooks/hooks.json 구조
+
+**Exit codes:**
+- `0`: 검증 통과 (errors=0)
+- `1`: 검증 실패 (errors>0) → 리팩토링 필요
+- `2`: 플러그인 경로 오류
+
+### 2단계: 상세 검증 (필요시)
+
+스크립트로 해결되지 않는 문제나 가이드라인 준수 여부를 확인할 때:
+1. **가이드 스킬 읽기**: 해당 구성요소의 가이드 스킬을 **Read 도구로 로드**
+2. **검증**: 가이드 스킬의 기준으로 검증
+3. **리포트**: 추가 문제점 목록화
+
+### 3단계: 리팩토링
+
+검증 실패 시:
+1. **리팩토링 제안**: 수정 필요 항목 제시
+2. **사용자 확인 후 수정**
 
 ## 검증 항목 요약
 

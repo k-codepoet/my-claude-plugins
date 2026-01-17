@@ -133,6 +133,25 @@ What 섹션과 AC를 기반으로 구체적인 변경 계획을 수립합니다:
 
 변경 완료 후 `/forgeify:validate`를 자동 호출하여 검증합니다.
 
+### 8단계: CHANGELOG.md 업데이트
+
+검증 통과 후 플러그인의 CHANGELOG.md를 업데이트합니다:
+
+```markdown
+## [{new-version}] - {YYYY-MM-DD}
+
+### {Added|Changed|Fixed}
+- **{변경 제목}** - {간략 설명}
+  - {상세 내용}
+```
+
+- `improvement_type`에 따라 섹션 결정:
+  - `feature` → `### Added`
+  - `bugfix` → `### Fixed`
+  - `refactor` → `### Changed`
+- Keep a Changelog 형식 준수
+- 버전은 6단계에서 업데이트한 plugin.json 버전과 일치
+
 ## 관련 가이드라인
 
 플러그인 수정 시 다음 스킬의 가이드라인을 따릅니다:
