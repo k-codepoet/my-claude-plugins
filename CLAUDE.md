@@ -12,14 +12,17 @@ This is a **Claude Code Plugin Marketplace** (`k-codepoet/my-claude-plugins`) co
 
 ```
 .claude-plugin/marketplace.json  # Marketplace registry (name, owner, plugins[])
+├── sessions/                        # Development session logs (YYYY-MM-DD-topic.md)
 └── plugins/
     └── {directory-name}/
         ├── .claude-plugin/plugin.json  # Plugin manifest (name can differ from directory)
+        ├── CHANGELOG.md                 # Version history (optional but recommended)
         ├── agents/                      # Natural language trigger definitions (.md)
         ├── commands/                    # Slash command definitions (.md)
         ├── skills/                      # Contextual knowledge (*/SKILL.md)
         ├── scripts/                     # Bash implementation scripts (.sh)
         ├── hooks/hooks.json             # Event-driven hooks
+        ├── principles/                  # Guiding principles for the plugin (.md)
         ├── .mcp.json                    # MCP server configuration
         └── .lsp.json                    # LSP server configuration
 ```
@@ -199,24 +202,38 @@ cat plugins/<name>/.claude-plugin/plugin.json | jq -r '.version'
 # - major: breaking changes
 ```
 
+Also update `CHANGELOG.md` if present. Format:
+```markdown
+## [1.2.0] - 2026-01-17
+### Added
+- New feature description
+### Fixed
+- Bug fix description
+```
+
 ## Validation Checklist
 
 Before committing plugin changes:
 ```bash
-# Validate plugin manifest
+# Comprehensive validation (forgeify plugin)
+plugins/forgeify/scripts/validate-plugin.sh plugins/<name>
+
+# Or manual validation:
 cat plugins/<name>/.claude-plugin/plugin.json | jq .
-
-# Validate marketplace registry
 cat .claude-plugin/marketplace.json | jq .
-
-# Validate bash scripts (if any)
-bash -n plugins/<name>/scripts/*.sh
+bash -n plugins/<name>/scripts/*.sh  # if scripts exist
 ```
+
+validate-plugin.sh checks:
+- plugin.json required fields (name, version, description, author.name)
+- Command frontmatter (description required)
+- Skill structure (SKILL.md with name/description matching directory)
+- Agent frontmatter (name, description, example block)
+- hooks.json structure
 
 Also verify:
 - SKILL.md files are uppercase and in `skills/{skill-name}/SKILL.md` structure
 - All paths referenced in plugin.json have corresponding files
-- Commands have frontmatter (at minimum `description` recommended)
 
 ## Adding New Plugins
 
@@ -232,3 +249,11 @@ Also verify:
 - **Directory name**: Used for filesystem organization and `source` path in marketplace.json
 - **Plugin name** (in plugin.json): Determines command prefix and install identifier
 - Example: Directory `forgeify` has plugin name `forgeify`, so commands are `/forgeify:*` and install is `forgeify@k-codepoet-plugins`
+
+## Development Sessions
+
+The `sessions/` directory tracks development session logs with format `YYYY-MM-DD-topic.md`. Use for documenting significant development decisions, bugfixes, or feature implementations.
+
+## Principles Directory
+
+Plugins can include a `principles/` directory containing guiding principles (markdown files) that inform how the plugin operates. These are referenced by skills for consistent decision-making.
