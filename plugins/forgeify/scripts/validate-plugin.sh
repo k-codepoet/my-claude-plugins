@@ -218,6 +218,62 @@ else
 fi
 
 echo ""
+
+# 6. CHANGELOG.md 검증
+echo "## changelog/"
+CHANGELOG_FILE="$PLUGIN_PATH/CHANGELOG.md"
+if [ -f "$CHANGELOG_FILE" ]; then
+    # 최신 버전 및 날짜 추출
+    CHANGELOG_VERSION=$(grep -m1 '## \[' "$CHANGELOG_FILE" | grep -oE '\[[0-9]+\.[0-9]+\.[0-9]+\]' | tr -d '[]' || echo "")
+    CHANGELOG_DATE=$(grep -m1 '## \[' "$CHANGELOG_FILE" | grep -oE '[0-9]{4}-[0-9]{2}-[0-9]{2}' || echo "")
+
+    if [ -z "$CHANGELOG_VERSION" ]; then
+        warning "CHANGELOG.md: Could not parse version"
+    elif [ "$VERSION" != "$CHANGELOG_VERSION" ]; then
+        error "Version mismatch: plugin.json ($VERSION) != CHANGELOG.md ($CHANGELOG_VERSION)"
+    else
+        success "Version match: plugin.json ($VERSION) = CHANGELOG.md ($CHANGELOG_VERSION)"
+    fi
+
+    # Git history 기반 변경 파일 추적
+    if [ -n "$CHANGELOG_DATE" ] && command -v git &> /dev/null; then
+        # git repo 내부인지 확인
+        if git -C "$PLUGIN_PATH" rev-parse --git-dir > /dev/null 2>&1; then
+            # 해당 날짜 이후 변경된 파일 조회 (의미 있는 파일만)
+            CHANGED_FILES=$(git -C "$PLUGIN_PATH" log --since="$CHANGELOG_DATE 23:59:59" --name-only --pretty=format: -- . 2>/dev/null | \
+                grep -v '^$' | \
+                grep -v 'CHANGELOG.md' | \
+                grep -v '\.gitignore' | \
+                grep -v '\.gitkeep' | \
+                grep -vE '\.(bak|tmp)$' | \
+                sort -u || echo "")
+
+            if [ -n "$CHANGED_FILES" ]; then
+                FILE_COUNT=$(echo "$CHANGED_FILES" | wc -l | tr -d ' ')
+                warning "Found $FILE_COUNT file(s) changed after $CHANGELOG_DATE not in CHANGELOG:"
+                echo "$CHANGED_FILES" | head -10 | while read -r file; do
+                    echo "    - $file"
+                done
+                if [ "$FILE_COUNT" -gt 10 ]; then
+                    echo "    ... and $((FILE_COUNT - 10)) more"
+                fi
+                echo ""
+                echo "  Recommendation:"
+                echo "    1. Review if these changes warrant a version bump"
+                echo "    2. Update CHANGELOG.md with changes"
+                echo "    3. Bump version in plugin.json"
+            else
+                success "No unreported changes since $CHANGELOG_DATE"
+            fi
+        else
+            echo "  (git not available for history check)"
+        fi
+    fi
+else
+    warning "No CHANGELOG.md found"
+fi
+
+echo ""
 echo "=========================================="
 echo "Summary"
 echo "=========================================="

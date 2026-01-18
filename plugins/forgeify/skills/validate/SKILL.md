@@ -90,6 +90,46 @@ bash {forgeify-plugin-path}/scripts/validate-plugin.sh {target-plugin-path}
 Proceed with refactoring? (y/n)
 ```
 
+## Changelog 검증 (4단계)
+
+스크립트가 자동으로 CHANGELOG.md 일치 여부를 검증합니다:
+
+### 검증 항목
+
+1. **버전 일치**: `plugin.json` 버전과 `CHANGELOG.md` 최신 버전 비교
+2. **변경 파일 추적**: CHANGELOG 날짜 이후 git commit에서 변경된 파일 조회
+
+### 필터링 규칙
+
+**제외 파일:**
+- `CHANGELOG.md` (자기 자신)
+- `.gitignore`, `.gitkeep`
+- `*.bak`, `*.tmp`
+
+**의미 있는 변경:**
+- `commands/*.md`
+- `skills/*/SKILL.md`
+- `agents/*.md`
+- `hooks/hooks.json`
+- `scripts/*.sh`
+- `.claude-plugin/plugin.json`
+
+### 출력 예시
+
+```
+## changelog/
+✅ Version match: plugin.json (1.16.0) = CHANGELOG.md (1.16.0)
+⚠️  [WARN] Found 3 file(s) changed after 2026-01-18 not in CHANGELOG:
+    - skills/wrapup/SKILL.md
+    - scripts/migrate-sessions.sh
+    - assets/examples/sessions/20260103-wrapup.md
+
+  Recommendation:
+    1. Review if these changes warrant a version bump
+    2. Update CHANGELOG.md with changes
+    3. Bump version in plugin.json
+```
+
 ## 규칙
 
 - 사용자 확인 없이 자동 수정하지 않음

@@ -5,6 +5,15 @@ All notable changes to the Forgeify plugin will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.16.0] - 2026-01-18
+
+### Added
+- **validate changelog 검증** - CHANGELOG.md와 코드 변경 일치 여부 검증
+  - plugin.json 버전과 CHANGELOG.md 최신 버전 비교
+  - git history 기반 변경 파일 추적 (CHANGELOG 날짜 이후)
+  - 불일치 시 Warning 출력 및 권장 조치 안내
+  - 의미 없는 파일 필터링 (CHANGELOG.md, .gitignore 등 제외)
+
 ## [1.15.0] - 2026-01-18
 
 ### Changed

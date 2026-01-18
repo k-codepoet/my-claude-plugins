@@ -5,6 +5,14 @@ All notable changes to the Gemify plugin will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.26.0] - 2026-01-18
+
+### Changed
+- **세션 리포트 파일명에 시분초 추가** - 같은 날 여러 세션 시 시간순 정렬 가능
+  - 파일명: `YYYY-MM-DD-{slug}.md` → `YYYYMMDD-HHMMSS-{slug}.md`
+  - frontmatter에 `created_at` 필드 추가 (ISO 8601 전체 타임스탬프)
+  - 마이그레이션 스크립트 추가 (`scripts/migrate-sessions.sh`)
+
 ## [1.25.0] - 2026-01-18
 
 ### Changed
