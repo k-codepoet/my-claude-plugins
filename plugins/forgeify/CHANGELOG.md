@@ -5,6 +5,15 @@ All notable changes to the Forgeify plugin will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.17.0] - 2026-01-18
+
+### Changed
+- **improve-plugin 커맨드 스킬 호출 방식 개선** - Skill 도구 사용 명시
+  - `argument-hint`에 `<plugin-name>` 추가
+  - `allowed-tools`에 `Skill` 추가
+  - 인자 부족 시 사용법 안내 메시지 추가
+  - "스킬 참조" → "Skill 도구로 스킬 호출" 명시적 지시로 변경
+
 ## [1.16.0] - 2026-01-18
 
 ### Added
