@@ -48,7 +48,40 @@ gemify에서 생성된 개선 문서를 읽고, 해당 내용에 따라 플러�
 4. **개선 계획 수립**: 변경 계획 목록 작성
 5. **사용자 확인**: 변경 계획 승인 요청
 6. **변경 적용**: 파일 생성/수정, 버전 업데이트
-7. **검증**: `/forgeify:validate` 자동 호출
+7. **검증**: Skill 도구로 `/forgeify:validate` 호출
+8. **CHANGELOG.md 업데이트**: 변경 내역 기록
+
+## 7단계: 검증 (필수)
+
+변경 완료 후 **반드시** Skill 도구를 사용하여 검증합니다:
+
+```json
+{
+  "skill": "forgeify:validate",
+  "args": "{plugin-name}"
+}
+```
+
+검증 통과 시 8단계로 진행. 실패 시 문제 수정 후 재검증.
+
+## 8단계: CHANGELOG.md 업데이트 (필수)
+
+검증 통과 후 플러그인의 CHANGELOG.md를 업데이트합니다:
+
+```markdown
+## [{new-version}] - {YYYY-MM-DD}
+
+### {Added|Changed|Fixed}
+- **{변경 제목}** - {간략 설명}
+  - {상세 내용}
+```
+
+- `improvement_type`에 따라 섹션 결정:
+  - `feature` → `### Added`
+  - `bugfix` → `### Fixed`
+  - `refactor` → `### Changed`
+- Keep a Changelog 형식 준수
+- 버전은 6단계에서 업데이트한 plugin.json 버전과 일치
 
 ## 예시
 

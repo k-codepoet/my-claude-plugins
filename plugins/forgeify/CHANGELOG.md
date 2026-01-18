@@ -5,6 +5,13 @@ All notable changes to the Forgeify plugin will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.17.1] - 2026-01-18
+
+### Fixed
+- **improve-plugin 누락 단계 추가** - 워크플로우 완성도 개선
+  - 7단계: `/forgeify:validate` Skill 도구 호출 방법 명시
+  - 8단계: CHANGELOG.md 업데이트 섹션 추가 (improvement_type별 섹션 가이드 포함)
+
 ## [1.17.0] - 2026-01-18
 
 ### Changed
