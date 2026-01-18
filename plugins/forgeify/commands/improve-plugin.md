@@ -1,7 +1,7 @@
 ---
 description: gemify 개선 문서를 읽고 해당 플러그인을 수정합니다. 지식 생산(gemify)과 실행(forgeify) 분리 원칙에 따라 외부 문서 기반으로 플러그인을 개선합니다.
-argument-hint: "<improvement-doc-path>"
-allowed-tools: Read, Write, Edit, Bash, Glob, Grep
+argument-hint: "<plugin-name> <improvement-doc-path>"
+allowed-tools: Read, Write, Edit, Bash, Glob, Grep, Skill
 ---
 
 # /forgeify:improve-plugin - 개선 문서 기반 플러그인 수정
@@ -13,14 +13,34 @@ gemify에서 생성된 개선 문서를 읽고, 해당 내용에 따라 플러�
 ## 사용법
 
 ```
-/forgeify:improve-plugin <improvement-doc-path>
+/forgeify:improve-plugin <plugin-name> <improvement-doc-path>
 ```
 
-- `<improvement-doc-path>`: gemify 개선 문서 경로 (예: `~/.gemify/views/by-improvement/forgeify-new-feature.md`)
+- `<plugin-name>`: 대상 플러그인 이름 (예: `gemify`, `forgeify`)
+- `<improvement-doc-path>`: gemify 개선 문서 경로 (예: `~/.gemify/views/by-improvement/gemify-new-feature.md`)
+
+**인자가 부족한 경우 안내:**
+```
+사용법: /forgeify:improve-plugin <plugin-name> <improvement-doc-path>
+
+예시:
+  /forgeify:improve-plugin gemify ~/.gemify/views/by-improvement/gemify-retro-action-proposal.md
+```
+
+## 필수: 스킬 호출
+
+**Skill 도구를 사용하여 `improve-plugin` 스킬을 반드시 먼저 호출하라.**
+
+```json
+{
+  "skill": "forgeify:improve-plugin",
+  "args": "<plugin-name> <improvement-doc-path>"
+}
+```
+
+스킬이 로드되면 해당 워크플로우를 따라 진행한다.
 
 ## 워크플로우
-
-상세 가이드는 **improve-plugin** 스킬을 참조합니다.
 
 1. **개선 문서 파싱**: frontmatter에서 plugin, problem, solution, requirements 추출
 2. **대상 플러그인 확인**: plugins/{plugin}/ 탐색
