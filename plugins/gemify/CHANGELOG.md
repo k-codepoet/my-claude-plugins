@@ -5,6 +5,21 @@ All notable changes to the Gemify plugin will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.29.0] - 2026-01-18
+
+### Added
+- **실행 문서 역제안 기능** - retro/library 스킬에 추가
+  - library 저장 직후 실행 필요 여부 자동 판단
+  - 플러그인 개선 → improvement 문서 제안
+  - 신규 아이디어 → poc 문서 제안
+  - 버그 해결 → bugfix 문서 제안
+  - 사용자 승인 후 실행 문서 자동 생성
+
+## [1.28.0] - 2026-01-18
+
+### Changed
+- Minor internal improvements
+
 ## [1.27.0] - 2026-01-18
 
 ### Changed

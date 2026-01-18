@@ -97,6 +97,45 @@ origin: original | digested | derived
 - 템플릿 파일 (`_template.md`) 제외
 - slug는 영문 kebab-case
 
+## 실행 문서 역제안 (library 저장 후)
+
+library에 지식을 저장한 직후, **실행이 필요한 지식인지 판단**하여 능동적으로 실행 문서를 제안합니다.
+
+### 판단 로직
+
+```
+실행 필요 신호:
+├─ 키워드: "해야겠다", "하면 좋겠다", "만들어보자", "고쳐야", "추가하자"
+├─ 대상 언급: gemify, forgeify, craftify 등 플러그인명
+└─ 타입: principle/workflow인데 적용 대상이 명확한 경우
+```
+
+### 제안 분기
+
+| 신호 | 제안할 실행 문서 |
+|------|-----------------|
+| 플러그인/스킬 개선 언급 | `views/by-improvement/` (improvement) |
+| 신규 제품/기능 아이디어 | `views/by-poc/` (poc) |
+| 버그/문제 해결 기록 | `views/by-bugfix/` (bugfix) |
+| 순수 기록 (실행 불필요) | 제안 없이 종료 |
+
+### 제안 멘트
+
+```markdown
+## 실행 문서 제안
+
+이 {type}을 실제로 적용하려면 **{action_type} 문서**가 필요해 보여요.
+
+대상: {target_plugin}
+문서 위치: views/{by-folder}/
+
+작성할까요? (Y/n)
+```
+
+### 승인 시 동작
+
+사용자가 승인하면 해당 실행 문서(`improvement`/`poc`/`bugfix`)를 자동 생성합니다.
+
 ## References
 
 상세 형식과 예시는 `references/` 폴더 참조:
