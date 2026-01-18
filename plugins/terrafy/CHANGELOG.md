@@ -5,6 +5,20 @@ All notable changes to the Terrafy plugin will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.1.0] - 2026-01-18
+
+### Changed
+- **help.md 재구성** - ASCII art 제거, 표준 형식으로 통일
+  - 태그라인 + 한줄 설명
+  - 커맨드 테이블 (카테고리별)
+  - 역할 구조 표
+
+### Added
+- **howto.md 신규 생성** - 주제별 사용법과 예시
+  - 인프라 관리 주제 (status, setup, init-ssh)
+  - 구성 예시 (멀티노드, 싱글노드)
+  - 시작하기 가이드
+
 ## [2.0.0] - 2026-01-17
 
 ### Changed

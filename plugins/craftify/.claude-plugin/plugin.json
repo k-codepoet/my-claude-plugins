@@ -1,6 +1,6 @@
 {
   "name": "craftify",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "description": "Craft your products with AI - turborepo + Cloudflare 기반 개발환경 자동화",
   "author": {
     "name": "choigawoon"

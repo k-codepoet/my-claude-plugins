@@ -5,6 +5,18 @@ All notable changes to the Gemify plugin will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.25.0] - 2026-01-18
+
+### Changed
+- **help.md 재구성** - 전체 기능 간략 소개로 통일
+  - 예시 섹션 제거 (howto로 이동)
+  - 누락 커맨드 추가 (vision, vision-review, troubleshoot, bugfix, poc, sync, triage, map)
+  - 카테고리별 정리 (가이드/지식 파이프라인/비전 관리/문제 해결/세션·설정)
+- **howto.md 재구성** - 주제별 사용법과 예시로 통일
+  - 모든 주제에 예시 컬럼 추가
+  - 누락 주제 추가 (vision, vision-review, troubleshoot, bugfix, poc, sync, triage, map)
+  - 스킬 매핑 최신화
+
 ## [1.24.0] - 2026-01-17
 
 ### Changed

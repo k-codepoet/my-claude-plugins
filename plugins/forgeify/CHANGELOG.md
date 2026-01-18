@@ -5,6 +5,22 @@ All notable changes to the Forgeify plugin will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.15.0] - 2026-01-18
+
+### Changed
+- **help.md 재구성** - 전체 기능 간략 소개로 통일
+  - 예시 섹션 제거 (howto로 이동)
+  - 카테고리별 정리 (가이드/플러그인 개발/문제 해결)
+- **howto.md 재구성** - 주제별 사용법과 예시로 통일
+  - 개발 가이드와 플러그인 작업으로 카테고리 분리
+  - 모든 주제에 예시 컬럼 추가
+  - 플러그인 개발 흐름 다이어그램 추가
+
+### Added
+- **boilerplate/plugin-template/** - 플러그인 개발용 boilerplate
+  - plugin.json, help.md, howto.md, sample.md, SKILL.md 템플릿
+  - README.md (사용 가이드, placeholder 목록)
+
 ## [1.14.0] - 2026-01-17
 
 ### Added

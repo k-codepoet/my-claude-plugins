@@ -11,8 +11,12 @@ description: gemify 플러그인 도움말을 표시합니다
 ## 파이프라인 흐름
 
 ```
-/gemify:inbox → /gemify:draft → /gemify:library → /gemify:view
-    inbox/         drafts/         library/          views/
+inbox → draft → library → view
+  │       │        │        │
+  │       │        │        └─→ vision (방향, 모든 것이 향하는 곳)
+  │       │        │
+정제되지  다듬기   밀도 있는   흩어진 지식에
+않은 생각        지식/재료   의미 부여
 ```
 
 ## 사용 가능한 커맨드
@@ -32,10 +36,10 @@ description: gemify 플러그인 도움말을 표시합니다
 | `/gemify:draft` | 원석 다듬기 (대화로 확장) → drafts/ |
 | `/gemify:library` | 보석 정리 → library/ |
 | `/gemify:view` | 주제별 지식 조합 → views/ |
-| `/gemify:retro` | 완료 작업 역방향 기록 → library/ |
-| `/gemify:triage` | inbox 정리 + 우선순위 판단 |
-| `/gemify:map` | 지식 클러스터 맵 생성 |
-| `/gemify:tidy` | 문서 점진적 정리 (역방향 검증) |
+| `/gemify:retro` | 완료 작업에서 지식 수확 (적합한 경로로 라우팅) |
+| `/gemify:triage` | inbox 정리 + 우선순위 판단 (순방향) |
+| `/gemify:map` | 지식 클러스터 맵 생성 (현황 파악) |
+| `/gemify:tidy` | 지식 체계 탑다운 재정리 (끊어진 연결 복구) |
 
 ### 비전 관리
 | 커맨드 | 설명 |

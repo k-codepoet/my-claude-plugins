@@ -79,14 +79,12 @@ argument-hint: "[topic]"
 ## 파이프라인 개요
 
 ```
-inbox/thoughts/   ← /gemify:inbox (내 생각)
-inbox/materials/  ← /gemify:import (외부 재료)
-       ↓
-drafts/           ← /gemify:draft (다듬기)
-       ↓
-library/          ← /gemify:library (정리)
-       ↓
-views/            ← /gemify:view (조합)
+inbox → draft → library → view
+  │       │        │        │
+  │       │        │        └─→ vision (방향, 모든 것이 향하는 곳)
+  │       │        │
+정제되지  다듬기   밀도 있는   흩어진 지식에
+않은 생각        지식/재료   의미 부여
 ```
 
 ## Library Type 분류
