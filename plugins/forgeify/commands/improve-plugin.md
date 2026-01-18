@@ -1,12 +1,14 @@
 ---
-description: ground-truth 개선 문서를 읽고 해당 플러그인을 수정합니다. 지식 생산(gemify)과 실행(forgeify) 분리 원칙에 따라 외부 문서 기반으로 플러그인을 개선합니다.
+description: gemify 개선 문서를 읽고 해당 플러그인을 수정합니다. 지식 생산(gemify)과 실행(forgeify) 분리 원칙에 따라 외부 문서 기반으로 플러그인을 개선합니다.
 argument-hint: "<improvement-doc-path>"
 allowed-tools: Read, Write, Edit, Bash, Glob, Grep
 ---
 
 # /forgeify:improve-plugin - 개선 문서 기반 플러그인 수정
 
-ground-truth에서 생성된 개선 문서를 읽고, 해당 내용에 따라 플러그인을 수정합니다.
+gemify에서 생성된 개선 문서를 읽고, 해당 내용에 따라 플러그인을 수정합니다.
+
+> **Note**: `~/.gemify/`는 사용자의 지식 저장소(Single Source of Truth)입니다. 모든 개선 문서는 이곳에서 관리됩니다.
 
 ## 사용법
 
@@ -14,7 +16,7 @@ ground-truth에서 생성된 개선 문서를 읽고, 해당 내용에 따라 �
 /forgeify:improve-plugin <improvement-doc-path>
 ```
 
-- `<improvement-doc-path>`: ground-truth 개선 문서 경로 (예: `/path/to/views/by-improvement/forgeify-new-feature.md`)
+- `<improvement-doc-path>`: gemify 개선 문서 경로 (예: `~/.gemify/views/by-improvement/forgeify-new-feature.md`)
 
 ## 워크플로우
 
@@ -31,7 +33,7 @@ ground-truth에서 생성된 개선 문서를 읽고, 해당 내용에 따라 �
 ## 예시
 
 ```
-/forgeify:improve-plugin /path/to/ground-truth/views/by-improvement/forgeify-add-validation.md
+/forgeify:improve-plugin ~/.gemify/views/by-improvement/forgeify-add-validation.md
 ```
 
 ## 개선 문서 위치
@@ -39,12 +41,7 @@ ground-truth에서 생성된 개선 문서를 읽고, 해당 내용에 따라 �
 gemify:improve-plugin이 생성하는 개선 문서의 위치:
 
 ```
-{ground-truth}/views/by-improvement/{plugin}-{slug}.md
-```
-
-이전 위치 (deprecated):
-```
-{ground-truth}/library/engineering/plugin-improvements/
+~/.gemify/views/by-improvement/{plugin}-{slug}.md
 ```
 
 ## 주의사항

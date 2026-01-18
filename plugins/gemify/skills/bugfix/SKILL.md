@@ -126,8 +126,10 @@ troubleshoot에서 가져오거나 새로 수집:
 
 ## 저장 위치
 
+> **Note**: `~/.gemify/`는 사용자의 지식 저장소(Single Source of Truth)입니다.
+
 ```
-{ground-truth-path}/
+~/.gemify/
 └── views/
     ├── by-bugfix/
     │   └── {project}-{bug-slug}.md

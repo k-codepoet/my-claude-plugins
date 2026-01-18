@@ -84,7 +84,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - View 타입 선택 가이드 - 타입 미지정 시 분기 질문 추가
 
 ### Migration
-- 기존 `by-subject/` 파일들은 ground-truth repo에서 수동 마이그레이션 필요
+- 기존 `by-subject/` 파일들은 `~/.gemify/` 저장소에서 수동 마이그레이션 필요
   - 플러그인 → `by-plugin/`
   - 제품/서비스 → `by-product/`
   - 철학/에세이 → `by-essay/`

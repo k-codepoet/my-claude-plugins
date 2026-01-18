@@ -1,11 +1,13 @@
 ---
-description: ground-truth 문서 점진적 정리 (역방향 검증)
+description: gemify 문서 점진적 정리 (역방향 검증)
 allowed-tools: Read, Write, Edit, Glob, Grep
 ---
 
 # /gemify:tidy - 문서 정리 커맨드
 
-tidy 스킬을 호출하여 ground-truth 문서를 점진적으로 정리한다.
+tidy 스킬을 호출하여 `~/.gemify/` 문서를 점진적으로 정리한다.
+
+> **Note**: `~/.gemify/`는 사용자의 지식 저장소(Single Source of Truth)입니다.
 
 ## 사용법
 

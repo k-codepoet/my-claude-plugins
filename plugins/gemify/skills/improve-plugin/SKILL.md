@@ -137,10 +137,12 @@ Skill 도구 사용:
 
 ## 저장 위치
 
-개선 문서는 ground-truth의 views에 저장합니다:
+개선 문서는 `~/.gemify/views`에 저장합니다.
+
+> **Note**: `~/.gemify/`는 사용자의 지식 저장소(Single Source of Truth)입니다.
 
 ```
-{ground-truth-path}/
+~/.gemify/
 └── views/
     ├── by-improvement/
     │   └── {plugin}-{slug}.md
@@ -165,5 +167,5 @@ Skill 도구 사용:
 - **코드 수정 금지**: gemify는 문서 생성만 담당
 - **views/by-improvement/에 원본 저장**
 - **업데이트 시 .history/ 스냅샷 생성**
-- ground-truth 경로 필요 시 사용자에게 요청
+- `~/.gemify/` 경로가 없으면 `/gemify:setup` 안내
 - 기존 개선 문서가 있으면 업데이트 또는 새로 생성 선택 제안

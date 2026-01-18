@@ -7,7 +7,7 @@
 | POC.md 없음 | "POC.md가 없습니다. /gemify:poc으로 먼저 생성하세요." | gemify:poc 실행 안내 |
 | What 섹션 없음 | "POC.md에 What 섹션이 없습니다." | POC.md 수정 안내 |
 | AC 섹션 없음 | "Acceptance Criteria가 없습니다." | POC.md 수정 안내 |
-| boilerplate 없음 | "boilerplate 경로를 확인하세요." | 경로 확인: `~/k-codepoet/.../boilerplates/web/` |
+| boilerplate 없음 | "boilerplate 경로를 확인하세요." | `references/boilerplate.md` 참조 또는 `npx degit k-codepoet/craftify-boilerplates/web/{type}` |
 | 빌드 실패 | (빌드 에러 메시지) | 에러 수정 후 `pnpm build` 재시도 |
 | 배포 실패 | (배포 에러 메시지) | `/craftify:deploy` 트러블슈팅 참조 |
 

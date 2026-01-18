@@ -27,7 +27,7 @@ GitHub API error: Too Many Requests
 ```
 
 **재현 단계:**
-1. https://sessionview.k-codepoet.workers.dev/k-codepoet/ground-truth 접속
+1. Session Report Viewer에서 대상 repo URL 접속 (예: `https://sessionview.k-codepoet.workers.dev/{owner}/{repo}`)
 2. 페이지 로드 시 에러 발생
 
 **발생 조건:**

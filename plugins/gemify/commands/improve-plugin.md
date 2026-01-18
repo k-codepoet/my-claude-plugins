@@ -55,18 +55,20 @@ $ARGUMENTS 없음? → AskUserQuestion으로 플러그인명 요청
 - **improvement_type**: feature|bugfix|refactor
 - **priority**: high|medium|low
 
-### 3. ground-truth 경로 확인
+### 3. gemify 경로 확인
 
 ```
-$ARGUMENTS에 ground-truth 경로가 있음? → 해당 경로 사용
+$ARGUMENTS에 gemify 경로가 있음? → 해당 경로 사용
 없음? → AskUserQuestion으로 요청
-        "개선 문서를 저장할 ground-truth 경로를 입력해주세요"
-        예: ~/k-codepoet/ground-truth
+        "개선 문서를 저장할 gemify 경로를 입력해주세요"
+        예: ~/.gemify
 ```
 
 ### 4. view 생성
 
-`{ground-truth}/views/by-improvement/`에 저장:
+`~/.gemify/views/by-improvement/`에 저장:
+
+> **Note**: `~/.gemify/`는 사용자의 지식 저장소(Single Source of Truth)입니다.
 
 ```yaml
 ---
@@ -154,4 +156,4 @@ history:
 - **views/by-improvement/에 원본 저장**
 - **업데이트 시 .history/ 스냅샷 생성**
 - 기존 개선 문서가 있으면 업데이트 또는 새로 생성 선택 제안
-- ground-truth 경로가 없으면 반드시 사용자에게 요청
+- gemify 경로가 없으면 반드시 사용자에게 요청

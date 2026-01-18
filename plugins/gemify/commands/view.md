@@ -161,8 +161,10 @@ views/
 
 ## 파일 위치
 
+> **Note**: `~/.gemify/`는 사용자의 지식 저장소(Single Source of Truth)입니다.
+
 ```
-ground-truth/
+~/.gemify/
 ├── library/        # 원천 (모델)
 └── views/
     ├── by-plugin/

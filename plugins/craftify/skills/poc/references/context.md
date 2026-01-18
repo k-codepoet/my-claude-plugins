@@ -28,6 +28,6 @@ POC.md의 Context 섹션에는 gemify가 수집한 참조 자료 경로가 포�
 
 | 경로 패턴 | 위치 |
 |----------|------|
-| `library/...` | gemify ground-truth |
-| `inbox/...` | gemify inbox |
+| `library/...` | `~/.gemify/library/` (Single Source of Truth) |
+| `inbox/...` | `~/.gemify/inbox/` |
 | `대화 요약` | POC.md 내 인라인 텍스트 |

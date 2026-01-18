@@ -43,7 +43,7 @@ rough → refine → gem (모두 광물)
 ### 나쁜 예시
 
 ```
-ground-truth/
+~/.gemify/
 ├── ore/           # 원석? 이게 뭐야?
 ├── flux/          # 용제? 뭘 넣어야 해?
 └── smelting/      # 제련소? 어디로 가야 해?
@@ -52,7 +52,7 @@ ground-truth/
 ### 좋은 예시
 
 ```
-ground-truth/
+~/.gemify/
 ├── inbox/         # 아, 받은 편지함처럼
 ├── drafts/        # 아, 초안
 └── library/       # 아, 정리된 지식

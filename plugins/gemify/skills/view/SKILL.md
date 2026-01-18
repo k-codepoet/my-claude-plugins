@@ -480,4 +480,6 @@ views/
 - 제품/서비스 → `by-product/`으로 이동
 - 철학/에세이 → `by-essay/`로 이동
 
-기존 `by-subject/` 파일들은 ground-truth repo에서 직접 마이그레이션 필요.
+기존 `by-subject/` 파일들은 `~/.gemify/` 저장소에서 직접 마이그레이션 필요.
+
+> **Note**: `~/.gemify/`는 사용자의 지식 저장소(Single Source of Truth)입니다.

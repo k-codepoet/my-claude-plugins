@@ -1,11 +1,13 @@
 ---
 name: improve-plugin
-description: ground-truth 개선 문서 기반 플러그인 수정 가이드. "플러그인 개선", "plugin 수정", "improve", "개선 문서 실행" 등 요청 시 활성화됩니다.
+description: gemify 개선 문서 기반 플러그인 수정 가이드. "플러그인 개선", "plugin 수정", "improve", "개선 문서 실행" 등 요청 시 활성화됩니다.
 ---
 
 # Improve Plugin 가이드
 
-ground-truth에서 생성된 개선 문서를 읽고, 해당 내용에 따라 플러그인을 수정합니다.
+gemify에서 생성된 개선 문서를 읽고, 해당 내용에 따라 플러그인을 수정합니다.
+
+> **Note**: `~/.gemify/`는 사용자의 지식 저장소(Single Source of Truth)입니다. 모든 개선 문서는 이곳에서 관리됩니다.
 
 ## 단방향 흐름 원칙
 
@@ -63,12 +65,7 @@ history:
 gemify:improve-plugin이 생성하는 개선 문서의 위치:
 
 ```
-{ground-truth}/views/by-improvement/{plugin}-{slug}.md
-```
-
-이전 위치 (deprecated):
-```
-{ground-truth}/library/engineering/plugin-improvements/
+~/.gemify/views/by-improvement/{plugin}-{slug}.md
 ```
 
 ## 워크플로우
