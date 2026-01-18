@@ -62,10 +62,11 @@ Setup 안내:
 
 ```
 sessions/
-└── YYYY-MM-DD-{slug}.md
+└── YYYYMMDD-HHMMSS-{slug}.md
 ```
 
 - gemify 지식 파이프라인 바깥의 **운영 계층**
+- 파일명 형식: `{YYYYMMDD}-{HHMMSS}-{slug}.md` (시간순 정렬 가능)
 - slug: 세션 주제를 나타내는 kebab-case 식별자 (예: `gemify-wrapup-impl`)
 
 ## 리포트 템플릿
@@ -74,6 +75,7 @@ sessions/
 ---
 title: Session Wrapup
 date: YYYY-MM-DD
+created_at: "YYYY-MM-DDTHH:MM:SS+09:00"
 slug: "{slug}"
 ---
 
@@ -153,7 +155,19 @@ git push origin main
 → /gemify:wrapup 활성화
 → HITL 체크 (놓친 것 확인)
 → 사용자 승인
-→ sessions/2026-01-03-gemify-wrapup-impl.md 저장
+→ sessions/20260103-143052-gemify-wrapup-impl.md 저장
 → git add, commit, push (자동)
 → "✅ 세션 리포트 저장 및 동기화 완료"
+```
+
+## 마이그레이션 스크립트
+
+기존 `YYYY-MM-DD-{slug}.md` 형식 파일을 새 형식으로 변환:
+
+```bash
+# dry run (미리보기)
+~/.claude/plugins/*/gemify/*/scripts/migrate-sessions.sh --dry-run
+
+# 실제 마이그레이션
+~/.claude/plugins/*/gemify/*/scripts/migrate-sessions.sh
 ```

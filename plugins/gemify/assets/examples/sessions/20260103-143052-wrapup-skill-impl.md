@@ -1,6 +1,7 @@
 ---
 title: wrapup 스킬 구현 세션
 date: 2026-01-03
+created_at: "2026-01-03T14:30:52+09:00"
 slug: "wrapup-skill-impl"
 ---
 
