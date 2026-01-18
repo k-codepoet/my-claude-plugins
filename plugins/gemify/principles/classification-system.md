@@ -1,5 +1,5 @@
 ---
-title: 분류 체계 (Type vs Domain)
+title: 분류 체계 (Library Type)
 type: principle
 origin: original
 views: [gemify]
@@ -7,11 +7,7 @@ views: [gemify]
 
 # 분류 체계 (Classification System)
 
-## 두 가지 분류 체계
-
-Gemify는 **Type**과 **Domain** 두 가지 분류 체계를 사용합니다.
-
-### Type (library 분류)
+## Library Type 분류
 
 지식의 **형태**에 따른 분류. `library/{type}s/`에 저장.
 
@@ -26,32 +22,22 @@ Gemify는 **Type**과 **Domain** 두 가지 분류 체계를 사용합니다.
 
 **디렉토리 구조**: `library/principles/`, `library/decisions/`, `library/insights/`, `library/how-tos/`, `library/specs/`, `library/workflows/`
 
-### Domain (views 분류)
+## Views 타입
 
-지식의 **영역**에 따른 분류. `views/by-subject/`에서 렌즈로 사용.
+**핵심 개념**: library = 모델(재사용 가능한 원자 단위), views = 렌더링(서사가 있는 스토리텔링)
 
-| Domain | 핵심 질문 |
-|--------|----------|
-| product | 무엇을 만들 것인가? |
-| engineering | 어떻게 만들 것인가? |
-| operations | 어떻게 돌릴 것인가? |
-| growth | 어떻게 알릴 것인가? |
-| business | 어떻게 유지할 것인가? |
-| ai-automation | 어떻게 위임할 것인가? |
-
-**사용처**: views의 subject 주제, 클러스터링 시 상위 카테고리
-
-## Type vs Domain
-
-| | Type | Domain |
-|---|---|---|
-| 분류 기준 | 지식의 형태 | 지식의 영역 |
-| 사용처 | library 저장 | views 렌더링 |
-| 경로 | `library/{type}s/` | `views/by-subject/` |
-| 예시 | principle, decision | product, engineering |
+| View 타입 | 서사의 핵심 질문 |
+|-----------|-----------------|
+| by-talk | 청중이 무엇을 깨닫고 가는가? |
+| by-curriculum | 학습자가 무엇을 할 수 있게 되는가? |
+| by-portfolio | 나는 어떤 사람인가? |
+| by-essay | 나는 무엇을 믿고/느끼는가? |
+| by-poc | 어떤 가설을 어떻게 검증하려 하는가? |
+| by-improvement | 어떤 문제를 어떻게 개선하는가? |
+| by-bugfix | 어떤 버그를 어떻게 수정했는가? |
 
 ## 마이그레이션 히스토리
 
 - **2026-01-04**: library의 domain 기반 분류(`library/{domain}/`)를 type 기반(`library/{type}s/`)으로 마이그레이션
 - **이유**: domain은 "영역"이고 type은 "형태". library는 지식의 형태로 분류하는 것이 더 적합
-- **domain 활용**: views에서 subject별 조합 시 렌즈로 사용
+- **2026-01-18**: by-subject 및 6대 domain 제거. views는 목적별 타입으로만 분류
