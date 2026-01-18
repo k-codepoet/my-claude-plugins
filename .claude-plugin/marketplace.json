@@ -5,16 +5,6 @@
   },
   "plugins": [
     {
-      "name": "homeserver-gitops",
-      "source": "./plugins/homeserver-gitops",
-      "description": "Linux Ubuntu homeserver K3s & GitOps setup with extensible IaC management"
-    },
-    {
-      "name": "ubuntu-dev-setup",
-      "source": "./plugins/ubuntu-dev-setup",
-      "description": "Ubuntu Linux development environment setup with Zsh, Oh My Zsh, Powerlevel10k, NVM"
-    },
-    {
       "name": "forgeify",
       "source": "./plugins/forgeify",
       "description": "Forge your ideas into Claude extensions - Claude Code 플러그인 개발 도구"
