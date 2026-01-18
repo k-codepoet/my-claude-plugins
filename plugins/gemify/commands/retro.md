@@ -5,7 +5,7 @@ allowed-tools: Read, Write, Edit
 
 # /gemify:retro - 사후처리 (역방향 기록)
 
-retro 스킬을 사용하여 이미 완료된 작업을 library에 기록한다.
+**반드시 `skills/retro/SKILL.md`를 먼저 읽고 그 지침대로 동작하세요.**
 
 ## 사용법
 

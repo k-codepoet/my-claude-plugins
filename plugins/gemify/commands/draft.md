@@ -6,7 +6,7 @@ argument-hint: [파일/아이디어]
 
 # /gemify:draft - 원석 다듬기 커맨드
 
-draft 스킬로 원석을 대화로 다듬는다.
+**반드시 `skills/draft/SKILL.md`를 먼저 읽고 그 지침대로 동작하세요.**
 
 ## 사용법
 

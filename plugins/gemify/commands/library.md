@@ -6,7 +6,7 @@ argument-hint: [drafts 파일]
 
 # /gemify:library - 보석 정리 커맨드
 
-library 스킬을 사용하여 drafts 파일을 library로 처리한다.
+**반드시 `skills/library/SKILL.md`를 먼저 읽고 그 지침대로 동작하세요.**
 
 ## 사용법
 

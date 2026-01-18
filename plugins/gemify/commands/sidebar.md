@@ -5,7 +5,7 @@ allowed-tools: Read, Write, Edit
 
 # /gemify:sidebar - 본론 아닌 걸 옆으로 빼두기
 
-sidebar 스킬을 사용하여 대화 맥락에서 material과 thought를 동시에 생성한다.
+**반드시 `skills/sidebar/SKILL.md`를 먼저 읽고 그 지침대로 동작하세요.**
 
 ## 사용법
 

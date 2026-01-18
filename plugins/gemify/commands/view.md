@@ -6,7 +6,7 @@ argument-hint: [type] [title]
 
 # /gemify:view - Views 관리 커맨드
 
-view 스킬을 사용하여 library 지식을 목적별로 조합합니다.
+**반드시 `skills/view/SKILL.md`를 먼저 읽고 그 지침대로 동작하세요.**
 
 ## 사용법
 
@@ -39,8 +39,6 @@ library/ → [/gemify:view] → views/by-{type}/
 ```
 
 ## 동작
-
-view 스킬(`skills/view/SKILL.md`)의 지시사항을 따라 처리한다.
 
 ### $ARGUMENTS 없이 실행
 

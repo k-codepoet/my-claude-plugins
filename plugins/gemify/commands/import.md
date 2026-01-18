@@ -6,7 +6,7 @@ argument-hint: [URL/내용]
 
 # /gemify:import - 외부 재료 가져오기
 
-import 스킬을 사용하여 외부 재료를 inbox/materials/에 저장한다.
+**반드시 `skills/import/SKILL.md`를 먼저 읽고 그 지침대로 동작하세요.**
 
 ## 사용법
 

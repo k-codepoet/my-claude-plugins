@@ -6,7 +6,7 @@ argument-hint: [대상 플러그인명]
 
 # /gemify:improve-plugin - 플러그인 개선 문서 생성
 
-플러그인 개선 **문서를 생성**합니다. 실제 코드 수정은 `/forgeify:improve-plugin`이 담당합니다.
+**반드시 `skills/improve-plugin/SKILL.md`를 먼저 읽고 그 지침대로 동작하세요.**
 
 ## 단방향 흐름
 

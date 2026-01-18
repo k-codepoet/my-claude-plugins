@@ -5,7 +5,7 @@ allowed-tools: Read, Write, Edit, Glob
 
 # /gemify:wrapup - 세션 마무리
 
-wrapup 스킬을 사용하여 세션을 마무리하고 리포트를 생성한다.
+**반드시 `skills/wrapup/SKILL.md`를 먼저 읽고 그 지침대로 동작하세요.**
 
 ## 사용법
 

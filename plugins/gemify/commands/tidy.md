@@ -5,7 +5,7 @@ allowed-tools: Read, Write, Edit, Glob, Grep
 
 # /gemify:tidy - 문서 정리 커맨드
 
-tidy 스킬을 호출하여 `~/.gemify/` 문서를 점진적으로 정리한다.
+**반드시 `skills/tidy/SKILL.md`를 먼저 읽고 그 지침대로 동작하세요.**
 
 > **Note**: `~/.gemify/`는 사용자의 지식 저장소(Single Source of Truth)입니다.
 

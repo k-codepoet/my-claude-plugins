@@ -3,6 +3,6 @@ description: 지식 클러스터 맵 생성/업데이트
 allowed-tools: Read, Write, Edit, Glob, Grep
 ---
 
-map 스킬을 호출하여 클러스터 맵을 생성하거나 업데이트한다.
+# /gemify:map
 
-`skills/map/SKILL.md` 참조.
+**반드시 `skills/map/SKILL.md`를 먼저 읽고 그 지침대로 동작하세요.**

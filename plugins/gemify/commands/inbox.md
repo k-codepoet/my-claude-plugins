@@ -6,7 +6,7 @@ argument-hint: [내용]
 
 # /gemify:inbox - 원석 포착
 
-inbox 스킬을 사용하여 내 생각을 inbox/thoughts/에 저장한다.
+**반드시 `skills/inbox/SKILL.md`를 먼저 읽고 그 지침대로 동작하세요.**
 
 ## 사용법
 

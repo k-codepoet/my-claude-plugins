@@ -6,7 +6,7 @@ argument-hint: "[vision-name | new <name>]"
 
 # /gemify:vision - 비전 관리
 
-vision 스킬을 사용하여 비전(지향점)을 생성하거나 조회합니다.
+**반드시 `skills/vision/SKILL.md`를 먼저 읽고 그 지침대로 동작하세요.**
 
 ## 사용법
 
@@ -21,7 +21,5 @@ vision 스킬을 사용하여 비전(지향점)을 생성하거나 조회합니�
 1. $ARGUMENTS가 없으면 → `~/.gemify/visions/` 목록 표시
 2. $ARGUMENTS가 `new <name>`이면 → 새 vision 생성 워크플로우
 3. 그 외 → 해당 vision 조회
-
-상세 동작은 `skills/vision/SKILL.md` 참조.
 
 ARGUMENTS: $ARGUMENTS

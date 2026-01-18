@@ -6,7 +6,7 @@ argument-hint: [버그 설명 또는 에러 메시지]
 
 # /gemify:troubleshoot - 문제 분석 및 가설 도출
 
-버그나 문제 상황을 분석하고 가설을 도출합니다.
+**반드시 `skills/troubleshoot/SKILL.md`를 먼저 읽고 그 지침대로 동작하세요.**
 
 ## 사용법
 

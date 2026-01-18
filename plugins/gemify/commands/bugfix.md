@@ -6,7 +6,7 @@ argument-hint: [프로젝트명 또는 버그 설명]
 
 # /gemify:bugfix - 버그 수정 문서 생성
 
-버그 수정 **문서를 생성**합니다. 실제 코드 수정은 forgeify/craftify가 담당합니다.
+**반드시 `skills/bugfix/SKILL.md`를 먼저 읽고 그 지침대로 동작하세요.**
 
 ## 사용법
 

@@ -6,7 +6,7 @@ argument-hint: "<vision-name>"
 
 # /gemify:vision-review - 비전 리뷰
 
-vision-review 스킬을 사용하여 비전 대비 현재 상태를 평가하고 리뷰를 기록합니다.
+**반드시 `skills/vision-review/SKILL.md`를 먼저 읽고 그 지침대로 동작하세요.**
 
 ## 사용법
 
@@ -21,7 +21,5 @@ vision-review 스킬을 사용하여 비전 대비 현재 상태를 평가하고
 3. 평가 수행 (진척도, 밀도, 실현율, 자동화율, 방향성)
 4. `reviews/YYYY-MM-DD.md`에 리뷰 기록
 5. current.md 갱신
-
-상세 동작은 `skills/vision-review/SKILL.md` 참조.
 
 ARGUMENTS: $ARGUMENTS
