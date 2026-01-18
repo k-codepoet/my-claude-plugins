@@ -1,69 +1,46 @@
 ---
-description: Terrafy 도움말
-allowed-tools: ["Read"]
+description: terrafy 플러그인 도움말을 표시합니다
 ---
 
-# /terrafy:help
+# Terrafy 도움말
+
+> Lay the groundwork for your digital city.
+
+물리 자원을 배포 가능한 API로 변환하는 홈서버 인프라 자동화 도구입니다.
+
+## 개념
 
 ```
-╔═══════════════════════════════════════════════════════════╗
-║  Terrafy - 물리 자원을 배포 가능한 API로 변환              ║
-╚═══════════════════════════════════════════════════════════╝
-
-홈서버나 소규모 인프라를 구축할 때,
-물리적인 서버들을 GitOps로 배포 가능한 환경으로 만들어줍니다.
-
-┌─────────────────────────────────────────────────────────┐
-│  [물리 자원]              →        [API 레벨]           │
-│                                                         │
-│  공유기 뒤 NAS                   https://nas.my         │
-│  Mac Mini             Terrafy    Portainer API          │
-│  USB 외장하드           →         /volumes/data         │
-│  192.168.0.x                     GitOps endpoint        │
-└─────────────────────────────────────────────────────────┘
-
-=== 명령어 ===
-
-/terrafy:status
-  현재 환경을 스캔하고 인프라 상태를 보여줍니다.
-  - 이 머신의 OS, Docker 상태
-  - 같은 네트워크의 다른 머신 탐지
-  - 각 역할(관문/관제탑/일꾼)의 구성 상태
-
-/terrafy:setup
-  대화형으로 인프라를 구성합니다.
-  - 환경 스캔 → 구성 제안 → 단계별 설정 → 검증
-  - 기본값을 제안하고, 사용자가 선택
-
-/terrafy:help
-  이 도움말을 표시합니다.
-
-=== 역할 설명 ===
-
-관문 (Gateway)
-  외부 트래픽을 받아 내부로 라우팅합니다.
-  기술적으로: Traefik + Ingress (Tunnel 또는 포트포워딩)
-
-관제탑 (Orchestrator)
-  서비스 배포와 관리를 담당합니다.
-  기술적으로: Portainer Server
-
-일꾼 (Worker)
-  실제 서비스를 실행합니다.
-  기술적으로: Docker + Portainer Agent
-
-=== 구성 예시 ===
-
-[멀티노드]
-외부 → [NAS] 관문 → [Mac] 관제탑 → [Linux] 일꾼
-
-[싱글노드]
-외부 → [Linux] 관문 + 관제탑 + 일꾼 (올인원)
-
-=== 시작하기 ===
-
-1. /terrafy:status 로 현재 상태 확인
-2. /terrafy:setup 으로 구성 시작
-3. 대화를 따라가며 선택
-4. 완료 후 Portainer로 서비스 배포
+[물리 자원]              →        [API 레벨]
+공유기 뒤 NAS                   https://nas.my
+Mac Mini             Terrafy    Portainer API
+USB 외장하드           →         /volumes/data
+192.168.0.x                     GitOps endpoint
 ```
+
+## 사용 가능한 커맨드
+
+### 가이드
+| 커맨드 | 설명 |
+|--------|------|
+| `/terrafy:help` | 이 도움말 표시 |
+| `/terrafy:howto [topic]` | 사용 가이드 (주제별 사용법과 예시) |
+
+### 인프라 관리
+| 커맨드 | 설명 |
+|--------|------|
+| `/terrafy:status` | 현재 환경 스캔 및 인프라 상태 표시 |
+| `/terrafy:setup` | 대화형 인프라 구성 |
+| `/terrafy:init-ssh` | SSH 서버 설정 |
+
+## 역할 구조
+
+| 역할 | 설명 | 기술 |
+|------|------|------|
+| 관문 (Gateway) | 외부 트래픽 라우팅 | Traefik + Ingress |
+| 관제탑 (Orchestrator) | 서비스 배포/관리 | Portainer Server |
+| 일꾼 (Worker) | 서비스 실행 | Docker + Portainer Agent |
+
+## 더 알아보기
+
+`/terrafy:howto`로 각 기능의 상세 사용법과 예시를 확인하세요.

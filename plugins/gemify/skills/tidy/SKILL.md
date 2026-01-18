@@ -1,11 +1,11 @@
 ---
 name: tidy
-description: ground-truth 문서 정리 - views ↔ artifact 일치 검사, 역방향 검증. "정리", "tidy", "검증", "outdated", "깨진 링크" 등 요청 시 활성화.
+description: 지식 체계 탑다운 재정리 - vision에서 출발하여 끊어진 연결고리, 미스링크 전부 복구. "정리", "tidy", "검증", "outdated", "깨진 링크", "미스링크" 등 요청 시 활성화.
 ---
 
 # Tidy Skill
 
-ground-truth 문서를 **역방향으로 검증**하고 점진적으로 정리합니다.
+지식 체계를 **탑다운으로 재정리**합니다. vision에서 출발하여 끊어진 연결고리, 미스링크를 전부 복구합니다.
 
 ## 사전 확인 (필수)
 
@@ -28,23 +28,43 @@ Setup 안내:
 
 ## 핵심 개념
 
-tidy는 **역방향 검증** 도구:
-- views ↔ artifact 일치 검사
-- library 현황 보고 (사용 중/대기 중)
+tidy는 **탑다운 재정리** 도구:
+- vision에서 출발하여 전체 연결 상태 점검
+- 끊어진 연결고리, 미스링크 복구
+- 고아 문서, 방치된 문서 식별
 - 점진적 실행 (한 번에 하나씩)
 
-## 검증 순서 (역순)
+## retro vs tidy
+
+| | retro | tidy |
+|---|---|---|
+| **방향** | 바텀업 (작업 → 체계) | 탑다운 (체계 → 검증) |
+| **트리거** | 작업 완료 후 | 주기적 / 필요시 |
+| **목적** | 놓친 지식 수확 | 끊어진 연결 복구 |
+
+## 검증 순서 (탑다운)
 
 ```
-artifact (실제 결과물)
-   ↑ 대조
+vision
+   │ 이 vision에 연결된 views 있나?
+   ↓
 views
-   ↑ 추적
+   │ 각 view의 sources(library) 연결 살아있나?
+   │ artifact 경로 유효한가?
+   ↓
 library
-   ↑ 추적
+   │ 어디서도 참조 안 되는 고아 문서?
+   │ 깨진 내부 링크?
+   ↓
 drafts
-   ↑ 추적
+   │ 오래 방치된 drafts?
+   │ status: cutting인데 진행 안 된 것?
+   ↓
 inbox
+   │ 너무 오래된 raw 상태?
+   ↓
+artifact (실제 결과물)
+   │ views와 일치?
 ```
 
 ## 동작 방식

@@ -14,18 +14,19 @@ argument-hint: "[topic]"
 
 ## 가능한 주제 (Topics)
 
-| 주제 | 설명 |
-|------|------|
-| `poc` | POC.md 기반 프로젝트 구현 |
-| `deploy` | Cloudflare 배포 설정 및 실행 |
+### 프로젝트 개발
+| 주제 | 설명 | 예시 |
+|------|------|------|
+| `poc` | POC.md 기반 프로젝트 구현 | `/craftify:poc` |
+| `deploy` | Cloudflare 배포 설정 및 실행 | `/craftify:deploy setup` |
 
 ## 동작
 
 1. **인자가 없는 경우**: 위 주제 목록을 사용자에게 보여주세요.
 
 2. **인자가 있는 경우**: 해당 주제의 스킬을 로드하여 안내합니다.
-   - `poc` → poc 스킬 사용
-   - `deploy` → deploy 스킬 사용
+   - `poc` → poc 스킬
+   - `deploy` → deploy 스킬
 
 3. **알 수 없는 주제**: 가능한 주제 목록을 보여주고 올바른 주제를 선택하도록 안내합니다.
 
