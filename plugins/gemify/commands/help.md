@@ -11,96 +11,53 @@ description: gemify 플러그인 도움말을 표시합니다
 ## 파이프라인 흐름
 
 ```
-/gemify:inbox → /gemify:draft → /gemify:library
-    inbox/         drafts/         library/
+/gemify:inbox → /gemify:draft → /gemify:library → /gemify:view
+    inbox/         drafts/         library/          views/
 ```
 
 ## 사용 가능한 커맨드
 
-### 가이드 조회
+### 가이드
 | 커맨드 | 설명 |
 |--------|------|
 | `/gemify:help` | 이 도움말 표시 |
-| `/gemify:howto` | 가능한 가이드 주제 목록 표시 |
-| `/gemify:howto <topic>` | 특정 주제 가이드 표시 |
-
-**가능한 주제**: `inbox`, `import`, `sidebar`, `draft`, `library`, `view`, `retro`, `tidy`, `wrapup`, `improve-plugin`
+| `/gemify:howto [topic]` | 사용 가이드 (주제별 사용법과 예시) |
 
 ### 지식 파이프라인
-| 커맨드 | 설명 | 저장 위치 |
-|--------|------|----------|
-| `/gemify:inbox [내용]` | 내 생각 포착 | inbox/thoughts/ |
-| `/gemify:import [URL/내용]` | 외부 재료 가져오기 | inbox/materials/ |
-| `/gemify:sidebar` | 본 작업 중 떠오른 것을 옆에 빼두기 | inbox/ |
-| `/gemify:draft [파일/아이디어]` | 원석 다듬기 (대화로 확장) | drafts/ |
-| `/gemify:library [파일]` | 보석 정리 (library로) | library/ |
-| `/gemify:view [subject]` | 주제별 지식 조합 | views/by-subject/ |
-| `/gemify:retro [내용]` | 완료 작업 역방향 기록 | library/ |
-| `/gemify:tidy` | 문서 점진적 정리 (역방향 검증) | - |
+| 커맨드 | 설명 |
+|--------|------|
+| `/gemify:inbox` | 내 생각 포착 → inbox/thoughts/ |
+| `/gemify:import` | 외부 재료 가져오기 → inbox/materials/ |
+| `/gemify:sidebar` | 본 작업 중 떠오른 것 빼두기 → inbox/ |
+| `/gemify:draft` | 원석 다듬기 (대화로 확장) → drafts/ |
+| `/gemify:library` | 보석 정리 → library/ |
+| `/gemify:view` | 주제별 지식 조합 → views/ |
+| `/gemify:retro` | 완료 작업 역방향 기록 → library/ |
+| `/gemify:triage` | inbox 정리 + 우선순위 판단 |
+| `/gemify:map` | 지식 클러스터 맵 생성 |
+| `/gemify:tidy` | 문서 점진적 정리 (역방향 검증) |
 
-### 플러그인 개선
-| 커맨드 | 설명 | 저장 위치 |
-|--------|------|----------|
-| `/gemify:improve-plugin [플러그인명]` | 개선 문서 생성 | library/engineering/plugin-improvements/ |
+### 비전 관리
+| 커맨드 | 설명 |
+|--------|------|
+| `/gemify:vision` | 비전 생성/조회 → visions/ |
+| `/gemify:vision-review` | 비전 대비 현재 상태 평가 |
 
-### 세션/설정 관리
-| 커맨드 | 설명 | 저장 위치 |
-|--------|------|----------|
-| `/gemify:wrapup` | 세션 마무리 (HITL 체크 + 리포트) | sessions/ |
-| `/gemify:setup [경로]` | ground-truth 구조 생성 | 지정 경로 |
+### 문제 해결
+| 커맨드 | 설명 |
+|--------|------|
+| `/gemify:troubleshoot` | 버그/문제 분석 및 가설 도출 |
+| `/gemify:bugfix` | 버그 수정 문서 생성 (2-track) |
+| `/gemify:improve-plugin` | 플러그인 개선 문서 생성 |
+| `/gemify:poc` | PoC 개발 문서 생성 |
 
-## 사용 예시
-
-```bash
-# 생각 포착
-/gemify:inbox 이런 생각이 들었어
-
-# 외부 재료 가져오기
-/gemify:import https://example.com/article
-
-# 본 작업 중 떠오른 것을 옆에 빼두기
-/gemify:sidebar
-
-# 원석 다듬기
-/gemify:draft "새로운 아이디어"
-/gemify:draft drafts/my-idea.md
-
-# 보석 정리
-/gemify:library drafts/my-idea.md
-
-# 주제별 조합
-/gemify:view claude-plugins
-
-# 사후 기록
-/gemify:retro 방금 만든 기능 기록해줘
-
-# 문서 정리 (역방향 검증)
-/gemify:tidy
-
-# 플러그인 개선 문서 생성
-/gemify:improve-plugin forgeify
-
-# ground-truth 구조 생성
-/gemify:setup ./my-project
-
-# 세션 마무리
-/gemify:wrapup
-```
-
-## Library Type (library 분류)
-
-| Type | 핵심 질문 |
-|------|----------|
-| principle | 왜 이렇게 해야 하는가? |
-| decision | 무엇을 선택했고 왜? |
-| insight | 무엇을 알게 됐는가? |
-| how-to | 어떻게 하는가? |
-| spec | 정확히 무엇인가? |
-| workflow | 어떤 순서로 진행하는가? |
-
-**6대 Domain**은 `views/by-subject/`에서 사용:
-product, engineering, operations, growth, business, ai-automation
+### 세션/설정
+| 커맨드 | 설명 |
+|--------|------|
+| `/gemify:wrapup` | 세션 마무리 (HITL 체크 + 리포트) |
+| `/gemify:setup` | Gemify 구조 초기화 |
+| `/gemify:sync` | remote와 동기화 |
 
 ## 더 알아보기
 
-`/gemify:howto <topic>`으로 각 단계의 상세 가이드를 확인하세요.
+`/gemify:howto`로 각 기능의 상세 사용법과 예시를 확인하세요.
