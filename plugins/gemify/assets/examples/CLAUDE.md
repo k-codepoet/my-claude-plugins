@@ -60,6 +60,8 @@ inbox → draft → library → view
 - `library/` - 완성된 지식 (type별 분류)
   - `principles/`, `decisions/`, `insights/`, `how-tos/`, `specs/`, `workflows/`
 - `views/` - 서사가 있는 렌더링
+  - `by-plugin/` - 플러그인별 종합 문서
+  - `by-product/` - 제품별 종합 문서
   - `by-talk/` - 발표/강연
   - `by-curriculum/` - 교육/커리큘럼
   - `by-portfolio/` - 포트폴리오/셀프 브랜딩
