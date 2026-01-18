@@ -5,6 +5,26 @@ All notable changes to the Gemify plugin will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.27.0] - 2026-01-18
+
+### Changed
+- **poc 스킬 파이프라인 재설계** - 라우터 + 하위 스킬 4개로 분리
+  - poc: 상황 판단 → 하위 스킬로 라우팅 (라우터 역할)
+  - poc-idea: 본질 질문으로 아이디어 정제 → inbox/thoughts 저장
+  - poc-shape: ~/.gemify 재료 탐색 + 무의식 도출 → drafts 저장
+  - poc-proto: HTML 즉시 생성 + 로컬 서버 실시간 미리보기
+  - poc-pack: git repo 생성 + craftify/forgeify 핸드오프
+
+### Added
+- **실시간 피드백 루프** - poc-proto에서 로컬 개발 서버로 미리보기
+  - python http.server 기반 (포트 8080)
+  - 수정 → 새로고침으로 즉시 확인
+  - shape ↔ proto 자유로운 전환
+- **3가지 핵심 원칙 도입**
+  - 실시간 피드백 루프
+  - 본질 집중 (부차적인 것 잘라내기)
+  - 무의식 끄집어내기 (계속 되묻기)
+
 ## [1.26.0] - 2026-01-18
 
 ### Changed

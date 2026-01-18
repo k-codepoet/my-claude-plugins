@@ -1,15 +1,26 @@
 ---
 name: poc
-description: PoC 개발 문서 생성. Craftify 또는 Forgeify에게 위임할 POC.md를 만듭니다. "PoC 만들자", "앱 시작", "프로젝트 시작", "플러그인 만들자" 등 요청 시 활성화.
+description: PoC 개발 파이프라인 라우터. "PoC 만들자", "앱 시작", "프로젝트 시작", "플러그인 만들자" 등 요청 시 활성화. 상황에 따라 poc-idea/shape/proto/pack으로 라우팅.
 ---
 
-# PoC Skill
+# PoC Skill (라우터)
 
-PoC 개발 **문서를 생성**합니다. 실제 구현은 타입에 따라 craftify 또는 forgeify가 담당합니다.
+PoC 개발 파이프라인의 **라우터**입니다. 사용자의 현재 상태를 판단하여 적절한 하위 스킬로 안내합니다.
+
+## 핵심 철학
+
+### PoC의 본질
+PoC = **내가 가진 재료들을 이렇게저렇게 조합해보면서, 문제를 해결하기 위한 최선의 가설을 세워보는 것**
+
+고밀도 작업이기 때문에 한 번에 되지 않음. 재료 조합 → 가설 수립 → 빠르게 확인 → 다시 조합의 반복.
+
+### 3가지 핵심 원칙
+
+1. **실시간 피드백 루프**: 만들면서 바로바로 보면서 다듬기
+2. **본질 집중**: 부차적인 것 잘라내고 핵심 문제/해결에만 포커싱
+3. **무의식 끄집어내기**: 계속 되물어서 사용자가 진짜 원하는 것 도출
 
 ## 사전 확인 (필수)
-
-**스킬 실행 전 반드시 확인:**
 
 ```
 ~/.gemify/ 존재?
@@ -26,120 +37,121 @@ Setup 안내:
   /gemify:setup --clone URL  # 기존 repo 가져오기
 ```
 
-## 프로젝트 타입 판단
+## 라우팅 로직
 
-사용자 입력을 분석하여 타입 결정:
+사용자 입력과 현재 상태를 분석하여 분기:
+
+```
+/gemify:poc [args]
+    ↓
+상황 판단:
+    ├─ 아이디어 수준 (모호함, "이런 거 만들고 싶어")
+    │   → poc-idea 스킬로 라우팅
+    │
+    ├─ 형태 다듬기 필요 (아이디어는 있지만 구체적이지 않음)
+    │   → poc-shape 스킬로 라우팅
+    │
+    ├─ 작은 작업/바로 확인 ("이것만 만들어봐", "화면 보여줘")
+    │   → poc-proto 스킬로 라우팅 (바로 실행)
+    │
+    └─ 확정됨 ("이거 맞아", "패키징해줘", 충분히 구체화된 상태)
+        → poc-pack 스킬로 라우팅
+```
+
+## 상태 판단 기준
+
+### → poc-idea로 분기
+- 사용자 입력이 모호하고 추상적
+- "~하고 싶어", "~있으면 좋겠다" 수준
+- 구체적인 화면/기능 설명 없음
+- 관련 drafts/views 없음
+
+### → poc-shape로 분기
+- 핵심 문제는 정의됨
+- 화면/기능에 대한 구체적 질문 필요
+- inbox에 관련 아이디어가 있음
+- ~/.gemify 지식 체계 탐색이 도움될 것
+
+### → poc-proto로 분기
+- "이것만 만들어봐", "화면 보여줘" 등 작은 요청
+- 바로 확인하고 싶은 단일 화면/컴포넌트
+- shape ↔ proto 반복 중
+
+### → poc-pack으로 분기
+- "이 느낌 맞아", "확정", "패키징" 등 명시적 확정
+- drafts에 충분히 정제된 형태 문서 존재
+- prototype.html 등 결과물 존재
+- 프로젝트 폴더/git 설정 단계
+
+## 라우팅 동작
+
+라우팅 시 사용자에게 현재 상태 판단 결과를 간략히 알리고 해당 스킬로 전환:
+
+```
+[상태 판단] 아이디어 수준으로 보입니다.
+→ poc-idea로 본질 질문을 시작합니다.
+```
+
+```
+[상태 판단] 형태 다듬기가 필요해 보입니다.
+→ poc-shape로 ~/.gemify 재료를 탐색하며 구체화합니다.
+```
+
+```
+[상태 판단] 바로 만들어볼 수 있는 작은 요청입니다.
+→ poc-proto로 실시간 미리보기를 시작합니다.
+```
+
+```
+[상태 판단] 확정 단계입니다.
+→ poc-pack으로 프로젝트를 패키징합니다.
+```
+
+## 전체 플로우 예시
+
+```
+사용자: "gemify를 웹앱으로 만들고 싶어"
+    ↓
+/gemify:poc (라우터) → poc-idea로 분기
+    ↓
+poc-idea: 본질 질문 → inbox에 정제된 아이디어 저장
+    ↓
+/gemify:poc (라우터) → poc-shape로 분기
+    ↓
+poc-shape: ~/.gemify 탐색 + 무의식 도출 → drafts에 형태 문서 저장
+    ↓
+/gemify:poc (라우터) → poc-proto로 분기
+    ↓
+poc-proto: HTML 생성 → 로컬 서버에서 미리보기 → 수정 반복
+    ↓
+"이 느낌 맞아"
+    ↓
+/gemify:poc (라우터) → poc-pack으로 분기
+    ↓
+poc-pack: git repo 생성 → POC.md/CONTEXT.md → craftify 핸드오프
+```
+
+## 하위 스킬 요약
+
+| 스킬 | 역할 | 결과물 |
+|------|------|--------|
+| poc-idea | 본질 질문으로 아이디어 정제 | inbox/thoughts에 저장 |
+| poc-shape | 재료 탐색 + 무의식 도출 | drafts에 형태 문서 |
+| poc-proto | 실시간 HTML 생성 + 미리보기 | prototype.html |
+| poc-pack | 프로젝트 패키징 + git 설정 | POC.md, CONTEXT.md |
+
+## 프로젝트 타입 (pack 단계에서 결정)
 
 ```
 입력 분석
-├── "앱", "웹", "서비스", "사이트" 등 → webapp
-├── "플러그인", "커맨드", "스킬", "에이전트" 등 → plugin
+├── "앱", "웹", "서비스", "사이트" 등 → webapp (craftify로 구현)
+├── "플러그인", "커맨드", "스킬", "에이전트" 등 → plugin (forgeify로 구현)
 └── 판단 불가 → 사용자에게 질문
-```
-
-판단 불가 시 질문:
-```
-어떤 타입의 프로젝트인가요?
-
-1. webapp - 웹 앱/서비스 (craftify로 구현)
-2. plugin - Claude Code 플러그인 (forgeify로 구현)
-```
-
-## 단방향 흐름 원칙
-
-```
-gemify (지식 생산)
-    │
-    └── POC.md 생성 ─────────┬──▶ craftify (webapp 구현)
-        (Why/What)           │
-                             └──▶ forgeify (plugin 구현)
-```
-
-- **gemify:poc**: 대화를 통해 요구사항을 정제하고 POC.md 생성
-- **craftify**: webapp POC.md를 읽고 기술 스택/구현 방법을 스스로 판단
-- **forgeify**: plugin POC.md를 읽고 플러그인 구조/구현 방법을 스스로 판단
-- 역방향 없음: gemify는 How를 지정하지 않음
-
-## 워크플로우 (6단계)
-
-| 단계 | 설명 |
-|------|------|
-| 1. triage | 관련 inbox 자료 수집 (클러스터 기반) |
-| 2. draft | facet 모드로 Why/Hypothesis/What/AC 구체화 |
-| 3. namify:name | 제품명 결정 (자동 호출) |
-| 4. view | views/by-poc/{product}.md 저장 + 스냅샷 |
-| 5. setup | 프로젝트 폴더 생성, POC.md 복사, git init |
-| 6. library | 필요한 재료들 저장 (선택) |
-
-## 동작
-
-### 1. 입력 분석 (triage 연동)
-
-- 따옴표 문자열 → 새 아이디어로 triage 검색
-- inbox 파일 경로 → 해당 파일 기반으로 triage 확장
-- 없음 → "어떤 PoC를 만들까요?" 후 triage 모드
-
-### 2. 요구사항 구체화 (draft facet 모드)
-
-대화를 통해 파악:
-- **Why**: 배경, 해결할 문제
-- **Hypothesis**: 검증하려는 가설
-- **What**: 핵심 기능, MVP 범위
-- **Acceptance Criteria**: 가설 검증 기준
-
-### 3. 제품명 결정
-
-`/namify:name` 자동 호출 → 메타포 탐색 → 후보 생성 → 사용자 선택
-
-### 4. view 생성
-
-- views/by-poc/{product}.md 파일 생성
-- .history/poc/{product}/01-YYYY-MM-DD.md 스냅샷
-- 템플릿: `references/view-template.md` 참조
-
-### 5. 프로젝트 설정 (setup)
-
-```
-프로젝트를 어디에 생성할까요?
-```
-
-| 생성 파일 | 역할 |
-|----------|------|
-| POC.md | views/by-poc/{product}.md 복사본 |
-| CONTEXT.md | 프로젝트 서사/맥락 |
-
-views/by-poc/{product}.md의 `artifact` 필드 업데이트
-
-### 6. library 저장 (선택)
-
-specs, workflows 등 필요한 재료를 library/{type}/에 저장
-
-## 완료 안내
-
-타입에 따라 분기:
-
-**webapp인 경우:**
-```
-POC.md가 생성되었습니다: {project-path}/POC.md
-
-craftify로 구현을 시작하려면:
-cd {project-path} && claude
-/craftify:poc
-```
-
-**plugin인 경우:**
-```
-POC.md가 생성되었습니다: {project-path}/POC.md
-
-forgeify로 구현을 시작하려면:
-cd {project-path} && claude
-/forgeify:poc
 ```
 
 ## 규칙
 
+- **라우터 역할만**: poc 스킬 자체는 실제 작업을 하지 않음
+- **상태 판단 투명화**: 왜 해당 스킬로 라우팅했는지 알림
+- **자유로운 전환**: shape ↔ proto 등 스킬 간 이동 가능
 - **How 지정 금지**: gemify는 Why/What만 담당
-- namify:name은 워크플로우 내에서 자동 호출
-- 프로젝트 경로는 매번 사용자 확인
-- **views/by-poc/에 원본 저장**, 프로젝트에는 복사
-- **업데이트 시 .history/ 스냅샷 생성**
