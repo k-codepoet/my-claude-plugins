@@ -5,6 +5,15 @@ All notable changes to the Craftify plugin will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.4.1] - 2026-01-18
+
+### Changed
+- **poc 스킬 필수 규칙 추가** - 워크플로우 진행 전 반드시 준수할 규칙 상단 배치
+  - How는 craftify가 판단 (POC.md 기술 스택 무시)
+  - 대화 없이 진행 금지 (사용자 선택 전 코드 작성 금지)
+  - boilerplate 필수 사용 (npx create-* 직접 실행 금지)
+- **워크플로우 단계 수정** - 5단계 → 6단계 (실제 단계와 일치)
+
 ## [0.4.0] - 2026-01-18
 
 ### Added

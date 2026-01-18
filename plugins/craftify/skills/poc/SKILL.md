@@ -7,12 +7,28 @@ description: POC.md 기반 프로젝트 구현. gemify:poc이 생성한 문서�
 
 POC.md를 읽고 **프로젝트를 구현**합니다.
 
+## ⚠️ 필수 규칙 (반드시 준수)
+
+> **이 규칙을 어기면 안 됩니다. 워크플로우 진행 전 반드시 숙지하세요.**
+
+1. **How는 craftify가 판단한다**
+   - POC.md에 기술 스택(Next.js, Vite 등)이 적혀 있어도 **무시**
+   - gemify는 Why/What만 전달, **기술 선택권은 craftify에게 있음**
+
+2. **대화 없이 진행 금지**
+   - 3단계(How 판단)에서 **반드시 사용자에게 옵션 제시**
+   - 사용자가 선택하기 전까지 **절대 코드 작성 시작 금지**
+
+3. **boilerplate 필수 사용**
+   - `npx create-next-app`, `npx create-vite` 등 **직접 실행 금지**
+   - 반드시 `references/boilerplate.md`의 degit 명령 사용
+
 ## 전제 조건
 
 - 현재 디렉토리에 `POC.md` 존재 (gemify:poc이 생성)
 - POC.md 필수 섹션: Why, Hypothesis, What, Acceptance Criteria
 
-## 워크플로우 (5단계)
+## 워크플로우 (6단계)
 
 ### 1. POC.md 읽기
 
@@ -93,9 +109,8 @@ Web - Docker/Self-hosted:
 - **hypothesis가 검증되었는지** 사용자에게 확인
 - POC.md의 AC 항목에 체크 표시 업데이트
 
-## 규칙
+## 추가 규칙
 
-- **How는 craftify가 판단**: gemify는 Why/What만 전달
 - **빌드 확인 후 구현**: boilerplate 정상 동작 먼저 확인
 - **가설 검증 기반 완료**: AC = 가설 검증 기준, 모든 AC 통과 = 가설 검증 성공
 
