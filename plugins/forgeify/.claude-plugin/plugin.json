@@ -1,11 +1,11 @@
 {
   "name": "forgeify",
-  "version": "1.17.1",
-  "description": "Forge your ideas into Claude extensions - Claude Code 플러그인 개발 도구",
+  "version": "2.0.0",
+  "description": "Forge your ideas into Claude extensions - Claude Code 메타도구(plugin, skill, command, agent, hook) 개발 도구",
   "author": {
     "name": "choigawoon"
   },
-  "keywords": ["documentation", "korean", "plugin-development", "skills", "agents", "hooks", "claude-code"],
+  "keywords": ["documentation", "korean", "plugin-development", "skills", "agents", "hooks", "claude-code", "metatools"],
   "commands": ["./commands/"],
   "skills": ["./skills/"]
 }

@@ -5,6 +5,41 @@ All notable changes to the Forgeify plugin will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.0.0] - 2026-01-19
+
+### Breaking Changes
+- **poc 커맨드 제거** - new-* 시리즈로 대체
+- **update 커맨드 제거** - align 커맨드로 대체
+
+### Added
+- **new-* 커맨드 시리즈** - 메타도구별 생성 기능
+  - `/forgeify:new` - 메타도구 생성 라우터
+  - `/forgeify:new-plugin` - 플러그인 전체 생성
+  - `/forgeify:new-skill` - 스킬 생성
+  - `/forgeify:new-command` - 커맨드 생성
+  - `/forgeify:new-agent` - 에이전트 생성
+  - `/forgeify:new-hook` - 훅 생성
+- **improve-* 커맨드 시리즈** - 메타도구별 개선 기능
+  - `/forgeify:improve` - 메타도구 개선 라우터
+  - `/forgeify:improve-skill` - 스킬 개선
+  - `/forgeify:improve-command` - 커맨드 개선
+  - `/forgeify:improve-agent` - 에이전트 개선
+  - `/forgeify:improve-hook` - 훅 개선
+- **align 커맨드** - 공식문서/외부 레퍼런스 기반 가이드 및 플러그인 정렬
+  - update 커맨드를 대체
+  - Claude 공식문서 또는 외부 URL 소스 지원
+  - 가이드 스킬 갱신 및 플러그인 재정렬
+
+### Changed
+- **howto.md 라우팅 테이블 확장** - 새로운 커맨드/스킬 반영
+  - 생성(new-*), 개선(improve-*) 카테고리 추가
+  - 메타도구 개발 흐름 다이어그램 업데이트
+- **help.md 도움말 업데이트** - 새로운 커맨드 목록 반영
+
+### Removed
+- **poc 스킬/커맨드** - new-plugin으로 대체
+- **update 스킬/커맨드** - align으로 대체
+
 ## [1.17.1] - 2026-01-18
 
 ### Fixed
