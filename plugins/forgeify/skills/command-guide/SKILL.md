@@ -147,3 +147,44 @@ Read: $CLAUDE_PLUGIN_ROOT/skills/draft/SKILL.md
 commands/draft.md     ← 진입점 (스킬 Read 지시)
 skills/draft/SKILL.md ← 실제 로직
 ```
+
+## Skill 도구로 다른 스킬 호출하기
+
+한 스킬에서 다른 스킬(또는 커맨드)로 작업을 위임할 때 Skill 도구를 사용합니다.
+
+### 사용법
+
+```
+Skill 도구:
+  skill: "plugin-name:skill-name"
+  args: "인자 (선택)"
+```
+
+### 파라미터
+
+| 파라미터 | 필수 | 설명 |
+|----------|------|------|
+| `skill` | O | 스킬/커맨드 이름 (예: `forgeify:improve-plugin`) |
+| `args` | X | 전달할 인자 문자열 |
+
+### 예시: gemify → forgeify 위임
+
+gemify:improve-plugin이 문서 생성 후 forgeify:improve-plugin 호출:
+
+```
+Skill 도구:
+  skill: "forgeify:improve-plugin"
+  args: "~/.gemify/views/by-improvement/forgeify-add-validation.md"
+```
+
+### Read vs Skill 도구
+
+| 방식 | 용도 |
+|------|------|
+| `Read: $CLAUDE_PLUGIN_ROOT/skills/...` | 같은 플러그인 내 스킬 로드 |
+| `Skill 도구` | 다른 플러그인 스킬 실행, 크로스 플러그인 위임 |
+
+### 주의사항
+
+- `disable-model-invocation: true`인 스킬은 Skill 도구로 호출 불가
+- 빌트인 커맨드 (/compact, /init 등)는 Skill 도구로 호출 불가

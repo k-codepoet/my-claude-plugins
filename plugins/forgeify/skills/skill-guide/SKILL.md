@@ -90,3 +90,51 @@ skills-ref validate ./my-skill
 | 범위 | 작업별, 필요시 로드 | 항상 사용 가능 |
 | 표준 | Agent Skills 오픈 스탠다드 | Claude Code 전용 |
 | 사용 목적 | 재사용 가능한 전문 워크플로우 | 특정 프로젝트 작업 자동화 |
+
+## Skill 도구로 스킬 호출하기
+
+Claude가 스킬을 프로그래매틱하게 호출할 때 Skill 도구를 사용합니다.
+
+### 자동 활성화 vs 명시적 호출
+
+| 방식 | 설명 |
+|------|------|
+| 자동 활성화 | Claude가 description 기반으로 판단하여 스킬 로드 |
+| Skill 도구 | 스킬이 다른 스킬을 명시적으로 호출 |
+
+### Skill 도구 파라미터
+
+```
+Skill 도구:
+  skill: "plugin-name:skill-name"  # 필수
+  args: "인자 문자열"               # 선택
+```
+
+| 파라미터 | 필수 | 설명 |
+|----------|------|------|
+| `skill` | O | 호출할 스킬/커맨드 이름 |
+| `args` | X | 전달할 인자 (커맨드의 $ARGUMENTS, $1, $2로 접근) |
+
+### 예시: 크로스 플러그인 위임
+
+gemify:improve-plugin → forgeify:improve-plugin 호출:
+
+```
+Skill 도구:
+  skill: "forgeify:improve-plugin"
+  args: "~/.gemify/views/by-improvement/forgeify-add-validation.md"
+```
+
+### disable-model-invocation과의 관계
+
+| 설정 | 자동 활성화 | Skill 도구 호출 |
+|------|-------------|-----------------|
+| `false` (기본) | O | O |
+| `true` | X | X |
+
+`disable-model-invocation: true`로 설정하면 Skill 도구로도 호출 불가.
+
+### 주의사항
+
+- 빌트인 커맨드 (/compact, /init 등)는 Skill 도구로 호출 불가
+- 순환 호출 주의: A → B → A 패턴 피할 것
