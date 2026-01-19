@@ -5,6 +5,24 @@ All notable changes to the Craftify plugin will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.5.0] - 2026-01-19
+
+### Added
+- **boilerplate-guide 스킬 신규 생성** - boilerplate 선택 가이드 독립 스킬
+  - 선택 기준 매트릭스 (SEO, 동적/정적, 배포환경)
+  - 의사결정 플로우차트
+  - boilerplate pool 장단점 비교
+  - 사용자 대화 가이드
+
+### Changed
+- **poc 커맨드 인자 지원** - POC.md 경로를 인자로 받을 수 있음
+  - `argument-hint: [POC.md 경로]` 추가
+  - `$ARGUMENTS` 변수 활용
+- **poc 스킬 워크플로우 개선** - 7단계로 확장
+  - 0단계: 인자 처리 (경로 없으면 사용자에게 되묻기)
+  - 2.5단계: 기술스택 지정 시 craftify 전문가 조언 제안
+  - 3단계: boilerplate-guide 스킬 참조하도록 변경
+
 ## [0.4.1] - 2026-01-18
 
 ### Changed
