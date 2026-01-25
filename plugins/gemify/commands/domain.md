@@ -1,7 +1,7 @@
 ---
-name: domain
 description: 도메인 관리. 현재 도메인 확인, 목록 조회, 전환, 추가.
-arguments: "[list|set|add] [name]"
+allowed-tools: Read, Write, Bash, Glob, Grep, AskUserQuestion
+argument-hint: "[list|set <name>|add <name>]"
 ---
 
 # /gemify:domain
