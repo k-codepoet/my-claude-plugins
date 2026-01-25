@@ -11,11 +11,11 @@ description: 버그 수정 문서 생성. "버그 수정", "bugfix", "고쳐줘"
 
 ## 사전 확인 (필수)
 
-**스킬 실행 전 반드시 확인:**
+**반드시 `skills/scope/SKILL.md` 참조하여 현재 도메인 경로 결정.**
 
 ```
 ~/.gemify/ 존재?
-├── 예 → 스킬 실행 계속
+├── 예 → config.json에서 현재 도메인 확인 → 스킬 실행
 └── 아니오 → setup 안내 후 중단
 ```
 
@@ -126,10 +126,10 @@ troubleshoot에서 가져오거나 새로 수집:
 
 ## 저장 위치
 
-> **Note**: `~/.gemify/`는 사용자의 지식 저장소(Single Source of Truth)입니다.
+> **Note**: `~/.gemify/{domain}/`은 해당 도메인의 지식 저장소(Single Source of Truth)입니다.
 
 ```
-~/.gemify/
+{domain_path}/
 └── views/
     ├── by-bugfix/
     │   └── {project}-{bug-slug}.md

@@ -55,20 +55,15 @@ $ARGUMENTS 없음? → AskUserQuestion으로 플러그인명 요청
 - **improvement_type**: feature|bugfix|refactor
 - **priority**: high|medium|low
 
-### 3. gemify 경로 확인
+### 3. 도메인 경로 확인
 
-```
-$ARGUMENTS에 gemify 경로가 있음? → 해당 경로 사용
-없음? → AskUserQuestion으로 요청
-        "개선 문서를 저장할 gemify 경로를 입력해주세요"
-        예: ~/.gemify
-```
+**반드시 `skills/scope/SKILL.md` 참조하여 현재 도메인 경로 결정.**
 
 ### 4. view 생성
 
-`~/.gemify/views/by-improvement/`에 저장:
+`{domain_path}/views/by-improvement/`에 저장:
 
-> **Note**: `~/.gemify/`는 사용자의 지식 저장소(Single Source of Truth)입니다.
+> **Note**: `~/.gemify/{domain}/`은 해당 도메인의 지식 저장소(Single Source of Truth)입니다.
 
 ```yaml
 ---

@@ -5,6 +5,25 @@ All notable changes to the Gemify plugin will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.30.0] - 2026-01-25
+
+### Added
+- **멀티 도메인 지원** - 도메인별 독립적인 지식 파이프라인 운영
+  - `~/.gemify/{domain}/` 구조로 도메인 분리 (builder, leader, planner 등)
+  - 각 도메인은 별도 git repo로 독립 관리 가능
+  - config.json 기반 도메인 설정 관리
+- **domain 스킬/명령어 추가** - 도메인 관리 기능
+  - `/gemify:domain` - 현재 도메인 확인
+  - `/gemify:domain list` - 도메인 목록 조회
+  - `/gemify:domain set <name>` - 도메인 전환 (세션 시작 시 한 번 설정)
+  - `/gemify:domain add <name>` - 새 도메인 추가
+
+### Changed
+- **scope 스킬 전면 개편** - 멀티 도메인 지원을 위한 경로 결정 로직 변경
+  - 경로 결정 우선순위: 환경변수 → cwd 기반 → config.json current → 기본값
+  - 최종 경로: `~/.gemify/{domain}/`
+  - 도메인 전환 정책: 세션 시작 시 한 번만 설정 권장
+
 ## [1.29.0] - 2026-01-18
 
 ### Added

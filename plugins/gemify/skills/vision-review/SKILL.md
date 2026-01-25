@@ -17,8 +17,10 @@ description: 비전 대비 현재 상태 평가 + 리뷰 기록. "비전 리뷰"
 
 ### 1. 문서 읽기
 
+**반드시 `skills/scope/SKILL.md` 참조하여 현재 도메인 경로 결정.**
+
 ```
-~/.gemify/visions/{vision-name}/
+{domain_path}/visions/{vision-name}/
   ├── definition.md    ← 비전 정의
   ├── current.md       ← 현재 상태
   └── reviews/         ← 이전 리뷰들

@@ -66,7 +66,7 @@ HTML 생성 → 서버 시작 → URL 안내
 입력: 만들어볼 화면/컴포넌트 설명
     ↓
 작업 디렉토리 결정:
-├── ~/.gemify/proto/{date}-{slug}/ (기본)
+├── {domain_path}/proto/{date}-{slug}/ (기본)
 └── 사용자 지정 경로
     ↓
 HTML 파일 생성 (prototype.html)
@@ -109,8 +109,8 @@ URL 안내 + 서버 상태 표시
 ### 서버 시작
 
 ```bash
-# 작업 디렉토리로 이동
-cd ~/.gemify/proto/2026-01-18-gemify-pipeline/
+# 작업 디렉토리로 이동 (현재 도메인의 proto 폴더)
+cd {domain_path}/proto/2026-01-18-gemify-pipeline/
 
 # 백그라운드 서버 시작 (포트 8080)
 python3 -m http.server 8080 &
@@ -148,7 +148,7 @@ python3 -m http.server 8081 &
 Claude: 파이프라인 뷰 프로토타입을 만들게요.
 
 [생성 중...]
-├── ~/.gemify/proto/2026-01-18-pipeline-view/
+├── {domain_path}/proto/2026-01-18-pipeline-view/
 └── prototype.html
 
 [서버 시작]
@@ -177,8 +177,10 @@ Claude: 좋아요! 이 프로토타입을 패키징할까요?
 
 ## 작업 디렉토리 구조
 
+**반드시 `skills/scope/SKILL.md` 참조하여 현재 도메인 경로 결정.**
+
 ```
-~/.gemify/proto/
+{domain_path}/proto/
 └── 2026-01-18-pipeline-view/
     ├── prototype.html    # 메인 프로토타입
     ├── .server.pid       # 서버 PID (관리용)
@@ -201,14 +203,14 @@ Claude: 좋아요! 이 프로토타입을 패키징할까요?
 ```
 프로토타입이 확정되었습니다!
 
-파일 위치: ~/.gemify/proto/2026-01-18-pipeline-view/prototype.html
+파일 위치: {domain_path}/proto/2026-01-18-pipeline-view/prototype.html
 
 다음 단계:
   패키징하려면 → /gemify:poc "패키징해줘"
   (poc-pack이 git repo 생성 + craftify 핸드오프 준비)
 
 서버 종료하려면:
-  kill $(cat ~/.gemify/proto/2026-01-18-pipeline-view/.server.pid)
+  kill $(cat {domain_path}/proto/2026-01-18-pipeline-view/.server.pid)
 ```
 
 ## 규칙

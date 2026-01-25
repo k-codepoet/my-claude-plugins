@@ -9,21 +9,12 @@ library의 지식을 **목적(view type)별로 조합**하여 views에 저장합
 
 ## 사전 확인 (필수)
 
-**스킬 실행 전 반드시 확인:**
+**반드시 `skills/scope/SKILL.md` 참조하여 현재 도메인 경로 결정.**
 
 ```
 ~/.gemify/ 존재?
-├── 예 → 스킬 실행 계속
+├── 예 → config.json에서 현재 도메인 확인 → 스킬 실행
 └── 아니오 → setup 안내 후 중단
-```
-
-Setup 안내:
-```
-~/.gemify/가 설정되지 않았습니다.
-
-설정하기:
-  /gemify:setup              # 새로 시작
-  /gemify:setup --clone URL  # 기존 repo 가져오기
 ```
 
 ## 핵심 개념
@@ -480,6 +471,6 @@ views/
 - 제품/서비스 → `by-product/`으로 이동
 - 철학/에세이 → `by-essay/`로 이동
 
-기존 `by-subject/` 파일들은 `~/.gemify/` 저장소에서 직접 마이그레이션 필요.
+기존 `by-subject/` 파일들은 현재 도메인 저장소에서 직접 마이그레이션 필요.
 
-> **Note**: `~/.gemify/`는 사용자의 지식 저장소(Single Source of Truth)입니다.
+> **Note**: `~/.gemify/{domain}/`은 해당 도메인의 지식 저장소(Single Source of Truth)입니다.

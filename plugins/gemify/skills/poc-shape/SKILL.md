@@ -5,23 +5,25 @@ description: PoC 형태 다듬기. ~/.gemify 지식 체계를 탐색하여 재�
 
 # PoC Shape Skill
 
-아이디어를 **구체적인 형태**로 다듬습니다. ~/.gemify 지식 체계를 활용하여 재료를 찾고, 무의식 도출 질문으로 사용자가 진짜 원하는 모습을 끌어냅니다.
+아이디어를 **구체적인 형태**로 다듬습니다. 현재 도메인의 지식 체계를 활용하여 재료를 찾고, 무의식 도출 질문으로 사용자가 진짜 원하는 모습을 끌어냅니다.
+
+**반드시 `skills/scope/SKILL.md` 참조하여 현재 도메인 경로 결정.**
 
 ## 언제 사용
 
 - 핵심 문제는 정의됨
 - 하지만 화면/기능이 구체적이지 않음
 - inbox에 관련 아이디어가 있음
-- ~/.gemify에서 재료 탐색이 도움될 것
+- 현재 도메인 지식 체계에서 재료 탐색이 도움될 것
 
 ## 핵심 역할
 
-### 1. ~/.gemify 지식 체계 탐색
+### 1. 현재 도메인 지식 체계 탐색
 
 아이디어 실행에 필요한 관련 재료 검색:
 
 ```
-~/.gemify/ 탐색
+{domain_path}/ 탐색
 ├── library/     → 관련 원칙/스펙/how-to
 ├── drafts/      → 진행 중인 관련 생각
 └── views/       → 유사한 이전 작업
@@ -66,7 +68,7 @@ views/by-poc/session-viewer.md에서:
 ```
 입력: poc-idea에서 생성된 아이디어 또는 사용자 설명
     ↓
-~/.gemify 탐색 → 관련 재료 3개 이상 찾기
+{domain_path} 탐색 → 관련 재료 3개 이상 찾기
     ↓
 재료 추천: "이런 재료가 있는데, 이렇게 조합하면?"
     ↓
@@ -88,7 +90,7 @@ drafts에 저장 (sources로 사용된 재료 연결)
 ```
 사용자: "inbox에 저장한 gemify 웹앱 아이디어를 구체화하고 싶어"
 
-Claude: ~/.gemify를 탐색해볼게요...
+Claude: 현재 도메인의 지식 체계를 탐색해볼게요...
 
 [재료 발견]
 - library/specs/gemify-pipeline.md: inbox→draft→library 흐름
@@ -173,7 +175,7 @@ drafts/YYYY-MM-DD-{slug}-shape.md
 
 ```
 형태 문서가 drafts에 저장되었습니다:
-  ~/.gemify/drafts/2026-01-18-gemify-webapp-shape.md
+  {domain_path}/drafts/2026-01-18-gemify-webapp-shape.md
 
 핵심 화면: 파이프라인 전체 뷰
 
@@ -184,7 +186,7 @@ drafts/YYYY-MM-DD-{slug}-shape.md
 
 ## 규칙
 
-- **재료 3개 이상**: ~/.gemify에서 최소 3개 관련 재료 찾기
+- **재료 3개 이상**: 현재 도메인에서 최소 3개 관련 재료 찾기
 - **질문은 구체적으로**: "어떻게?" 보다 "뭐가 보여야 해?"
 - **sources 연결**: 사용된 재료를 frontmatter에 기록
 - **shape ↔ proto 반복 가능**: 형태 확인 후 다시 다듬기 OK

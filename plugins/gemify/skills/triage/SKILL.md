@@ -9,21 +9,12 @@ inbox의 raw 파일을 **순방향으로 정리**하고 다음 할 일을 찾습
 
 ## 사전 확인 (필수)
 
-**스킬 실행 전 반드시 확인:**
+**반드시 `skills/scope/SKILL.md` 참조하여 현재 도메인 경로 결정.**
 
 ```
 ~/.gemify/ 존재?
-├── 예 → 스킬 실행 계속
+├── 예 → config.json에서 현재 도메인 확인 → 스킬 실행
 └── 아니오 → setup 안내 후 중단
-```
-
-Setup 안내:
-```
-~/.gemify/가 설정되지 않았습니다.
-
-설정하기:
-  /gemify:setup              # 새로 시작
-  /gemify:setup --clone URL  # 기존 repo 가져오기
 ```
 
 ## 핵심 개념

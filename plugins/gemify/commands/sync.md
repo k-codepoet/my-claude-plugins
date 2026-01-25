@@ -13,9 +13,11 @@ allowed-tools: Read, Bash, Write, Glob, Grep
 | 커맨드 | 설명 |
 |--------|------|
 | `/gemify:sync` | 전체 진단 (remote + SSOT 점검 + 심기 제안) |
-| `/gemify:sync pull` | remote → ~/.gemify/ |
-| `/gemify:sync push` | ~/.gemify/ → remote |
+| `/gemify:sync pull` | remote → {domain_path}/ |
+| `/gemify:sync push` | {domain_path}/ → remote |
 | `/gemify:sync status` | 동기화 상태 확인 |
+
+**주의**: 현재 도메인(`skills/scope/SKILL.md` 규칙)의 경로에서 동기화 수행.
 
 ## 안전 장치
 

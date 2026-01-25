@@ -9,21 +9,12 @@ description: 세션 마무리 스킬. "마무리", "wrapup", "세션 끝", "놓�
 
 ## 사전 확인 (필수)
 
-**스킬 실행 전 반드시 확인:**
+**반드시 `skills/scope/SKILL.md` 참조하여 현재 도메인 경로 결정.**
 
 ```
 ~/.gemify/ 존재?
-├── 예 → 스킬 실행 계속
+├── 예 → config.json에서 현재 도메인 확인 → 스킬 실행
 └── 아니오 → setup 안내 후 중단
-```
-
-Setup 안내:
-```
-~/.gemify/가 설정되지 않았습니다.
-
-설정하기:
-  /gemify:setup              # 새로 시작
-  /gemify:setup --clone URL  # 기존 repo 가져오기
 ```
 
 ## 언제 사용하나
@@ -115,7 +106,8 @@ inbox 항목 = "미완료"가 아니라 **"의도적으로 챙겨둔 것"**
 ### 동작 조건
 
 ```bash
-cd ~/.gemify
+# 현재 도메인 경로에서 실행
+cd {domain_path}
 git remote -v  # remote 설정 확인
 ```
 
@@ -127,7 +119,7 @@ git remote -v  # remote 설정 확인
 ### 실행 명령
 
 ```bash
-cd ~/.gemify
+cd {domain_path}  # scope 스킬에서 결정된 경로
 git add .
 git commit -m "session: {slug}"
 git push origin main

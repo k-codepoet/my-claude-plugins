@@ -9,21 +9,12 @@ description: 플러그인 개선 문서 생성. "플러그인 개선 아이디�
 
 ## 사전 확인 (필수)
 
-**스킬 실행 전 반드시 확인:**
+**반드시 `skills/scope/SKILL.md` 참조하여 현재 도메인 경로 결정.**
 
 ```
 ~/.gemify/ 존재?
-├── 예 → 스킬 실행 계속
+├── 예 → config.json에서 현재 도메인 확인 → 스킬 실행
 └── 아니오 → setup 안내 후 중단
-```
-
-Setup 안내:
-```
-~/.gemify/가 설정되지 않았습니다.
-
-설정하기:
-  /gemify:setup              # 새로 시작
-  /gemify:setup --clone URL  # 기존 repo 가져오기
 ```
 
 ## 단방향 흐름 원칙
@@ -137,12 +128,12 @@ Skill 도구 사용:
 
 ## 저장 위치
 
-개선 문서는 `~/.gemify/views`에 저장합니다.
+개선 문서는 현재 도메인의 `views`에 저장합니다.
 
-> **Note**: `~/.gemify/`는 사용자의 지식 저장소(Single Source of Truth)입니다.
+> **Note**: `~/.gemify/{domain}/`은 해당 도메인의 지식 저장소(Single Source of Truth)입니다.
 
 ```
-~/.gemify/
+{domain_path}/
 └── views/
     ├── by-improvement/
     │   └── {plugin}-{slug}.md
@@ -168,4 +159,5 @@ Skill 도구 사용:
 - **views/by-improvement/에 원본 저장**
 - **업데이트 시 .history/ 스냅샷 생성**
 - `~/.gemify/` 경로가 없으면 `/gemify:setup` 안내
+- 도메인 경로는 scope 스킬 규칙에 따라 결정됨
 - 기존 개선 문서가 있으면 업데이트 또는 새로 생성 선택 제안

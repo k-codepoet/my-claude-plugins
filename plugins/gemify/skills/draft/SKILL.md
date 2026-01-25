@@ -9,30 +9,21 @@ inbox의 원석을 **대화를 통해 다듬습니다**.
 
 ## 사전 확인 (필수)
 
-**스킬 실행 전 반드시 확인:**
+**반드시 `skills/scope/SKILL.md` 참조하여 현재 도메인 경로 결정.**
 
 ```
 ~/.gemify/ 존재?
-├── 예 → 스킬 실행 계속
+├── 예 → config.json에서 현재 도메인 확인 → 스킬 실행
 └── 아니오 → setup 안내 후 중단
-```
-
-Setup 안내:
-```
-~/.gemify/가 설정되지 않았습니다.
-
-설정하기:
-  /gemify:setup              # 새로 시작
-  /gemify:setup --clone URL  # 기존 repo 가져오기
 ```
 
 ## 입력 소스
 
 ```
-~/.gemify/inbox/thoughts/   ← 내 생각 (원석)
-~/.gemify/inbox/materials/  ← 외부 재료
+{domain_path}/inbox/thoughts/   ← 내 생각 (원석)
+{domain_path}/inbox/materials/  ← 외부 재료
        ↓
-~/.gemify/drafts/           ← 해체 → 재조립 → 연마
+{domain_path}/drafts/           ← 해체 → 재조립 → 연마
 ```
 
 ## 두 가지 모드

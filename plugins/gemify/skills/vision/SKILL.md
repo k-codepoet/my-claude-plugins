@@ -17,8 +17,10 @@ description: 비전 생성/조회. "비전 조회", "vision", "방향성" 등 �
 
 ## 저장 위치
 
+**반드시 `skills/scope/SKILL.md` 참조하여 현재 도메인 경로 결정.**
+
 ```
-~/.gemify/visions/{vision-name}/
+{domain_path}/visions/{vision-name}/
   ├── definition.md          ← 비전 정의
   ├── definition.history/    ← 피보팅 이력
   ├── current.md             ← 현재 상태 스냅샷

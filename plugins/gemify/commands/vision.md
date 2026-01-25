@@ -18,7 +18,9 @@ argument-hint: "[vision-name | new <name>]"
 
 ## 동작
 
-1. $ARGUMENTS가 없으면 → `~/.gemify/visions/` 목록 표시
+**반드시 `skills/scope/SKILL.md` 참조하여 현재 도메인 경로 결정.**
+
+1. $ARGUMENTS가 없으면 → `{domain_path}/visions/` 목록 표시
 2. $ARGUMENTS가 `new <name>`이면 → 새 vision 생성 워크플로우
 3. 그 외 → 해당 vision 조회
 

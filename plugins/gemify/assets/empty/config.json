@@ -1,0 +1,11 @@
+{
+  "version": "1.0",
+  "current": "builder",
+  "domains": {
+    "builder": {
+      "path": "~/.gemify/builder",
+      "repo": null,
+      "description": "기술/서비스개발"
+    }
+  }
+}

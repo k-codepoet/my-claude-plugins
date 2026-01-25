@@ -5,7 +5,9 @@ description: ~/.gemify/ 저장소를 remote와 동기화하고 SSOT 일치 점�
 
 # Sync Skill
 
-`~/.gemify/` 저장소를 remote와 동기화하고, SSOT 일치 점검을 수행합니다.
+현재 도메인의 저장소를 remote와 동기화하고, SSOT 일치 점검을 수행합니다.
+
+**반드시 `skills/scope/SKILL.md` 참조하여 현재 도메인 경로 결정.**
 
 ## 동작
 
@@ -21,13 +23,13 @@ description: ~/.gemify/ 저장소를 remote와 동기화하고 SSOT 일치 점�
     │       - 차이 있으면: "pull 또는 push가 필요합니다" 표시
     │
     ├─▶ 2. SSOT 일치 점검
-    │       - ~/.gemify/principles/ ↔ plugins/gemify/principles/
-    │       - ~/.gemify/CLAUDE.md ↔ plugins/gemify/assets/*/CLAUDE.md
+    │       - {domain_path}/principles/ ↔ plugins/gemify/principles/
+    │       - {domain_path}/CLAUDE.md ↔ plugins/gemify/assets/*/CLAUDE.md
     │       - 불일치 항목 나열
     │
     └─▶ 3. 수정 제안
             - 불일치 항목별 수정 방법 제안
-            - "~/.gemify/ 내용을 플러그인에 심을까요? (y/n)" 확인
+            - "현재 도메인 내용을 플러그인에 심을까요? (y/n)" 확인
             - y 입력 시: 해당 파일 복사/업데이트
 ```
 
@@ -35,8 +37,8 @@ description: ~/.gemify/ 저장소를 remote와 동기화하고 SSOT 일치 점�
 
 | 커맨드 | 동작 |
 |--------|------|
-| `sync pull` | remote → ~/.gemify/ |
-| `sync push` | ~/.gemify/ → remote |
+| `sync pull` | remote → {domain_path}/ |
+| `sync push` | {domain_path}/ → remote |
 | `sync status` | remote ↔ local 차이 |
 | `sync` (없음) | 전체 진단 + 불일치 수정 제안 |
 
@@ -45,7 +47,7 @@ description: ~/.gemify/ 저장소를 remote와 동기화하고 SSOT 일치 점�
 ### 1단계: Remote 동기화 상태 확인
 
 ```bash
-cd ~/.gemify
+cd {domain_path}  # scope 스킬에서 결정된 경로
 git fetch origin
 git status -sb
 ```
@@ -60,18 +62,18 @@ git status -sb
 
 비교 대상:
 
-| ~/.gemify/ | plugins/gemify/ | 설명 |
-|------------|-----------------|------|
+| {domain_path}/ | plugins/gemify/ | 설명 |
+|----------------|-----------------|------|
 | `principles/` | `principles/` | 설계 원칙 문서 |
 | `CLAUDE.md` | `assets/*/CLAUDE.md` | 에셋별 CLAUDE.md |
 
 점검 방법:
 ```bash
 # principles/ 비교
-diff -rq ~/.gemify/principles/ plugins/gemify/principles/
+diff -rq {domain_path}/principles/ plugins/gemify/principles/
 
 # CLAUDE.md 비교 (핵심 섹션만)
-# ~/.gemify/CLAUDE.md의 "## 핵심 원칙" 섹션과 assets 비교
+# {domain_path}/CLAUDE.md의 "## 핵심 원칙" 섹션과 assets 비교
 ```
 
 불일치 시 출력:
@@ -79,14 +81,14 @@ diff -rq ~/.gemify/principles/ plugins/gemify/principles/
 📊 SSOT 일치 점검 결과
 
 불일치 발견:
-  - principles/gemify-philosophy.md: ~/.gemify/ 쪽이 최신
+  - principles/gemify-philosophy.md: 현재 도메인 쪽이 최신
   - CLAUDE.md → assets/craftify/CLAUDE.md: 핵심 원칙 섹션 불일치
 
 수정 방안:
-  1. ~/.gemify/principles/ → plugins/gemify/principles/ 복사
-  2. ~/.gemify/CLAUDE.md 핵심 내용 → assets/ 반영
+  1. {domain_path}/principles/ → plugins/gemify/principles/ 복사
+  2. {domain_path}/CLAUDE.md 핵심 내용 → assets/ 반영
 
-~/.gemify/ 내용을 플러그인에 심을까요? (y/n)
+현재 도메인 내용을 플러그인에 심을까요? (y/n)
 ```
 
 ### 3단계: 심기 (Apply)
@@ -95,7 +97,7 @@ diff -rq ~/.gemify/principles/ plugins/gemify/principles/
 
 ```bash
 # principles/ 동기화
-cp -r ~/.gemify/principles/* plugins/gemify/principles/
+cp -r {domain_path}/principles/* plugins/gemify/principles/
 
 # 변경된 파일 목록 출력
 echo "변경된 파일:"
@@ -110,10 +112,10 @@ git status --short plugins/gemify/
 📊 /gemify:sync 전체 진단
 
 1. Remote 동기화
-   ✅ ~/.gemify/와 remote가 동기화되어 있습니다.
+   ✅ 현재 도메인과 remote가 동기화되어 있습니다.
 
 2. SSOT 일치 점검
-   ✅ ~/.gemify/와 plugins/gemify/가 일치합니다.
+   ✅ 현재 도메인과 plugins/gemify/가 일치합니다.
 
 모든 항목이 정상입니다.
 ```
@@ -131,12 +133,12 @@ git status --short plugins/gemify/
    ⚠️ 불일치 발견 (2건)
 
    - principles/gemify-philosophy.md
-     ~/.gemify/ 쪽이 최신 (2026-01-14 vs 2026-01-10)
+     현재 도메인 쪽이 최신 (2026-01-14 vs 2026-01-10)
 
    - CLAUDE.md 핵심 원칙 섹션
-     ~/.gemify/CLAUDE.md에서 추가된 내용 있음
+     {domain_path}/CLAUDE.md에서 추가된 내용 있음
 
-~/.gemify/ 내용을 플러그인에 심을까요? (y/n)
+현재 도메인 내용을 플러그인에 심을까요? (y/n)
 ```
 
 ## 플러그인 디렉토리 탐색
@@ -160,5 +162,6 @@ find . -path "*/plugins/gemify/.claude-plugin/plugin.json" -type f 2>/dev/null |
 
 ## 관련 스킬
 
-- **scope**: ~/.gemify/ 경로 규칙 및 안전 장치
-- **setup**: ~/.gemify/ 초기 설정
+- **scope**: 도메인 경로 규칙 및 안전 장치
+- **domain**: 도메인 관리 (list, set, add)
+- **setup**: gemify 초기 설정

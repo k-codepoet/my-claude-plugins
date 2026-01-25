@@ -224,7 +224,7 @@ inbox/thoughts/YYYY-MM-DD-{slug}.md
 
 ```
 아이디어가 inbox에 저장되었습니다:
-  ~/.gemify/inbox/thoughts/2026-01-18-gemify-visual-pipeline.md
+  {domain_path}/inbox/thoughts/2026-01-18-gemify-visual-pipeline.md
 
 페르소나: Buildy (1인 개발자)
 핵심 문제: 지식 흐름 시각화로 막힌 곳 발견
