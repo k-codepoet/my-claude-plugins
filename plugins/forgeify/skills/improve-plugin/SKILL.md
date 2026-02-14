@@ -1,6 +1,8 @@
 ---
 name: improve-plugin
 description: gemify 개선 문서 기반 플러그인 수정 가이드. "플러그인 개선", "plugin 수정", "improve", "개선 문서 실행" 등 요청 시 활성화됩니다.
+allowed-tools: Read, Write, Edit, Bash, Glob, Grep, Skill
+argument-hint: "<plugin-name> <improvement-doc-path>"
 ---
 
 # Improve Plugin 가이드

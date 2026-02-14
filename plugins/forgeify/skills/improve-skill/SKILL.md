@@ -1,6 +1,8 @@
 ---
 name: improve-skill
 description: 스킬 개선. "스킬 개선", "skill 수정", "improve skill", "SKILL.md 업데이트" 등 요청 시 활성화.
+allowed-tools: Read, Write, Edit, Bash, Glob, Grep
+argument-hint: "<name> [improvement-doc]"
 ---
 
 # improve-skill Skill

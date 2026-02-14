@@ -1,6 +1,6 @@
 {
   "name": "forgeify",
-  "version": "2.1.0",
+  "version": "3.0.0",
   "description": "Forge your ideas into Claude extensions - Claude Code 메타도구(plugin, skill, command, agent, hook) 개발 도구",
   "author": {
     "name": "choigawoon"

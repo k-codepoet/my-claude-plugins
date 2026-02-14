@@ -1,6 +1,8 @@
 ---
 name: align
 description: 공식문서/외부 레퍼런스 기반으로 가이드 스킬 또는 플러그인 정렬. "정렬", "align", "공식문서 동기화", "최신화" 등 요청 시 활성화.
+allowed-tools: Read, Write, Edit, Bash, Glob, Grep, WebFetch
+argument-hint: "[target] [--source <url>]"
 ---
 
 # align Skill

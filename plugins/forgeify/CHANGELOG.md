@@ -5,6 +5,24 @@ All notable changes to the Forgeify plugin will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [3.0.0] - 2026-02-14
+
+### Breaking Changes
+- **커맨드 16개 삭제** - Skills로 통합 (Claude Code 공식 문서 기준 commands → skills 병합)
+  - 액션 커맨드 14개: align, compose, harvest, validate, new-plugin/skill/command/agent/hook, improve-plugin/skill/command/agent/hook
+  - 라우터 커맨드 2개: new, improve
+  - 잔류 커맨드: help, howto (가이드/튜토리얼)
+
+### Added
+- **new 라우터 스킬** - 메타도구 생성 라우터를 스킬로 전환 (`disable-model-invocation: true`)
+- **improve 라우터 스킬** - 메타도구 개선 라우터를 스킬로 전환 (`disable-model-invocation: true`)
+
+### Changed
+- **14개 스킬 frontmatter 보강** - 커맨드에서 이관
+  - `allowed-tools` 추가 (align, new-*, improve-*)
+  - `argument-hint` 추가 (전체 14개)
+- **help.md 업데이트** - "커맨드" → "기능" 용어 변경, harvest/가이드 스킬 목록 추가
+
 ## [2.1.0] - 2026-02-14
 
 ### Added

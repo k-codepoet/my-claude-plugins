@@ -1,6 +1,8 @@
 ---
 name: new-skill
 description: 새 스킬 생성. "스킬 만들기", "new skill", "SKILL.md 추가" 등 요청 시 활성화.
+allowed-tools: Read, Write, Bash, Glob, Grep
+argument-hint: "<name> [plugin-path]"
 ---
 
 # new-skill Skill

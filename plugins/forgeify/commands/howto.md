@@ -3,7 +3,7 @@ description: Forgeify 사용 가이드. 인자 없이 실행하면 가능한 주
 argument-hint: "[topic]"
 ---
 
-# /forgeify:howto 명령어
+# /forgeify:howto
 
 사용자가 요청한 주제에 대한 Forgeify 사용 가이드를 제공합니다.
 

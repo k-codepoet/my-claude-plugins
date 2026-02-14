@@ -1,6 +1,8 @@
 ---
 name: new-agent
 description: 새 에이전트 생성. "에이전트 만들기", "new agent", "서브에이전트 추가" 등 요청 시 활성화.
+allowed-tools: Read, Write, Bash, Glob, Grep
+argument-hint: "<name> [plugin-path]"
 ---
 
 # new-agent Skill
