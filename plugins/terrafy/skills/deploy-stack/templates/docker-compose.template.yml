@@ -1,0 +1,38 @@
+# =============================================================================
+# Docker Compose Template — Portainer GitOps 서비스 배포용
+# =============================================================================
+# 사용법:
+#   1. 플레이스홀더를 실제 값으로 치환
+#   2. infra/{DEVICE}/{SERVICE}/ 또는 services/{DEVICE}/{SERVICE}/ 에 저장
+#   3. portainer-gitops.sh 에 스택 등록 후 배포
+#
+# 플레이스홀더:
+#   {SERVICE}       — 서비스 이름 (예: grafana)
+#   {IMAGE}         — Docker 이미지 (예: grafana/grafana:11.0)
+#   {HOST_PORT}     — 호스트 포트 (20000-29999 범위, docs/reference/ports.md 참조)
+#   {CONTAINER_PORT} — 컨테이너 내부 포트 (이미지 기본값 유지)
+#   {DOMAIN}        — 외부 도메인 (예: myservice.example.com)
+#   {NETWORK}       — Docker 네트워크 이름 (디바이스별 상이, CLAUDE.md 참조)
+#   {DATA_PATH}     — 영속 데이터 호스트 경로 (사용자 확인 필수)
+# =============================================================================
+
+services:
+  {SERVICE}:
+    image: {IMAGE}
+    restart: unless-stopped
+    ports:
+      - "{HOST_PORT}:{CONTAINER_PORT}"
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.{SERVICE}.rule=Host(`{DOMAIN}`)"
+      - "traefik.http.routers.{SERVICE}.entrypoints=websecure"
+      - "traefik.http.routers.{SERVICE}.tls=true"
+      - "traefik.http.services.{SERVICE}.loadbalancer.server.port={CONTAINER_PORT}"
+    volumes:
+      - {DATA_PATH}:/data    # 영속 데이터 (경로 사용자 확인 필수)
+    networks:
+      - {NETWORK}
+
+networks:
+  {NETWORK}:
+    external: true

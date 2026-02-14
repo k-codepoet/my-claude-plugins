@@ -26,12 +26,20 @@ USB 외장하드           →         /volumes/data
 | `/terrafy:help` | 이 도움말 표시 |
 | `/terrafy:howto [topic]` | 사용 가이드 (주제별 사용법과 예시) |
 
-### 인프라 관리
+### 인프라 프로비저닝
 | 기능 | 설명 |
 |------|------|
 | `/terrafy:status` | 현재 환경 스캔 및 인프라 상태 표시 |
-| `/terrafy:setup` | 대화형 인프라 구성 |
+| `/terrafy:setup` | 대화형 인프라 구성 (6-Phase) |
 | `/terrafy:init-ssh` | SSH 서버 설정 |
+
+### 배포·운영
+| 기능 | 설명 |
+|------|------|
+| `/terrafy:deploy-stack` | 서비스 스택 배포 (Portainer GitOps) |
+| `/terrafy:secrets` | Vault 시크릿 관리 (AppRole, Agent sidecar) |
+| `/terrafy:networking` | 네트워크/라우팅 (Traefik chain, Split DNS) |
+| `/terrafy:cicd` | CI/CD 파이프라인 (GitLab CI, buildx) |
 
 ## 역할 구조
 

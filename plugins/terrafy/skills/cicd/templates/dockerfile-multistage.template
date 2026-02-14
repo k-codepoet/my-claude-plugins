@@ -1,0 +1,99 @@
+# Multiplatform Dockerfile Template (Multistage Build)
+# buildx로 arm64 + amd64 동시 빌드 가능한 Dockerfile 패턴
+#
+# Placeholders:
+#   {BASE_IMAGE}       - 베이스 이미지 (예: node:20-alpine, python:3.12-slim)
+#   {BUILD_IMAGE}      - 빌드 스테이지 이미지 (예: node:20-alpine)
+#   {RUNTIME_IMAGE}    - 런타임 스테이지 이미지 (예: node:20-alpine, nginx:alpine)
+#   {BUILD_COMMANDS}   - 빌드 명령어
+#   {APP_PORT}         - 앱 리스닝 포트
+#
+# 사용법:
+#   1. placeholders를 실제 값으로 교체
+#   2. 앱 repo 루트에 Dockerfile로 저장
+#   3. buildx로 멀티플랫폼 빌드:
+#      docker buildx build --platform linux/amd64,linux/arm64 -t {IMAGE} --push .
+
+# ============================================================
+# Pattern A: Node.js App (Build + Runtime)
+# ============================================================
+
+# --- Build Stage ---
+# FROM {BUILD_IMAGE} AS builder
+# WORKDIR /app
+# COPY package*.json ./
+# RUN npm ci
+# COPY . .
+# RUN npm run build
+#
+# --- Runtime Stage ---
+# FROM {RUNTIME_IMAGE}
+# WORKDIR /app
+# COPY --from=builder /app/dist ./dist
+# COPY --from=builder /app/node_modules ./node_modules
+# COPY --from=builder /app/package.json ./
+# EXPOSE {APP_PORT}
+# CMD ["node", "dist/index.js"]
+
+# ============================================================
+# Pattern B: Python App (Build + Runtime)
+# ============================================================
+
+# --- Build Stage ---
+# FROM {BUILD_IMAGE} AS builder
+# WORKDIR /app
+# COPY requirements.txt .
+# RUN pip install --no-cache-dir --target=/app/deps -r requirements.txt
+#
+# --- Runtime Stage ---
+# FROM {RUNTIME_IMAGE}
+# WORKDIR /app
+# COPY --from=builder /app/deps /usr/local/lib/python3.12/site-packages/
+# COPY . .
+# EXPOSE {APP_PORT}
+# CMD ["python", "-m", "uvicorn", "main:app", "--host", "0.0.0.0", "--port", "{APP_PORT}"]
+
+# ============================================================
+# Pattern C: Static Site (Build + Nginx)
+# ============================================================
+
+# --- Build Stage ---
+# FROM {BUILD_IMAGE} AS builder
+# WORKDIR /app
+# COPY package*.json ./
+# RUN npm ci
+# COPY . .
+# RUN npm run build
+#
+# --- Runtime Stage ---
+# FROM nginx:alpine
+# COPY --from=builder /app/dist /usr/share/nginx/html
+# COPY nginx.conf /etc/nginx/conf.d/default.conf
+# EXPOSE 80
+
+# ============================================================
+# Pattern D: Go App (Scratch Runtime)
+# ============================================================
+
+# --- Build Stage ---
+# FROM golang:1.22-alpine AS builder
+# WORKDIR /app
+# COPY go.mod go.sum ./
+# RUN go mod download
+# COPY . .
+# RUN CGO_ENABLED=0 GOOS=linux go build -o /app/server .
+#
+# --- Runtime Stage ---
+# FROM scratch
+# COPY --from=builder /app/server /server
+# EXPOSE {APP_PORT}
+# ENTRYPOINT ["/server"]
+
+# ============================================================
+# Multiplatform Build Notes:
+# - 모든 패턴은 buildx --platform linux/amd64,linux/arm64 호환
+# - Alpine 기반 이미지는 arm64/amd64 모두 지원
+# - scratch 이미지는 CGO_ENABLED=0 필수
+# - Rust/C++ 등 네이티브 컴파일은 QEMU 에뮬레이션 시 매우 느림
+#   → arm64 Runner에서 네이티브 빌드 권장
+# ============================================================

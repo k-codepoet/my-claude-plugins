@@ -1,0 +1,145 @@
+# Traefik Service Labels Template
+# 서비스 배포 시 시나리오별 Traefik labels 예시
+# Placeholders: {SERVICE}, {DOMAIN}, {PORT}, {NETWORK}
+
+# ============================================================
+# 1. Basic HTTP Service
+# 가장 일반적인 웹 서비스 라우팅
+# ============================================================
+
+# basic-http:
+#   services:
+#     {SERVICE}:
+#       image: {IMAGE}
+#       labels:
+#         - "traefik.enable=true"
+#         - "traefik.http.routers.{SERVICE}.rule=Host(`{SERVICE}.{DOMAIN}`)"
+#         - "traefik.http.services.{SERVICE}.loadbalancer.server.port={PORT}"
+#       networks:
+#         - {NETWORK}
+#
+#   networks:
+#     {NETWORK}:
+#       external: true
+
+# ============================================================
+# 2. With BasicAuth Middleware
+# HTTP Basic Auth가 필요한 서비스
+# ============================================================
+
+# basic-auth:
+#   services:
+#     {SERVICE}:
+#       image: {IMAGE}
+#       labels:
+#         - "traefik.enable=true"
+#         - "traefik.http.routers.{SERVICE}.rule=Host(`{SERVICE}.{DOMAIN}`)"
+#         - "traefik.http.routers.{SERVICE}.middlewares={SERVICE}-auth"
+#         - "traefik.http.middlewares.{SERVICE}-auth.basicauth.users={HTPASSWD_STRING}"
+#         - "traefik.http.services.{SERVICE}.loadbalancer.server.port={PORT}"
+#       networks:
+#         - {NETWORK}
+
+# ============================================================
+# 3. WebSocket Support
+# WebSocket 연결이 필요한 서비스 (n8n, 실시간 앱 등)
+# ============================================================
+
+# websocket:
+#   services:
+#     {SERVICE}:
+#       image: {IMAGE}
+#       labels:
+#         - "traefik.enable=true"
+#         - "traefik.http.routers.{SERVICE}.rule=Host(`{SERVICE}.{DOMAIN}`)"
+#         - "traefik.http.services.{SERVICE}.loadbalancer.server.port={PORT}"
+#         # sticky session (WebSocket stateful 연결 유지)
+#         - "traefik.http.services.{SERVICE}.loadbalancer.sticky.cookie=true"
+#       networks:
+#         - {NETWORK}
+
+# ============================================================
+# 4. Multi-Service Container
+# 하나의 컨테이너에 서비스가 여럿인 경우 (예: GitLab + Registry)
+# 라우터마다 .service 라벨 명시 필수
+# ============================================================
+
+# multi-service:
+#   services:
+#     {CONTAINER}:
+#       image: {IMAGE}
+#       labels:
+#         - "traefik.enable=true"
+#         # Service A
+#         - "traefik.http.routers.{SERVICE_A}.rule=Host(`{SERVICE_A}.{DOMAIN}`)"
+#         - "traefik.http.routers.{SERVICE_A}.service={SERVICE_A}"
+#         - "traefik.http.services.{SERVICE_A}.loadbalancer.server.port={PORT_A}"
+#         # Service B
+#         - "traefik.http.routers.{SERVICE_B}.rule=Host(`{SERVICE_B}.{DOMAIN}`)"
+#         - "traefik.http.routers.{SERVICE_B}.service={SERVICE_B}"
+#         - "traefik.http.services.{SERVICE_B}.loadbalancer.server.port={PORT_B}"
+#       networks:
+#         - {NETWORK}
+
+# ============================================================
+# 5. NAS HTTPS Service (Service HTTPS Proxy Pattern)
+# NAS에서 HTTPS URL을 발행하지만 내부는 HTTP인 서비스
+# 진입점 Traefik이 TLS 종료, X-Forwarded-Proto 전달
+# ============================================================
+
+# nas-https:
+#   services:
+#     {SERVICE}:
+#       image: {IMAGE}
+#       environment:
+#         # external_url은 https:// (클라이언트가 보는 URL)
+#         EXTERNAL_URL: "https://{SERVICE}.{DOMAIN}"
+#         # 내부 nginx/서비스는 HTTP 유지
+#         # NGINX_LISTEN_HTTPS: "false"  (서비스별 설정명 다름)
+#       labels:
+#         - "traefik.enable=true"
+#         - "traefik.http.routers.{SERVICE}.rule=Host(`{SERVICE}.{DOMAIN}`)"
+#         - "traefik.http.routers.{SERVICE}.entrypoints=web"
+#         - "traefik.http.services.{SERVICE}.loadbalancer.server.port={PORT}"
+#       networks:
+#         - {NETWORK}
+
+# ============================================================
+# 6. Path Prefix Routing
+# 서브도메인 대신 경로 기반 라우팅이 필요한 경우
+# ============================================================
+
+# path-prefix:
+#   services:
+#     {SERVICE}:
+#       image: {IMAGE}
+#       labels:
+#         - "traefik.enable=true"
+#         - "traefik.http.routers.{SERVICE}.rule=Host(`{HOST}.{DOMAIN}`) && PathPrefix(`/{PATH}`)"
+#         - "traefik.http.routers.{SERVICE}.middlewares={SERVICE}-strip"
+#         - "traefik.http.middlewares.{SERVICE}-strip.stripprefix.prefixes=/{PATH}"
+#         - "traefik.http.services.{SERVICE}.loadbalancer.server.port={PORT}"
+#       networks:
+#         - {NETWORK}
+
+# ============================================================
+# 7. TCP Router (non-HTTP, e.g. SSH, Database)
+# Traefik file provider에 설정 (docker labels 아님)
+# ============================================================
+
+# tcp-router (traefik static/dynamic config):
+#   entryPoints:
+#     {SERVICE}-tcp:
+#       address: ":{HOST_PORT}"
+#
+#   tcp:
+#     routers:
+#       {SERVICE}-tcp:
+#         entryPoints: ["{SERVICE}-tcp"]
+#         rule: "HostSNI(`*`)"
+#         service: "{SERVICE}-tcp-svc"
+#     services:
+#       {SERVICE}-tcp-svc:
+#         loadBalancer:
+#           servers:
+#             - address: "{TARGET_IP}:{TARGET_PORT}"
