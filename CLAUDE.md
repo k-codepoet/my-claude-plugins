@@ -15,6 +15,7 @@ Archived plugins (in `_archived/`): homeserver-gitops, ubuntu-dev-setup
 
 ```
 .claude-plugin/marketplace.json  # Marketplace registry (name, owner, plugins[])
+boilerplate/plugin-template/     # Plugin scaffolding template
 └── plugins/
     └── {directory-name}/
         ├── .claude-plugin/plugin.json  # Plugin manifest (name can differ from directory)
@@ -25,7 +26,8 @@ Archived plugins (in `_archived/`): homeserver-gitops, ubuntu-dev-setup
         ├── hooks/hooks.json             # Event-driven hooks
         ├── principles/                  # Plugin design principles (.md)
         ├── assets/                      # Templates and examples
-        └── templates/                   # Boilerplate templates
+        ├── templates/                   # Boilerplate templates
+        └── docs/                        # Plugin documentation (optional)
 ```
 
 **Flow**: User triggers skill/command → Skill provides instructions + allowed-tools → Script executes with `${CLAUDE_PLUGIN_ROOT}` variable
@@ -92,7 +94,7 @@ Note: `name` determines command prefix (e.g., `forgeify` → `/forgeify:help`), 
 
 ### Commands (`commands/*.md`)
 
-Note: Commands are legacy. Skills (`skills/{name}/SKILL.md`) are preferred and support all the same frontmatter fields plus additional features. Commands are kept only for help/howto type content.
+Note: Commands are legacy. Skills (`skills/{name}/SKILL.md`) are preferred and support all the same frontmatter fields plus additional features. forgeify and gemify are fully migrated (commands kept only for help/howto). craftify, terrafy, and namify still have functional action commands pending migration.
 
 ```yaml
 ---
@@ -163,7 +165,7 @@ Uses nested object structure with event types as keys:
 
 Event types: `PreToolUse`, `PostToolUse`, `Stop`, `SessionStart`, `UserPromptSubmit`
 
-Note: Only `type: "command"` is supported in plugin hooks. `type: "prompt"` is silently ignored.
+Note: Only `type: "command"` is supported in plugin hooks. `type: "prompt"` is silently ignored. `SessionStart` and `UserPromptSubmit` hooks omit the `matcher` field (not tool-specific).
 
 ## Script Conventions
 
