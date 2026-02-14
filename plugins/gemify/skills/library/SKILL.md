@@ -1,6 +1,8 @@
 ---
 name: library
 description: drafts의 다듬어진 보석을 library로 저장. "정리해", "분류해", "library" 요청 또는 draft 세션에서 완성도 충분 시 활성화.
+allowed-tools: Read, Write, Edit
+argument-hint: "[drafts 파일]"
 ---
 
 # Library Skill

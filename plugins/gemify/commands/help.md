@@ -19,17 +19,17 @@ inbox → draft → library → view
 않은 생각        지식/재료   의미 부여
 ```
 
-## 사용 가능한 커맨드
+## 사용 가능한 기능
 
 ### 가이드
-| 커맨드 | 설명 |
-|--------|------|
+| 기능 | 설명 |
+|------|------|
 | `/gemify:help` | 이 도움말 표시 |
 | `/gemify:howto [topic]` | 사용 가이드 (주제별 사용법과 예시) |
 
 ### 지식 파이프라인
-| 커맨드 | 설명 |
-|--------|------|
+| 기능 | 설명 |
+|------|------|
 | `/gemify:inbox` | 내 생각 포착 → inbox/thoughts/ |
 | `/gemify:import` | 외부 재료 가져오기 → inbox/materials/ |
 | `/gemify:sidebar` | 본 작업 중 떠오른 것 빼두기 → inbox/ |
@@ -42,24 +42,25 @@ inbox → draft → library → view
 | `/gemify:tidy` | 지식 체계 탑다운 재정리 (끊어진 연결 복구) |
 
 ### 비전 관리
-| 커맨드 | 설명 |
-|--------|------|
+| 기능 | 설명 |
+|------|------|
 | `/gemify:vision` | 비전 생성/조회 → visions/ |
 | `/gemify:vision-review` | 비전 대비 현재 상태 평가 |
 
 ### 문제 해결
-| 커맨드 | 설명 |
-|--------|------|
+| 기능 | 설명 |
+|------|------|
 | `/gemify:troubleshoot` | 버그/문제 분석 및 가설 도출 |
 | `/gemify:bugfix` | 버그 수정 문서 생성 (2-track) |
 | `/gemify:improve-plugin` | 플러그인 개선 문서 생성 |
 | `/gemify:poc` | PoC 개발 문서 생성 |
 
 ### 세션/설정
-| 커맨드 | 설명 |
-|--------|------|
+| 기능 | 설명 |
+|------|------|
 | `/gemify:wrapup` | 세션 마무리 (HITL 체크 + 리포트) |
 | `/gemify:setup` | Gemify 구조 초기화 |
+| `/gemify:domain` | 도메인 관리 (조회/전환/추가) |
 | `/gemify:sync` | remote와 동기화 |
 
 ## 더 알아보기

@@ -1,6 +1,8 @@
 ---
 name: improve-plugin
 description: 플러그인 개선 문서 생성. "플러그인 개선 아이디어", "plugin 개선안", "개선 문서 작성" 등 요청 시 활성화. 코드 수정은 forgeify로 위임.
+allowed-tools: Read, Write, Glob, Grep, AskUserQuestion
+argument-hint: "[대상 플러그인명]"
 ---
 
 # Improve Plugin Skill

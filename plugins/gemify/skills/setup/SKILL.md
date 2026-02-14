@@ -1,10 +1,12 @@
 ---
+name: setup
 description: Gemify 지식 파이프라인을 설정합니다. 기본은 ~/.gemify/ (user scope)에 생성되며, 새로 초기화하거나 기존 repo를 clone할 수 있습니다.
-argument-hint: "[--examples] [--clone <url>]"
 allowed-tools: Read, Write, Bash, Glob
+argument-hint: "[--examples]|[--clone <url>]"
+disable-model-invocation: true
 ---
 
-# /gemify:setup - User Scope 설정
+# Setup Skill
 
 `~/.gemify/`에 Gemify 지식 파이프라인을 설정합니다. 멀티 도메인을 지원합니다.
 
@@ -46,7 +48,7 @@ allowed-tools: Read, Write, Bash, Glob
 
 각 도메인은 독립적인 git repo로 관리 가능.
 
-## 동작
+## 워크플로우
 
 ### 1단계: ~/.gemify/ 존재 확인
 
@@ -104,32 +106,6 @@ Gemify가 설정되었습니다! (~/.gemify/)
 동기화 설정: /gemify:sync push (remote 추가 후)
 도움말: /gemify:help
 ```
-
-## 예제
-
-### 새로 시작
-
-```bash
-/gemify:setup
-```
-
-→ `~/.gemify/`에 빈 구조 생성 + git init
-
-### 예제와 함께 시작
-
-```bash
-/gemify:setup --examples
-```
-
-→ 예제 파일이 포함된 구조 생성 (학습용)
-
-### 기존 repo 가져오기
-
-```bash
-/gemify:setup --clone git@github.com:user/my-gemify.git
-```
-
-→ 기존 repo를 `~/.gemify/`로 clone
 
 ## 안전 장치
 

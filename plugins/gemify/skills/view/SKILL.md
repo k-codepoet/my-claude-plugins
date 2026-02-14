@@ -1,6 +1,8 @@
 ---
 name: view
 description: library 지식을 목적별로 조합하여 views/에 저장. 8가지 타입(plugin, product, talk, curriculum, portfolio, essay, poc, improvement)별 렌즈로 지식을 렌더링.
+allowed-tools: Read, Write, Edit, Glob, Grep
+argument-hint: "[type]|[title]"
 ---
 
 # View Skill

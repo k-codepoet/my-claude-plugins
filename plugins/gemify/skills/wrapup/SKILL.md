@@ -1,6 +1,7 @@
 ---
 name: wrapup
 description: 세션 마무리 스킬. "마무리", "wrapup", "세션 끝", "놓친 거 있니" 등 세션 종료 요청 시 활성화. HITL 체크 후 세션 리포트 생성.
+allowed-tools: Read, Write, Edit, Glob
 ---
 
 # Wrapup Skill (세션 마무리)

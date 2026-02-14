@@ -1,6 +1,7 @@
 ---
 name: tidy
 description: 지식 체계 탑다운 재정리 - vision에서 출발하여 끊어진 연결고리, 미스링크 전부 복구. "정리", "tidy", "검증", "outdated", "깨진 링크", "미스링크" 등 요청 시 활성화.
+allowed-tools: Read, Write, Edit, Glob, Grep
 ---
 
 # Tidy Skill

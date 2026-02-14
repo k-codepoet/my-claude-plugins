@@ -1,6 +1,8 @@
 ---
 name: draft
 description: inbox의 원석을 대화로 다듬어 drafts/에 기록. facet(넓게)/polish(연마) 모드로 동작. 완성되면 /gemify:library 전환 제안.
+allowed-tools: Read, Write, Edit
+argument-hint: "[파일/아이디어]"
 ---
 
 # Draft Skill

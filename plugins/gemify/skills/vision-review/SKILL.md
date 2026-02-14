@@ -1,6 +1,8 @@
 ---
 name: vision-review
 description: 비전 대비 현재 상태 평가 + 리뷰 기록. "비전 리뷰", "vision review", "진척도 평가", "방향 점검" 등 요청 시 활성화.
+allowed-tools: Read, Write, Edit, Glob, Grep, Bash
+argument-hint: "<vision-name>"
 ---
 
 # Vision Review

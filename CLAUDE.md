@@ -16,7 +16,7 @@ This is a **Claude Code Plugin Marketplace** (`k-codepoet/my-claude-plugins`) co
     └── {directory-name}/
         ├── .claude-plugin/plugin.json  # Plugin manifest (name can differ from directory)
         ├── agents/                      # Natural language trigger definitions (.md)
-        ├── commands/                    # Slash command definitions (.md)
+        ├── commands/                    # Legacy slash commands (.md) - help/howto only
         ├── skills/                      # Contextual knowledge (*/SKILL.md)
         ├── scripts/                     # Bash implementation scripts (.sh)
         ├── hooks/hooks.json             # Event-driven hooks
@@ -24,7 +24,7 @@ This is a **Claude Code Plugin Marketplace** (`k-codepoet/my-claude-plugins`) co
         └── .lsp.json                    # LSP server configuration
 ```
 
-**Flow**: User triggers command/agent → Command definition references script → Script executes with `${CLAUDE_PLUGIN_ROOT}` variable
+**Flow**: User triggers skill/command → Skill provides instructions + allowed-tools → Script executes with `${CLAUDE_PLUGIN_ROOT}` variable
 
 ## Development Commands
 
@@ -87,6 +87,9 @@ Optional: `keywords`, `commands`, `agents`, `skills` (paths or array of paths)
 Note: `name` determines command prefix (e.g., `forgeify` → `/forgeify:help`), while directory name is just for organization.
 
 ### Commands (`commands/*.md`)
+
+Note: Commands are legacy. Skills (`skills/{name}/SKILL.md`) are preferred and support all the same frontmatter fields plus additional features. Commands are kept only for help/howto type content.
+
 ```yaml
 ---
 description: What the command does      # Recommended
@@ -124,11 +127,13 @@ Note: `<example>` blocks belong in body, not frontmatter.
 ---
 name: skill-name                        # Required
 description: What + when to use         # Required
+allowed-tools: Read, Write, Bash        # Optional
+argument-hint: "<name> [options]"        # Optional
+disable-model-invocation: true           # Optional (manual-only)
 ---
 Skill content...
 ```
-Note: File must be named `SKILL.md` (uppercase) inside a directory matching the skill name.
-Skills auto-activate based on context. Same content can exist as both command (explicit `/forgeify:skill-guide`) and skill (auto-triggered).
+Note: File must be named `SKILL.md` (uppercase) inside a directory matching the skill name. Skills auto-activate based on description context. Skills replace commands for all action functionality; commands are kept only for static help/tutorial content.
 
 ### Hooks (`hooks/hooks.json`)
 
@@ -177,8 +182,8 @@ cat plugins/<name>/.claude-plugin/plugin.json | jq -r '.name, .version'
 ```
 
 To find available commands/skills for a plugin, check:
-- `plugins/<name>/commands/*.md` for slash commands
-- `plugins/<name>/skills/*/SKILL.md` for auto-activating skills
+- `plugins/<name>/skills/*/SKILL.md` for slash commands and auto-activating skills
+- `plugins/<name>/commands/*.md` for help/tutorial commands (legacy)
 - `plugins/<name>/agents/*.md` for natural language triggers
 
 ## Version Bumping
@@ -217,10 +222,9 @@ The validation script checks:
 
 1. Create `plugins/{directory-name}/.claude-plugin/plugin.json`
 2. Register in `.claude-plugin/marketplace.json` (source path uses directory name)
-3. Add commands in `commands/` with YAML frontmatter
+3. Add skills in `skills/{skill-name}/SKILL.md` with YAML frontmatter
 4. For infrastructure plugins: add implementation scripts in `scripts/`
-5. For knowledge plugins: add skills in `skills/{skill-name}/SKILL.md`
-6. Optionally add agents in `agents/` for natural language triggers
+5. Optionally add agents in `agents/` for natural language triggers
 
 ## Plugin Naming
 

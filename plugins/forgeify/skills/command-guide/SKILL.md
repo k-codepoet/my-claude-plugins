@@ -7,7 +7,7 @@ description: Claude Code 슬래시 커맨드 작성법 가이드. 커맨드 만�
 
 ## 개념
 
-**사용자가 `/` 슬래시로 명시적으로 실행하는 커스텀 명령어**입니다. Skills와 달리 사용자가 직접 호출합니다.
+**레거시 방식의 슬래시 명령어**입니다. Claude Code 공식 문서(2026-02) 기준으로 commands는 skills로 병합되었습니다. 기존 `.claude/commands/` 파일은 여전히 동작하지만, **skills가 우선**이며 추가 기능(지원 파일, 자동 호출 제어)을 제공합니다.
 
 ## 디렉토리 구조
 
@@ -69,35 +69,42 @@ description: ...
 
 ## Skills vs Commands 비교
 
-| 구분 | Skills | Commands |
-|------|--------|----------|
-| 호출 방식 | Claude가 자동 판단 | 사용자가 명시적으로 `/command` |
-| 범위 | 작업별, 필요시 로드 | 항상 사용 가능 |
-| 표준 | Agent Skills 오픈 스탠다드 | Claude Code 전용 |
-| 사용 목적 | 재사용 가능한 전문 워크플로우 | 특정 프로젝트 작업 자동화 |
+| 구분 | Skills (권장) | Commands (레거시) |
+|------|--------------|-------------------|
+| 저장 위치 | `skills/{name}/SKILL.md` | `commands/{name}.md` |
+| 우선순위 | 높음 (동명 시 우선) | 낮음 |
+| 호출 방식 | 자동 + `/skill-name` | `/command-name` 만 |
+| 기능 | 지원 파일, 자동 호출 제어 | 기본 frontmatter만 |
+| 사용 목적 | 모든 기능 구현 | help/howto만 유지 |
 
-## Command-Skill 1:1 쌍 원칙 (필수)
+## Command-Skill 관계 (레거시 → 통합)
 
-**모든 기능 커맨드는 대응하는 스킬과 1:1 쌍을 이루어야 합니다.**
+Skills가 commands를 완전히 대체했으므로, 새로운 기능은 skills로만 생성합니다. Commands는 help, howto 같은 정적 가이드용으로만 유지합니다.
+
+### 이전 방식 (레거시)
 
 ```
-commands/setup.md      ↔  skills/setup/SKILL.md
+commands/setup.md      ↔  skills/setup/SKILL.md   # 1:1 쌍
 commands/status.md     ↔  skills/status/SKILL.md
-commands/deploy.md     ↔  skills/deploy/SKILL.md
 ```
 
-### 왜 1:1 쌍인가?
+### 현재 방식 (권장)
 
-1. **Single Source of Truth**: 로직은 스킬에만 존재 → 중복 방지, 유지보수 용이
-2. **AI Agent 위임**: 스킬은 Claude가 자동으로 활성화 가능 → 커맨드 없이도 AI가 적절히 사용
-3. **Progressive Disclosure**: 커맨드는 진입점, 상세 로직은 스킬이 담당
+```
+skills/setup/SKILL.md    # 스킬만 생성 → 자동 + /setup으로 호출 가능
+skills/status/SKILL.md   # 커맨드 불필요
+commands/help.md         # 정적 가이드만 커맨드로 유지
+```
 
-### 예외
+### 마이그레이션 원칙
 
-- `help.md` - 단순 도움말 출력, 스킬 불필요
-- `howto.md` - 가이드 안내, 스킬 불필요
+1. **새 기능**: `skills/{name}/SKILL.md`로만 생성
+2. **기존 커맨드**: 기능 커맨드는 삭제하고 스킬만 유지
+3. **유지 대상**: help, howto 등 정적 가이드 커맨드만 유지
 
-## 스킬 명시적 로드 (필수)
+## 스킬 명시적 로드 (레거시)
+
+> **Note**: Skills 통합 후에는 커맨드에서 스킬을 Read할 필요가 없습니다. 스킬이 직접 `/skill-name`으로 호출되기 때문입니다. 이 패턴은 레거시 커맨드가 남아있는 경우에만 해당됩니다.
 
 **중요**: 커맨드에서 스킬을 암묵적으로 참조하면 Claude가 로드하지 않습니다.
 

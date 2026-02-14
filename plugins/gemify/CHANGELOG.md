@@ -5,6 +5,24 @@ All notable changes to the Gemify plugin will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.0.0] - 2026-02-14
+
+### Breaking Changes
+- **커맨드 20개 삭제** - Skills로 통합 (Claude Code 공식 문서 기준 commands → skills 병합)
+  - 파이프라인 커맨드: inbox, import, sidebar, draft, library, view, retro, triage, map, tidy
+  - 비전/문제해결 커맨드: vision, vision-review, troubleshoot, bugfix, improve-plugin, poc
+  - 세션/설정 커맨드: wrapup, setup, sync, domain
+  - 잔류 커맨드: help, howto (가이드/튜토리얼)
+
+### Added
+- **setup 스킬** - setup 커맨드를 스킬로 전환 (`disable-model-invocation: true`)
+
+### Changed
+- **20개 스킬 frontmatter 보강** - 커맨드에서 이관
+  - `allowed-tools` 추가 (전체 20개)
+  - `argument-hint` 추가 (해당하는 스킬)
+- **help.md 업데이트** - "커맨드" → "기능" 용어 변경, domain 추가
+
 ## [1.30.0] - 2026-01-25
 
 ### Added

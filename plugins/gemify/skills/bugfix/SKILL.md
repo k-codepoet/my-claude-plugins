@@ -1,6 +1,8 @@
 ---
 name: bugfix
 description: 버그 수정 문서 생성. "버그 수정", "bugfix", "고쳐줘", "fix" 등 요청 시 활성화. 2-track(workaround + root cause) 병렬 전략으로 빠른 해결과 근본 해결을 동시 진행.
+allowed-tools: Read, Write, Glob, Grep, AskUserQuestion
+argument-hint: "[프로젝트명 또는 버그 설명]"
 ---
 
 # Bugfix Skill

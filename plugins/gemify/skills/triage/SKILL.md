@@ -1,6 +1,7 @@
 ---
 name: triage
 description: inbox 클러스터링 + 우선순위 판단 + 다음 액션 제안. "triage", "정리", "inbox", "다음 뭐 해", "클러스터" 등 요청 시 활성화.
+allowed-tools: Read, Write, Edit, Glob, Grep
 ---
 
 # Triage Skill
