@@ -8,12 +8,12 @@ allowed-tools: Bash, Read, Write
 
 시크릿 중앙 저장 → 접근 제어 → 런타임 주입의 범용 시크릿 관리 프레임워크.
 
-## 참조 문서 (필수)
+## 프로젝트 문서 참조
 
-**스킬 실행 전 반드시 읽기:**
-- `$CLAUDE_PLUGIN_ROOT/docs/architecture/vault-agent.md` - Vault Agent 아키텍처
-- `$CLAUDE_PLUGIN_ROOT/docs/reference/secrets-structure.md` - 시크릿 구조 참조
-- `$CLAUDE_PLUGIN_ROOT/docs/guides/vault-cli.md` - Vault CLI 사용법
+**스킬 실행 전 프로젝트의 docs/ 디렉토리에서 읽기** (없으면 템플릿 기반으로 생성):
+- `docs/architecture/vault-agent.md` - Vault Agent 아키텍처 (템플릿: `$CLAUDE_PLUGIN_ROOT/docs/templates/vault-agent.template.md`)
+- `docs/reference/secrets-structure.md` - 시크릿 구조 (템플릿: `$CLAUDE_PLUGIN_ROOT/docs/templates/secrets-structure.template.md`)
+- `docs/machines/{device}.md` - Vault 호스트 디바이스 정보 (템플릿: `$CLAUDE_PLUGIN_ROOT/docs/templates/machine.template.md`)
 
 ## Secrets Backends (확장 가능)
 
@@ -104,15 +104,17 @@ entrypoint: [sh, -c, "export $$(cat /secrets/{SERVICE}.env | xargs) && exec {CMD
 - **AppRole secret_id는 Portainer Stack Variable로만 전달** — compose 파일에 하드코딩 금지
 - **시크릿 값은 로그/출력에 노출 금지** — `set +x`, `> /dev/null` 활용
 
-## Domain Data References
+## Domain Data Setup
 
-> 아래 문서에서 Vault 주소, 시크릿 구조, CLI 사용법 등 도메인 데이터를 참조하세요.
+프로젝트 `docs/` 디렉토리에 아래 문서를 생성하여 도메인 데이터를 관리합니다.
+템플릿: `$CLAUDE_PLUGIN_ROOT/docs/templates/`
 
-| 참조 | 경로 |
-|------|------|
-| 시크릿 구조 참조 | `$CLAUDE_PLUGIN_ROOT/docs/reference/secrets-structure.md` |
-| Vault Agent 아키텍처 | `$CLAUDE_PLUGIN_ROOT/docs/architecture/vault-agent.md` |
-| Vault CLI 사용법 | `$CLAUDE_PLUGIN_ROOT/docs/guides/vault-cli.md` |
+| 프로젝트 문서 | 템플릿 | 용도 |
+|---------------|--------|------|
+| `docs/reference/secrets-structure.md` | `secrets-structure.template.md` | Vault 시크릿 경로 구조 |
+| `docs/architecture/vault-agent.md` | `vault-agent.template.md` | Vault Agent 아키텍처 |
+| `docs/services/{service}.md` | `service.template.md` | 서비스별 운영 문서 |
+| `docs/machines/{device}.md` | `machine.template.md` | 디바이스별 스펙 |
 
 ## Templates
 

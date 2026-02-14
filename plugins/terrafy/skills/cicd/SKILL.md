@@ -222,12 +222,15 @@ build-{package}:
 - config.toml은 호스트 마운트에 저장 → Stack 재배포해도 유지
 - Runner 등록 후 config.toml 수동 편집 필요 (`clone_url`, `extra_hosts`, `dns`)
 
-## Domain Data References
+## Domain Data Setup
 
-구체적인 URL, Runner 구성, SSH 설정 등은 아래 문서 참조:
+프로젝트 `docs/` 디렉토리에 아래 문서를 생성하여 도메인 데이터를 관리합니다.
+템플릿: `$CLAUDE_PLUGIN_ROOT/docs/templates/`
 
-- `$CLAUDE_PLUGIN_ROOT/docs/guides/gitlab.md` — GitLab CE + Registry + CI/CD Runner 설정 전문
-- `$CLAUDE_PLUGIN_ROOT/docs/services/gitlab-ce.md` — GitLab CE 운영 노트
+| 프로젝트 문서 | 템플릿 | 용도 |
+|---------------|--------|------|
+| `docs/services/gitlab-ce.md` | `service.template.md` | GitLab CE 운영 문서 |
+| `docs/machines/{runner-device}.md` | `machine.template.md` | Runner 디바이스 스펙 |
 
 ## Templates
 

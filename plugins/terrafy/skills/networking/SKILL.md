@@ -115,7 +115,7 @@ labels:
   - "traefik.http.routers.{SERVICE}.rule=Host(`{SERVICE}.{DOMAIN}`)"
   - "traefik.http.services.{SERVICE}.loadbalancer.server.port={PORT}"
 networks:
-  - {NETWORK}  # 디바이스별 네트워크 이름 확인 (docs/machines/ 참조)
+  - {NETWORK}  # 디바이스별 네트워크 이름 확인 (프로젝트 docs/machines/ 참조)
 ```
 
 #### 멀티 서비스 컨테이너 (예: 앱 + registry)
@@ -179,13 +179,13 @@ tcp:
 ### 디바이스별 네트워크 이름
 
 compose 작성 시 **반드시 디바이스에 맞는 네트워크 이름** 사용.
-디바이스별 네트워크 이름은 `$CLAUDE_PLUGIN_ROOT/docs/machines/` 참조.
+디바이스별 네트워크 이름은 프로젝트 `docs/machines/` 참조.
 
 ### 포트 충돌 주의
 
 일부 디바이스는 시스템 서비스가 80/443 등 표준 포트를 점유 (예: NAS DSM).
 → 체인 노드 Traefik은 대체 포트(예: 8880) 사용.
-→ 디바이스별 상세는 `$CLAUDE_PLUGIN_ROOT/docs/machines/` 참조.
+→ 디바이스별 상세는 프로젝트 `docs/machines/` 참조.
 
 ### NAS HTTPS 서비스
 
@@ -193,13 +193,17 @@ NAS에서 HTTPS 서비스 운영 시 **Service HTTPS Proxy 패턴** 적용 필�
 - `external_url`은 `https://`, 내부는 HTTP, `X-Forwarded-Proto: https` 헤더 전달
 - 미적용 시 JWT auth, Docker registry, redirect URL 등에서 HTTPS/HTTP 불일치 발생
 
-## Domain Data References
+## Domain Data Setup
 
-구체적인 IP, 포트, 디바이스별 설정은 아래 문서 참조:
+프로젝트 `docs/` 디렉토리에 아래 문서를 생성하여 도메인 데이터를 관리합니다.
+템플릿: `$CLAUDE_PLUGIN_ROOT/docs/templates/`
 
-- `$CLAUDE_PLUGIN_ROOT/docs/architecture/traefik-chain.md` — Traefik 체인 토폴로지, 노드별 설정 상세
-- `$CLAUDE_PLUGIN_ROOT/docs/architecture/dns-split.md` — Split DNS 설정, 도메인 구조
-- `$CLAUDE_PLUGIN_ROOT/docs/reference/ports.md` — 포트 할당표, 도메인 목록
+| 프로젝트 문서 | 템플릿 | 용도 |
+|---------------|--------|------|
+| `docs/architecture/traefik-chain.md` | `traefik-chain.template.md` | Traefik 체인 토폴로지 |
+| `docs/architecture/dns-split.md` | `dns-split.template.md` | Split DNS 설정 |
+| `docs/reference/ports.md` | `ports-registry.template.md` | 포트 할당표, 도메인 목록 |
+| `docs/machines/{device}.md` | `machine.template.md` | 디바이스별 네트워크/포트 |
 
 ## Templates
 

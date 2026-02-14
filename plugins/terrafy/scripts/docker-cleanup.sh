@@ -61,17 +61,22 @@ cleanup_remote() {
 cleanup_all() {
     log_info "=== Cleaning all devices ==="
 
-    # Mac Mini
-    log_info "Mac Mini (codepoet-mac-mini-1)..."
-    cleanup_remote "codepoet-mac-mini-1" "/usr/local/bin/docker"
+    # Remote devices: add your devices here
+    # Format: "hostname:docker-path"
+    # Examples:
+    #   "device-1:/usr/local/bin/docker"
+    #   "nas-1:/usr/local/bin/docker"
+    #   "linux-1:docker"
+    REMOTE_DEVICES=(
+        # Add your remote devices here
+        # "hostname:docker-path"
+    )
 
-    # NAS
-    log_info "NAS (codepoet-nas)..."
-    cleanup_remote "codepoet-nas" "/usr/local/bin/docker"
-
-    # Linux
-    log_info "Linux (codepoet-linux-1)..."
-    cleanup_remote "codepoet-linux-1" "docker"
+    for device_spec in "${REMOTE_DEVICES[@]}"; do
+        local hostname="${device_spec%%:*}"
+        local docker_path="${device_spec#*:}"
+        cleanup_remote "$hostname" "$docker_path"
+    done
 
     log_info "=== All devices cleaned ==="
 }

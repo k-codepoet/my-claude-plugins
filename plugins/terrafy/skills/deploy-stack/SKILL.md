@@ -8,12 +8,12 @@ allowed-tools: Bash, Read, Write
 
 서비스 정의 → 인그레스 → 오케스트레이터 등록 → 배포 실행의 범용 배포 프레임워크.
 
-## 참조 문서 (필수)
+## 프로젝트 문서 참조
 
-**스킬 실행 전 반드시 읽기:**
-- `$CLAUDE_PLUGIN_ROOT/docs/guides/add-new-service.md` - 새 서비스 추가 절차
-- `$CLAUDE_PLUGIN_ROOT/docs/reference/stacks-registry.md` - 등록된 스택 목록
-- `$CLAUDE_PLUGIN_ROOT/docs/reference/ports.md` - 포트 할당표
+**스킬 실행 전 프로젝트의 docs/ 디렉토리에서 읽기** (없으면 템플릿 기반으로 생성):
+- `docs/guides/add-new-service.md` - 새 서비스 추가 절차 (템플릿: `$CLAUDE_PLUGIN_ROOT/docs/templates/add-new-service.template.md`)
+- `docs/reference/stacks-registry.md` - 등록된 스택 목록 (템플릿: `$CLAUDE_PLUGIN_ROOT/docs/templates/stacks-registry.template.md`)
+- `docs/reference/ports.md` - 포트 할당표 (템플릿: `$CLAUDE_PLUGIN_ROOT/docs/templates/ports-registry.template.md`)
 
 ## Deployment Backends (확장 가능)
 
@@ -92,24 +92,27 @@ my-devops repo ── GitHub ◄──mirror──► GitLab CE (SSOT)
 
 - 호스트 포트: **20000-29999** 범위 사용
 - 컨테이너 내부 포트: 원본 유지 (예: `{PORT}:3000`)
-- 할당 전 반드시 기존 포트표 확인 → `$CLAUDE_PLUGIN_ROOT/docs/reference/ports.md`
+- 할당 전 반드시 기존 포트표 확인 → 프로젝트 `docs/reference/ports.md`
 
 ## Guard Rails
 
 - **영속 데이터 경로는 반드시 사용자에게 확인** — 디바이스마다 저장 정책이 다름
 - **NAS 볼륨** — 영속 데이터는 절대경로 호스트 마운트, 런타임 전용은 named volume OK
 - **Docker 네트워크 이름** — 디바이스별로 다름 (CLAUDE.md 참조)
-- **새 서비스 추가 절차** — 상세: `$CLAUDE_PLUGIN_ROOT/docs/guides/add-new-service.md`
+- **새 서비스 추가 절차** — 프로젝트 `docs/guides/add-new-service.md` 참조
 
-## Domain Data References
+## Domain Data Setup
 
-> 아래 문서에서 디바이스별 IP, 포트 할당, 스택 목록 등 도메인 데이터를 참조하세요.
+프로젝트 `docs/` 디렉토리에 아래 문서를 생성하여 도메인 데이터를 관리합니다.
+템플릿: `$CLAUDE_PLUGIN_ROOT/docs/templates/`
 
-| 참조 | 경로 |
-|------|------|
-| 포트 할당표 | `$CLAUDE_PLUGIN_ROOT/docs/reference/ports.md` |
-| 등록된 스택 목록 | `$CLAUDE_PLUGIN_ROOT/docs/reference/stacks-registry.md` |
-| 새 서비스 추가 가이드 | `$CLAUDE_PLUGIN_ROOT/docs/guides/add-new-service.md` |
+| 프로젝트 문서 | 템플릿 | 용도 |
+|---------------|--------|------|
+| `docs/reference/ports.md` | `ports-registry.template.md` | 포트 할당표 |
+| `docs/reference/stacks-registry.md` | `stacks-registry.template.md` | 등록된 스택 목록 |
+| `docs/guides/add-new-service.md` | `add-new-service.template.md` | 새 서비스 추가 가이드 |
+| `docs/guides/bootstrap.md` | `bootstrap-layers.template.md` | 부트스트랩 레이어 순서 |
+| `docs/machines/{device}.md` | `machine.template.md` | 디바이스별 스펙 |
 
 ## Templates
 

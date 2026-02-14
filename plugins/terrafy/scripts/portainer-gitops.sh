@@ -2,33 +2,40 @@
 # Portainer GitOps Stack Manager
 # 하이브리드 GitOps (GitHub + GitLab) 스택 관리 스크립트
 # Vault 연동으로 secrets 중앙 관리
+#
+# Required environment variables:
+#   VAULT_ADDR        - Vault server URL (e.g., http://192.168.0.48:28200)
+#   PORTAINER_URL     - Portainer URL (e.g., https://192.168.0.48:29443)
+#   GIT_REPO_URL      - GitOps repo URL
+#   BASE_PATH_*       - Base paths per device (BASE_PATH_MAC_MINI, BASE_PATH_NAS, etc.)
+#   ENDPOINT_*        - Portainer endpoint IDs per device
 
 set -e
 
 # === Vault Configuration ===
-VAULT_ADDR="${VAULT_ADDR:-http://192.168.0.48:28200}"
+VAULT_ADDR="${VAULT_ADDR:?VAULT_ADDR required}"
 VAULT_TOKEN="${VAULT_TOKEN:-}"
 VAULT_SECRET_PATH="${VAULT_SECRET_PATH:-secret/data/portainer}"
 USE_VAULT="${USE_VAULT:-true}"
 
 # === Configuration (loaded from Vault or env) ===
-PORTAINER_URL="${PORTAINER_URL:-https://192.168.0.48:29443}"
+PORTAINER_URL="${PORTAINER_URL:?PORTAINER_URL required}"
 PORTAINER_API_KEY="${PORTAINER_API_KEY:-}"
 
 # Endpoint IDs (run 'api_call GET /endpoints' to find IDs)
-ENDPOINT_MAC_MINI="${ENDPOINT_MAC_MINI:-3}"    # mac-mini-1
-ENDPOINT_MAC_MINI_2="${ENDPOINT_MAC_MINI_2:-17}"   # mac-mini-2
-ENDPOINT_NAS="${ENDPOINT_NAS:-16}"             # nas
-ENDPOINT_LINUX="${ENDPOINT_LINUX:-15}"         # linux-1
+ENDPOINT_MAC_MINI="${ENDPOINT_MAC_MINI:-}"
+ENDPOINT_MAC_MINI_2="${ENDPOINT_MAC_MINI_2:-}"
+ENDPOINT_NAS="${ENDPOINT_NAS:-}"
+ENDPOINT_LINUX="${ENDPOINT_LINUX:-}"
 
 # Working Directories
-MAC_MINI_BASE="/Volumes/mac-ext-storage/k-codepoet/my-devops"
-MAC_MINI_2_BASE="/Users/choigawoon/workspace/my-devops"
-NAS_BASE="/volume1/workspaces/k-codepoet/my-devops"
-LINUX_BASE="/home/choigawoon/k-codepoet/my-devops"
+MAC_MINI_BASE="${BASE_PATH_MAC_MINI:?BASE_PATH_MAC_MINI required}"
+MAC_MINI_2_BASE="${BASE_PATH_MAC_MINI_2:-}"
+NAS_BASE="${BASE_PATH_NAS:-}"
+LINUX_BASE="${BASE_PATH_LINUX:-}"
 
 # Git Repository
-GIT_REPO_URL="${GIT_REPO_URL:-https://gitlab.home.codepoet.site/k-codepoet/my-devops.git}"
+GIT_REPO_URL="${GIT_REPO_URL:?GIT_REPO_URL required}"
 GIT_BRANCH="${GIT_BRANCH:-main}"
 GIT_USERNAME="${GIT_USERNAME:-}"
 GIT_TOKEN="${GIT_TOKEN:-}"
@@ -46,39 +53,26 @@ NC='\033[0m'
 # Format: repo_id -> "vault_secret_path"
 # "default" repo uses global GIT_REPO_URL / GIT_USERNAME / GIT_TOKEN
 # External repos load credentials from their Vault path
+# Examples:
+#   github "secret/data/common/git"
+#   gitlab "secret/data/common/gitlab"
 typeset -A REPOS
 REPOS=(
-    # default: 기존 global 변수 사용 (secret/data/portainer/scripts) → GitLab CE
-    # github: 인프라 스택용 GitHub repo (순환 의존성 해소)
-    github "secret/data/common/git"
+    # Add your repo definitions here
+    # repo_id "vault_secret_path"
 )
 
 # === Stack Definitions ===
-# Format: stack_name -> "endpoint:compose_path" or "endpoint:compose_path:repo_id"
-# endpoint: mac-mini | mac-mini-2 | nas | linux
-# repo_id: optional, defaults to "default" (= this my-devops repo)
+# Stack definitions: add your stacks here
+# Format: "name" "endpoint:compose-path[:github]"
+# Examples:
+#   "traefik-mac" "mac-mini:infra/device-1/traefik/docker-compose.yml:github"
+#   "vault" "mac-mini:infra/device-1/vault/docker-compose.yml:github"
+#   "my-service" "nas:services/device-2/my-service/docker-compose.yml"
 typeset -A STACKS
 STACKS=(
-    # === 인프라 (GitHub 소스) — 순환 의존성 해소 ===
-    traefik-mac "mac-mini:infra/codepoet-mac-mini-1/traefik/docker-compose.yml:github"
-    vault "mac-mini:infra/codepoet-mac-mini-1/vault/docker-compose.yml:github"
-    traefik-nas "nas:infra/codepoet-nas/traefik/docker-compose.yml:github"
-    gitlab-ce "nas:infra/codepoet-nas/gitlab-ce/docker-compose.yml:github"
-    cloudflared "nas:infra/codepoet-nas/cloudflared/docker-compose.yml:github"
-    adguard-home "nas:infra/codepoet-nas/adguard-home/docker-compose.yml:github"
-    traefik-mac2 "mac-mini-2:infra/codepoet-mac-mini-2/traefik/docker-compose.yml:github"
-    traefik-linux "linux:infra/codepoet-linux-1/traefik/docker-compose.yml:github"
-
-    # === 서비스 (GitLab CE 소스, default) ===
-    grafana "mac-mini:services/codepoet-mac-mini-1/grafana/docker-compose.yml"
-    n8n "mac-mini:services/codepoet-mac-mini-1/n8n/docker-compose.yml"
-    prefect "mac-mini:services/codepoet-mac-mini-1/prefect/docker-compose.yml"
-    vaultwarden "mac-mini:services/codepoet-mac-mini-1/vaultwarden/docker-compose.yml"
-    authelia "mac-mini:services/codepoet-mac-mini-1/authelia/docker-compose.yml"
-    gitlab-runner-mac "mac-mini:services/codepoet-mac-mini-1/gitlab-runner/docker-compose.yml"
-    gitlab-runner-mac-dood "mac-mini:services/codepoet-mac-mini-1/gitlab-runner-dood/docker-compose.yml"
-    gitlab-runner-linux "linux:services/codepoet-linux-1/gitlab-runner/docker-compose.yml"
-    gitlab-runner-linux-dood "linux:services/codepoet-linux-1/gitlab-runner-dood/docker-compose.yml"
+    # Add your stack definitions here
+    # stack_name "endpoint:compose_path[:repo_id]"
 )
 
 # Helper to parse stack definition
@@ -875,7 +869,7 @@ usage() {
     echo ""
     echo "Vault Integration (recommended):"
     echo "  VAULT_TOKEN           Vault token for authentication"
-    echo "  VAULT_ADDR            Vault address (default: http://192.168.0.48:28200)"
+    echo "  VAULT_ADDR            Vault address (required)"
     echo "  USE_VAULT             Enable Vault (default: true)"
     echo ""
     echo "Legacy Environment Variables:"

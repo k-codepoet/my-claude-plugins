@@ -20,8 +20,8 @@ tools: ["Read", "Write", "Bash", "Glob", "Grep"]
 - `$CLAUDE_PLUGIN_ROOT/docs/phases.md` - 작업 단계 정의
 
 **운영:**
-- `$CLAUDE_PLUGIN_ROOT/docs/architecture/current-structure.md` - 현재 인프라 구조
-- `$CLAUDE_PLUGIN_ROOT/docs/guides/hybrid-gitops.md` - Hybrid GitOps 운영
+- 프로젝트 `docs/` 디렉토리 - 인프라 구조, 디바이스, 서비스 문서
+- 문서 템플릿: `$CLAUDE_PLUGIN_ROOT/docs/templates/` - 프로젝트 docs 생성용
 
 ## 핵심 원칙
 

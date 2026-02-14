@@ -2,13 +2,19 @@
 # GitLab API Helper
 # Self-hosted GitLab CE API 관리 스크립트
 # Vault 연동으로 PAT 중앙 관리
+#
+# Required environment variables:
+#   GITLAB_URL    - GitLab server URL (e.g., https://gitlab.example.com)
+# Optional:
+#   VAULT_ADDR    - Vault server URL for token retrieval
+#   GITLAB_TOKEN  - GitLab PAT (alternative to Vault)
 
 set -e
 
 # === Configuration ===
-GITLAB_URL="${GITLAB_URL:-https://gitlab.home.codepoet.site}"
+GITLAB_URL="${GITLAB_URL:?GITLAB_URL required}"
 GITLAB_TOKEN="${GITLAB_TOKEN:-}"
-VAULT_ADDR="${VAULT_ADDR:-http://192.168.0.48:28200}"
+VAULT_ADDR="${VAULT_ADDR:-}"
 VAULT_TOKEN="${VAULT_TOKEN:-}"
 USE_VAULT="${USE_VAULT:-true}"
 

@@ -19,24 +19,23 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - secrets: vault-agent-sidecar.template.yml
   - networking: traefik-service-labels.template.yml
   - cicd: gitlab-ci.template.yml, dockerfile-multistage.template
-- **scripts/** - 운영 스크립트 4개 추가
+- **scripts/** - 운영 스크립트 4개 추가 (파라미터화, 환경변수 기반)
   - `portainer-gitops.sh` - Portainer 스택 CRUD (Hybrid GitOps 지원)
   - `docker-cleanup.sh` - Docker 정리 (로컬 + 리모트)
   - `gitlab-api.sh` - GitLab CE REST API 래퍼
   - `sync-scripts-to-minio.sh` - MinIO 스크립트 배포
-- **docs/** - 운영 문서 27개 추가
-  - architecture/ (4): current-structure, traefik-chain, dns-split, vault-agent
-  - guides/ (6): hybrid-gitops, bootstrap, add-new-service, docker-maintenance, vault-cli, gitlab
-  - reference/ (6): ports, secrets-structure, stack-notes, stacks-registry, deployed-services, docker-versions
-  - machines/ (4): codepoet-mac-mini-1/2, codepoet-nas, codepoet-linux-1
-  - services/ (7): adguard-home, cloudflared, gitlab-ce, portainer, traefik, vault, vaultwarden
-- **references/** - 각 스킬별 참조 문서 (progressive disclosure)
+- **docs/templates/** - 인프라 문서 템플릿 10개 (사용자 프로젝트 docs/ 생성용)
+  - machine.template.md, service.template.md, ports-registry.template.md
+  - stacks-registry.template.md, secrets-structure.template.md
+  - traefik-chain.template.md, dns-split.template.md
+  - add-new-service.template.md, bootstrap-layers.template.md, vault-agent.template.md
 
 ### Changed
 - **plugin.json** - version 4.0.0, description 확장, keywords 추가 (vault, secrets, cicd, gitlab, deploy, networking, dns)
 - **agents/terrafy.md** - 운영 스킬/스크립트 참조 추가, 트리거 예시 확장
 - **commands/help.md** - 배포·운영 섹션 추가 (deploy-stack, secrets, networking, cicd)
 - **commands/howto.md** - 배포·운영 토픽 추가, 시작하기 가이드 확장
+- **SKILL.md "Domain Data References" → "Domain Data Setup"** - 플러그인 docs/ 참조 → 프로젝트 docs/ + 템플릿 참조로 변경
 
 ## [3.0.0] - 2026-02-14
 
