@@ -4,9 +4,12 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-This is a **Claude Code Plugin Marketplace** (`k-codepoet/my-claude-plugins`) containing automation plugins. Plugin types include:
-- **Infrastructure plugins**: Linux automation with Bash scripts (homeserver-gitops, ubuntu-dev-setup)
-- **Knowledge plugins**: Skills-only plugins providing contextual guidance (forgeify, gemify)
+This is a **Claude Code Plugin Marketplace** (`k-codepoet/my-claude-plugins`) containing automation plugins. Active plugins:
+- **Knowledge plugins**: Skills-only plugins providing contextual guidance (forgeify, gemify, namify)
+- **Product plugins**: Development environment and deployment automation (craftify)
+- **Infrastructure plugins**: Linux/server automation with Bash scripts (terrafy)
+
+Archived plugins (in `_archived/`): homeserver-gitops, ubuntu-dev-setup
 
 ## Architecture
 
@@ -20,8 +23,9 @@ This is a **Claude Code Plugin Marketplace** (`k-codepoet/my-claude-plugins`) co
         ├── skills/                      # Contextual knowledge (*/SKILL.md)
         ├── scripts/                     # Bash implementation scripts (.sh)
         ├── hooks/hooks.json             # Event-driven hooks
-        ├── .mcp.json                    # MCP server configuration
-        └── .lsp.json                    # LSP server configuration
+        ├── principles/                  # Plugin design principles (.md)
+        ├── assets/                      # Templates and examples
+        └── templates/                   # Boilerplate templates
 ```
 
 **Flow**: User triggers skill/command → Skill provides instructions + allowed-tools → Script executes with `${CLAUDE_PLUGIN_ROOT}` variable
@@ -36,8 +40,8 @@ This is a **Claude Code Plugin Marketplace** (`k-codepoet/my-claude-plugins`) co
 /plugin marketplace add ./
 
 # Install a specific plugin
-/plugin install homeserver-gitops@k-codepoet-plugins
 /plugin install forgeify@k-codepoet-plugins
+/plugin install gemify@k-codepoet-plugins
 
 # Validate script syntax (from plugin directory)
 bash -n scripts/*.sh
