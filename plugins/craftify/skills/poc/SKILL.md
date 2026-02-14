@@ -1,6 +1,8 @@
 ---
 name: poc
 description: POC.md 기반 프로젝트 구현. gemify:poc이 생성한 문서를 읽고 boilerplate 복제 → 빌드/배포 → 코드 구현.
+allowed-tools: Read, Write, Bash, Glob
+argument-hint: "[POC.md 경로]"
 ---
 
 # PoC Skill

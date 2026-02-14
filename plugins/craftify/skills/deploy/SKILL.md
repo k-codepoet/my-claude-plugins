@@ -1,6 +1,8 @@
 ---
 name: deploy
 description: Cloudflare 배포 설정 및 실행. Dashboard Git 연결 방식으로 SSR/SPA 통일.
+allowed-tools: Read, Bash, Glob
+argument-hint: "[setup|status]"
 ---
 
 # Deploy Skill

@@ -5,6 +5,18 @@ All notable changes to the Craftify plugin will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.0.0] - 2026-02-14
+
+### Changed
+- **commands → skills 통합** - action commands를 삭제하고 skills로 일원화
+  - `commands/poc.md` 삭제 (skills/poc/SKILL.md로 통합)
+  - `commands/deploy.md` 삭제 (skills/deploy/SKILL.md로 통합)
+  - `commands/help.md`, `commands/howto.md`만 유지 (문서)
+- **skills frontmatter 보강**
+  - `poc/SKILL.md`: `allowed-tools: Read, Write, Bash, Glob` + `argument-hint` 추가
+  - `deploy/SKILL.md`: `allowed-tools: Read, Bash, Glob` + `argument-hint` 추가
+- **help.md 용어 변경** - "커맨드" → "기능"
+
 ## [0.5.0] - 2026-01-19
 
 ### Added

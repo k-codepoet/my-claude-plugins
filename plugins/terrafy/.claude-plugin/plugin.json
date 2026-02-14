@@ -1,6 +1,6 @@
 {
   "name": "terrafy",
-  "version": "2.1.0",
+  "version": "3.0.0",
   "description": "물리 자원을 배포 가능한 API로 변환 - 홈서버 인프라 자동화",
   "author": {
     "name": "choigawoon"

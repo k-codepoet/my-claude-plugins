@@ -5,6 +5,20 @@ All notable changes to the Terrafy plugin will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [3.0.0] - 2026-02-14
+
+### Changed
+- **commands → skills 통합** - action commands를 삭제하고 skills로 일원화
+  - `commands/setup.md` 삭제 (skills/setup/SKILL.md로 통합)
+  - `commands/status.md` 삭제 (skills/status/SKILL.md로 통합)
+  - `commands/init-ssh.md` 삭제 (skills/init-ssh/SKILL.md로 통합)
+  - `commands/help.md`, `commands/howto.md`만 유지 (문서)
+- **skills frontmatter 보강**
+  - `setup/SKILL.md`: `allowed-tools: Bash, Read, Write` 추가
+  - `status/SKILL.md`: `allowed-tools: Bash, Read` 추가
+  - `init-ssh/SKILL.md`: `allowed-tools: Bash, Read` 추가
+- **help.md 용어 변경** - "커맨드" → "기능"
+
 ## [2.1.0] - 2026-01-18
 
 ### Changed
