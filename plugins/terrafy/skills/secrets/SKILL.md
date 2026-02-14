@@ -1,6 +1,6 @@
 ---
 name: secrets
-description: "Vault, secret, 시크릿, AppRole, 환경변수 주입, vault agent, secrets operator, SOPS 관련 작업"
+description: Vault, secret, 시크릿, AppRole, 환경변수 주입, vault agent, secrets operator, SOPS 관련 작업
 allowed-tools: Bash, Read, Write
 ---
 
@@ -11,9 +11,9 @@ allowed-tools: Bash, Read, Write
 ## 참조 문서 (필수)
 
 **스킬 실행 전 반드시 읽기:**
-- `$CLAUDE_PLUGIN_ROOT/skills/secrets/references/vault-agent.md` - Vault Agent 아키텍처
-- `$CLAUDE_PLUGIN_ROOT/skills/secrets/references/secrets-structure.md` - 시크릿 구조 참조
-- `$CLAUDE_PLUGIN_ROOT/skills/secrets/references/vault-cli.md` - Vault CLI 사용법
+- `$CLAUDE_PLUGIN_ROOT/docs/architecture/vault-agent.md` - Vault Agent 아키텍처
+- `$CLAUDE_PLUGIN_ROOT/docs/reference/secrets-structure.md` - 시크릿 구조 참조
+- `$CLAUDE_PLUGIN_ROOT/docs/guides/vault-cli.md` - Vault CLI 사용법
 
 ## Secrets Backends (확장 가능)
 
@@ -110,9 +110,9 @@ entrypoint: [sh, -c, "export $$(cat /secrets/{SERVICE}.env | xargs) && exec {CMD
 
 | 참조 | 경로 |
 |------|------|
-| 시크릿 구조 참조 | `$CLAUDE_PLUGIN_ROOT/skills/secrets/references/secrets-structure.md` |
-| Vault Agent 아키텍처 | `$CLAUDE_PLUGIN_ROOT/skills/secrets/references/vault-agent.md` |
-| Vault CLI 사용법 | `$CLAUDE_PLUGIN_ROOT/skills/secrets/references/vault-cli.md` |
+| 시크릿 구조 참조 | `$CLAUDE_PLUGIN_ROOT/docs/reference/secrets-structure.md` |
+| Vault Agent 아키텍처 | `$CLAUDE_PLUGIN_ROOT/docs/architecture/vault-agent.md` |
+| Vault CLI 사용법 | `$CLAUDE_PLUGIN_ROOT/docs/guides/vault-cli.md` |
 
 ## Templates
 

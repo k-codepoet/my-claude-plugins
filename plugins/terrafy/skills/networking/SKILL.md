@@ -1,6 +1,6 @@
 ---
 name: networking
-description: "Traefik, DNS, 라우팅, Cloudflare, tunnel, TLS, 체인, 인증서, 네트워크, ingress, nginx 관련 작업"
+description: Traefik, DNS, 라우팅, Cloudflare, tunnel, TLS, 체인, 인증서, 네트워크, ingress, nginx 관련 작업
 allowed-tools: Bash, Read, Write
 ---
 
@@ -197,9 +197,9 @@ NAS에서 HTTPS 서비스 운영 시 **Service HTTPS Proxy 패턴** 적용 필�
 
 구체적인 IP, 포트, 디바이스별 설정은 아래 문서 참조:
 
-- `$CLAUDE_PLUGIN_ROOT/skills/networking/references/traefik-chain.md` — Traefik 체인 토폴로지, 노드별 설정 상세
-- `$CLAUDE_PLUGIN_ROOT/skills/networking/references/dns-split.md` — Split DNS 설정, 도메인 구조
-- `$CLAUDE_PLUGIN_ROOT/skills/networking/references/ports.md` — 포트 할당표, 도메인 목록
+- `$CLAUDE_PLUGIN_ROOT/docs/architecture/traefik-chain.md` — Traefik 체인 토폴로지, 노드별 설정 상세
+- `$CLAUDE_PLUGIN_ROOT/docs/architecture/dns-split.md` — Split DNS 설정, 도메인 구조
+- `$CLAUDE_PLUGIN_ROOT/docs/reference/ports.md` — 포트 할당표, 도메인 목록
 
 ## Templates
 

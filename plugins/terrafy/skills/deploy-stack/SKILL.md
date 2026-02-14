@@ -1,6 +1,6 @@
 ---
 name: deploy-stack
-description: "서비스 추가, 스택 배포, deploy, portainer, gitops, helm, terraform, k8s, docker-compose 관련 작업"
+description: 서비스 추가, 스택 배포, deploy, portainer, gitops, helm, terraform, k8s, docker-compose 관련 작업
 allowed-tools: Bash, Read, Write
 ---
 
@@ -11,9 +11,9 @@ allowed-tools: Bash, Read, Write
 ## 참조 문서 (필수)
 
 **스킬 실행 전 반드시 읽기:**
-- `$CLAUDE_PLUGIN_ROOT/skills/deploy-stack/references/add-new-service.md` - 새 서비스 추가 절차
-- `$CLAUDE_PLUGIN_ROOT/skills/deploy-stack/references/stacks-registry.md` - 등록된 스택 목록
-- `$CLAUDE_PLUGIN_ROOT/skills/deploy-stack/references/ports.md` - 포트 할당표
+- `$CLAUDE_PLUGIN_ROOT/docs/guides/add-new-service.md` - 새 서비스 추가 절차
+- `$CLAUDE_PLUGIN_ROOT/docs/reference/stacks-registry.md` - 등록된 스택 목록
+- `$CLAUDE_PLUGIN_ROOT/docs/reference/ports.md` - 포트 할당표
 
 ## Deployment Backends (확장 가능)
 
@@ -92,14 +92,14 @@ my-devops repo ── GitHub ◄──mirror──► GitLab CE (SSOT)
 
 - 호스트 포트: **20000-29999** 범위 사용
 - 컨테이너 내부 포트: 원본 유지 (예: `{PORT}:3000`)
-- 할당 전 반드시 기존 포트표 확인 → `$CLAUDE_PLUGIN_ROOT/skills/deploy-stack/references/ports.md`
+- 할당 전 반드시 기존 포트표 확인 → `$CLAUDE_PLUGIN_ROOT/docs/reference/ports.md`
 
 ## Guard Rails
 
 - **영속 데이터 경로는 반드시 사용자에게 확인** — 디바이스마다 저장 정책이 다름
 - **NAS 볼륨** — 영속 데이터는 절대경로 호스트 마운트, 런타임 전용은 named volume OK
 - **Docker 네트워크 이름** — 디바이스별로 다름 (CLAUDE.md 참조)
-- **새 서비스 추가 절차** — 상세: `$CLAUDE_PLUGIN_ROOT/skills/deploy-stack/references/add-new-service.md`
+- **새 서비스 추가 절차** — 상세: `$CLAUDE_PLUGIN_ROOT/docs/guides/add-new-service.md`
 
 ## Domain Data References
 
@@ -107,9 +107,9 @@ my-devops repo ── GitHub ◄──mirror──► GitLab CE (SSOT)
 
 | 참조 | 경로 |
 |------|------|
-| 포트 할당표 | `$CLAUDE_PLUGIN_ROOT/skills/deploy-stack/references/ports.md` |
-| 등록된 스택 목록 | `$CLAUDE_PLUGIN_ROOT/skills/deploy-stack/references/stacks-registry.md` |
-| 새 서비스 추가 가이드 | `$CLAUDE_PLUGIN_ROOT/skills/deploy-stack/references/add-new-service.md` |
+| 포트 할당표 | `$CLAUDE_PLUGIN_ROOT/docs/reference/ports.md` |
+| 등록된 스택 목록 | `$CLAUDE_PLUGIN_ROOT/docs/reference/stacks-registry.md` |
+| 새 서비스 추가 가이드 | `$CLAUDE_PLUGIN_ROOT/docs/guides/add-new-service.md` |
 
 ## Templates
 

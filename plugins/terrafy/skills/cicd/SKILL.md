@@ -1,6 +1,6 @@
 ---
 name: cicd
-description: "CI/CD, 파이프라인, buildx, 멀티플랫폼, GitLab, runner, glab, MR, registry, gitlab-ci, GitHub Actions, ArgoCD 관련 작업"
+description: CI/CD, 파이프라인, buildx, 멀티플랫폼, GitLab, runner, glab, MR, registry, gitlab-ci, GitHub Actions, ArgoCD 관련 작업
 allowed-tools: Bash, Read, Write
 ---
 
@@ -226,8 +226,8 @@ build-{package}:
 
 구체적인 URL, Runner 구성, SSH 설정 등은 아래 문서 참조:
 
-- `$CLAUDE_PLUGIN_ROOT/skills/cicd/references/gitlab.md` — GitLab CE + Registry + CI/CD Runner 설정 전문
-- `$CLAUDE_PLUGIN_ROOT/skills/cicd/references/gitlab-ce.md` — GitLab CE 운영 노트
+- `$CLAUDE_PLUGIN_ROOT/docs/guides/gitlab.md` — GitLab CE + Registry + CI/CD Runner 설정 전문
+- `$CLAUDE_PLUGIN_ROOT/docs/services/gitlab-ce.md` — GitLab CE 운영 노트
 
 ## Templates
 
