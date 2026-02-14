@@ -5,6 +5,15 @@ All notable changes to the Forgeify plugin will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.1.0] - 2026-02-14
+
+### Added
+- **harvest 커맨드/스킬** - Git repo를 분석하여 관리체계/워크플로우를 Claude Code 스킬/플러그인으로 변환
+  - `/forgeify:harvest <repo-path-or-url> [--mode project-local|plugin]`
+  - 7단계 워크플로우: 소스 준비 → 스캔 → 분석 → 선택 → 모드 확인 → 생성 → 검증
+  - project-local / plugin 두 가지 출력 모드 지원
+  - `skills/harvest/references/scan-targets.md` 스캔 대상 참조 문서
+
 ## [2.0.0] - 2026-01-19
 
 ### Breaking Changes
