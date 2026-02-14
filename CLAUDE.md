@@ -94,7 +94,7 @@ Note: `name` determines command prefix (e.g., `forgeify` → `/forgeify:help`), 
 
 ### Commands (`commands/*.md`)
 
-Note: Commands are legacy. Skills (`skills/{name}/SKILL.md`) are preferred and support all the same frontmatter fields plus additional features. forgeify, gemify, craftify, and terrafy are fully migrated (commands kept only for help/howto). namify still has functional action commands pending migration.
+Note: Commands are legacy. Skills (`skills/{name}/SKILL.md`) are preferred and support all the same frontmatter fields plus additional features. All plugins are fully migrated (commands kept only for help/howto).
 
 ```yaml
 ---

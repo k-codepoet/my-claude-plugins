@@ -5,6 +5,15 @@ All notable changes to the Namify plugin will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.0.0] - 2026-02-14
+
+### Changed
+- **commands → skills 통합** - action commands를 삭제하고 skills로 일원화
+  - `commands/name.md` 삭제 → `skills/name/SKILL.md`로 통합
+  - `commands/help.md`, `commands/howto.md`만 유지 (문서)
+- **plugin.json commands 경로 변경** - `["./commands/name.md"]` → `["./commands/"]`
+- **help.md 용어 변경** - "커맨드" → "기능"
+
 ## [1.1.0] - 2026-01-18
 
 ### Added

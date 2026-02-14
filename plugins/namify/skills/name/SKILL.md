@@ -1,4 +1,5 @@
 ---
+name: name
 description: 제품/서비스 이름을 생성합니다. 메타포 탐색 → 후보 생성 → 검증 → 추천 흐름으로 진행합니다.
 argument-hint: "<제품 설명> [--pattern <패턴>] [--series <기존 이름>]"
 ---
@@ -10,9 +11,9 @@ argument-hint: "<제품 설명> [--pattern <패턴>] [--series <기존 이름>]"
 ## 사용법
 
 ```
-/name <제품 설명>
-/name <제품 설명> --pattern "-ify"
-/name <제품 설명> --series "Gemify"
+/namify:name <제품 설명>
+/namify:name <제품 설명> --pattern "-ify"
+/namify:name <제품 설명> --series "Gemify"
 ```
 
 ## 옵션
@@ -84,7 +85,7 @@ argument-hint: "<제품 설명> [--pattern <패턴>] [--series <기존 이름>]"
 ### 기본 사용
 
 ```
-/name "생각을 정제해서 지식으로 만드는 도구"
+/namify:name "생각을 정제해서 지식으로 만드는 도구"
 
 → 핵심 가치: 정제, 변환, 가치 상승
 → 메타포: 광물/보석 (정제 과정과 일치)
@@ -98,7 +99,7 @@ argument-hint: "<제품 설명> [--pattern <패턴>] [--series <기존 이름>]"
 ### 패턴 지정
 
 ```
-/name "인프라 자동화 도구" --pattern "-ify"
+/namify:name "인프라 자동화 도구" --pattern "-ify"
 
 → 핵심 가치: 기반 구축, 자동화
 → 메타포: 건축/땅 (인프라와 연결)
@@ -110,7 +111,7 @@ argument-hint: "<제품 설명> [--pattern <패턴>] [--series <기존 이름>]"
 ### 시리즈 일관성
 
 ```
-/name "코드를 작성하는 AI 도구" --series "Gemify"
+/namify:name "코드를 작성하는 AI 도구" --series "Gemify"
 
 → 패턴 인식: -ify (변환)
 → 핵심 가치: 제작, 개발
