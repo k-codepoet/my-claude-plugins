@@ -1,5 +1,4 @@
 ---
-name: new-skill
 description: 새 스킬 생성. "스킬 만들기", "new skill", "SKILL.md 추가" 등 요청 시 활성화.
 allowed-tools: Read, Write, Bash, Glob, Grep
 argument-hint: "<name> [plugin-path]"
@@ -67,7 +66,6 @@ Claude Code 플러그인에 새 스킬(SKILL.md)을 생성합니다.
 
 ```markdown
 ---
-name: {name}
 description: {description}
 {allowed-tools가 있으면}allowed-tools: {allowed-tools}
 {compatibility가 있으면}compatibility: {compatibility}
@@ -145,7 +143,7 @@ Skill 도구로 forgeify:new-command 호출
 
 ## 규칙
 
-1. **name = 디렉토리명**: `name` 필드와 디렉토리명 일치 필수
+1. **name 필드 사용 금지**: 디렉토리명이 스킬 이름으로 자동 사용되며, 플러그인에서는 `plugin-name:skill-name`으로 네임스페이싱됨
 2. **SKILL.md 대문자**: 파일명은 반드시 `SKILL.md` (대문자)
 3. **description 품질**: "무엇을 + 언제" 형식 필수
 4. **Progressive Disclosure**: 본문 5000 토큰 이하, 상세 내용은 references/로

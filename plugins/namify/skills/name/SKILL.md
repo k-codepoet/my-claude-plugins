@@ -1,5 +1,4 @@
 ---
-name: name
 description: 제품/서비스 이름을 생성합니다. 메타포 탐색 → 후보 생성 → 검증 → 추천 흐름으로 진행합니다.
 argument-hint: "<제품 설명> [--pattern <패턴>] [--series <기존 이름>]"
 ---

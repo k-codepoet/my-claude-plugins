@@ -1,5 +1,4 @@
 ---
-name: vision
 description: 비전 생성/조회. "비전 조회", "vision", "방향성" 등 요청 시 활성화.
 allowed-tools: Read, Write, Edit, Glob
 argument-hint: "[vision-name|new <name>]"

@@ -1,5 +1,4 @@
 ---
-name: poc-shape
 description: PoC 형태 다듬기. ~/.gemify 지식 체계를 탐색하여 재료를 추천하고, 무의식 도출 질문으로 구체적인 형태를 잡아 drafts에 저장.
 ---
 

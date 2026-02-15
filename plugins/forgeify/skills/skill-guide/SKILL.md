@@ -1,5 +1,4 @@
 ---
-name: skill-guide
 description: Claude Code 스킬(SKILL.md) 작성법 가이드. 스킬 만들기, Agent Skills 표준, Progressive Disclosure 원칙, frontmatter 필드에 대해 질문할 때 사용합니다.
 ---
 
@@ -27,7 +26,6 @@ my-skill/
 
 ```markdown
 ---
-name: pdf-processing
 description: Extract text and tables from PDF files, fill forms, merge documents. Use when working with PDF documents or when the user mentions PDFs, forms, or document extraction.
 license: Apache-2.0
 compatibility: Requires python3, poppler-utils
@@ -57,8 +55,11 @@ allowed-tools: Bash(python3:*) Read Write
 
 | 필드 | 제약사항 |
 |------|----------|
-| `name` | 1-64자, 소문자+숫자+하이픈만, 디렉토리명과 일치 |
 | `description` | 1-1024자, 무엇을 하는지 + 언제 사용하는지 포함 |
+
+### name 필드 (사용 금지)
+
+`name`을 생략하면 디렉토리명이 스킬 이름으로 사용되며, 플러그인 스킬은 자동으로 `plugin-name:skill-name` 네임스페이스가 부여됩니다 (예: `forgeify:align`). `name`을 명시하면 prefix가 제거되어 `/skillname`으로 호출되므로 다른 스킬과 충돌할 수 있습니다. **플러그인 스킬에서는 `name` 필드를 사용하지 마세요.**
 
 ### 선택 필드
 
@@ -72,7 +73,7 @@ allowed-tools: Bash(python3:*) Read Write
 
 ## Progressive Disclosure 원칙
 
-1. **Metadata** (~100 토큰): `name`과 `description`은 시작 시 모든 스킬에 대해 로드
+1. **Metadata** (~100 토큰): `description`은 시작 시 모든 스킬에 대해 로드
 2. **Instructions** (<5000 토큰 권장): `SKILL.md` 본문은 스킬 활성화 시 로드
 3. **Resources** (필요시): `scripts/`, `references/`, `assets/` 파일은 필요할 때만 로드
 

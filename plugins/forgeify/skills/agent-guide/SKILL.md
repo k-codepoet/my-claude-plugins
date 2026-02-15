@@ -1,5 +1,4 @@
 ---
-name: agent-guide
 description: Claude Code 서브에이전트 작성법 가이드. Agent 만들기, frontmatter 필드, 내장 Subagent, Best Practices에 대해 질문할 때 사용합니다.
 ---
 

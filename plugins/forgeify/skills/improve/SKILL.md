@@ -1,5 +1,4 @@
 ---
-name: improve
 description: "메타도구 개선 라우터. /forgeify:improve <type>으로 호출하여 plugin, skill, command, agent, hook 중 하나를 개선."
 allowed-tools: Read, Write, Edit, Bash, Glob, Grep
 argument-hint: "<type> (plugin|skill|command|agent|hook)"

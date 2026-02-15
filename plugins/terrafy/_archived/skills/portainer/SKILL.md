@@ -1,5 +1,4 @@
 ---
-name: portainer
 description: Portainer 기반 컨테이너 관리 환경 구축. Docker 컨테이너 관리, 스택 배포, GitOps 연동이 필요할 때 사용합니다.
 ---
 

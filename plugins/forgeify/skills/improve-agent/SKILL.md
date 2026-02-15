@@ -1,5 +1,4 @@
 ---
-name: improve-agent
 description: 에이전트 개선. "에이전트 개선", "agent 수정", "improve agent" 등 요청 시 활성화.
 allowed-tools: Read, Write, Edit, Bash, Glob, Grep
 argument-hint: "<name> [improvement-doc]"

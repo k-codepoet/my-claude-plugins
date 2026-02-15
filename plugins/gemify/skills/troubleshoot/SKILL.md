@@ -1,5 +1,4 @@
 ---
-name: troubleshoot
 description: 버그/문제 분석 및 가설 도출. "문제 분석", "버그 원인", "왜 안되지", "에러 분석" 등 요청 시 활성화. bugfix 스킬과 연계.
 allowed-tools: Read, Write, Glob, Grep, Bash
 argument-hint: "[버그 설명|에러 메시지]"

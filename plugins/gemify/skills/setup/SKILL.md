@@ -1,5 +1,4 @@
 ---
-name: setup
 description: Gemify 지식 파이프라인을 설정합니다. 기본은 ~/.gemify/ (user scope)에 생성되며, 새로 초기화하거나 기존 repo를 clone할 수 있습니다.
 allowed-tools: Read, Write, Bash, Glob
 argument-hint: "[--examples]|[--clone <url>]"

@@ -1,5 +1,4 @@
 ---
-name: import
 description: 외부 재료를 inbox/materials/에 저장. "가져와", "import", "이 기사", "이 문서" 등 외부 콘텐츠 저장 요청 시 활성화. raw 상태로 저장하여 /gemify:draft에서 thoughts와 함께 사용 가능.
 allowed-tools: Read, Write, Edit, WebFetch
 argument-hint: "[URL/내용]"

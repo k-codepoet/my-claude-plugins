@@ -1,5 +1,4 @@
 ---
-name: validate
 description: 플러그인이 가이드라인을 준수하는지 검증. "플러그인 검증", "validate", "규격 확인", "리팩토링" 등 요청 시 활성화.
 argument-hint: "[plugin-path]"
 ---

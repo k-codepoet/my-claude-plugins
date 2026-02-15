@@ -1,5 +1,4 @@
 ---
-name: new-command
 description: 새 커맨드 생성. "커맨드 만들기", "new command", "슬래시 커맨드 추가" 등 요청 시 활성화.
 allowed-tools: Read, Write, Bash, Glob, Grep
 argument-hint: "<name> [plugin-path]"

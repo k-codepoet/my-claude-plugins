@@ -1,5 +1,4 @@
 ---
-name: domain
 description: 도메인 관리. 현재 도메인 확인, 목록 조회, 전환, 추가. 세션 시작 시 한 번 설정.
 allowed-tools: Read, Write, Bash, Glob, Grep, AskUserQuestion
 argument-hint: "[list|set <name>|add <name>]"

@@ -1,5 +1,4 @@
 ---
-name: harvest
 description: "Git repo를 분석하여 관리체계, 워크플로우, 프로세스를 Claude Code 스킬/플러그인으로 변환. repo 분석, 워크플로우 추출, harvest, 스킬 생성, 패턴 추출, repo에서 스킬 만들기 시 활성화."
 argument-hint: "<repo-path-or-url> [--mode project-local|plugin]"
 ---
@@ -116,7 +115,6 @@ Read: $CLAUDE_PLUGIN_ROOT/skills/harvest/references/scan-targets.md
 **SKILL.md 생성:**
 ```markdown
 ---
-name: {스킬명}
 description: "{what it does}. {when to activate - 트리거 키워드 나열}."
 ---
 

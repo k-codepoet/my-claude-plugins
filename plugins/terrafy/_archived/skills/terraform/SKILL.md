@@ -1,5 +1,4 @@
 ---
-name: terraform
 description: Terraform 기반 클라우드 인프라 프로비저닝. AWS, GCP, Azure 리소스 관리가 필요할 때 사용합니다. (준비 중)
 ---
 

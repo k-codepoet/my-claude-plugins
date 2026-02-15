@@ -1,5 +1,4 @@
 ---
-name: poc-proto
 description: PoC 즉시 프로토타입. HTML + Tailwind + vanilla JS로 바로 생성하고 로컬 개발 서버로 실시간 미리보기. "화면 만들어봐", "이거 보여줘" 등 요청 시 활성화.
 ---
 

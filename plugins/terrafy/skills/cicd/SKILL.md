@@ -1,5 +1,4 @@
 ---
-name: cicd
 description: CI/CD, 파이프라인, buildx, 멀티플랫폼, GitLab, runner, glab, MR, registry, gitlab-ci, GitHub Actions, ArgoCD 관련 작업
 allowed-tools: Bash, Read, Write
 ---

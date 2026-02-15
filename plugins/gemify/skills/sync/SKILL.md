@@ -1,5 +1,4 @@
 ---
-name: sync
 description: ~/.gemify/ 저장소를 remote와 동기화하고 SSOT 일치 점검을 수행합니다. 인자 없이 실행 시 전체 진단 + 심기 제안.
 allowed-tools: Read, Bash, Write, Glob, Grep
 argument-hint: "[pull|push|status]"

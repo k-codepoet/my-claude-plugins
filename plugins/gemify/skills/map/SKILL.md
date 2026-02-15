@@ -1,5 +1,4 @@
 ---
-name: map
 description: 지식 클러스터 맵 생성/관리 - library/views 분석하여 대주제/소주제 구조화. triage에서 참조됨.
 allowed-tools: Read, Write, Edit, Glob, Grep
 ---

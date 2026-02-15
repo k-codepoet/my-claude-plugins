@@ -1,5 +1,4 @@
 ---
-name: setup
 description: 홈서버 인프라를 대화형으로 구성. "인프라 설정", "홈서버 만들어", "클러스터 구성", "terrafy setup" 등 요청 시 활성화. 6 Phase 부트스트랩.
 allowed-tools: Bash, Read, Write
 ---

@@ -131,7 +131,6 @@ Note: `<example>` blocks belong in body, not frontmatter.
 ### Skills (`skills/{skill-name}/SKILL.md`)
 ```yaml
 ---
-name: skill-name                        # Required
 description: What + when to use         # Required
 allowed-tools: Read, Write, Bash        # Optional
 argument-hint: "<name> [options]"        # Optional
@@ -139,7 +138,7 @@ disable-model-invocation: true           # Optional (manual-only)
 ---
 Skill content...
 ```
-Note: File must be named `SKILL.md` (uppercase) inside a directory matching the skill name. Skills auto-activate based on description context. Skills replace commands for all action functionality; commands are kept only for static help/tutorial content.
+Note: File must be named `SKILL.md` (uppercase) inside a directory matching the skill name. Do NOT use `name` field — skill name is derived from the directory name, and plugin skills are automatically namespaced as `plugin-name:skill-name` (e.g., `forgeify:align`). Specifying `name` strips the prefix, which can cause conflicts. Skills auto-activate based on description context. Skills replace commands for all action functionality; commands are kept only for static help/tutorial content.
 
 ### Hooks (`hooks/hooks.json`)
 

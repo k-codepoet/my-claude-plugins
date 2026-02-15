@@ -1,5 +1,4 @@
 ---
-name: status
 description: 현재 인프라 상태를 스캔하고 보여줌. "상태 확인", "인프라 상태", "terrafy status" 등 요청 시 활성화. 상황별 다른 출력 제공.
 allowed-tools: Bash, Read
 ---

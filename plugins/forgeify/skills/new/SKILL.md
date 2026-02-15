@@ -1,5 +1,4 @@
 ---
-name: new
 description: "Claude Code 메타도구 생성 라우터. /forgeify:new <type>으로 호출하여 plugin, skill, command, agent, hook 중 하나를 생성."
 allowed-tools: Read, Write, Bash, Glob, Grep
 argument-hint: "<type> (plugin|skill|command|agent|hook)"

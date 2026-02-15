@@ -1,5 +1,4 @@
 ---
-name: improve-hook
 description: 훅 개선. "훅 개선", "hook 수정", "improve hook", "hooks.json 업데이트" 등 요청 시 활성화.
 allowed-tools: Read, Write, Edit, Bash, Glob, Grep
 argument-hint: "<event-type> [improvement-doc]"

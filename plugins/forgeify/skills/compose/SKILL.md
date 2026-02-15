@@ -1,5 +1,4 @@
 ---
-name: compose
 description: 여러 플러그인을 조립하여 새 플러그인 생성. "플러그인 조립", "compose", "플러그인 합치기", "컴포넌트 추출" 등 요청 시 활성화.
 argument-hint: "<topic> <plugin1> [plugin2] ..."
 ---

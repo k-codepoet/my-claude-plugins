@@ -1,5 +1,4 @@
 ---
-name: secrets
 description: Vault, secret, 시크릿, AppRole, 환경변수 주입, vault agent, secrets operator, SOPS 관련 작업
 allowed-tools: Bash, Read, Write
 ---

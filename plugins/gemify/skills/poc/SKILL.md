@@ -1,5 +1,4 @@
 ---
-name: poc
 description: PoC 개발 파이프라인 라우터. "PoC 만들자", "앱 시작", "프로젝트 시작", "플러그인 만들자" 등 요청 시 활성화. 상황에 따라 poc-idea/shape/proto/pack으로 라우팅.
 allowed-tools: Read, Write, Glob, Grep, Bash, Skill
 argument-hint: "[\"아이디어\"|\"화면\"|\"패키징\"]"

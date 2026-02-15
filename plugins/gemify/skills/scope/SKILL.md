@@ -1,5 +1,4 @@
 ---
-name: scope
 description: Gemify User Scope 경로 관리. 멀티 도메인 지원. 모든 gemify 스킬 실행 전 경로 결정.
 ---
 

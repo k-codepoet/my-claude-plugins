@@ -1,5 +1,4 @@
 ---
-name: bugfix
 description: gemify:bugfix가 생성한 views/by-bugfix/ 문서를 읽고 버그 수정 실행. 2-Track (Workaround/Root Cause) 지원.
 ---
 

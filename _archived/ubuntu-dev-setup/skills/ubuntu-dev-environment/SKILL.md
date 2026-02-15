@@ -1,5 +1,4 @@
 ---
-name: ubuntu-dev-environment
 description: Ubuntu Linux 개발환경 설정 스킬. Zsh, Oh My Zsh, Powerlevel10k, NVM 설치 및 기본 개발 패키지 구성 방법을 제공합니다. "개발환경 셋업", "zsh 설치", "nvm 설정", "powerlevel10k" 등의 질문에 사용합니다.
 ---
 

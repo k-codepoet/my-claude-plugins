@@ -1,5 +1,4 @@
 ---
-name: sidebar
 description: 본 작업 중 떠오른 것을 옆에 빼두기. material(외부 기록)과 thought(내 생각)를 쌍으로 한번에 생성.
 allowed-tools: Read, Write, Edit
 ---

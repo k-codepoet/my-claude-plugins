@@ -1,5 +1,4 @@
 ---
-name: help
 description: Terrafy 플러그인 도움말. 사용 가능한 명령어, 스킬, 인프라 설정 방법을 안내합니다.
 ---
 

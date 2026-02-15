@@ -1,5 +1,4 @@
 ---
-name: new-hook
 description: 새 훅 생성. "훅 만들기", "new hook", "hooks.json 추가" 등 요청 시 활성화.
 allowed-tools: Read, Write, Bash, Glob, Grep
 argument-hint: "<event-type> [plugin-path]"

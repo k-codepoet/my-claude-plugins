@@ -1,5 +1,4 @@
 ---
-name: k3s
 description: 쿠버네티스(K3s) 환경 구축 스킬. 쿠버네티스 클러스터 설치, Pod 배포, Helm 차트 사용, GitOps 설정이 필요할 때 사용합니다. Linux Ubuntu 전용입니다.
 ---
 

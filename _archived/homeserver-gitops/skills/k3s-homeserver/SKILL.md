@@ -1,5 +1,4 @@
 ---
-name: k3s-homeserver
 description: K3s 홈서버 설정 스킬. 홈서버 구축, K3s 설치, Kubernetes 클러스터 구성, IaC 초기화, GitOps 설정, 스냅샷/복원 관련 질문에 사용합니다. Linux Ubuntu 전용입니다.
 ---
 

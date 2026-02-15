@@ -1,5 +1,4 @@
 ---
-name: init-ssh
 description: SSH 서버를 설정하여 클러스터 참여 준비. "SSH 설정", "연결 안됨", "init-ssh" 등 요청 시 활성화. 클러스터 노드 추가 실패 시 fallback.
 allowed-tools: Bash, Read
 ---

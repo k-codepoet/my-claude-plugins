@@ -1,5 +1,4 @@
 ---
-name: new-plugin
 description: 새 플러그인 생성. "플러그인 만들기", "new plugin", "plugin 생성" 등 요청 시 활성화.
 allowed-tools: Read, Write, Bash, Glob, Grep
 argument-hint: "<name> [marketplace-path]"

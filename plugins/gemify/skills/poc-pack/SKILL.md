@@ -1,5 +1,4 @@
 ---
-name: poc-pack
 description: PoC 패키징 및 핸드오프. 확정된 프로토타입을 git repo로 패키징하고 craftify/forgeify 핸드오프 준비. "패키징해줘", "확정", "이거 맞아" 등 요청 시 활성화.
 ---
 

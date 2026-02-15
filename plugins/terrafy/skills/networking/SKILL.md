@@ -1,5 +1,4 @@
 ---
-name: networking
 description: Traefik, DNS, 라우팅, Cloudflare, tunnel, TLS, 체인, 인증서, 네트워크, ingress, nginx 관련 작업
 allowed-tools: Bash, Read, Write
 ---

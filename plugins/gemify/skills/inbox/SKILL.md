@@ -1,5 +1,4 @@
 ---
-name: inbox
 description: 사용자의 생각을 inbox/thoughts/에 빠르게 저장. "저장해", "메모해", "inbox", "포착" 등 요청 시 활성화. raw 상태로 저장하여 /gemify:draft로 확장 가능.
 allowed-tools: Read, Write, Edit
 argument-hint: "[내용]"

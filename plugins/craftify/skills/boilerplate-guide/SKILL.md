@@ -1,5 +1,4 @@
 ---
-name: boilerplate-guide
 description: boilerplate 선택 가이드. 프로젝트 요구사항에 맞는 boilerplate 추천. "boilerplate 선택", "어떤 템플릿", "SSR vs SPA" 등 질문 시 활성화.
 ---
 

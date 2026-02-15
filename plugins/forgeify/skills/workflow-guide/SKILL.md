@@ -1,5 +1,4 @@
 ---
-name: workflow-guide
 description: Claude Code 플러그인 개발 실전 워크플로우 가이드. Skill, Agent, Plugin, Marketplace를 처음부터 만드는 단계별 예시가 필요할 때 사용합니다.
 ---
 
@@ -16,7 +15,6 @@ cd pdf-processor
 
 ```markdown
 ---
-name: pdf-processor
 description: Extract text and tables from PDF files, fill forms, merge documents. Use when working with PDF documents.
 license: MIT
 ---

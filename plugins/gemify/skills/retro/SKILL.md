@@ -1,5 +1,4 @@
 ---
-name: retro
 description: 이미 완료된 작업을 사후 처리. "사후 기록", "역방향", "retro", "이미 만들었는데" 등 요청 시 활성화. gemify의 모든 관점을 병렬로 적용하여 가장 적합한 경로로 라우팅.
 allowed-tools: Read, Write, Edit
 ---

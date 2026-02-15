@@ -1,5 +1,4 @@
 ---
-name: deploy-stack
 description: 서비스 추가, 스택 배포, deploy, portainer, gitops, helm, terraform, k8s, docker-compose 관련 작업
 allowed-tools: Bash, Read, Write
 ---

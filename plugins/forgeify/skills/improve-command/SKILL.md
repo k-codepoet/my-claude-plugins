@@ -1,5 +1,4 @@
 ---
-name: improve-command
 description: 커맨드 개선. "커맨드 개선", "command 수정", "improve command" 등 요청 시 활성화.
 allowed-tools: Read, Write, Edit, Bash, Glob, Grep
 argument-hint: "<name> [improvement-doc]"
