@@ -14,20 +14,25 @@ Archived plugins (in `_archived/`): homeserver-gitops, ubuntu-dev-setup
 ## Architecture
 
 ```
-.claude-plugin/marketplace.json  # Marketplace registry (name, owner, plugins[])
-boilerplate/plugin-template/     # Plugin scaffolding template
-└── plugins/
-    └── {directory-name}/
-        ├── .claude-plugin/plugin.json  # Plugin manifest (name can differ from directory)
-        ├── agents/                      # Natural language trigger definitions (.md)
-        ├── commands/                    # Legacy slash commands (.md) - help/howto only
-        ├── skills/                      # Contextual knowledge (*/SKILL.md)
-        ├── scripts/                     # Bash implementation scripts (.sh)
-        ├── hooks/hooks.json             # Event-driven hooks
-        ├── principles/                  # Plugin design principles (.md)
-        ├── assets/                      # Templates and examples
-        ├── templates/                   # Boilerplate templates
-        └── docs/                        # Plugin documentation (optional)
+.claude-plugin/marketplace.json    # Marketplace registry (name, owner, plugins[])
+boilerplate/plugin-template/       # Plugin scaffolding template
+_archived/                         # Archived/retired plugins
+plugins/
+└── {directory-name}/
+    ├── .claude-plugin/plugin.json # Plugin manifest (name can differ from directory)
+    ├── agents/                    # Natural language trigger definitions (.md)
+    ├── commands/                  # Legacy slash commands (.md) - help/howto only
+    ├── skills/                    # Contextual knowledge (*/SKILL.md)
+    │   └── {skill-name}/
+    │       ├── SKILL.md           # Skill definition (required, uppercase)
+    │       └── references/        # Detailed examples/templates (optional)
+    ├── scripts/                   # Bash implementation scripts (.sh)
+    ├── hooks/hooks.json           # Event-driven hooks
+    ├── principles/                # Plugin design principles (.md)
+    ├── assets/                    # Templates and examples
+    ├── templates/                 # Boilerplate templates
+    ├── docs/                      # Plugin documentation (optional)
+    └── _archived/                 # Archived skills/agents within plugin (optional)
 ```
 
 **Flow**: User triggers skill/command → Skill provides instructions + allowed-tools → Script executes with `${CLAUDE_PLUGIN_ROOT}` variable
