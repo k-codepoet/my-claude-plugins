@@ -1,0 +1,12 @@
+{
+  "name": "shellify",
+  "version": "1.0.0",
+  "description": "Shape your shell - Cross-platform shell environment setup (macOS + Ubuntu/WSL)",
+  "author": {
+    "name": "choigawoon"
+  },
+  "keywords": ["shell", "zsh", "oh-my-zsh", "powerlevel10k", "nvm", "macos", "ubuntu", "wsl", "terminal"],
+  "commands": ["./commands/"],
+  "skills": ["./skills/"],
+  "agents": ["./agents/shellify.md"]
+}

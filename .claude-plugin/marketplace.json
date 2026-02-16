@@ -28,6 +28,11 @@
       "name": "terrafy",
       "source": "./plugins/terrafy",
       "description": "Lay the groundwork for your digital city - 인프라 자동화 플러그인"
+    },
+    {
+      "name": "shellify",
+      "source": "./plugins/shellify",
+      "description": "Shape your shell - Cross-platform 셸 환경 셋업 (macOS + Ubuntu/WSL)"
     }
   ]
 }
