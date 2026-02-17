@@ -19,6 +19,7 @@ allowed-tools: Bash, Read, Write
 Git hosting backend에 무관하게 적용되는 repo 초기화 + mirror 설정 흐름:
 
 ```
+0. 환경 감지      → glab/gh CLI에서 host, user, group 자동 감지 (실패 시 사용자 질문)
 1. GitHub Repo    → GitHub에 repo 확인/생성
 2. GitLab Repo    → GitLab에 repo 생성
 3. Remote 설정    → origin fetch=GitLab, push=GitLab+GitHub dual push
@@ -28,6 +29,44 @@ Git hosting backend에 무관하게 적용되는 repo 초기화 + mirror 설정 
 ```
 
 ## Current Implementation: GitHub + Self-hosted GitLab CE
+
+### Step 0: 환경 감지 (자동)
+
+모든 값은 CLI 설정과 기존 repo에서 자동 감지. 감지 실패 시에만 사용자에게 질문:
+
+```bash
+# 1. GitLab host (glab CLI 설정에서)
+GITLAB_HOST=$(glab config get host)
+# → e.g., gitlab.home.codepoet.site
+
+# 2. GitLab SSH URL 패턴 (기존 dual-push repo에서 추출)
+#    ~/k-codepoet/ 하위 repo들의 origin fetch URL을 스캔
+GITLAB_SSH_URL=$(git -C ~/k-codepoet/my-kanban remote get-url origin 2>/dev/null \
+  || git -C ~/k-codepoet/my-devops remote get-url origin 2>/dev/null)
+# → e.g., ssh://git@gitlab.home.codepoet.site:20022/k-codepoet/my-kanban.git
+# 여기서 ssh://git@{HOST}:{PORT} 패턴 추출
+
+# 3. GitHub user/org
+GITHUB_USER=$(gh api user -q '.login')
+# → e.g., choigawoon
+
+# 4. GitLab group (기존 remote URL에서 추출)
+GITLAB_GROUP=$(echo "$GITLAB_SSH_URL" | sed -E 's|.*/([^/]+)/[^/]+\.git$|\1|')
+# → e.g., k-codepoet
+
+# 5. GitHub token (mirror 설정용)
+GITHUB_TOKEN=$(gh auth token)
+```
+
+**감지 실패 시 사용자에게 질문할 항목:**
+
+| 항목 | 감지 소스 | 감지 실패 시 질문 |
+|------|----------|----------------|
+| GitLab host | `glab config get host` | "GitLab CE 도메인?" |
+| SSH port | 기존 repo remote URL | "GitLab SSH 포트? (기본: 22)" |
+| GitHub org | `gh api user` | "GitHub org/user?" |
+| GitLab group | 기존 repo remote URL | "GitLab group/namespace?" |
+| Project name | 현재 디렉토리명 | "프로젝트명?" |
 
 ### Step 1: GitHub repo 확인/생성
 
