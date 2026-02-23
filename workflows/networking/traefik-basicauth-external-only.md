@@ -4,6 +4,7 @@
 
 ## 전제 조건
 
+- 서비스가 Portainer 스택으로 배포되어 있음 → [CI/CD 멀티플랫폼 빌드 → Portainer 배포](../cicd-deploy/gitlab-ci-multiplatform-portainer.md)
 - Traefik chain 구조 (Mac Mini → NAS → Linux)
 - 서비스가 Docker labels로 Traefik에 등록되어 있음
 - 외부: Cloudflare Tunnel (`*.codepoet.site`), 내부: Split DNS (`*.home.codepoet.site`)

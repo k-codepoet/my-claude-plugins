@@ -103,8 +103,18 @@ services:
       - NODE_ENV=production
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.my-service.rule=Host(`my-service.home.codepoet.site`) || Host(`my-service.codepoet.site`)"
-      - "traefik.http.routers.my-service.entrypoints=web"
+      # 내부 접근 (인증 없음)
+      - "traefik.http.routers.my-service-internal.rule=Host(`my-service.home.codepoet.site`)"
+      - "traefik.http.routers.my-service-internal.entrypoints=web"
+      - "traefik.http.routers.my-service-internal.service=my-service"
+      # 외부 접근 (BasicAuth — 필요 시 middleware 활성화)
+      - "traefik.http.routers.my-service-external.rule=Host(`my-service.codepoet.site`)"
+      - "traefik.http.routers.my-service-external.entrypoints=web"
+      # - "traefik.http.routers.my-service-external.middlewares=my-service-auth"
+      - "traefik.http.routers.my-service-external.service=my-service"
+      # BasicAuth middleware (필요 시 주석 해제)
+      # - "traefik.http.middlewares.my-service-auth.basicauth.users=username:$$apr1$$xxxx$$xxxx"
+      # Service (공유)
       - "traefik.http.services.my-service.loadbalancer.server.port=3000"
     networks:
       - traefik  # Linux/Mac은 traefik, NAS는 gateway
@@ -113,6 +123,8 @@ networks:
   traefik:
     external: true
 ```
+
+> **BasicAuth 상세** → [Traefik BasicAuth 외부 전용](../networking/traefik-basicauth-external-only.md)
 
 ### Traefik Host 규칙
 
@@ -151,6 +163,8 @@ export VAULT_TOKEN='hvs.xxxxx'
 curl -sk https://rehab-crm.home.codepoet.site  # 내부
 curl -sk https://rehab-crm.codepoet.site        # 외부 (Cloudflare Tunnel)
 ```
+
+> **외부 접근 인증이 필요하면** → [Traefik BasicAuth 외부 전용](../networking/traefik-basicauth-external-only.md)
 
 ## 6단계: 문서 업데이트
 
