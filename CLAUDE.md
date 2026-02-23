@@ -8,6 +8,7 @@ This is a **Claude Code Plugin Marketplace** (`k-codepoet/my-claude-plugins`) co
 - **Knowledge plugins**: Skills-only plugins providing contextual guidance (forgeify, gemify, namify)
 - **Product plugins**: Development environment and deployment automation (craftify)
 - **Infrastructure plugins**: Linux/server automation with Bash scripts (terrafy)
+- **Environment plugins**: Cross-platform shell environment setup (shellify)
 
 Archived plugins (in `_archived/`): homeserver-gitops, ubuntu-dev-setup
 
@@ -16,6 +17,7 @@ Archived plugins (in `_archived/`): homeserver-gitops, ubuntu-dev-setup
 ```
 .claude-plugin/marketplace.json    # Marketplace registry (name, owner, plugins[])
 boilerplate/plugin-template/       # Plugin scaffolding template
+workflows/                         # Future plugin material staging (cicd-deploy, networking)
 _archived/                         # Archived/retired plugins
 plugins/
 └── {directory-name}/
@@ -36,6 +38,15 @@ plugins/
 ```
 
 **Flow**: User triggers skill/command → Skill provides instructions + allowed-tools → Script executes with `${CLAUDE_PLUGIN_ROOT}` variable
+
+**Inter-plugin pipelines**: Plugins follow a unidirectional "knowledge → execution" pattern:
+- **gemify** (knowledge producer) generates documents → **forgeify** (executor) reads and implements them
+  - `gemify:bugfix` → writes `views/by-bugfix/` → `forgeify:bugfix` reads and executes fix
+  - `gemify:improve-plugin` → writes improvement docs → `forgeify:improve-plugin` executes changes
+- **gemify** generates PoC specs → **craftify** implements them
+  - `gemify:poc` pipeline → writes `POC.md` → `craftify:poc` reads and builds project
+- **forgeify** is the meta-tool for creating/modifying all plugin components (skills, agents, hooks, commands)
+- **Plugin composition**: Knowledge plugins (forgeify, gemify, namify) are skills-only. Product/infra plugins (craftify, terrafy, shellify) additionally have agents for natural language triggers
 
 ## Development Commands
 
@@ -211,9 +222,8 @@ cat plugins/<name>/.claude-plugin/plugin.json | jq -r '.version'
 
 ## Validation
 
-Use the validation script for comprehensive checks:
 ```bash
-# Validate a specific plugin (recommended)
+# Validate a specific plugin (recommended — checks plugin.json, SKILL.md naming, path refs, frontmatter)
 ./plugins/forgeify/scripts/validate-plugin.sh plugins/<name>
 
 # Quick manual checks
@@ -221,12 +231,6 @@ cat plugins/<name>/.claude-plugin/plugin.json | jq .
 cat .claude-plugin/marketplace.json | jq .
 bash -n plugins/<name>/scripts/*.sh  # if scripts exist
 ```
-
-The validation script checks:
-- plugin.json schema and required fields
-- SKILL.md naming (uppercase, in `skills/{skill-name}/SKILL.md`)
-- Path references in plugin.json
-- Command frontmatter presence
 
 ## Adding New Plugins
 
