@@ -36,5 +36,6 @@
 
 | 카테고리 | 문서 | 설명 |
 |----------|------|------|
+| **e2e** | [app-deploy-e2e.md](app-deploy-e2e.md) | **앱 서비스 End-to-End 배포 (통합 가이드, rehab-crm 사례)** |
 | cicd-deploy | [gitlab-ci-multiplatform-portainer.md](cicd-deploy/gitlab-ci-multiplatform-portainer.md) | GitLab CI 멀티플랫폼 빌드 → Portainer 스택 배포 |
 | networking | [traefik-basicauth-external-only.md](networking/traefik-basicauth-external-only.md) | 외부만 BasicAuth, 내부 패스 |
