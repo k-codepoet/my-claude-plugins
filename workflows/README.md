@@ -20,10 +20,9 @@
 - → [상세: 위 CI/CD 문서의 3~5단계](cicd-deploy/gitlab-ci-multiplatform-portainer.md#3단계-portainer-스택-compose-작성)
 
 ### Phase 3: 외부 인증 (필요 시)
-- [ ] htpasswd 해시 생성
-- [ ] docker-compose labels에 BasicAuth split-router 적용
-- [ ] 스택 재배포 + 내부 200 / 외부 401 / 인증 후 200 검증
-- → [상세: Traefik BasicAuth 외부 전용](networking/traefik-basicauth-external-only.md)
+- [ ] **BasicAuth 방식**: htpasswd + split-router labels → [상세](networking/traefik-basicauth-external-only.md)
+- [ ] **OIDC (Google OAuth) 방식**: Authentik OIDC 연동 → [상세](authentik-oidc-app-onboarding.md)
+- [ ] 스택 재배포 + 내부/외부 접근 검증
 
 ### Phase 4: 문서화
 - [ ] `my-devops/docs/services/{service}.md` 생성
@@ -39,3 +38,4 @@
 | **e2e** | [app-deploy-e2e.md](app-deploy-e2e.md) | **앱 서비스 End-to-End 배포 (통합 가이드, rehab-crm 사례)** |
 | cicd-deploy | [gitlab-ci-multiplatform-portainer.md](cicd-deploy/gitlab-ci-multiplatform-portainer.md) | GitLab CI 멀티플랫폼 빌드 → Portainer 스택 배포 |
 | networking | [traefik-basicauth-external-only.md](networking/traefik-basicauth-external-only.md) | 외부만 BasicAuth, 내부 패스 |
+| **authentik** | [authentik-oidc-app-onboarding.md](authentik-oidc-app-onboarding.md) | **Authentik OIDC 앱 온보딩 (Google OAuth 연동)** |
