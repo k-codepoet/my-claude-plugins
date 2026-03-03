@@ -1,9 +1,17 @@
 # Authentik OIDC 앱 온보딩 워크플로우
 
-> 새 앱에 Authentik OIDC (Google OAuth) 인증을 연동하는 운영 워크플로우.
+> 새 앱에 Authentik OIDC (Google OAuth) 인증 + 사용자 승인 워크플로우를 연동하는 운영 가이드.
 > **인프라 작업**(my-devops repo)과 **앱 작업**(앱 repo)을 하나의 체크리스트로 통합.
 >
 > 상세 구현 가이드: `my-devops/docs/guides/authentik-oidc-app-integration.md`
+
+## 타임라인
+
+| 날짜 | 내용 |
+|------|------|
+| 2026-02 | 초기 버전 — OIDC 온보딩 + BasicAuth→OIDC 전환 (Webtoon, Rehab CRM) |
+| 2026-03-01 | 사용자 승인 워크플로우 추가 — 4-그룹 역할 체계, 자동 enrollment, 관리자 페이지 |
+| 2026-03-02 | banned 그룹 추가 — 정지 사용자 관리, Expression Policy (email→username) 보완 |
 
 ## 전제 조건
 
@@ -14,14 +22,44 @@
 
 ## 아키텍처
 
+### 인증 흐름
+
 ```
 앱 브라우저
   ├─ 앱 접속 → 로그인 필요 → authentik redirect
   ├─ Authentik 로그인 (앱 전용 flow, "Google로 로그인" 버튼)
   ├─ Google OAuth 인증
   ├─ Authentik → 앱 callback (authorization code)
-  └─ 앱 백엔드: code → token → userinfo → 세션 생성
+  └─ 앱 백엔드: code → token → userinfo (groups 포함) → 세션 생성
 ```
+
+### 사용자 승인 + 역할 관리 체계
+
+```
+신규 Google 로그인
+  ├─ Authentik enrollment flow (자동)
+  │   ├─ Expression Policy: email → username 자동 설정
+  │   ├─ UserWriteStage: {app}-users-pending 그룹에 자동 추가
+  │   └─ UserLoginStage: 세션 생성
+  ├─ 앱 callback → userinfo → groups 확인
+  │   ├─ {app}-users-pending 만 → /pending 페이지
+  │   ├─ {app}-users → 앱 정상 접근
+  │   ├─ {app}-admins → 앱 접근 + /admin 접근
+  │   └─ {app}-users-banned → /banned 페이지
+  └─ 관리자가 /admin에서 역할 변경 (Authentik API 호출)
+```
+
+### 4-그룹 역할 체계
+
+| 그룹 | 용도 | 앱 동작 |
+|------|------|--------|
+| `{app}-users-pending` | 가입 보류 (enrollment 시 자동) | `/pending` 리다이렉트 |
+| `{app}-users` | 승인된 사용자 | 앱 정상 접근 |
+| `{app}-admins` | 관리자 | `/admin` 접근 가능 |
+| `{app}-users-banned` | 정지 | `/banned` 리다이렉트 |
+
+> **원칙:** OIDC 토큰은 모든 그룹에서 발급됨. 역할별 분기는 앱에서 `groups` claim으로 처리.
+> admin 역할 사용자는 `{app}-users` + `{app}-admins` 두 그룹 모두 소속.
 
 - 앱은 Google과 직접 통신하지 않음 — authentik이 중간에서 처리
 - 앱별로 독립된 Google OAuth Client, 인증 flow, 사용자 그룹, OIDC provider
@@ -122,44 +160,57 @@ ssh codepoet-mac-mini-1 "docker logs authentik-vault-agent --tail 5"
 - 기존 `10-webtoon-maker.yaml`을 복사하여 변수만 치환
 - 순번은 기존 마지막 +1 (현재: 10-webtoon, 11-rehab → 다음 12-xxx)
 
-**포함 리소스 (9개):**
-1. Google OAuth Source (`google-{app}`)
-2. 사용자 그룹 (`{app}-users`)
-3. Identification Stage (Google 버튼)
-4. User Login Stage
-5. Authentication Flow (`{app}-authentication`)
-6. Flow-Stage Bindings (2개)
-7. OIDC Provider (`{app}-oauth2`)
-8. Application (`{app-slug}`)
-9. Policy Binding (그룹 기반 접근 제어)
+**포함 리소스:**
 
-> `redirect_uris` 기본값: `/api/auth/callback/authentik` (NextAuth 패턴).
+| # | 리소스 | ID 패턴 | 설명 |
+|---|--------|---------|------|
+| 1 | Google OAuth Source | `google-{app}` | enrollment_flow → 자동 가입 flow |
+| 2 | 사용자 그룹 (4개) | `{app}-users-pending`, `{app}-users`, `{app}-admins`, `{app}-users-banned` | 4-역할 체계 |
+| 3 | Expression Policy | `{app}-set-username-from-email` | Google은 username 미제공 → email을 username으로 설정 |
+| 4 | User Write Stage | `{app}-user-write` | `create_users_group: {app}-users-pending`, `user_creation_mode: always_create` |
+| 5 | User Login Stage (enrollment) | `{app}-enrollment-login` | 가입 후 세션 생성 |
+| 6 | Enrollment Flow | `{app}-enrollment` | Write → Login (prompt 없음, 자동 가입) |
+| 7 | Flow-Stage Bindings | - | enrollment flow에 write(10) → login(20) 바인딩 |
+| 8 | Policy Binding (expression) | - | expression policy → write stage binding (username 채움) |
+| 9 | Identification Stage | `{app}-identification` | `user_fields: []`, `sources: [google-{app}]` → Google 버튼만 표시 |
+| 10 | User Login Stage (auth) | `{app}-login` | 인증 후 세션 생성 |
+| 11 | Authentication Flow | `{app}-authentication` | Identification → Login |
+| 12 | OIDC Provider | `{app}-oauth2` | `authentication_flow: {app}-authentication` |
+| 13 | Application | `{app-slug}` | `policy_engine_mode: any` |
+| 14 | Policy Bindings (4개) | - | 4개 그룹 모두 OIDC 접근 허용 (앱에서 역할별 분기) |
+
+> `redirect_uris` 기본값: `/api/auth/callback/authentik` (React Router 7 패턴).
 > FastAPI 등 다른 프레임워크는 이 URL을 수정하세요.
+> 참고 Blueprint 템플릿: `11-rehab-crm.yaml` (가장 최신, 4-그룹 + enrollment + expression policy 포함)
 
-### 4-2. Blueprint 호스트 복사 + 적용
+### 4-2. Blueprint 호스트 동기화
 
-- [ ] Blueprint 파일 복사
+- [ ] Blueprint 파일 동기화 (스크립트 사용 권장)
 
 ```bash
-scp blueprints/custom/{순번}-{app}.yaml \
+# 전체 Blueprint 동기화 (MD5 비교, 변경분만 복사)
+./scripts/sync-blueprints.sh
+
+# 변경 사항만 확인 (dry run)
+./scripts/sync-blueprints.sh --dry
+```
+
+또는 수동 복사:
+
+```bash
+scp services/codepoet-mac-mini-1/authentik/blueprints/custom/{순번}-{app}.yaml \
   codepoet-mac-mini-1:/Volumes/mac-ext-storage/.authentik/blueprints/custom/
 ```
 
-- [ ] Blueprint 적용
+- [ ] Blueprint 적용: Worker가 자동 감지하여 적용 (재시작 시). 즉시 적용하려면:
 
 ```bash
-ssh codepoet-mac-mini-1 "export PATH=\$PATH:/usr/local/bin && \
-  docker exec authentik-worker sh -c '
-    export \$(cat /secrets/authentik.env | grep -v \"^#\" | grep -v \"^\$\" | xargs)
-    export AUTHENTIK_POSTGRESQL__HOST=postgresql
-    export AUTHENTIK_POSTGRESQL__USER=\$PG_USER
-    export AUTHENTIK_POSTGRESQL__NAME=\$PG_DB
-    export AUTHENTIK_POSTGRESQL__PASSWORD=\$PG_PASS
-    export AUTHENTIK_SECRET_KEY=\$AUTHENTIK_SECRET_KEY
-    ak apply_blueprint /blueprints/custom/{순번}-{app}.yaml
-  '"
+# Portainer UI → authentik 스택 → worker 컨테이너만 재시작
+# 또는 API 호출로 Blueprint instance 조회 후 sync 실행
 ```
 
+> **주의:** `ak apply_blueprint`은 Secret Key 미주입 이슈로 실패할 수 있음.
+> 상세: `my-devops/docs/services/authentik.md` → "Blueprint IaC 알려진 이슈"
 > Blueprint은 멱등 — 수정 후 다시 적용하면 기존 리소스 업데이트됨.
 
 ### 4-3. OIDC Client 자격증명 조회
@@ -202,11 +253,12 @@ AUTHENTIK_CLIENT_SECRET={Phase 4-3에서 조회한 값}
 
 ### 프레임워크별 연동
 
-| 프레임워크 | Redirect URI | 핵심 설정 |
-|-----------|-------------|-----------|
-| **Next.js** (NextAuth) | `/api/auth/callback/authentik` (자동) | `id: "authentik"`, `type: "oidc"`, `issuer` |
-| **FastAPI** (Authlib) | `/auth/callback` (커스텀) | `server_metadata_url`, Blueprint redirect_uri 수정 필요 |
-| **기타** | 앱 정의 | 표준 OAuth2 Authorization Code Flow 구현 |
+| 프레임워크 | Redirect URI | 핵심 설정 | 상세 워크플로우 |
+|-----------|-------------|-----------|--------------|
+| **React Router 7** (SSR) | `/api/auth/callback/authentik` | 직접 구현 (라이브러리 없음) | → [**react-router-7-oidc-implementation.md**](authentik/react-router-7-oidc-implementation.md) |
+| **Next.js** (NextAuth) | `/api/auth/callback/authentik` (자동) | `id: "authentik"`, `type: "oidc"`, `issuer` | |
+| **FastAPI** (Authlib) | `/auth/callback` (커스텀) | `server_metadata_url`, Blueprint redirect_uri 수정 필요 | |
+| **기타** | 앱 정의 | 표준 OAuth2 Authorization Code Flow 구현 | |
 
 > 상세 코드 예시: `my-devops/docs/guides/authentik-oidc-app-integration.md` → "프레임워크별 연동 코드" 섹션
 
@@ -221,19 +273,41 @@ AUTHENTIK_CLIENT_SECRET={Phase 4-3에서 조회한 값}
 
 ---
 
-## Phase 6: 검증 + 사용자 관리
+## Phase 6: 검증
 
-### 6-1. 로그인 테스트
+### 6-1. 신규 사용자 가입 테스트
 
-- [ ] 앱에서 로그인 시도 → Google 로그인 화면 표시 확인
-- [ ] Google 인증 완료 → "access denied" 확인 (그룹 미할당 상태, 정상)
+- [ ] 앱에서 처음 로그인 시도 → Google 로그인 화면 표시 확인
+- [ ] Google 인증 완료 → **자동 가입** → `/pending` 페이지 표시 확인
+- [ ] Authentik에서 사용자가 `{app}-users-pending` 그룹에 자동 추가됨 확인
 
-### 6-2. 사용자 그룹 할당
+### 6-2. 관리자 승인 테스트
 
-- [ ] Authentik Admin UI → Directory → Groups → `{app}-users` → Add existing user
-- [ ] 재로그인 → 앱 정상 접근 확인
+- [ ] 관리자 계정으로 로그인 → `/admin` 접근
+- [ ] 사용자 목록에서 pending 사용자 확인 → "사용자" 버튼 클릭 (역할 변경)
+- [ ] 해당 사용자 재로그인 → 앱 정상 접근 확인
 
-### 6-3. Git 정리
+### 6-3. 역할 변경 테스트
+
+- [ ] `/admin`에서 각 역할(보류/사용자/관리자/정지) 변경 확인
+- [ ] 정지 사용자 로그인 시 `/banned` 페이지 표시 확인
+- [ ] 검색 및 필터 기능 동작 확인
+
+### 6-4. 초기 관리자 설정
+
+- [ ] Authentik Admin API로 초기 관리자 그룹 할당
+
+```bash
+# 관리자 유저를 {app}-admins + {app}-users 두 그룹에 추가
+curl -X POST -H "Authorization: Bearer $TOKEN" \
+  "https://auth.codepoet.site/api/v3/core/groups/{admins-pk}/add_user/" \
+  -d '{"pk": USER_PK}'
+curl -X POST -H "Authorization: Bearer $TOKEN" \
+  "https://auth.codepoet.site/api/v3/core/groups/{users-pk}/add_user/" \
+  -d '{"pk": USER_PK}'
+```
+
+### 6-5. Git 정리
 
 - [ ] Blueprint 파일을 Git에 커밋
 
@@ -241,6 +315,12 @@ AUTHENTIK_CLIENT_SECRET={Phase 4-3에서 조회한 값}
 git add services/codepoet-mac-mini-1/authentik/blueprints/custom/{순번}-{app}.yaml
 git commit -m "feat: add {app} authentik OIDC blueprint"
 git push origin main
+```
+
+- [ ] Blueprint 호스트 동기화
+
+```bash
+./scripts/sync-blueprints.sh
 ```
 
 ---
@@ -259,23 +339,29 @@ git push origin main
 |------|------|------|
 | Google "redirect_uri_mismatch" | Google Console의 redirect URI 불일치 | `https://auth.codepoet.site/source/oauth/callback/google-{app}/` (끝 `/` 필수) |
 | Authentik "redirect URI not valid" | Blueprint redirect_uri ≠ 앱 callback URL | `matching_mode: strict` — 정확히 일치 필요 |
-| "access denied" | 사용자가 `{app}-users` 그룹 미소속 | Admin → Groups → 사용자 추가 |
-| Google 버튼 안 보임 | Blueprint 미적용 또는 OAuth source 미연결 | `ak apply_blueprint` 재실행 |
+| Google 버튼 안 보이고 ID/PW 입력창 표시 | Identification Stage `user_fields` 비어있지 않음 | `user_fields: []` + `sources: [google-{app}]` 설정 확인 |
+| "Aborting write to empty username" | Google은 username 미제공 → UserWriteStage 실패 | Expression Policy로 `email → username` 자동 설정 필요 (Blueprint 참조) |
+| 가입 후 /pending 대신 "access denied" | Policy Binding에 pending 그룹 누락 | 4개 그룹 모두 OIDC 접근 허용 필요 (앱에서 분기) |
+| `ak apply_blueprint` "Secret key missing" | `docker exec`가 Vault Agent 환경변수 미상속 | API 직접 호출 또는 worker 재시작으로 대체 |
 | `!Env` 변수 비어있음 | Vault Agent 미재배포 | Phase 3-2 수행 (Portainer 스택 재배포) |
-| Provider 조회 안됨 | Blueprint 적용 실패 | `ak apply_blueprint` 출력 확인, 멱등이므로 재적용 |
+| 리버스 프록시 뒤 `redirect_uri=http://localhost` | SSR 앱에서 `request.url`이 컨테이너 내부 주소 반환 | `X-Forwarded-Host`/`Host` 헤더 사용, production에서 `https` 강제 |
+| Blueprint 호스트 파일과 Git 불일치 | 수동 편집 후 sync 안 함 | `./scripts/sync-blueprints.sh` 실행 |
 
 ## 현재 등록 현황
 
-| App | Blueprint 순번 | App Slug | OAuth Source | OIDC Provider |
-|-----|---------------|----------|--------------|---------------|
-| Webtoon Maker | 10 | `webtoon-maker` | `google-webtoon` | `webtoon-oauth2` |
-| Rehab CRM | 11 | `rehab-crm` | `google-rehab` | `rehab-oauth2` |
+| App | Blueprint 순번 | App Slug | OAuth Source | OIDC Provider | 역할 체계 |
+|-----|---------------|----------|--------------|---------------|----------|
+| Webtoon Maker | 10 | `webtoon-maker` | `google-webtoon` | `webtoon-oauth2` | 단일 그룹 (legacy) |
+| Rehab CRM | 11 | `rehab-crm` | `google-rehab` | `rehab-oauth2` | 4-그룹 (pending/user/admin/banned) |
+
+> Webtoon Maker는 아직 4-그룹 체계 미적용. `11-rehab-crm.yaml`을 참조하여 마이그레이션 가능.
 
 ## 관련 문서
 
 | 문서 | 위치 | 내용 |
 |------|------|------|
+| React Router 7 OIDC 구현 | `workflows/authentik/react-router-7-oidc-implementation.md` | 앱 코드 구현 (auth + 역할 관리 + admin 페이지) |
 | OIDC 연동 상세 가이드 | `my-devops/docs/guides/authentik-oidc-app-integration.md` | 프레임워크별 코드, Blueprint 템플릿, OIDC endpoints |
-| Authentik 서비스 문서 | `my-devops/docs/services/authentik.md` | 인프라 배포, 접근 제한, Mixed Content 해결 |
+| Authentik 서비스 문서 | `my-devops/docs/services/authentik.md` | 인프라 배포, Blueprint IaC 이슈, 드리프트 관리 |
 | 앱 E2E 배포 | `workflows/app-deploy-e2e.md` | 앱 빌드~Portainer 배포 전체 |
 | Vault CLI | `my-devops/docs/guides/vault-cli.md` | Vault 시크릿 관리 |

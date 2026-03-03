@@ -39,3 +39,4 @@
 | cicd-deploy | [gitlab-ci-multiplatform-portainer.md](cicd-deploy/gitlab-ci-multiplatform-portainer.md) | GitLab CI 멀티플랫폼 빌드 → Portainer 스택 배포 |
 | networking | [traefik-basicauth-external-only.md](networking/traefik-basicauth-external-only.md) | 외부만 BasicAuth, 내부 패스 |
 | **authentik** | [authentik-oidc-app-onboarding.md](authentik-oidc-app-onboarding.md) | **Authentik OIDC 앱 온보딩 (Google OAuth 연동)** |
+| authentik | [react-router-7-oidc-implementation.md](authentik/react-router-7-oidc-implementation.md) | React Router 7 SSR에서 OIDC 인증 구현 (rehab-crm 사례) |
