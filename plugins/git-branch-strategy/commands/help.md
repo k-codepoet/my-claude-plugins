@@ -11,7 +11,12 @@ Git 브랜치 전략을 선택하고 보호 브랜치 직접 커밋을 방지하
 
 | 스킬 | 설명 |
 |------|------|
-| `branching-guide` | 브랜치 전략 가이드 (Downstream Fork, Vendor Branch) |
+| `strategy-select` | 브랜치 전략 추천 및 선택 |
+| `setup` | 선택된 전략 스캐폴딩 생성 |
+| `downstream-fork` | Downstream Fork 패턴 레퍼런스 |
+| `upstream-sync` | upstream 동기화 절차 |
+| `vendor-branch` | Vendor Branch 패턴 레퍼런스 |
+| `vendor-update` | vendor 브랜치 업데이트 절차 |
 
 ## 훅
 
