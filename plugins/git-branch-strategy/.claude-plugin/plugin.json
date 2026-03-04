@@ -1,9 +1,9 @@
 {
   "name": "git-branch-strategy",
-  "version": "1.0.0",
-  "description": "Git 브랜치 전략 선택 및 강제. Downstream Fork, Vendor Branch 패턴 지원.",
+  "version": "1.1.0",
+  "description": "Git 브랜치 전략 선택 및 강제. Git Flow, GitHub Flow, GitLab Flow, Trunk-Based, Release Branch, Forking Workflow, Downstream Fork, Vendor Branch 지원.",
   "author": { "name": "choigawoon" },
-  "keywords": ["git", "branching", "fork", "vendor-branch", "strategy"],
+  "keywords": ["git", "branching", "fork", "vendor-branch", "strategy", "git-flow", "github-flow", "gitlab-flow", "trunk-based"],
   "commands": ["./commands/"],
   "skills": ["./skills/"]
 }
