@@ -38,6 +38,11 @@
       "name": "git-branch-strategy",
       "source": "./plugins/git-branch-strategy",
       "description": "Guard your branches - Downstream Fork / Vendor Branch 브랜치 전략 선택 및 강제"
+    },
+    {
+      "name": "my-devops-tools",
+      "source": "./plugins/my-devops-tools",
+      "description": "DevOps 도구 설치 및 커스텀 사용법 관리"
     }
   ]
 }

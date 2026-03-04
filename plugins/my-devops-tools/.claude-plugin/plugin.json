@@ -1,0 +1,10 @@
+{
+  "name": "my-devops-tools",
+  "version": "1.0.0",
+  "description": "DevOps 도구 설치 및 커스텀 사용법 관리",
+  "author": {
+    "name": "choigawoon"
+  },
+  "keywords": ["devops", "vault", "cli", "installation", "guide"],
+  "skills": ["./skills/"]
+}

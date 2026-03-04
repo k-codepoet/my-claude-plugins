@@ -137,19 +137,17 @@ if [ -d "$SKILLS_DIR" ]; then
             continue
         fi
 
-        # name 필드 확인 (디렉토리명과 일치)
+        # name 필드: 사용하지 않는 것이 올바름 (디렉토리명에서 자동 파생, prefix 충돌 방지)
         name_in_file=$(grep -m1 "^name:" "$skill_file" 2>/dev/null | sed 's/name: *//' || echo "")
-        if [ -z "$name_in_file" ]; then
-            error "skills/$skill_name/SKILL.md: Missing 'name' in frontmatter"
-        elif [ "$name_in_file" != "$skill_name" ]; then
-            error "skills/$skill_name/SKILL.md: name mismatch (file: $name_in_file, dir: $skill_name)"
+        if [ -n "$name_in_file" ]; then
+            warning "skills/$skill_name/SKILL.md: 'name' in frontmatter is not recommended (auto-derived from directory)"
+        fi
+
+        # description 확인
+        if head -10 "$skill_file" | grep -q "^description:"; then
+            ((SKILL_OK++)) || true
         else
-            # description 확인
-            if head -10 "$skill_file" | grep -q "^description:"; then
-                ((SKILL_OK++)) || true
-            else
-                error "skills/$skill_name/SKILL.md: Missing 'description' in frontmatter"
-            fi
+            error "skills/$skill_name/SKILL.md: Missing 'description' in frontmatter"
         fi
     done
 
