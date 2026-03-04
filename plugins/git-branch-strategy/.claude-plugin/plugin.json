@@ -1,0 +1,9 @@
+{
+  "name": "git-branch-strategy",
+  "version": "1.0.0",
+  "description": "Git 브랜치 전략 선택 및 강제. Downstream Fork, Vendor Branch 패턴 지원.",
+  "author": { "name": "choigawoon" },
+  "keywords": ["git", "branching", "fork", "vendor-branch", "strategy"],
+  "commands": ["./commands/"],
+  "skills": ["./skills/"]
+}
