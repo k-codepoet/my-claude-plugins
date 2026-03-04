@@ -33,6 +33,11 @@
       "name": "shellify",
       "source": "./plugins/shellify",
       "description": "Shape your shell - Cross-platform 셸 환경 셋업 (macOS + Ubuntu/WSL)"
+    },
+    {
+      "name": "git-branch-strategy",
+      "source": "./plugins/git-branch-strategy",
+      "description": "Guard your branches - Downstream Fork / Vendor Branch 브랜치 전략 선택 및 강제"
     }
   ]
 }
