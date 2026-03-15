@@ -5,6 +5,15 @@ All notable changes to the Craftify plugin will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.1.0] - 2026-03-07
+
+### Changed
+- **plugin description 현행화** - "turborepo + Cloudflare" → "boilerplate 기반 프로젝트 구현 및 배포 자동화"로 실제 커버리지 반영
+- **boilerplate 커버리지 확장** - 지원 boilerplate 17개로 확대 (웹앱, CLI, 데스크톱, 봇, 게임, AI)
+- **repo name 수정** - boilerplate 참조 저장소명 정정
+- **SKILL.md name 필드 제거** - frontmatter에서 name 필드 제거 (디렉토리명 기반 자동 네이밍 준수)
+- **keywords 확장** - webapp 외 cli, desktop, bot, game 카테고리 추가
+
 ## [1.0.0] - 2026-02-14
 
 ### Changed

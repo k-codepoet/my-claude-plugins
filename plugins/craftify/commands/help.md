@@ -6,7 +6,7 @@ description: craftify 플러그인 도움말을 표시합니다
 
 > Craft your products with AI.
 
-turborepo + Cloudflare 기반 웹앱 개발환경 자동화 도구입니다.
+boilerplate 기반 프로젝트 구현 및 배포 자동화 도구입니다.
 
 ## 사용 가능한 기능
 

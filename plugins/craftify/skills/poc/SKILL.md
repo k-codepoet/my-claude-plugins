@@ -69,7 +69,7 @@ POC.md에 기술스택(Next.js, Vite, React 등) 지정됨?
 │         기술 선택을 권장합니다:
 │         • 검증된 boilerplate 사용으로 빠른 시작
 │         • 배포 환경에 최적화된 설정
-│         • turborepo 구조와의 호환성
+│         • 검증된 boilerplate와의 호환성
 │
 │         craftify의 조언을 따르시겠습니까? (y/n)"
 │
@@ -121,8 +121,8 @@ boilerplate 선택 시:
 ### 4. 프로젝트 셋업
 
 1. boilerplate 복제 (`boilerplate-guide` 스킬의 복제 명령 참조)
-2. turborepo 구조 생성
-3. 빌드 확인: `pnpm install && pnpm build && pnpm dev`
+2. 프로젝트 구조 확인 및 초기 설정
+3. 빌드 확인 (카테고리별 명령은 `boilerplate-guide` 참조)
 4. 배포 (선택): `/craftify:deploy` (`references/deploy-types.md` 참조)
 
 ### 5. 코드 구현

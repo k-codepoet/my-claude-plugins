@@ -1,11 +1,11 @@
 {
   "name": "craftify",
-  "version": "1.0.0",
-  "description": "Craft your products with AI - turborepo + Cloudflare 기반 개발환경 자동화",
+  "version": "1.1.0",
+  "description": "Craft your products with AI - boilerplate 기반 프로젝트 구현 및 배포 자동화",
   "author": {
     "name": "choigawoon"
   },
-  "keywords": ["development", "turborepo", "cloudflare", "boilerplate", "webapp"],
+  "keywords": ["development", "boilerplate", "cloudflare", "webapp", "cli", "desktop", "bot", "game"],
   "commands": ["./commands/"],
   "skills": ["./skills/"],
   "agents": ["./agents/setup-wizard.md"]
